@@ -27,7 +27,7 @@ html, body { margin: 0; background: #080d18; }
 .st-landing a:hover { color: #99f6e4; }
 .st-landing ::selection { background: rgba(45, 212, 191, 0.3); }
 .st-landing :focus-visible { outline: 2px solid #2dd4bf; outline-offset: 2px; border-radius: 4px; }
-.st-landing #features, .st-landing #docs { scroll-margin-top: 64px; }
+.st-landing #features { scroll-margin-top: 64px; }
 
 /* Hover que debe ganar sobre los color inline (por eso !important) */
 .st-landing .st-navlink:hover { color: #e2e8f0 !important; }
@@ -42,7 +42,8 @@ html, body { margin: 0; background: #080d18; }
 @keyframes st-new { 0% { background: rgba(45, 212, 191, 0.13); } 100% { background: rgba(45, 212, 191, 0.03); } }
 
 @media (max-width: 1080px) {
-  .st-landing .st-feat { grid-template-columns: 1fr !important; gap: 32px !important; }
+  /* minmax(0,1fr): plain 1fr is minmax(auto,1fr) and the nowrap text inside the cards inflates the track past the viewport */
+  .st-landing .st-feat { grid-template-columns: minmax(0, 1fr) !important; gap: 32px !important; }
   .st-landing .st-feat > div { order: 0 !important; }
   .st-landing .st-cols3 { grid-template-columns: 1fr !important; }
   .st-landing .st-foot { grid-template-columns: 1fr 1fr !important; }
@@ -60,6 +61,9 @@ html, body { margin: 0; background: #080d18; }
   .st-landing .st-mock-table { min-width: 620px; }
   .st-landing .st-foot { grid-template-columns: 1fr !important; gap: 28px !important; }
   .st-landing .st-toast { left: 10px !important; right: 10px !important; top: 44px !important; }
+  .st-landing .st-cols2 { grid-template-columns: 1fr !important; }
+  .st-landing .st-biz { flex-direction: column !important; align-items: stretch !important; }
+  .st-landing .st-biz-list { grid-template-columns: 1fr !important; }
 }
 </style>
 </head>
@@ -75,7 +79,7 @@ html, body { margin: 0; background: #080d18; }
         <a href="#features" class="st-navlink" style="color:#94A3B8">Features</a>
         <a href="#monitoring" class="st-navlink" style="color:#94A3B8">Monitoring</a>
         <a href="#pricing" class="st-navlink" style="color:#94A3B8">Pricing</a>
-        <a href="#docs" class="st-navlink" style="color:#94A3B8">Docs</a>
+        <a href="https://docs.sigtake.com" class="st-navlink" style="color:#94A3B8">Docs</a>
       </div>
       <div style="display:flex;align-items:center;gap:16px">
         <a href="https://app.sigtake.com/login" class="st-loglink" style="font-size:14px;font-weight:500;color:#E2E8F0">Log in</a>
@@ -202,8 +206,8 @@ html, body { margin: 0; background: #080d18; }
               </ul>
             </div>
             <div style="background:#0F1623;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:10px">
-              <div style="display:flex;align-items:center;justify-content:space-between;background:#161E30;border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px 14px">
-                <span style="display:flex;align-items:center;gap:10px"><span style="display:inline-flex;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.05em;background:rgba(239,68,68,0.12);color:#F87171">CRITICAL</span><span style="font-size:13px;font-weight:600;color:#F1F5F9">CPU above 92% on prod-web-03</span></span>
+              <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px 12px;background:#161E30;border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px 14px">
+                <span style="display:flex;align-items:center;gap:10px;min-width:0"><span style="display:inline-flex;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.05em;background:rgba(239,68,68,0.12);color:#F87171">CRITICAL</span><span style="font-size:13px;font-weight:600;color:#F1F5F9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">CPU above 92% on prod-web-03</span></span>
                 <span style="display:flex;gap:8px"><span style="font-size:11.5px;font-weight:600;color:#0C1220;background:#2DD4BF;border-radius:7px;padding:4px 10px">Acknowledge</span><span style="font-size:11.5px;font-weight:600;color:#E2E8F0;background:rgba(255,255,255,0.07);border-radius:7px;padding:4px 10px">Resolve</span></span>
               </div>
               <div style="background:#161E30;border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px 14px">
@@ -405,7 +409,7 @@ html, body { margin: 0; background: #080d18; }
           <h2 style="margin:0 0 14px;font-size:clamp(29px,5.5vw,38px);line-height:1.15;font-weight:700;letter-spacing:-0.02em;color:#F1F5F9">Start free, scale when you're paged</h2>
           <p style="margin:0;font-size:16px;line-height:1.6;color:#94A3B8">Everything's free while we're in early access — paid plans will come as we grow.</p>
         </div>
-        <div class="st-cols3" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;align-items:stretch">
+        <div class="st-cols2" style="max-width:760px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch">
           <div style="background:#0F1623;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:18px">
             <div><h3 style="margin:0 0 6px;font-size:17px;font-weight:700;color:#F1F5F9">Starter</h3><p style="margin:0;font-size:13.5px;color:#94A3B8">For a small team getting off spreadsheets and inboxes.</p></div>
             <div style="display:flex;align-items:baseline;gap:6px"><span style="font-size:clamp(32px,6vw,40px);font-weight:800;letter-spacing:-0.02em;color:#F8FAFC">Free</span><span style="font-size:13.5px;color:#64748B">during early access</span></div>
@@ -431,18 +435,21 @@ html, body { margin: 0; background: #080d18; }
             </ul>
             <a href="https://app.sigtake.com/register" class="st-btn-primary" style="margin-top:auto;display:inline-flex;justify-content:center;background:#2DD4BF;color:#0C1220;font-size:14px;font-weight:600;padding:11px 20px;border-radius:9px;box-shadow:0 0 24px rgba(45,212,191,0.35)">Start free</a>
           </div>
-          <div style="background:#0F1623;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:18px">
-            <div><h3 style="margin:0 0 6px;font-size:17px;font-weight:700;color:#F1F5F9">Business</h3><p style="margin:0;font-size:13.5px;color:#94A3B8">For orgs that treat alerting as infrastructure.</p></div>
-            <div style="display:flex;align-items:baseline;gap:6px"><span style="font-size:clamp(32px,6vw,40px);font-weight:800;letter-spacing:-0.02em;color:#F8FAFC">Free</span><span style="font-size:13.5px;color:#64748B">during early access</span></div>
-            <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px;font-size:13.5px;color:#CBD5E1">
+        </div>
+        <!-- Business: informational band, not a pricing card (everything is free during early access) -->
+        <div class="st-biz" style="max-width:760px;margin:24px auto 0;background:#0F1623;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:26px 28px;display:flex;align-items:center;gap:28px">
+          <div style="flex:1;min-width:0">
+            <h3 style="margin:0 0 6px;font-size:17px;font-weight:700;color:#F1F5F9">Business</h3>
+            <p style="margin:0 0 14px;font-size:13.5px;line-height:1.6;color:#94A3B8">For orgs that treat alerting as infrastructure.</p>
+            <ul class="st-biz-list" style="margin:0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:9px 24px;font-size:13.5px;color:#CBD5E1">
               <li style="display:flex;gap:9px"><span style="color:#2DD4BF;font-weight:700">✓</span>Unlimited users, teams &amp; monitors</li>
               <li style="display:flex;gap:9px"><span style="color:#2DD4BF;font-weight:700">✓</span>Unlimited alerts, custom rate limits</li>
               <li style="display:flex;gap:9px"><span style="color:#2DD4BF;font-weight:700">✓</span>Enforced 2FA + full audit history</li>
               <li style="display:flex;gap:9px"><span style="color:#2DD4BF;font-weight:700">✓</span>99.9% uptime SLA</li>
               <li style="display:flex;gap:9px"><span style="color:#2DD4BF;font-weight:700">✓</span>Priority support</li>
             </ul>
-            <a href="mailto:sigtake@gmail.com?subject=Talk%20to%20sales" class="st-btn-ghost" style="margin-top:auto;display:inline-flex;justify-content:center;background:rgba(255,255,255,0.06);color:#E2E8F0;font-size:14px;font-weight:600;padding:11px 20px;border-radius:9px;border:1px solid rgba(255,255,255,0.08)">Talk to sales</a>
           </div>
+          <a href="mailto:sigtake@gmail.com?subject=Talk%20to%20sales" class="st-btn-ghost" style="flex:none;display:inline-flex;justify-content:center;background:rgba(255,255,255,0.06);color:#E2E8F0;font-size:14px;font-weight:600;padding:11px 20px;border-radius:9px;border:1px solid rgba(255,255,255,0.08)">Talk to sales</a>
         </div>
       </div>
     </section>
@@ -455,26 +462,28 @@ html, body { margin: 0; background: #080d18; }
         <p style="position:relative;margin:0 0 28px;font-size:16.5px;color:#94A3B8">Your first API key is one click away. Free for small teams, forever.</p>
         <div style="position:relative;display:flex;justify-content:center;flex-wrap:wrap;gap:14px">
           <a href="https://app.sigtake.com/register" class="st-btn-primary" style="display:inline-flex;align-items:center;background:#2DD4BF;color:#0C1220;font-size:16px;font-weight:600;padding:13px 28px;border-radius:10px;box-shadow:0 0 32px rgba(45,212,191,0.4)">Start free</a>
-          <a href="#docs" class="st-btn-ghost" style="display:inline-flex;align-items:center;background:rgba(255,255,255,0.06);color:#E2E8F0;font-size:16px;font-weight:600;padding:13px 28px;border-radius:10px;border:1px solid rgba(255,255,255,0.08)">Read the docs</a>
+          <a href="https://docs.sigtake.com" class="st-btn-ghost" style="display:inline-flex;align-items:center;background:rgba(255,255,255,0.06);color:#E2E8F0;font-size:16px;font-weight:600;padding:13px 28px;border-radius:10px;border:1px solid rgba(255,255,255,0.08)">Read the docs</a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="st-sec-foot" id="docs" style="border-top:1px solid rgba(255,255,255,0.06);padding:64px 32px 40px;background:#070B14">
+  <footer class="st-sec-foot" style="border-top:1px solid rgba(255,255,255,0.06);padding:64px 32px 40px;background:#070B14">
     <div style="max-width:1080px;margin:0 auto">
       <div class="st-foot" style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px">
         <div>
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><span style="width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,#2DD4BF,#0D9488);display:inline-flex;align-items:center;justify-content:center"><span style="width:6px;height:6px;border-radius:50%;background:#042F2E"></span></span><span style="font-size:15px;font-weight:700;color:#F1F5F9">Sigtake</span></div>
           <p style="margin:0;max-width:280px;font-size:13.5px;line-height:1.6;color:#64748B">Real-time alert management and monitoring for ops teams. Multi-tenant, deduplicated, routed to the people on call.</p>
         </div>
-        <nav aria-label="Product"><p style="margin:0 0 14px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#475569">Product</p><ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:13.5px"><li><a href="#features" class="st-flink" style="color:#94A3B8">Features</a></li><li><a href="#monitoring" class="st-flink" style="color:#94A3B8">Monitoring</a></li><li><a href="#pricing" class="st-flink" style="color:#94A3B8">Pricing</a></li><li><a href="#" class="st-flink" style="color:#94A3B8">Changelog</a></li></ul></nav>
-        <nav aria-label="Resources"><p style="margin:0 0 14px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#475569">Resources</p><ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:13.5px"><li><a href="#" class="st-flink" style="color:#94A3B8">Documentation</a></li><li><a href="#" class="st-flink" style="color:#94A3B8">API reference</a></li><li><a href="#" class="st-flink" style="color:#94A3B8">Status</a></li><li><a href="#" class="st-flink" style="color:#94A3B8">Support</a></li></ul></nav>
-        <nav aria-label="Legal"><p style="margin:0 0 14px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#475569">Legal</p><ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:13.5px"><li><a href="#" class="st-flink" style="color:#94A3B8">Privacy</a></li><li><a href="#" class="st-flink" style="color:#94A3B8">Terms</a></li><li><a href="#" class="st-flink" style="color:#94A3B8">Security</a></li></ul></nav>
+        <nav aria-label="Product"><p style="margin:0 0 14px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#475569">Product</p><ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:13.5px"><li><a href="#features" class="st-flink" style="color:#94A3B8">Features</a></li><li><a href="#monitoring" class="st-flink" style="color:#94A3B8">Monitoring</a></li><li><a href="#pricing" class="st-flink" style="color:#94A3B8">Pricing</a></li><!-- TODO: re-enable when a changelog exists: <li><a href="#" class="st-flink" style="color:#94A3B8">Changelog</a></li> --></ul></nav>
+        <nav aria-label="Resources"><p style="margin:0 0 14px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#475569">Resources</p><ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:13.5px"><li><a href="https://docs.sigtake.com" class="st-flink" style="color:#94A3B8">Documentation</a></li><li><a href="https://docs.sigtake.com" class="st-flink" style="color:#94A3B8">API reference</a></li><!-- TODO: re-enable when a status page exists: <li><a href="#" class="st-flink" style="color:#94A3B8">Status</a></li> --><li><a href="mailto:sigtake@gmail.com?subject=Support" class="st-flink" style="color:#94A3B8">Support</a></li></ul></nav>
+        <nav aria-label="Legal"><p style="margin:0 0 14px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#475569">Legal</p><ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:13.5px"><li><a href="/privacy/" class="st-flink" style="color:#94A3B8">Privacy</a></li><li><a href="/terms/" class="st-flink" style="color:#94A3B8">Terms</a></li><!-- TODO: re-enable when a security page exists: <li><a href="#" class="st-flink" style="color:#94A3B8">Security</a></li> --></ul></nav>
       </div>
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;border-top:1px solid rgba(255,255,255,0.05);padding-top:24px;font-size:12.5px;color:#475569">
         <span>© 2026 Sigtake, Inc.</span>
+        <!-- TODO: re-enable when the social profiles are live:
         <div style="display:flex;gap:20px"><a href="#" class="st-flink" style="color:#64748B">X</a><a href="#" class="st-flink" style="color:#64748B">GitHub</a><a href="#" class="st-flink" style="color:#64748B">LinkedIn</a></div>
+        -->
       </div>
     </div>
   </footer>

@@ -1,0 +1,28 @@
+# Sigtake
+
+> Real-time alert management & monitoring for ops teams. Sigtake ingests alerts
+> from all your systems, collapses duplicates into one row, and routes what
+> matters to the right team — by email, SMS, Microsoft Teams or in-app. Uptime
+> and signal monitoring included.
+
+## Product
+- [Features](https://sigtake.com/#features): alert deduplication, routing, multi-tenant workspaces
+- [Monitoring](https://sigtake.com/#monitoring): uptime and signal monitoring built in
+- [Pricing](https://sigtake.com/#pricing): free during early access; paid plans as we grow
+
+## Signals & monitoring
+- Push numeric metrics via API (`POST /api/signals/ingest`); rules evaluate every minute.
+- Rule types: threshold (avg/min/max/last over a window), anomaly detection
+  (learns normal by hour & weekday, no threshold), and heartbeat (alerts when a metric stops).
+- Signal alerts flow into the same dedup, routing and notification pipeline.
+- Website/uptime monitoring: periodic checks with uptime % and latency trends.
+
+## Links
+- [App / Sign up](https://app.sigtake.com/register)
+- [Log in](https://app.sigtake.com/login)
+- [Docs](https://docs.sigtake.com)
+- [Contact](mailto:help@sigtake.com)
+
+## Legal
+- [Privacy Policy](https://sigtake.com/privacy/)
+- [Terms of Service](https://sigtake.com/terms/)

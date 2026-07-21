@@ -1,538 +1,1151 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sigtake — Own every alert, from firing to fixed</title>
-<meta name="description" content="Sigtake ingests alerts from all your systems, deduplicates them, and routes what matters to the right team — email, SMS, Microsoft Teams or in-app.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232DD4BF'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23042F2E'/%3E%3C/svg%3E">
-<link rel="canonical" href="https://sigtake.com/">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Sigtake">
-<meta property="og:url" content="https://sigtake.com">
-<meta property="og:title" content="Sigtake — Own every alert, from firing to fixed">
-<meta property="og:description" content="Real-time alert management & monitoring for ops teams. Multi-tenant, deduplicated, routed to the people on call.">
-<meta property="og:image" content="https://sigtake.com/og.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Sigtake — Own every alert, from firing to fixed">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Sigtake — Own every alert, from firing to fixed">
-<meta name="twitter:description" content="Real-time alert management & monitoring for ops teams. Multi-tenant, deduplicated, routed to the people on call.">
-<meta name="twitter:image" content="https://sigtake.com/og.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&display=swap" rel="stylesheet">
-<style>
-html { scroll-behavior: smooth; }
-html, body { margin: 0; background: #080d18; }
-.st-landing {
-  background: #080d18;
-  color: #e2e8f0;
-  font-family: "Inter", system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
-}
-/* Display face: headlines and wordmark only; body stays Inter, data stays monospace */
-.st-landing h1, .st-landing h2, .st-landing h3, .st-landing .st-wordmark { font-family: "Bricolage Grotesque", "Inter", system-ui, sans-serif; }
-.st-landing a { color: #5eead4; text-decoration: none; }
-.st-landing a:hover { color: #99f6e4; }
-.st-landing ::selection { background: rgba(45, 212, 191, 0.3); }
-.st-landing :focus-visible { outline: 2px solid #2dd4bf; outline-offset: 2px; border-radius: 4px; }
-.st-landing #features { scroll-margin-top: 64px; }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sigtake — Own every alert, from firing to fixed</title>
+  <meta name="description"
+    content="Sigtake ingests alerts from all your systems, deduplicates them, and routes what matters to the right team — email, SMS, Microsoft Teams or in-app.">
+  <link rel="icon" href="/public/favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="/public/favicon.svg">
+  <link rel="icon" type="image/png" sizes="96x96" href="/public/favicon-96x96.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
+  <link rel="manifest" href="/public/site.webmanifest">
+  <link rel="canonical" href="https://sigtake.com/">
+  <meta name="theme-color" content="#080D18">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Sigtake">
+  <meta property="og:url" content="https://sigtake.com">
+  <meta property="og:title" content="Sigtake — Own every alert, from firing to fixed">
+  <meta property="og:description"
+    content="Real-time alert management & monitoring for ops teams. Multi-tenant, deduplicated, routed to the people on call.">
+  <meta property="og:image" content="https://sigtake.com/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Sigtake — Own every alert, from firing to fixed">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sigtake — Own every alert, from firing to fixed">
+  <meta name="twitter:description"
+    content="Real-time alert management & monitoring for ops teams. Multi-tenant, deduplicated, routed to the people on call.">
+  <meta name="twitter:image" content="https://sigtake.com/og.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://sigtake.com/#organization",
+        "name": "Sigtake",
+        "url": "https://sigtake.com/",
+        "logo": "https://sigtake.com/public/web-app-manifest-512x512.png",
+        "description": "Real-time alert management & monitoring for ops teams."
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Sigtake",
+        "url": "https://sigtake.com/",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "description": "Sigtake ingests alerts from all your systems, deduplicates them, and routes what matters to the right team — email, SMS, Microsoft Teams or in-app. Uptime and signal monitoring included.",
+        "publisher": { "@id": "https://sigtake.com/#organization" },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&display=swap"
+    rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
 
-/* Hover que debe ganar sobre los color inline (por eso !important) */
-.st-landing .st-navlink:hover { color: #e2e8f0 !important; }
-.st-landing .st-loglink:hover { color: #99f6e4 !important; }
-.st-landing .st-btn-primary:hover { background: #5eead4 !important; color: #0c1220 !important; }
-.st-landing .st-btn-ghost:hover { background: rgba(255, 255, 255, 0.1) !important; }
-.st-landing .st-flink:hover { color: #5eead4 !important; }
-.st-landing .st-navlink.st-active { color: #5eead4 !important; }
+    html,
+    body {
+      margin: 0;
+      background: #080d18;
+    }
 
-/* Reveal on scroll: hidden state only applies once JS tags <html> with .st-js (no-JS fallback = everything visible) */
-.st-js .st-landing .st-reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s cubic-bezier(.16, 1, .3, 1); }
-.st-js .st-landing .st-reveal.st-in { opacity: 1; transform: none; }
-.st-js .st-landing .st-d1 { transition-delay: .09s; }
-.st-js .st-landing .st-d2 { transition-delay: .18s; }
-.st-js .st-landing .st-d3 { transition-delay: .27s; }
+    .st-landing {
+      background: #080d18;
+      color: #e2e8f0;
+      font-family: "Inter", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
 
-@keyframes st-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-@keyframes st-ping { 0% { transform: scale(1); opacity: 0.6; } 80%, 100% { transform: scale(2.6); opacity: 0; } }
-@keyframes st-toast { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes st-new { 0% { background: rgba(45, 212, 191, 0.13); } 100% { background: rgba(45, 212, 191, 0.03); } }
+    /* Display face: headlines and wordmark only; body stays Inter, data stays monospace */
+    .st-landing h1,
+    .st-landing h2,
+    .st-landing h3,
+    .st-landing .st-wordmark {
+      font-family: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
+    }
 
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  .st-landing *, .st-landing *::before, .st-landing *::after { animation: none !important; transition: none !important; }
-  .st-js .st-landing .st-reveal { opacity: 1 !important; transform: none !important; }
-}
+    .st-landing a {
+      color: #5eead4;
+      text-decoration: none;
+    }
 
-@media (max-width: 1080px) {
-  /* minmax(0,1fr): plain 1fr is minmax(auto,1fr) and the nowrap text inside the cards inflates the track past the viewport */
-  .st-landing .st-feat { grid-template-columns: minmax(0, 1fr) !important; gap: 32px !important; }
-  .st-landing .st-feat > div { order: 0 !important; }
-  .st-landing .st-cols3 { grid-template-columns: 1fr !important; }
-  .st-landing .st-foot { grid-template-columns: 1fr 1fr !important; }
-}
-@media (max-width: 767px) {
-  .st-landing .st-nav-links { display: none !important; }
-  .st-landing .st-sec { padding: 64px 20px !important; }
-  .st-landing .st-sec-hero { padding: 72px 16px 56px !important; }
-  .st-landing .st-sec-cta { padding: 32px 16px 72px !important; }
-  .st-landing .st-sec-foot { padding: 48px 20px 32px !important; }
-  .st-landing .st-band { padding: 56px 24px !important; }
-  .st-landing .st-mock-grid { grid-template-columns: 1fr !important; }
-  .st-landing .st-mock-side { display: none !important; }
-  .st-landing .st-mock-body { overflow-x: auto; }
-  .st-landing .st-mock-table { min-width: 620px; }
-  .st-landing .st-foot { grid-template-columns: 1fr !important; gap: 28px !important; }
-  .st-landing .st-toast { left: 10px !important; right: 10px !important; top: 44px !important; }
-  .st-landing .st-biz { padding: 24px 20px !important; }
-  .st-landing .st-biz-head { flex-direction: column; align-items: stretch; }
-  .st-landing .st-biz-list { grid-template-columns: 1fr !important; }
-}
-</style>
+    .st-landing a:hover {
+      color: #99f6e4;
+    }
+
+    .st-landing ::selection {
+      background: rgba(45, 212, 191, 0.3);
+    }
+
+    .st-landing :focus-visible {
+      outline: 2px solid #2dd4bf;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    .st-landing #features {
+      scroll-margin-top: 64px;
+    }
+
+    /* Hover que debe ganar sobre los color inline (por eso !important) */
+    .st-landing .st-navlink:hover {
+      color: #e2e8f0 !important;
+    }
+
+    .st-landing .st-loglink:hover {
+      color: #99f6e4 !important;
+    }
+
+    .st-landing .st-btn-primary:hover {
+      background: #5eead4 !important;
+      color: #0c1220 !important;
+    }
+
+    .st-landing .st-btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.1) !important;
+    }
+
+    .st-landing .st-flink:hover {
+      color: #5eead4 !important;
+    }
+
+    .st-landing .st-navlink.st-active {
+      color: #5eead4 !important;
+    }
+
+    /* Reveal on scroll: hidden state only applies once JS tags <html> with .st-js (no-JS fallback = everything visible) */
+    .st-js .st-landing .st-reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .6s ease, transform .6s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .st-js .st-landing .st-reveal.st-in {
+      opacity: 1;
+      transform: none;
+    }
+
+    .st-js .st-landing .st-d1 {
+      transition-delay: .09s;
+    }
+
+    .st-js .st-landing .st-d2 {
+      transition-delay: .18s;
+    }
+
+    .st-js .st-landing .st-d3 {
+      transition-delay: .27s;
+    }
+
+    @keyframes st-pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.3;
+      }
+    }
+
+    @keyframes st-ping {
+      0% {
+        transform: scale(1);
+        opacity: 0.6;
+      }
+
+      80%,
+      100% {
+        transform: scale(2.6);
+        opacity: 0;
+      }
+    }
+
+    @keyframes st-toast {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes st-new {
+      0% {
+        background: rgba(45, 212, 191, 0.13);
+      }
+
+      100% {
+        background: rgba(45, 212, 191, 0.03);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .st-landing *,
+      .st-landing *::before,
+      .st-landing *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .st-js .st-landing .st-reveal {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+
+    @media (max-width: 1080px) {
+
+      /* minmax(0,1fr): plain 1fr is minmax(auto,1fr) and the nowrap text inside the cards inflates the track past the viewport */
+      .st-landing .st-feat {
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 32px !important;
+      }
+
+      .st-landing .st-feat>div {
+        order: 0 !important;
+      }
+
+      .st-landing .st-cols3 {
+        grid-template-columns: 1fr !important;
+      }
+
+      .st-landing .st-foot {
+        grid-template-columns: 1fr 1fr !important;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .st-landing .st-nav-links {
+        display: none !important;
+      }
+
+      .st-landing .st-sec {
+        padding: 64px 20px !important;
+      }
+
+      .st-landing .st-sec-hero {
+        padding: 72px 16px 56px !important;
+      }
+
+      .st-landing .st-sec-cta {
+        padding: 32px 16px 72px !important;
+      }
+
+      .st-landing .st-sec-foot {
+        padding: 48px 20px 32px !important;
+      }
+
+      .st-landing .st-band {
+        padding: 56px 24px !important;
+      }
+
+      .st-landing .st-mock-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .st-landing .st-mock-side {
+        display: none !important;
+      }
+
+      .st-landing .st-mock-body {
+        overflow-x: auto;
+      }
+
+      .st-landing .st-mock-table {
+        min-width: 620px;
+      }
+
+      .st-landing .st-foot {
+        grid-template-columns: 1fr !important;
+        gap: 28px !important;
+      }
+
+      .st-landing .st-toast {
+        left: 10px !important;
+        right: 10px !important;
+        top: 44px !important;
+      }
+
+      .st-landing .st-biz {
+        padding: 24px 20px !important;
+      }
+
+      .st-landing .st-biz-head {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .st-landing .st-biz-list {
+        grid-template-columns: 1fr !important;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<div class="st-landing">
-  <nav style="position:sticky;top:0;z-index:50;background:rgba(8,13,24,0.82);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.06)">
-    <div style="max-width:1180px;margin:0 auto;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between">
-      <a href="#" style="display:flex;align-items:center;gap:10px;color:#F1F5F9">
-        <span style="position:relative;width:24px;height:24px;border-radius:7px;background:linear-gradient(135deg,#2DD4BF,#0D9488);display:flex;align-items:center;justify-content:center;box-shadow:0 0 16px rgba(45,212,191,0.4)"><span style="width:7px;height:7px;border-radius:50%;background:#042F2E"></span><span style="position:absolute;width:7px;height:7px;border-radius:50%;border:1.5px solid #042F2E;animation:st-ping 2s cubic-bezier(0,0,.2,1) infinite"></span></span>
-        <span class="st-wordmark" style="font-size:16px;font-weight:700;letter-spacing:-0.01em">Sigtake</span>
-      </a>
-      <div class="st-nav-links" style="display:flex;align-items:center;gap:28px;font-size:14px;font-weight:500">
-        <a href="#features" class="st-navlink" style="color:#94A3B8">Features</a>
-        <a href="#monitoring" class="st-navlink" style="color:#94A3B8">Monitoring</a>
-        <a href="#pricing" class="st-navlink" style="color:#94A3B8">Pricing</a>
-        <a href="https://docs.sigtake.com" class="st-navlink" style="color:#94A3B8">Docs</a>
-      </div>
-      <div style="display:flex;align-items:center;gap:16px">
-        <a href="https://app.sigtake.com/login" class="st-loglink" style="font-size:14px;font-weight:500;color:#E2E8F0">Log in</a>
-        <a href="https://app.sigtake.com/register" class="st-btn-primary" style="display:inline-flex;align-items:center;background:#2DD4BF;color:#0C1220;font-size:14px;font-weight:600;padding:8px 16px;border-radius:8px;box-shadow:0 0 20px rgba(45,212,191,0.3)">Start free</a>
-      </div>
-    </div>
-  </nav>
-
-  <main>
-    <!-- HERO -->
-    <section class="st-sec-hero" style="position:relative;overflow:hidden;padding:104px 32px 88px">
-      <div style="position:absolute;top:-220px;left:50%;transform:translateX(-50%);width:900px;height:520px;background:radial-gradient(ellipse at center,rgba(45,212,191,0.14),transparent 65%);pointer-events:none"></div>
-      <div style="position:relative;max-width:1180px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center;gap:24px">
-        <div style="display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:999px;border:1px solid rgba(45,212,191,0.25);background:rgba(45,212,191,0.07);font-size:13px;font-weight:500;color:#5EEAD4"><span style="width:6px;height:6px;border-radius:50%;background:#2DD4BF;animation:st-pulse 1.8s infinite"></span>Real-time alert management &amp; monitoring</div>
-        <h1 style="margin:0;max-width:860px;font-size:clamp(36px,7.5vw,60px);line-height:1.08;font-weight:800;letter-spacing:-0.02em;color:#F8FAFC">Own every alert,<br>from <span style="color:#F87171">firing</span> to <span style="color:#34D399">fixed</span>.</h1>
-        <p style="margin:0;max-width:640px;font-size:18px;line-height:1.6;color:#94A3B8;text-wrap:pretty">Sigtake ingests alerts from all your systems, collapses duplicates into one row, and routes what matters to the right team — by email, SMS, Microsoft Teams or in-app. Uptime and signal monitoring included.</p>
-        <div style="display:flex;align-items:center;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:8px">
-          <a href="https://app.sigtake.com/register" class="st-btn-primary" style="display:inline-flex;align-items:center;gap:8px;background:#2DD4BF;color:#0C1220;font-size:16px;font-weight:600;padding:13px 28px;border-radius:10px;box-shadow:0 0 32px rgba(45,212,191,0.38)">Start free</a>
-          <a href="mailto:help@sigtake.com?subject=Book%20a%20demo" class="st-btn-ghost" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.06);color:#E2E8F0;font-size:16px;font-weight:600;padding:13px 28px;border-radius:10px;border:1px solid rgba(255,255,255,0.08)">Book a demo</a>
+  <div class="st-landing">
+    <nav
+      style="position:sticky;top:0;z-index:50;background:rgba(8,13,24,0.82);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.06)">
+      <div
+        style="max-width:1180px;margin:0 auto;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between">
+        <a href="#" style="display:flex;align-items:center;gap:10px;color:#F1F5F9">
+          <img src="/public/logo.svg" width="24" height="24" alt="" style="flex:none;filter:drop-shadow(0 0 16px rgba(45,212,191,0.4))">
+          <span class="st-wordmark" style="font-size:16px;font-weight:700;letter-spacing:-0.01em">Sigtake</span>
+        </a>
+        <div class="st-nav-links" style="display:flex;align-items:center;gap:28px;font-size:14px;font-weight:500">
+          <a href="#features" class="st-navlink" style="color:#94A3B8">Features</a>
+          <a href="#monitoring" class="st-navlink" style="color:#94A3B8">Monitoring</a>
+          <a href="#pricing" class="st-navlink" style="color:#94A3B8">Pricing</a>
+          <a href="https://docs.sigtake.com" class="st-navlink" style="color:#94A3B8">Docs</a>
         </div>
-        <p style="margin:0;font-size:13px;color:#64748B">Free for small teams · No credit card · Set up in under 5 minutes</p>
+        <div style="display:flex;align-items:center;gap:16px">
+          <a href="https://app.sigtake.com/login" class="st-loglink"
+            style="font-size:14px;font-weight:500;color:#E2E8F0">Log in</a>
+          <a href="https://app.sigtake.com/register" class="st-btn-primary"
+            style="display:inline-flex;align-items:center;background:#2DD4BF;color:#0C1220;font-size:14px;font-weight:600;padding:8px 16px;border-radius:8px;box-shadow:0 0 20px rgba(45,212,191,0.3)">Start
+            free</a>
+        </div>
+      </div>
+    </nav>
 
-        <!-- Product mockup -->
-        <div style="position:relative;width:100%;max-width:1080px;margin-top:40px">
-          <div style="position:absolute;inset:-40px -60px;background:radial-gradient(ellipse at 50% 0%,rgba(45,212,191,0.10),transparent 60%);pointer-events:none"></div>
-          <div style="position:relative;background:#0F1623;border:1px solid rgba(255,255,255,0.08);border-radius:14px;box-shadow:0 24px 80px rgba(0,0,0,0.55);overflow:hidden;text-align:left">
-            <div style="display:flex;align-items:center;gap:8px;height:38px;padding:0 16px;background:#0B1120;border-bottom:1px solid rgba(255,255,255,0.06)">
-              <span style="width:10px;height:10px;border-radius:50%;background:#1E293B"></span><span style="width:10px;height:10px;border-radius:50%;background:#1E293B"></span><span style="width:10px;height:10px;border-radius:50%;background:#1E293B"></span>
-              <span style="margin:0 auto;font-size:11.5px;color:#475569;background:rgba(255,255,255,0.04);border-radius:6px;padding:3px 32px;font-family:ui-monospace,Menlo,monospace">app.sigtake.com/alerts</span>
+    <main>
+      <!-- HERO -->
+      <section class="st-sec-hero" style="position:relative;overflow:hidden;padding:104px 32px 88px">
+        <div
+          style="position:absolute;top:-220px;left:50%;transform:translateX(-50%);width:900px;height:520px;background:radial-gradient(ellipse at center,rgba(45,212,191,0.14),transparent 65%);pointer-events:none">
+        </div>
+        <div
+          style="position:relative;max-width:1180px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center;gap:24px">
+          <div
+            style="display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:999px;border:1px solid rgba(45,212,191,0.25);background:rgba(45,212,191,0.07);font-size:13px;font-weight:500;color:#5EEAD4">
+            <span
+              style="width:6px;height:6px;border-radius:50%;background:#2DD4BF;animation:st-pulse 1.8s infinite"></span>Real-time
+            alert management &amp; monitoring</div>
+          <h1
+            style="margin:0;max-width:860px;font-size:clamp(36px,7.5vw,60px);line-height:1.08;font-weight:800;letter-spacing:-0.02em;color:#F8FAFC">
+            Own every alert,<br>from <span style="color:#F87171">firing</span> to <span
+              style="color:#34D399">fixed</span>.</h1>
+          <p style="margin:0;max-width:640px;font-size:18px;line-height:1.6;color:#94A3B8;text-wrap:pretty">Sigtake
+            ingests alerts from all your systems, collapses duplicates into one row, and routes what matters to the
+            right team — by email, SMS, Microsoft Teams or in-app. Uptime and signal monitoring included.</p>
+          <div style="display:flex;align-items:center;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:8px">
+            <a href="https://app.sigtake.com/register" class="st-btn-primary"
+              style="display:inline-flex;align-items:center;gap:8px;background:#2DD4BF;color:#0C1220;font-size:16px;font-weight:600;padding:13px 28px;border-radius:10px;box-shadow:0 0 32px rgba(45,212,191,0.38)">Start
+              free</a>
+            <a href="mailto:help@sigtake.com?subject=Book%20a%20demo" class="st-btn-ghost"
+              style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.06);color:#E2E8F0;font-size:16px;font-weight:600;padding:13px 28px;border-radius:10px;border:1px solid rgba(255,255,255,0.08)">Book
+              a demo</a>
+          </div>
+          <p style="margin:0;font-size:13px;color:#64748B">Free for small teams · No credit card · Set up in under 5
+            minutes</p>
+
+          <!-- Product mockup -->
+          <div style="position:relative;width:100%;max-width:1080px;margin-top:40px">
+            <div
+              style="position:absolute;inset:-40px -60px;background:radial-gradient(ellipse at 50% 0%,rgba(45,212,191,0.10),transparent 60%);pointer-events:none">
             </div>
-            <div class="st-mock-grid" style="display:grid;grid-template-columns:176px 1fr">
-              <div class="st-mock-side" style="border-right:1px solid rgba(255,255,255,0.06);background:#0B1120;padding:14px 10px;display:flex;flex-direction:column;gap:2px">
-                <div style="display:flex;align-items:center;gap:8px;padding:0 8px 12px"><span style="width:18px;height:18px;border-radius:5px;background:linear-gradient(135deg,#2DD4BF,#0D9488)"></span><span style="font-size:12.5px;font-weight:700;color:#E2E8F0">Acme Corp</span></div>
-                <span style="font-size:12.5px;font-weight:500;color:#64748B;padding:7px 10px;border-radius:7px">Dashboard</span>
-                <span style="display:flex;justify-content:space-between;align-items:center;font-size:12.5px;font-weight:600;color:#5EEAD4;padding:7px 10px;border-radius:7px;background:rgba(45,212,191,0.1)">Alerts<span style="font-size:10px;font-weight:700;background:rgba(239,68,68,0.18);color:#F87171;border-radius:99px;padding:1px 7px">3</span></span>
-                <span style="font-size:12.5px;font-weight:500;color:#64748B;padding:7px 10px">Monitors</span>
-                <span style="font-size:12.5px;font-weight:500;color:#64748B;padding:7px 10px">Signals</span>
-                <span style="font-size:12.5px;font-weight:500;color:#64748B;padding:7px 10px">Teams</span>
-                <span style="font-size:12.5px;font-weight:500;color:#64748B;padding:7px 10px">API Keys</span>
-                <span style="font-size:12.5px;font-weight:500;color:#64748B;padding:7px 10px">Channels</span>
+            <div
+              style="position:relative;background:#0F1623;border:1px solid rgba(255,255,255,0.08);border-radius:14px;box-shadow:0 24px 80px rgba(0,0,0,0.55);overflow:hidden;text-align:left">
+              <div
+                style="display:flex;align-items:center;gap:8px;height:38px;padding:0 16px;background:#0B1120;border-bottom:1px solid rgba(255,255,255,0.06)">
+                <span style="width:10px;height:10px;border-radius:50%;background:#1E293B"></span><span
+                  style="width:10px;height:10px;border-radius:50%;background:#1E293B"></span><span
+                  style="width:10px;height:10px;border-radius:50%;background:#1E293B"></span>
+                <span
+                  style="margin:0 auto;font-size:11.5px;color:#475569;background:rgba(255,255,255,0.04);border-radius:6px;padding:3px 32px;font-family:ui-monospace,Menlo,monospace">app.sigtake.com/alerts</span>
               </div>
-              <div class="st-mock-body" style="padding:16px 18px 18px">
-                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-                  <span style="font-size:15px;font-weight:700;color:#F1F5F9">Alert center</span>
-                  <div style="display:flex;gap:8px">
-                    <span style="display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:500;color:#94A3B8;border:1px solid rgba(255,255,255,0.08);border-radius:7px;padding:4px 10px">Severity: all</span>
-                    <span style="display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:500;color:#5EEAD4;border:1px solid rgba(45,212,191,0.3);background:rgba(45,212,191,0.08);border-radius:7px;padding:4px 10px">Status: open ✕</span>
+              <div class="st-mock-grid" style="display:grid;grid-template-columns:176px 1fr">
+                <div class="st-mock-side"
+                  style="border-right:1px solid rgba(255,255,255,0.06);background:#0B1120;padding:14px 10px;display:flex;flex-direction:column;gap:2px">
+                  <div style="display:flex;align-items:center;gap:8px;padding:0 8px 12px"><span
+                      style="width:18px;height:18px;border-radius:5px;background:linear-gradient(135deg,#2DD4BF,#0D9488)"></span><span
+                      style="font-size:12.5px;font-weight:700;color:#E2E8F0">Acme Corp</span></div>
+                  <span
+                    style="font-size:12.5px;font-weight:500;color:#64748B;padding:7px 10px;border-radius:7px">Dashboard</span>
+                  <span
+                    style="display:flex;justify-content:space-between;align-items:center;font-size:12.5px;font-weight:600;color:#5EEAD4;padding:7px 10px;border-radius:7px;background:rgba(45,212,191,0.1)">Alerts<span
+                      style="font-size:10px;font-weight:700;background:rgba(239,68,68,0.18);color:#F87171;border-radius:99px;padding:1px 7px">3</span></span>
+                  <span style="font-size:12.5px;font-weight:500;color:#64748B;padding:7px 10px">Monitors</span>
+                  <span style="font-size:12.5px;font-weight:500;color:#64748B;padding:7px 10px">Signals</span>
+                  <span style="font-size:12.5px;font-weight:500;color:#64748B;padding:7px 10px">Teams</span>
+                  <span style="font-size:12.5px;font-weight:500;color:#64748B;padding:7px 10px">API Keys</span>
+                  <span style="font-size:12.5px;font-weight:500;color:#64748B;padding:7px 10px">Channels</span>
+                </div>
+                <div class="st-mock-body" style="padding:16px 18px 18px">
+                  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+                    <span style="font-size:15px;font-weight:700;color:#F1F5F9">Alert center</span>
+                    <div style="display:flex;gap:8px">
+                      <span
+                        style="display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:500;color:#94A3B8;border:1px solid rgba(255,255,255,0.08);border-radius:7px;padding:4px 10px">Severity:
+                        all</span>
+                      <span
+                        style="display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:500;color:#5EEAD4;border:1px solid rgba(45,212,191,0.3);background:rgba(45,212,191,0.08);border-radius:7px;padding:4px 10px">Status:
+                        open ✕</span>
+                    </div>
+                  </div>
+                  <div class="st-mock-table"
+                    style="border:1px solid rgba(255,255,255,0.07);border-radius:10px;overflow:hidden">
+                    <div
+                      style="display:grid;grid-template-columns:74px 1fr 96px 46px 110px 58px;gap:12px;align-items:center;padding:8px 14px;background:rgba(255,255,255,0.03);font-size:10px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:#64748B">
+                      <span>Severity</span><span>Alert</span><span>Team</span><span>Count</span><span>Status</span><span
+                        style="text-align:right">Seen</span></div>
+                    <div
+                      style="display:grid;grid-template-columns:74px 1fr 96px 46px 110px 58px;gap:12px;align-items:center;padding:11px 14px;border-top:1px solid rgba(255,255,255,0.05);animation:st-new 2.4s ease-in-out infinite alternate">
+                      <span
+                        style="display:inline-flex;justify-content:center;padding:2px 0;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.05em;background:rgba(239,68,68,0.12);color:#F87171">CRITICAL</span>
+                      <span style="min-width:0"><span
+                          style="display:block;font-size:12.5px;font-weight:600;color:#F1F5F9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Payment
+                          gateway timeout — checkout-api</span><span
+                          style="font-size:11px;color:#64748B;font-family:ui-monospace,Menlo,monospace">payments-service</span></span>
+                      <span style="font-size:11.5px;color:#94A3B8">Payments</span>
+                      <span
+                        style="font-size:11px;font-weight:600;font-family:ui-monospace,Menlo,monospace;color:#5EEAD4;background:rgba(45,212,191,0.12);border-radius:6px;padding:2px 6px;text-align:center">×3</span>
+                      <span
+                        style="display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:#F87171"><span
+                          style="width:7px;height:7px;border-radius:50%;background:#EF4444;animation:st-pulse 1.5s infinite"></span>Firing</span>
+                      <span style="font-size:11px;color:#64748B;text-align:right">just now</span>
+                    </div>
+                    <div
+                      style="display:grid;grid-template-columns:74px 1fr 96px 46px 110px 58px;gap:12px;align-items:center;padding:11px 14px;border-top:1px solid rgba(255,255,255,0.05)">
+                      <span
+                        style="display:inline-flex;justify-content:center;padding:2px 0;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.05em;background:rgba(239,68,68,0.12);color:#F87171">CRITICAL</span>
+                      <span style="min-width:0"><span
+                          style="display:block;font-size:12.5px;font-weight:600;color:#F1F5F9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">CPU
+                          above 92% on prod-web-03</span><span
+                          style="font-size:11px;color:#64748B;font-family:ui-monospace,Menlo,monospace">prometheus</span></span>
+                      <span style="font-size:11.5px;color:#94A3B8">Infrastructure</span>
+                      <span
+                        style="font-size:11px;font-weight:600;font-family:ui-monospace,Menlo,monospace;color:#5EEAD4;background:rgba(45,212,191,0.12);border-radius:6px;padding:2px 6px;text-align:center">×47</span>
+                      <span
+                        style="display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:#F87171"><span
+                          style="width:7px;height:7px;border-radius:50%;background:#EF4444;animation:st-pulse 1.5s infinite"></span>Firing</span>
+                      <span style="font-size:11px;color:#64748B;text-align:right">12s ago</span>
+                    </div>
+                    <div
+                      style="display:grid;grid-template-columns:74px 1fr 96px 46px 110px 58px;gap:12px;align-items:center;padding:11px 14px;border-top:1px solid rgba(255,255,255,0.05)">
+                      <span
+                        style="display:inline-flex;justify-content:center;padding:2px 0;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.05em;background:rgba(249,115,22,0.12);color:#FB923C">HIGH</span>
+                      <span style="min-width:0"><span
+                          style="display:block;font-size:12.5px;font-weight:600;color:#F1F5F9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">TLS
+                          certificate expires in 7 days — api.acme.com</span><span
+                          style="font-size:11px;color:#64748B;font-family:ui-monospace,Menlo,monospace">datadog-agent</span></span>
+                      <span style="font-size:11.5px;color:#94A3B8">Platform</span>
+                      <span style="font-size:11px;color:#334155;text-align:center">—</span>
+                      <span
+                        style="display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:#F87171"><span
+                          style="width:7px;height:7px;border-radius:50%;background:#EF4444"></span>Firing</span>
+                      <span style="font-size:11px;color:#64748B;text-align:right">4m ago</span>
+                    </div>
+                    <div
+                      style="display:grid;grid-template-columns:74px 1fr 96px 46px 110px 58px;gap:12px;align-items:center;padding:11px 14px;border-top:1px solid rgba(255,255,255,0.05)">
+                      <span
+                        style="display:inline-flex;justify-content:center;padding:2px 0;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.05em;background:rgba(245,158,11,0.12);color:#FBBF24">MEDIUM</span>
+                      <span style="min-width:0"><span
+                          style="display:block;font-size:12.5px;font-weight:600;color:#F1F5F9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Payments
+                          queue backlog: 1,240 messages</span><span
+                          style="font-size:11px;color:#64748B;font-family:ui-monospace,Menlo,monospace">payments-service</span></span>
+                      <span style="font-size:11.5px;color:#94A3B8">Payments</span>
+                      <span
+                        style="font-size:11px;font-weight:600;font-family:ui-monospace,Menlo,monospace;color:#5EEAD4;background:rgba(45,212,191,0.12);border-radius:6px;padding:2px 6px;text-align:center">×12</span>
+                      <span
+                        style="display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:#A78BFA"><span
+                          style="width:7px;height:7px;border-radius:50%;background:#8B5CF6"></span>Acked</span>
+                      <span style="font-size:11px;color:#64748B;text-align:right">18m ago</span>
+                    </div>
+                    <div
+                      style="display:grid;grid-template-columns:74px 1fr 96px 46px 110px 58px;gap:12px;align-items:center;padding:11px 14px;border-top:1px solid rgba(255,255,255,0.05)">
+                      <span
+                        style="display:inline-flex;justify-content:center;padding:2px 0;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.05em;background:rgba(59,130,246,0.12);color:#60A5FA">LOW</span>
+                      <span style="min-width:0"><span
+                          style="display:block;font-size:12.5px;font-weight:600;color:#F1F5F9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Nightly
+                          backup completed with warnings</span><span
+                          style="font-size:11px;color:#64748B;font-family:ui-monospace,Menlo,monospace">datadog-agent</span></span>
+                      <span style="font-size:11.5px;color:#94A3B8">Infrastructure</span>
+                      <span style="font-size:11px;color:#334155;text-align:center">—</span>
+                      <span
+                        style="display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:#34D399"><span
+                          style="width:7px;height:7px;border-radius:50%;background:#10B981"></span>Resolved</span>
+                      <span style="font-size:11px;color:#64748B;text-align:right">2h ago</span>
+                    </div>
                   </div>
                 </div>
-                <div class="st-mock-table" style="border:1px solid rgba(255,255,255,0.07);border-radius:10px;overflow:hidden">
-                  <div style="display:grid;grid-template-columns:74px 1fr 96px 46px 110px 58px;gap:12px;align-items:center;padding:8px 14px;background:rgba(255,255,255,0.03);font-size:10px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:#64748B"><span>Severity</span><span>Alert</span><span>Team</span><span>Count</span><span>Status</span><span style="text-align:right">Seen</span></div>
-                  <div style="display:grid;grid-template-columns:74px 1fr 96px 46px 110px 58px;gap:12px;align-items:center;padding:11px 14px;border-top:1px solid rgba(255,255,255,0.05);animation:st-new 2.4s ease-in-out infinite alternate">
-                    <span style="display:inline-flex;justify-content:center;padding:2px 0;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.05em;background:rgba(239,68,68,0.12);color:#F87171">CRITICAL</span>
-                    <span style="min-width:0"><span style="display:block;font-size:12.5px;font-weight:600;color:#F1F5F9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Payment gateway timeout — checkout-api</span><span style="font-size:11px;color:#64748B;font-family:ui-monospace,Menlo,monospace">payments-service</span></span>
-                    <span style="font-size:11.5px;color:#94A3B8">Payments</span>
-                    <span style="font-size:11px;font-weight:600;font-family:ui-monospace,Menlo,monospace;color:#5EEAD4;background:rgba(45,212,191,0.12);border-radius:6px;padding:2px 6px;text-align:center">×3</span>
-                    <span style="display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:#F87171"><span style="width:7px;height:7px;border-radius:50%;background:#EF4444;animation:st-pulse 1.5s infinite"></span>Firing</span>
-                    <span style="font-size:11px;color:#64748B;text-align:right">just now</span>
-                  </div>
-                  <div style="display:grid;grid-template-columns:74px 1fr 96px 46px 110px 58px;gap:12px;align-items:center;padding:11px 14px;border-top:1px solid rgba(255,255,255,0.05)">
-                    <span style="display:inline-flex;justify-content:center;padding:2px 0;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.05em;background:rgba(239,68,68,0.12);color:#F87171">CRITICAL</span>
-                    <span style="min-width:0"><span style="display:block;font-size:12.5px;font-weight:600;color:#F1F5F9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">CPU above 92% on prod-web-03</span><span style="font-size:11px;color:#64748B;font-family:ui-monospace,Menlo,monospace">prometheus</span></span>
-                    <span style="font-size:11.5px;color:#94A3B8">Infrastructure</span>
-                    <span style="font-size:11px;font-weight:600;font-family:ui-monospace,Menlo,monospace;color:#5EEAD4;background:rgba(45,212,191,0.12);border-radius:6px;padding:2px 6px;text-align:center">×47</span>
-                    <span style="display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:#F87171"><span style="width:7px;height:7px;border-radius:50%;background:#EF4444;animation:st-pulse 1.5s infinite"></span>Firing</span>
-                    <span style="font-size:11px;color:#64748B;text-align:right">12s ago</span>
-                  </div>
-                  <div style="display:grid;grid-template-columns:74px 1fr 96px 46px 110px 58px;gap:12px;align-items:center;padding:11px 14px;border-top:1px solid rgba(255,255,255,0.05)">
-                    <span style="display:inline-flex;justify-content:center;padding:2px 0;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.05em;background:rgba(249,115,22,0.12);color:#FB923C">HIGH</span>
-                    <span style="min-width:0"><span style="display:block;font-size:12.5px;font-weight:600;color:#F1F5F9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">TLS certificate expires in 7 days — api.acme.com</span><span style="font-size:11px;color:#64748B;font-family:ui-monospace,Menlo,monospace">datadog-agent</span></span>
-                    <span style="font-size:11.5px;color:#94A3B8">Platform</span>
-                    <span style="font-size:11px;color:#334155;text-align:center">—</span>
-                    <span style="display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:#F87171"><span style="width:7px;height:7px;border-radius:50%;background:#EF4444"></span>Firing</span>
-                    <span style="font-size:11px;color:#64748B;text-align:right">4m ago</span>
-                  </div>
-                  <div style="display:grid;grid-template-columns:74px 1fr 96px 46px 110px 58px;gap:12px;align-items:center;padding:11px 14px;border-top:1px solid rgba(255,255,255,0.05)">
-                    <span style="display:inline-flex;justify-content:center;padding:2px 0;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.05em;background:rgba(245,158,11,0.12);color:#FBBF24">MEDIUM</span>
-                    <span style="min-width:0"><span style="display:block;font-size:12.5px;font-weight:600;color:#F1F5F9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Payments queue backlog: 1,240 messages</span><span style="font-size:11px;color:#64748B;font-family:ui-monospace,Menlo,monospace">payments-service</span></span>
-                    <span style="font-size:11.5px;color:#94A3B8">Payments</span>
-                    <span style="font-size:11px;font-weight:600;font-family:ui-monospace,Menlo,monospace;color:#5EEAD4;background:rgba(45,212,191,0.12);border-radius:6px;padding:2px 6px;text-align:center">×12</span>
-                    <span style="display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:#A78BFA"><span style="width:7px;height:7px;border-radius:50%;background:#8B5CF6"></span>Acked</span>
-                    <span style="font-size:11px;color:#64748B;text-align:right">18m ago</span>
-                  </div>
-                  <div style="display:grid;grid-template-columns:74px 1fr 96px 46px 110px 58px;gap:12px;align-items:center;padding:11px 14px;border-top:1px solid rgba(255,255,255,0.05)">
-                    <span style="display:inline-flex;justify-content:center;padding:2px 0;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.05em;background:rgba(59,130,246,0.12);color:#60A5FA">LOW</span>
-                    <span style="min-width:0"><span style="display:block;font-size:12.5px;font-weight:600;color:#F1F5F9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Nightly backup completed with warnings</span><span style="font-size:11px;color:#64748B;font-family:ui-monospace,Menlo,monospace">datadog-agent</span></span>
-                    <span style="font-size:11.5px;color:#94A3B8">Infrastructure</span>
-                    <span style="font-size:11px;color:#334155;text-align:center">—</span>
-                    <span style="display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:#34D399"><span style="width:7px;height:7px;border-radius:50%;background:#10B981"></span>Resolved</span>
-                    <span style="font-size:11px;color:#64748B;text-align:right">2h ago</span>
-                  </div>
-                </div>
               </div>
-            </div>
-            <div class="st-toast" style="position:absolute;top:52px;right:20px;display:flex;align-items:center;gap:10px;background:#161E30;border:1px solid rgba(255,255,255,0.1);border-left:3px solid #EF4444;border-radius:10px;padding:10px 14px;box-shadow:0 12px 32px rgba(0,0,0,0.5);animation:st-toast .5s ease-out">
-              <span style="width:8px;height:8px;border-radius:50%;background:#EF4444;animation:st-pulse 1.5s infinite"></span>
-              <span><span style="display:block;font-size:12px;font-weight:700;color:#F1F5F9">New critical alert</span><span style="font-size:11px;color:#94A3B8">Payment gateway timeout — checkout-api</span></span>
+              <div class="st-toast"
+                style="position:absolute;top:52px;right:20px;display:flex;align-items:center;gap:10px;background:#161E30;border:1px solid rgba(255,255,255,0.1);border-left:3px solid #EF4444;border-radius:10px;padding:10px 14px;box-shadow:0 12px 32px rgba(0,0,0,0.5);animation:st-toast .5s ease-out">
+                <span
+                  style="width:8px;height:8px;border-radius:50%;background:#EF4444;animation:st-pulse 1.5s infinite"></span>
+                <span><span style="display:block;font-size:12px;font-weight:700;color:#F1F5F9">New critical
+                    alert</span><span style="font-size:11px;color:#94A3B8">Payment gateway timeout —
+                    checkout-api</span></span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- FEATURES -->
-    <section class="st-sec" id="features" style="padding:88px 32px;border-top:1px solid rgba(255,255,255,0.05)">
+      <!-- FEATURES -->
+      <section class="st-sec" id="features" style="padding:88px 32px;border-top:1px solid rgba(255,255,255,0.05)">
+        <div style="max-width:1080px;margin:0 auto">
+          <div class="st-reveal" style="max-width:620px;margin-bottom:72px">
+            <p
+              style="margin:0 0 12px;font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#2DD4BF">
+              Product</p>
+            <h2
+              style="margin:0 0 16px;font-size:clamp(30px,5.5vw,40px);line-height:1.15;font-weight:700;letter-spacing:-0.02em;color:#F1F5F9">
+              Everything between <span style="color:#F87171">“it fired”</span> and <span style="color:#34D399">“it's
+                fixed”</span></h2>
+            <p style="margin:0;font-size:17px;line-height:1.6;color:#94A3B8;text-wrap:pretty">One platform for the whole
+              on-call loop: ingestion, deduplication, routing, acknowledgement and the metrics to prove you're getting
+              faster.</p>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:88px">
+            <!-- F1 realtime -->
+            <div class="st-feat" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
+              <div class="st-reveal">
+                <p
+                  style="margin:0 0 10px;font-size:12.5px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#5EEAD4">
+                  Real-time alert center</p>
+                <h3
+                  style="margin:0 0 14px;font-size:clamp(23px,4.8vw,27px);font-weight:700;letter-spacing:-0.015em;color:#F1F5F9;line-height:1.25">
+                  See every alert the second it fires</h3>
+                <p style="margin:0 0 18px;font-size:15.5px;line-height:1.65;color:#94A3B8;text-wrap:pretty">Alerts
+                  stream in over WebSocket — no refresh button. Acknowledge and resolve in one click, and keep the
+                  conversation on the alert itself.</p>
+                <ul
+                  style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:14.5px;color:#CBD5E1">
+                  <li style="display:flex;gap:10px;align-items:baseline"><span
+                      style="color:#2DD4BF;font-weight:700">✓</span>Live updates via WebSocket, scoped to your
+                    organization</li>
+                  <li style="display:flex;gap:10px;align-items:baseline"><span
+                      style="color:#2DD4BF;font-weight:700">✓</span>One-click acknowledge &amp; resolve workflow</li>
+                  <li style="display:flex;gap:10px;align-items:baseline"><span
+                      style="color:#2DD4BF;font-weight:700">✓</span>Threaded comments with @mentions</li>
+                </ul>
+              </div>
+              <div class="st-reveal st-d1"
+                style="background:#0F1623;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:10px">
+                <div
+                  style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px 12px;background:#161E30;border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px 14px">
+                  <span style="display:flex;align-items:center;gap:10px;min-width:0"><span
+                      style="display:inline-flex;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.05em;background:rgba(239,68,68,0.12);color:#F87171">CRITICAL</span><span
+                      style="font-size:13px;font-weight:600;color:#F1F5F9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">CPU
+                      above 92% on prod-web-03</span></span>
+                  <span style="display:flex;gap:8px"><span
+                      style="font-size:11.5px;font-weight:600;color:#0C1220;background:#2DD4BF;border-radius:7px;padding:4px 10px">Acknowledge</span><span
+                      style="font-size:11.5px;font-weight:600;color:#E2E8F0;background:rgba(255,255,255,0.07);border-radius:7px;padding:4px 10px">Resolve</span></span>
+                </div>
+                <div
+                  style="background:#161E30;border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px 14px">
+                  <p style="margin:0 0 8px;font-size:12.5px;line-height:1.5;color:#CBD5E1"><span
+                      style="font-weight:600;color:#F1F5F9">Marta Ruiz</span> <span style="color:#64748B">·
+                      2m</span><br>Rolling restart on prod-web-03, watching load…</p>
+                  <div
+                    style="position:relative;background:#0B1120;border:1px solid rgba(45,212,191,0.3);border-radius:8px;padding:8px 12px;font-size:12.5px;color:#E2E8F0">
+                    cc <span style="color:#5EEAD4;font-weight:600">@mar</span><span
+                      style="display:inline-block;width:1px;height:13px;background:#2DD4BF;vertical-align:-2px;animation:st-pulse 1s infinite"></span>
+                    <div
+                      style="position:absolute;left:34px;top:36px;z-index:2;background:#1E293B;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:5px;box-shadow:0 10px 28px rgba(0,0,0,0.5);min-width:170px">
+                      <div
+                        style="display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:6px;background:rgba(45,212,191,0.12)">
+                        <span
+                          style="width:18px;height:18px;border-radius:50%;background:#0D9488;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#F0FDFA">MR</span><span
+                          style="font-size:12px;color:#F1F5F9">Marta Ruiz</span></div>
+                      <div style="display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:6px"><span
+                          style="width:18px;height:18px;border-radius:50%;background:#334155;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#E2E8F0">MC</span><span
+                          style="font-size:12px;color:#CBD5E1">Marcus Chen</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div style="height:26px"></div>
+              </div>
+            </div>
+
+            <!-- F2 dedup -->
+            <div class="st-feat" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
+              <div class="st-reveal" style="order:2">
+                <p
+                  style="margin:0 0 10px;font-size:12.5px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#5EEAD4">
+                  Smart deduplication</p>
+                <h3
+                  style="margin:0 0 14px;font-size:clamp(23px,4.8vw,27px);font-weight:700;letter-spacing:-0.015em;color:#F1F5F9;line-height:1.25">
+                  One alert — not four hundred</h3>
+                <p style="margin:0 0 18px;font-size:15.5px;line-height:1.65;color:#94A3B8;text-wrap:pretty">Repeated
+                  alerts collapse into a single row with an occurrence counter and a last-seen timestamp. Notifications
+                  fire at sane thresholds — 1, 10, 25, 50, 100 — never as a storm.</p>
+                <ul
+                  style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:14.5px;color:#CBD5E1">
+                  <li style="display:flex;gap:10px;align-items:baseline"><span
+                      style="color:#2DD4BF;font-weight:700">✓</span>Fingerprint on source + title + severity</li>
+                  <li style="display:flex;gap:10px;align-items:baseline"><span
+                      style="color:#2DD4BF;font-weight:700">✓</span>First-seen / last-seen history on every alert</li>
+                  <li style="display:flex;gap:10px;align-items:baseline"><span
+                      style="color:#2DD4BF;font-weight:700">✓</span>Threshold-based notifications stop flapping noise
+                  </li>
+                </ul>
+              </div>
+              <div class="st-reveal st-d1"
+                style="order:1;background:#0F1623;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:24px;display:flex;flex-direction:column;align-items:center;gap:0">
+                <div
+                  style="width:82%;height:12px;background:#141C2C;border:1px solid rgba(255,255,255,0.05);border-bottom:none;border-radius:10px 10px 0 0;opacity:.35">
+                </div>
+                <div
+                  style="width:90%;height:12px;background:#141C2C;border:1px solid rgba(255,255,255,0.05);border-bottom:none;border-radius:10px 10px 0 0;opacity:.6">
+                </div>
+                <div
+                  style="width:100%;display:flex;align-items:center;justify-content:space-between;background:#161E30;border:1px solid rgba(45,212,191,0.25);border-radius:10px;padding:14px 16px;box-shadow:0 0 24px rgba(45,212,191,0.12)">
+                  <span style="display:flex;align-items:center;gap:10px;min-width:0"><span
+                      style="display:inline-flex;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.05em;background:rgba(239,68,68,0.12);color:#F87171">CRITICAL</span><span
+                      style="font-size:13.5px;font-weight:600;color:#F1F5F9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">CPU
+                      above 92% on prod-web-03</span></span>
+                  <span
+                    style="font-size:15px;font-weight:700;font-family:ui-monospace,Menlo,monospace;color:#5EEAD4;background:rgba(45,212,191,0.12);border:1px solid rgba(45,212,191,0.3);border-radius:8px;padding:4px 10px;flex:none">×47</span>
+                </div>
+                <div
+                  style="width:100%;display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 12px;margin-top:14px;font-size:11.5px;color:#64748B;font-family:ui-monospace,Menlo,monospace">
+                  <span>first seen 2d ago</span><span>notified at 1 · 10 · 25</span><span>last seen 12s ago</span></div>
+              </div>
+            </div>
+
+            <!-- F3 website monitoring -->
+            <div class="st-feat" id="monitoring"
+              style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;scroll-margin-top:88px">
+              <div class="st-reveal">
+                <p
+                  style="margin:0 0 10px;font-size:12.5px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#5EEAD4">
+                  Website monitoring</p>
+                <h3
+                  style="margin:0 0 14px;font-size:clamp(23px,4.8vw,27px);font-weight:700;letter-spacing:-0.015em;color:#F1F5F9;line-height:1.25">
+                  Know you're down before your users do</h3>
+                <p style="margin:0 0 18px;font-size:15.5px;line-height:1.65;color:#94A3B8;text-wrap:pretty">Scheduled
+                  checks against your endpoints, with uptime percentage, latency trends and a plain up/down semaphore. A
+                  failed check is just another alert — routed like the rest.</p>
+                <ul
+                  style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:14.5px;color:#CBD5E1">
+                  <li style="display:flex;gap:10px;align-items:baseline"><span
+                      style="color:#2DD4BF;font-weight:700">✓</span>Checks down to every 60 seconds</li>
+                  <li style="display:flex;gap:10px;align-items:baseline"><span
+                      style="color:#2DD4BF;font-weight:700">✓</span>Uptime % over 24h / 7d / 30d windows</li>
+                  <li style="display:flex;gap:10px;align-items:baseline"><span
+                      style="color:#2DD4BF;font-weight:700">✓</span>Latency history per monitor</li>
+                </ul>
+              </div>
+              <div class="st-reveal st-d1"
+                style="background:#0F1623;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px">
+                <div style="display:flex;align-items:center;justify-content:space-between">
+                  <span style="display:flex;align-items:center;gap:10px"><span
+                      style="position:relative;width:9px;height:9px;flex:none"><span
+                        style="position:absolute;inset:0;border-radius:50%;background:#10B981"></span><span
+                        style="position:absolute;inset:0;border-radius:50%;border:1.5px solid #10B981;animation:st-ping 1.8s cubic-bezier(0,0,.2,1) infinite"></span></span><span
+                      style="font-size:14px;font-weight:600;color:#F1F5F9;font-family:ui-monospace,Menlo,monospace">acme.com</span></span>
+                  <span
+                    style="font-size:11px;font-weight:600;color:#34D399;background:rgba(16,185,129,0.12);border-radius:6px;padding:3px 9px">UP</span>
+                </div>
+                <div>
+                  <div
+                    style="display:flex;justify-content:space-between;font-size:12px;color:#94A3B8;margin-bottom:6px">
+                    <span>Uptime · 30d</span><span style="color:#34D399;font-weight:700">99.98%</span></div>
+                  <div style="display:flex;gap:2px">
+                    <span style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span
+                      style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span
+                      style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span
+                      style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span
+                      style="flex:1;height:22px;border-radius:3px;background:#EF4444"></span><span
+                      style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span
+                      style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span
+                      style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span
+                      style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span
+                      style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span
+                      style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span
+                      style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span
+                      style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span
+                      style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span>
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style="display:flex;justify-content:space-between;font-size:12px;color:#94A3B8;margin-bottom:4px">
+                    <span>Latency</span><span style="font-family:ui-monospace,Menlo,monospace;color:#5EEAD4">avg 184
+                      ms</span></div>
+                  <svg viewBox="0 0 300 64" style="display:block;width:100%;height:64px" aria-hidden="true">
+                    <polyline
+                      points="0,40 25,36 50,42 75,30 100,34 125,22 150,30 175,18 200,26 225,20 250,30 275,24 300,28"
+                      fill="none" stroke="#2DD4BF" stroke-width="2" stroke-linejoin="round"></polyline>
+                    <line x1="0" y1="56" x2="300" y2="56" stroke="rgba(255,255,255,0.08)" stroke-width="1"></line>
+                  </svg>
+                  <div
+                    style="display:flex;justify-content:space-between;font-size:10.5px;color:#475569;font-family:ui-monospace,Menlo,monospace">
+                    <span>-24h</span><span>checked every 60s</span><span>now</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- F4 signals -->
+            <div class="st-feat" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
+              <div class="st-reveal" style="order:2">
+                <p
+                  style="margin:0 0 10px;font-size:12.5px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#5EEAD4">
+                  Signal monitoring</p>
+                <h3
+                  style="margin:0 0 14px;font-size:clamp(23px,4.8vw,27px);font-weight:700;letter-spacing:-0.015em;color:#F1F5F9;line-height:1.25">
+                  Watch the numbers that matter</h3>
+                <p style="margin:0 0 18px;font-size:15.5px;line-height:1.65;color:#94A3B8;text-wrap:pretty">Push any
+                  numeric metric through the API — queue depth, error rate, temperature. Rules evaluate every minute and
+                  raise a real alert the moment something's off.</p>
+                <ul
+                  style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:14.5px;color:#CBD5E1">
+                  <li style="display:flex;gap:10px;align-items:baseline"><span
+                      style="color:#2DD4BF;font-weight:700">✓</span>Batch-push metrics with the same API key</li>
+                  <li style="display:flex;gap:10px;align-items:baseline"><span
+                      style="color:#2DD4BF;font-weight:700">✓</span>Thresholds over avg / min / max / last, in any time
+                    window</li>
+                  <li style="display:flex;gap:10px;align-items:baseline"><span
+                      style="color:#2DD4BF;font-weight:700">✓</span><span><strong
+                        style="color:#F1F5F9;font-weight:600">Anomaly detection</strong> — learns each metric's normal by
+                      hour &amp; weekday, no threshold to set</span></li>
+                  <li style="display:flex;gap:10px;align-items:baseline"><span
+                      style="color:#2DD4BF;font-weight:700">✓</span><strong
+                      style="color:#F1F5F9;font-weight:600">Heartbeat alerts</strong>&nbsp;when a metric goes silent</li>
+                  <li style="display:flex;gap:10px;align-items:baseline"><span
+                      style="color:#2DD4BF;font-weight:700">✓</span>Every alert flows into the same dedup &amp; routing
+                    pipeline</li>
+                </ul>
+              </div>
+              <div class="st-reveal st-d1"
+                style="order:1;background:#0F1623;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px">
+                <div style="display:flex;align-items:center;justify-content:space-between">
+                  <span style="display:flex;align-items:center;gap:10px"><span
+                      style="position:relative;width:9px;height:9px;flex:none"><span
+                        style="position:absolute;inset:0;border-radius:50%;background:#10B981"></span><span
+                        style="position:absolute;inset:0;border-radius:50%;border:1.5px solid #10B981;animation:st-ping 1.8s cubic-bezier(0,0,.2,1) infinite"></span></span><span
+                      style="font-size:14px;font-weight:600;color:#F1F5F9;font-family:ui-monospace,Menlo,monospace">queue_depth
+                      · payments</span></span>
+                  <span
+                    style="font-size:13px;font-weight:700;font-family:ui-monospace,Menlo,monospace;color:#FBBF24">86.2</span>
+                </div>
+                <div style="position:relative">
+                  <svg viewBox="0 0 300 80" style="display:block;width:100%;height:80px" aria-hidden="true">
+                    <line x1="0" y1="18" x2="300" y2="18" stroke="#EF4444" stroke-width="1" stroke-dasharray="5 4"
+                      opacity="0.7"></line>
+                    <polyline
+                      points="0,62 25,58 50,60 75,50 100,54 125,44 150,48 175,36 200,40 225,30 250,26 275,24 300,21"
+                      fill="none" stroke="#2DD4BF" stroke-width="2" stroke-linejoin="round"></polyline>
+                    <circle cx="300" cy="21" r="3.5" fill="#FBBF24"></circle>
+                  </svg>
+                  <span
+                    style="position:absolute;top:6px;right:0;font-size:10px;font-weight:700;font-family:ui-monospace,Menlo,monospace;color:#F87171">threshold
+                    90</span>
+                </div>
+                <div
+                  style="display:flex;align-items:center;gap:10px;background:#0B1120;border:1px solid rgba(255,255,255,0.07);border-radius:9px;padding:10px 12px;font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#CBD5E1;flex-wrap:wrap">
+                  <span style="color:#5EEAD4">value &gt; 90</span><span style="color:#475569">for</span><span
+                    style="color:#5EEAD4">5 min</span><span style="color:#475569">→</span><span
+                    style="display:inline-flex;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.05em;background:rgba(239,68,68,0.12);color:#F87171;font-family:'Inter',system-ui,sans-serif">CRITICAL</span><span
+                    style="color:#475569">alert</span></div>
+              </div>
+            </div>
+
+            <!-- F5 teams & channels -->
+            <div class="st-feat" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
+              <div class="st-reveal">
+                <p
+                  style="margin:0 0 10px;font-size:12.5px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#5EEAD4">
+                  Teams &amp; notification channels</p>
+                <h3
+                  style="margin:0 0 14px;font-size:clamp(23px,4.8vw,27px);font-weight:700;letter-spacing:-0.015em;color:#F1F5F9;line-height:1.25">
+                  Route the right alert to the right people</h3>
+                <p style="margin:0 0 18px;font-size:15.5px;line-height:1.65;color:#94A3B8;text-wrap:pretty">Every API
+                  key belongs to a team; every team has its channels. Configure a channel once — email, SMS, Microsoft
+                  Teams or in-app — and reuse it across teams with per-team toggles.</p>
+                <ul
+                  style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:14.5px;color:#CBD5E1">
+                  <li style="display:flex;gap:10px;align-items:baseline"><span
+                      style="color:#2DD4BF;font-weight:700">✓</span>Email, SMS, Microsoft Teams and in-app delivery</li>
+                  <li style="display:flex;gap:10px;align-items:baseline"><span
+                      style="color:#2DD4BF;font-weight:700">✓</span>External recipients outside your org, marked as such
+                  </li>
+                  <li style="display:flex;gap:10px;align-items:baseline"><span
+                      style="color:#2DD4BF;font-weight:700">✓</span>Automatic retries with exponential backoff</li>
+                </ul>
+              </div>
+              <div class="st-reveal st-d1"
+                style="background:#0F1623;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:0;align-items:center">
+                <div
+                  style="display:inline-flex;align-items:center;gap:10px;background:#161E30;border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:9px 14px">
+                  <span
+                    style="display:inline-flex;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.05em;background:rgba(239,68,68,0.12);color:#F87171">CRITICAL</span><span
+                    style="font-size:12.5px;font-weight:600;color:#F1F5F9">Payment gateway timeout</span></div>
+                <div style="width:1px;height:20px;background:rgba(45,212,191,0.4)"></div>
+                <div
+                  style="display:inline-flex;align-items:center;gap:8px;background:rgba(45,212,191,0.08);border:1px solid rgba(45,212,191,0.3);border-radius:10px;padding:8px 16px">
+                  <span style="font-size:12.5px;font-weight:700;color:#5EEAD4">Payments team</span><span
+                    style="font-size:10.5px;color:#64748B;font-family:ui-monospace,Menlo,monospace">PAY · 6
+                    members</span></div>
+                <div style="width:1px;height:20px;background:rgba(45,212,191,0.4)"></div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%">
+                  <div
+                    style="display:flex;align-items:center;justify-content:space-between;background:#161E30;border:1px solid rgba(255,255,255,0.06);border-radius:9px;padding:9px 12px">
+                    <span style="font-size:12px;font-weight:600;color:#E2E8F0">Email</span><span
+                      style="width:26px;height:15px;border-radius:99px;background:#0D9488;position:relative"><span
+                        style="position:absolute;top:2px;right:2px;width:11px;height:11px;border-radius:50%;background:#F0FDFA"></span></span>
+                  </div>
+                  <div
+                    style="display:flex;align-items:center;justify-content:space-between;background:#161E30;border:1px solid rgba(255,255,255,0.06);border-radius:9px;padding:9px 12px">
+                    <span style="font-size:12px;font-weight:600;color:#E2E8F0">SMS</span><span
+                      style="width:26px;height:15px;border-radius:99px;background:#0D9488;position:relative"><span
+                        style="position:absolute;top:2px;right:2px;width:11px;height:11px;border-radius:50%;background:#F0FDFA"></span></span>
+                  </div>
+                  <div
+                    style="display:flex;align-items:center;justify-content:space-between;background:#161E30;border:1px solid rgba(255,255,255,0.06);border-radius:9px;padding:9px 12px">
+                    <span style="font-size:12px;font-weight:600;color:#E2E8F0">Microsoft Teams</span><span
+                      style="width:26px;height:15px;border-radius:99px;background:#0D9488;position:relative"><span
+                        style="position:absolute;top:2px;right:2px;width:11px;height:11px;border-radius:50%;background:#F0FDFA"></span></span>
+                  </div>
+                  <div
+                    style="display:flex;align-items:center;justify-content:space-between;background:#161E30;border:1px solid rgba(255,255,255,0.06);border-radius:9px;padding:9px 12px">
+                    <span style="font-size:12px;font-weight:600;color:#94A3B8">In-app</span><span
+                      style="width:26px;height:15px;border-radius:99px;background:#334155;position:relative"><span
+                        style="position:absolute;top:2px;left:2px;width:11px;height:11px;border-radius:50%;background:#94A3B8"></span></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- F6 orgs -->
+            <div class="st-feat" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
+              <div class="st-reveal" style="order:2">
+                <p
+                  style="margin:0 0 10px;font-size:12.5px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#5EEAD4">
+                  Built for organizations</p>
+                <h3
+                  style="margin:0 0 14px;font-size:clamp(23px,4.8vw,27px);font-weight:700;letter-spacing:-0.015em;color:#F1F5F9;line-height:1.25">
+                  Multi-tenant from the first line of code</h3>
+                <p style="margin:0 0 18px;font-size:15.5px;line-height:1.65;color:#94A3B8;text-wrap:pretty">Hard
+                  isolation per organization, hierarchical roles, a full audit trail and rate-limited API keys whose
+                  secret is shown exactly once.</p>
+                <ul
+                  style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:14.5px;color:#CBD5E1">
+                  <li style="display:flex;gap:10px;align-items:baseline"><span
+                      style="color:#2DD4BF;font-weight:700">✓</span>Roles: super_admin → admin → operator → viewer</li>
+                  <li style="display:flex;gap:10px;align-items:baseline"><span
+                      style="color:#2DD4BF;font-weight:700">✓</span>Audit log for every sensitive action</li>
+                  <li style="display:flex;gap:10px;align-items:baseline"><span
+                      style="color:#2DD4BF;font-weight:700">✓</span>2FA with authenticator apps or email codes</li>
+                </ul>
+              </div>
+              <div class="st-reveal st-d1"
+                style="order:1;background:#0F1623;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:12px">
+                <div
+                  style="display:flex;gap:6px;flex-wrap:wrap;font-family:ui-monospace,Menlo,monospace;font-size:11.5px">
+                  <span
+                    style="padding:4px 10px;border-radius:7px;background:rgba(45,212,191,0.12);color:#5EEAD4;border:1px solid rgba(45,212,191,0.25)">super_admin</span><span
+                    style="color:#475569;align-self:center">›</span>
+                  <span
+                    style="padding:4px 10px;border-radius:7px;background:rgba(255,255,255,0.05);color:#CBD5E1;border:1px solid rgba(255,255,255,0.08)">admin</span><span
+                    style="color:#475569;align-self:center">›</span>
+                  <span
+                    style="padding:4px 10px;border-radius:7px;background:rgba(255,255,255,0.05);color:#CBD5E1;border:1px solid rgba(255,255,255,0.08)">operator</span><span
+                    style="color:#475569;align-self:center">›</span>
+                  <span
+                    style="padding:4px 10px;border-radius:7px;background:rgba(255,255,255,0.05);color:#94A3B8;border:1px solid rgba(255,255,255,0.08)">viewer</span>
+                </div>
+                <div
+                  style="display:flex;align-items:center;justify-content:space-between;background:#161E30;border:1px solid rgba(255,255,255,0.06);border-radius:9px;padding:11px 14px">
+                  <span><span style="display:block;font-size:12.5px;font-weight:600;color:#F1F5F9">Production
+                      Monitoring</span><span
+                      style="font-size:11.5px;color:#64748B;font-family:ui-monospace,Menlo,monospace">sk_4f2e1c••••••••••••</span></span>
+                  <span style="font-size:11px;color:#94A3B8;font-family:ui-monospace,Menlo,monospace">120 req/min</span>
+                </div>
+                <div
+                  style="background:#0B1120;border:1px solid rgba(255,255,255,0.06);border-radius:9px;padding:10px 14px;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#64748B;line-height:1.8">
+                  <span style="color:#475569">14:02:11</span> <span style="color:#CBD5E1">m.ruiz@acme.com</span> <span
+                    style="color:#5EEAD4">apikey.created</span><br>
+                  <span style="color:#475569">13:58:47</span> <span style="color:#CBD5E1">j.holt@acme.com</span> <span
+                    style="color:#A78BFA">alert.acknowledged</span><br>
+                  <span style="color:#475569">13:41:03</span> <span style="color:#CBD5E1">m.ruiz@acme.com</span> <span
+                    style="color:#34D399">team.member_added</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- HOW IT WORKS -->
+      <section class="st-sec" id="how"
+        style="padding:88px 32px;border-top:1px solid rgba(255,255,255,0.05);scroll-margin-top:64px">
+        <div style="max-width:1080px;margin:0 auto">
+          <div class="st-reveal" style="text-align:center;max-width:560px;margin:0 auto 56px">
+            <p
+              style="margin:0 0 12px;font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#2DD4BF">
+              How it works</p>
+            <h2
+              style="margin:0;font-size:clamp(29px,5.5vw,38px);line-height:1.15;font-weight:700;letter-spacing:-0.02em;color:#F1F5F9">
+              Live in three steps</h2>
+          </div>
+          <div class="st-cols3" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;align-items:stretch">
+            <div class="st-reveal"
+              style="background:#0F1623;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:26px;display:flex;flex-direction:column;gap:12px">
+              <span
+                style="font-size:13px;font-weight:800;font-family:ui-monospace,Menlo,monospace;color:#2DD4BF">01</span>
+              <h3 style="margin:0;font-size:18px;font-weight:700;color:#F1F5F9">Connect your systems</h3>
+              <p style="margin:0;font-size:14px;line-height:1.6;color:#94A3B8">Create an API key and push your first
+                alert with a single request.</p>
+              <div
+                style="background:#0B1120;border:1px solid rgba(255,255,255,0.07);border-radius:9px;padding:12px 14px;font-family:ui-monospace,Menlo,monospace;font-size:11px;line-height:1.75;color:#94A3B8;overflow:hidden">
+                <span style="color:#5EEAD4">curl</span> -X POST api.sigtake.com/api/ingest \<br>&nbsp;&nbsp;-H <span
+                  style="color:#99F6E4">"X-Api-Key: sk_9f3a1c04e2"</span> \<br>&nbsp;&nbsp;-d <span
+                  style="color:#99F6E4">'{"title":"High CPU on
+                  web-01",</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                  style="color:#99F6E4">"severity":"critical",</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                  style="color:#99F6E4">"source":"datadog-agent"}'</span>
+              </div>
+            </div>
+            <div class="st-reveal st-d1"
+              style="background:#0F1623;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:26px;display:flex;flex-direction:column;gap:12px">
+              <span
+                style="font-size:13px;font-weight:800;font-family:ui-monospace,Menlo,monospace;color:#2DD4BF">02</span>
+              <h3 style="margin:0;font-size:18px;font-weight:700;color:#F1F5F9">Route to teams &amp; channels</h3>
+              <p style="margin:0;font-size:14px;line-height:1.6;color:#94A3B8">Each key belongs to a team. Assign
+                channels once and every alert finds its way to email, SMS, Teams or in-app.</p>
+              <div style="margin-top:auto;display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#CBD5E1"><span
+                    style="width:7px;height:7px;border-radius:50%;background:#2DD4BF"></span>Infrastructure → Email +
+                  Teams</div>
+                <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#CBD5E1"><span
+                    style="width:7px;height:7px;border-radius:50%;background:#2DD4BF"></span>Payments → Email + SMS
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#CBD5E1"><span
+                    style="width:7px;height:7px;border-radius:50%;background:#2DD4BF"></span>Platform → In-app</div>
+              </div>
+            </div>
+            <div class="st-reveal st-d2"
+              style="background:#0F1623;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:26px;display:flex;flex-direction:column;gap:12px">
+              <span
+                style="font-size:13px;font-weight:800;font-family:ui-monospace,Menlo,monospace;color:#2DD4BF">03</span>
+              <h3 style="margin:0;font-size:18px;font-weight:700;color:#F1F5F9">Acknowledge, resolve, improve</h3>
+              <p style="margin:0;font-size:14px;line-height:1.6;color:#94A3B8">Work alerts as a team and watch your
+                median time-to-acknowledge trend down, week over week.</p>
+              <div style="margin-top:auto">
+                <div style="display:flex;justify-content:space-between;font-size:12px;color:#94A3B8;margin-bottom:4px">
+                  <span>MTTR · 8 weeks</span><span style="color:#34D399;font-weight:700">▾ 38%</span></div>
+                <svg viewBox="0 0 260 56" style="display:block;width:100%;height:56px" aria-hidden="true">
+                  <polyline points="0,14 37,20 74,16 111,26 148,30 185,36 222,40 260,44" fill="none" stroke="#2DD4BF"
+                    stroke-width="2" stroke-linejoin="round"></polyline>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRICING -->
+      <section class="st-sec" id="pricing"
+        style="padding:88px 32px;border-top:1px solid rgba(255,255,255,0.05);scroll-margin-top:64px">
+        <div style="max-width:1080px;margin:0 auto">
+          <div class="st-reveal" style="text-align:center;max-width:560px;margin:0 auto 40px">
+            <p
+              style="margin:0 0 12px;font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#2DD4BF">
+              Pricing</p>
+            <h2
+              style="margin:0 0 14px;font-size:clamp(29px,5.5vw,38px);line-height:1.15;font-weight:700;letter-spacing:-0.02em;color:#F1F5F9">
+              Start free, scale when you're paged</h2>
+            <p style="margin:0;font-size:16px;line-height:1.6;color:#94A3B8">Everything's free while we're in early
+              access — paid plans will come as we grow.</p>
+          </div>
+          <!-- Business: informational band, not a pricing card (everything is free during early access) -->
+          <div class="st-biz st-reveal st-d1"
+            style="max-width:760px;margin:0 auto;background:linear-gradient(180deg,#111A2B,#0F1623);border:1px solid rgba(45,212,191,0.25);border-radius:18px;padding:30px 32px;box-shadow:0 0 44px rgba(45,212,191,0.08)">
+            <div class="st-biz-head"
+              style="display:flex;align-items:center;justify-content:space-between;gap:16px 24px;flex-wrap:wrap">
+              <div style="min-width:0">
+                <p
+                  style="margin:0 0 8px;font-size:12.5px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#5EEAD4">
+                  Business</p>
+                <h3
+                  style="margin:0 0 6px;font-size:21px;font-weight:700;letter-spacing:-0.015em;color:#F1F5F9;line-height:1.3">
+                  For orgs that treat alerting as infrastructure</h3>
+                <p style="margin:0;font-size:14px;line-height:1.6;color:#94A3B8">Free during early access, like
+                  everything else — with the guarantees larger teams need.</p>
+              </div>
+              <a href="mailto:help@sigtake.com?subject=Talk%20to%20sales" class="st-btn-ghost"
+                style="flex:none;display:inline-flex;justify-content:center;background:rgba(45,212,191,0.08);color:#5EEAD4;font-size:14px;font-weight:600;padding:11px 22px;border-radius:9px;border:1px solid rgba(45,212,191,0.35)">Talk
+                to sales</a>
+            </div>
+            <div style="height:1px;background:rgba(255,255,255,0.06);margin:22px 0"></div>
+            <ul class="st-biz-list"
+              style="margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px 24px;font-size:13.5px;color:#CBD5E1">
+              <li style="display:flex;gap:9px"><span style="color:#2DD4BF;font-weight:700">✓</span>Unlimited users,
+                teams &amp; monitors</li>
+              <li style="display:flex;gap:9px"><span style="color:#2DD4BF;font-weight:700">✓</span>Unlimited alerts,
+                custom rate limits</li>
+              <li style="display:flex;gap:9px"><span style="color:#2DD4BF;font-weight:700">✓</span>Enforced 2FA + full
+                audit history</li>
+              <li style="display:flex;gap:9px"><span style="color:#2DD4BF;font-weight:700">✓</span>99.9% uptime SLA</li>
+              <li style="display:flex;gap:9px"><span style="color:#2DD4BF;font-weight:700">✓</span>Priority support</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- FINAL CTA -->
+      <section class="st-sec-cta" style="padding:56px 32px 96px">
+        <div class="st-band st-reveal"
+          style="position:relative;max-width:1080px;margin:0 auto;background:#0F1623;border:1px solid rgba(45,212,191,0.25);border-radius:20px;padding:72px 32px;text-align:center;overflow:hidden">
+          <div
+            style="position:absolute;top:-160px;left:50%;transform:translateX(-50%);width:700px;height:360px;background:radial-gradient(ellipse at center,rgba(45,212,191,0.18),transparent 65%);pointer-events:none">
+          </div>
+          <h2
+            style="position:relative;margin:0 0 14px;font-size:clamp(29px,5.5vw,38px);line-height:1.15;font-weight:700;letter-spacing:-0.02em;color:#F8FAFC">
+            Stop drowning in alert noise</h2>
+          <p style="position:relative;margin:0 0 28px;font-size:16.5px;color:#94A3B8">Your first API key is one click
+            away. Free for small teams, forever.</p>
+          <div style="position:relative;display:flex;justify-content:center;flex-wrap:wrap;gap:14px">
+            <a href="https://app.sigtake.com/register" class="st-btn-primary"
+              style="display:inline-flex;align-items:center;background:#2DD4BF;color:#0C1220;font-size:16px;font-weight:600;padding:13px 28px;border-radius:10px;box-shadow:0 0 32px rgba(45,212,191,0.4)">Start
+              free</a>
+            <a href="https://docs.sigtake.com" class="st-btn-ghost"
+              style="display:inline-flex;align-items:center;background:rgba(255,255,255,0.06);color:#E2E8F0;font-size:16px;font-weight:600;padding:13px 28px;border-radius:10px;border:1px solid rgba(255,255,255,0.08)">Read
+              the docs</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="st-sec-foot"
+      style="border-top:1px solid rgba(255,255,255,0.06);padding:64px 32px 40px;background:#070B14">
       <div style="max-width:1080px;margin:0 auto">
-        <div class="st-reveal" style="max-width:620px;margin-bottom:72px">
-          <p style="margin:0 0 12px;font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#2DD4BF">Product</p>
-          <h2 style="margin:0 0 16px;font-size:clamp(30px,5.5vw,40px);line-height:1.15;font-weight:700;letter-spacing:-0.02em;color:#F1F5F9">Everything between <span style="color:#F87171">“it fired”</span> and <span style="color:#34D399">“it's fixed”</span></h2>
-          <p style="margin:0;font-size:17px;line-height:1.6;color:#94A3B8;text-wrap:pretty">One platform for the whole on-call loop: ingestion, deduplication, routing, acknowledgement and the metrics to prove you're getting faster.</p>
+        <div class="st-foot" style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px">
+          <div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><img src="/public/favicon.svg"
+                width="22" height="22" alt="" style="flex:none"><span
+                class="st-wordmark" style="font-size:15px;font-weight:700;color:#F1F5F9">Sigtake</span></div>
+            <p style="margin:0;max-width:280px;font-size:13.5px;line-height:1.6;color:#64748B">Real-time alert
+              management and monitoring for ops teams. Multi-tenant, deduplicated, routed to the people on call.</p>
+          </div>
+          <nav aria-label="Product">
+            <p
+              style="margin:0 0 14px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#475569">
+              Product</p>
+            <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:13.5px">
+              <li><a href="#features" class="st-flink" style="color:#94A3B8">Features</a></li>
+              <li><a href="#monitoring" class="st-flink" style="color:#94A3B8">Monitoring</a></li>
+              <li><a href="#pricing" class="st-flink" style="color:#94A3B8">Pricing</a></li>
+              <!-- TODO: re-enable when a changelog exists: <li><a href="#" class="st-flink" style="color:#94A3B8">Changelog</a></li> -->
+            </ul>
+          </nav>
+          <nav aria-label="Resources">
+            <p
+              style="margin:0 0 14px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#475569">
+              Resources</p>
+            <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:13.5px">
+              <li><a href="https://docs.sigtake.com" class="st-flink" style="color:#94A3B8">Documentation</a></li>
+              <li><a href="https://docs.sigtake.com" class="st-flink" style="color:#94A3B8">API reference</a></li>
+              <!-- TODO: re-enable when a status page exists: <li><a href="#" class="st-flink" style="color:#94A3B8">Status</a></li> -->
+              <li><a href="mailto:help@sigtake.com?subject=Support" class="st-flink" style="color:#94A3B8">Support</a>
+              </li>
+            </ul>
+          </nav>
+          <nav aria-label="Legal">
+            <p
+              style="margin:0 0 14px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#475569">
+              Legal</p>
+            <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:13.5px">
+              <li><a href="/privacy/" class="st-flink" style="color:#94A3B8">Privacy</a></li>
+              <li><a href="/terms/" class="st-flink" style="color:#94A3B8">Terms</a></li>
+              <!-- TODO: re-enable when a security page exists: <li><a href="#" class="st-flink" style="color:#94A3B8">Security</a></li> -->
+            </ul>
+          </nav>
         </div>
-
-        <div style="display:flex;flex-direction:column;gap:88px">
-          <!-- F1 realtime -->
-          <div class="st-feat" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
-            <div class="st-reveal">
-              <p style="margin:0 0 10px;font-size:12.5px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#5EEAD4">Real-time alert center</p>
-              <h3 style="margin:0 0 14px;font-size:clamp(23px,4.8vw,27px);font-weight:700;letter-spacing:-0.015em;color:#F1F5F9;line-height:1.25">See every alert the second it fires</h3>
-              <p style="margin:0 0 18px;font-size:15.5px;line-height:1.65;color:#94A3B8;text-wrap:pretty">Alerts stream in over WebSocket — no refresh button. Acknowledge and resolve in one click, and keep the conversation on the alert itself.</p>
-              <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:14.5px;color:#CBD5E1">
-                <li style="display:flex;gap:10px;align-items:baseline"><span style="color:#2DD4BF;font-weight:700">✓</span>Live updates via WebSocket, scoped to your organization</li>
-                <li style="display:flex;gap:10px;align-items:baseline"><span style="color:#2DD4BF;font-weight:700">✓</span>One-click acknowledge &amp; resolve workflow</li>
-                <li style="display:flex;gap:10px;align-items:baseline"><span style="color:#2DD4BF;font-weight:700">✓</span>Threaded comments with @mentions</li>
-              </ul>
-            </div>
-            <div class="st-reveal st-d1" style="background:#0F1623;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:10px">
-              <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px 12px;background:#161E30;border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px 14px">
-                <span style="display:flex;align-items:center;gap:10px;min-width:0"><span style="display:inline-flex;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.05em;background:rgba(239,68,68,0.12);color:#F87171">CRITICAL</span><span style="font-size:13px;font-weight:600;color:#F1F5F9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">CPU above 92% on prod-web-03</span></span>
-                <span style="display:flex;gap:8px"><span style="font-size:11.5px;font-weight:600;color:#0C1220;background:#2DD4BF;border-radius:7px;padding:4px 10px">Acknowledge</span><span style="font-size:11.5px;font-weight:600;color:#E2E8F0;background:rgba(255,255,255,0.07);border-radius:7px;padding:4px 10px">Resolve</span></span>
-              </div>
-              <div style="background:#161E30;border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px 14px">
-                <p style="margin:0 0 8px;font-size:12.5px;line-height:1.5;color:#CBD5E1"><span style="font-weight:600;color:#F1F5F9">Marta Ruiz</span> <span style="color:#64748B">· 2m</span><br>Rolling restart on prod-web-03, watching load…</p>
-                <div style="position:relative;background:#0B1120;border:1px solid rgba(45,212,191,0.3);border-radius:8px;padding:8px 12px;font-size:12.5px;color:#E2E8F0">cc <span style="color:#5EEAD4;font-weight:600">@mar</span><span style="display:inline-block;width:1px;height:13px;background:#2DD4BF;vertical-align:-2px;animation:st-pulse 1s infinite"></span>
-                  <div style="position:absolute;left:34px;top:36px;z-index:2;background:#1E293B;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:5px;box-shadow:0 10px 28px rgba(0,0,0,0.5);min-width:170px">
-                    <div style="display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:6px;background:rgba(45,212,191,0.12)"><span style="width:18px;height:18px;border-radius:50%;background:#0D9488;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#F0FDFA">MR</span><span style="font-size:12px;color:#F1F5F9">Marta Ruiz</span></div>
-                    <div style="display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:6px"><span style="width:18px;height:18px;border-radius:50%;background:#334155;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#E2E8F0">MC</span><span style="font-size:12px;color:#CBD5E1">Marcus Chen</span></div>
-                  </div>
-                </div>
-              </div>
-              <div style="height:26px"></div>
-            </div>
-          </div>
-
-          <!-- F2 dedup -->
-          <div class="st-feat" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
-            <div class="st-reveal" style="order:2">
-              <p style="margin:0 0 10px;font-size:12.5px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#5EEAD4">Smart deduplication</p>
-              <h3 style="margin:0 0 14px;font-size:clamp(23px,4.8vw,27px);font-weight:700;letter-spacing:-0.015em;color:#F1F5F9;line-height:1.25">One alert — not four hundred</h3>
-              <p style="margin:0 0 18px;font-size:15.5px;line-height:1.65;color:#94A3B8;text-wrap:pretty">Repeated alerts collapse into a single row with an occurrence counter and a last-seen timestamp. Notifications fire at sane thresholds — 1, 10, 25, 50, 100 — never as a storm.</p>
-              <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:14.5px;color:#CBD5E1">
-                <li style="display:flex;gap:10px;align-items:baseline"><span style="color:#2DD4BF;font-weight:700">✓</span>Fingerprint on source + title + severity</li>
-                <li style="display:flex;gap:10px;align-items:baseline"><span style="color:#2DD4BF;font-weight:700">✓</span>First-seen / last-seen history on every alert</li>
-                <li style="display:flex;gap:10px;align-items:baseline"><span style="color:#2DD4BF;font-weight:700">✓</span>Threshold-based notifications stop flapping noise</li>
-              </ul>
-            </div>
-            <div class="st-reveal st-d1" style="order:1;background:#0F1623;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:24px;display:flex;flex-direction:column;align-items:center;gap:0">
-              <div style="width:82%;height:12px;background:#141C2C;border:1px solid rgba(255,255,255,0.05);border-bottom:none;border-radius:10px 10px 0 0;opacity:.35"></div>
-              <div style="width:90%;height:12px;background:#141C2C;border:1px solid rgba(255,255,255,0.05);border-bottom:none;border-radius:10px 10px 0 0;opacity:.6"></div>
-              <div style="width:100%;display:flex;align-items:center;justify-content:space-between;background:#161E30;border:1px solid rgba(45,212,191,0.25);border-radius:10px;padding:14px 16px;box-shadow:0 0 24px rgba(45,212,191,0.12)">
-                <span style="display:flex;align-items:center;gap:10px;min-width:0"><span style="display:inline-flex;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.05em;background:rgba(239,68,68,0.12);color:#F87171">CRITICAL</span><span style="font-size:13.5px;font-weight:600;color:#F1F5F9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">CPU above 92% on prod-web-03</span></span>
-                <span style="font-size:15px;font-weight:700;font-family:ui-monospace,Menlo,monospace;color:#5EEAD4;background:rgba(45,212,191,0.12);border:1px solid rgba(45,212,191,0.3);border-radius:8px;padding:4px 10px;flex:none">×47</span>
-              </div>
-              <div style="width:100%;display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 12px;margin-top:14px;font-size:11.5px;color:#64748B;font-family:ui-monospace,Menlo,monospace"><span>first seen 2d ago</span><span>notified at 1 · 10 · 25</span><span>last seen 12s ago</span></div>
-            </div>
-          </div>
-
-          <!-- F3 website monitoring -->
-          <div class="st-feat" id="monitoring" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;scroll-margin-top:88px">
-            <div class="st-reveal">
-              <p style="margin:0 0 10px;font-size:12.5px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#5EEAD4">Website monitoring</p>
-              <h3 style="margin:0 0 14px;font-size:clamp(23px,4.8vw,27px);font-weight:700;letter-spacing:-0.015em;color:#F1F5F9;line-height:1.25">Know you're down before your users do</h3>
-              <p style="margin:0 0 18px;font-size:15.5px;line-height:1.65;color:#94A3B8;text-wrap:pretty">Scheduled checks against your endpoints, with uptime percentage, latency trends and a plain up/down semaphore. A failed check is just another alert — routed like the rest.</p>
-              <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:14.5px;color:#CBD5E1">
-                <li style="display:flex;gap:10px;align-items:baseline"><span style="color:#2DD4BF;font-weight:700">✓</span>Checks down to every 60 seconds</li>
-                <li style="display:flex;gap:10px;align-items:baseline"><span style="color:#2DD4BF;font-weight:700">✓</span>Uptime % over 24h / 7d / 30d windows</li>
-                <li style="display:flex;gap:10px;align-items:baseline"><span style="color:#2DD4BF;font-weight:700">✓</span>Latency history per monitor</li>
-              </ul>
-            </div>
-            <div class="st-reveal st-d1" style="background:#0F1623;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px">
-              <div style="display:flex;align-items:center;justify-content:space-between">
-                <span style="display:flex;align-items:center;gap:10px"><span style="position:relative;width:9px;height:9px;flex:none"><span style="position:absolute;inset:0;border-radius:50%;background:#10B981"></span><span style="position:absolute;inset:0;border-radius:50%;border:1.5px solid #10B981;animation:st-ping 1.8s cubic-bezier(0,0,.2,1) infinite"></span></span><span style="font-size:14px;font-weight:600;color:#F1F5F9;font-family:ui-monospace,Menlo,monospace">acme.com</span></span>
-                <span style="font-size:11px;font-weight:600;color:#34D399;background:rgba(16,185,129,0.12);border-radius:6px;padding:3px 9px">UP</span>
-              </div>
-              <div>
-                <div style="display:flex;justify-content:space-between;font-size:12px;color:#94A3B8;margin-bottom:6px"><span>Uptime · 30d</span><span style="color:#34D399;font-weight:700">99.98%</span></div>
-                <div style="display:flex;gap:2px">
-                  <span style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span style="flex:1;height:22px;border-radius:3px;background:#EF4444"></span><span style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span>
-                </div>
-              </div>
-              <div>
-                <div style="display:flex;justify-content:space-between;font-size:12px;color:#94A3B8;margin-bottom:4px"><span>Latency</span><span style="font-family:ui-monospace,Menlo,monospace;color:#5EEAD4">avg 184 ms</span></div>
-                <svg viewBox="0 0 300 64" style="display:block;width:100%;height:64px" aria-hidden="true"><polyline points="0,40 25,36 50,42 75,30 100,34 125,22 150,30 175,18 200,26 225,20 250,30 275,24 300,28" fill="none" stroke="#2DD4BF" stroke-width="2" stroke-linejoin="round"></polyline><line x1="0" y1="56" x2="300" y2="56" stroke="rgba(255,255,255,0.08)" stroke-width="1"></line></svg>
-                <div style="display:flex;justify-content:space-between;font-size:10.5px;color:#475569;font-family:ui-monospace,Menlo,monospace"><span>-24h</span><span>checked every 60s</span><span>now</span></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- F4 signals -->
-          <div class="st-feat" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
-            <div class="st-reveal" style="order:2">
-              <p style="margin:0 0 10px;font-size:12.5px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#5EEAD4">Signal monitoring</p>
-              <h3 style="margin:0 0 14px;font-size:clamp(23px,4.8vw,27px);font-weight:700;letter-spacing:-0.015em;color:#F1F5F9;line-height:1.25">Watch the numbers that matter</h3>
-              <p style="margin:0 0 18px;font-size:15.5px;line-height:1.65;color:#94A3B8;text-wrap:pretty">Push any numeric reading — queue depth, temperature, error rate — through the API. Threshold rules evaluate continuously and raise a real alert the moment a rule holds.</p>
-              <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:14.5px;color:#CBD5E1">
-                <li style="display:flex;gap:10px;align-items:baseline"><span style="color:#2DD4BF;font-weight:700">✓</span>Readings ingested with the same API key</li>
-                <li style="display:flex;gap:10px;align-items:baseline"><span style="color:#2DD4BF;font-weight:700">✓</span>Rules like “above X for N minutes”</li>
-                <li style="display:flex;gap:10px;align-items:baseline"><span style="color:#2DD4BF;font-weight:700">✓</span>Each rule fires with its own severity</li>
-              </ul>
-            </div>
-            <div class="st-reveal st-d1" style="order:1;background:#0F1623;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px">
-              <div style="display:flex;align-items:center;justify-content:space-between">
-                <span style="display:flex;align-items:center;gap:10px"><span style="position:relative;width:9px;height:9px;flex:none"><span style="position:absolute;inset:0;border-radius:50%;background:#10B981"></span><span style="position:absolute;inset:0;border-radius:50%;border:1.5px solid #10B981;animation:st-ping 1.8s cubic-bezier(0,0,.2,1) infinite"></span></span><span style="font-size:14px;font-weight:600;color:#F1F5F9;font-family:ui-monospace,Menlo,monospace">queue_depth · payments</span></span>
-                <span style="font-size:13px;font-weight:700;font-family:ui-monospace,Menlo,monospace;color:#FBBF24">86.2</span>
-              </div>
-              <div style="position:relative">
-                <svg viewBox="0 0 300 80" style="display:block;width:100%;height:80px" aria-hidden="true"><line x1="0" y1="18" x2="300" y2="18" stroke="#EF4444" stroke-width="1" stroke-dasharray="5 4" opacity="0.7"></line><polyline points="0,62 25,58 50,60 75,50 100,54 125,44 150,48 175,36 200,40 225,30 250,26 275,24 300,21" fill="none" stroke="#2DD4BF" stroke-width="2" stroke-linejoin="round"></polyline><circle cx="300" cy="21" r="3.5" fill="#FBBF24"></circle></svg>
-                <span style="position:absolute;top:6px;right:0;font-size:10px;font-weight:700;font-family:ui-monospace,Menlo,monospace;color:#F87171">threshold 90</span>
-              </div>
-              <div style="display:flex;align-items:center;gap:10px;background:#0B1120;border:1px solid rgba(255,255,255,0.07);border-radius:9px;padding:10px 12px;font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#CBD5E1;flex-wrap:wrap"><span style="color:#5EEAD4">value &gt; 90</span><span style="color:#475569">for</span><span style="color:#5EEAD4">5 min</span><span style="color:#475569">→</span><span style="display:inline-flex;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.05em;background:rgba(239,68,68,0.12);color:#F87171;font-family:'Inter',system-ui,sans-serif">CRITICAL</span><span style="color:#475569">alert</span></div>
-            </div>
-          </div>
-
-          <!-- F5 teams & channels -->
-          <div class="st-feat" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
-            <div class="st-reveal">
-              <p style="margin:0 0 10px;font-size:12.5px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#5EEAD4">Teams &amp; notification channels</p>
-              <h3 style="margin:0 0 14px;font-size:clamp(23px,4.8vw,27px);font-weight:700;letter-spacing:-0.015em;color:#F1F5F9;line-height:1.25">Route the right alert to the right people</h3>
-              <p style="margin:0 0 18px;font-size:15.5px;line-height:1.65;color:#94A3B8;text-wrap:pretty">Every API key belongs to a team; every team has its channels. Configure a channel once — email, SMS, Microsoft Teams or in-app — and reuse it across teams with per-team toggles.</p>
-              <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:14.5px;color:#CBD5E1">
-                <li style="display:flex;gap:10px;align-items:baseline"><span style="color:#2DD4BF;font-weight:700">✓</span>Email, SMS, Microsoft Teams and in-app delivery</li>
-                <li style="display:flex;gap:10px;align-items:baseline"><span style="color:#2DD4BF;font-weight:700">✓</span>External recipients outside your org, marked as such</li>
-                <li style="display:flex;gap:10px;align-items:baseline"><span style="color:#2DD4BF;font-weight:700">✓</span>Automatic retries with exponential backoff</li>
-              </ul>
-            </div>
-            <div class="st-reveal st-d1" style="background:#0F1623;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:0;align-items:center">
-              <div style="display:inline-flex;align-items:center;gap:10px;background:#161E30;border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:9px 14px"><span style="display:inline-flex;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.05em;background:rgba(239,68,68,0.12);color:#F87171">CRITICAL</span><span style="font-size:12.5px;font-weight:600;color:#F1F5F9">Payment gateway timeout</span></div>
-              <div style="width:1px;height:20px;background:rgba(45,212,191,0.4)"></div>
-              <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(45,212,191,0.08);border:1px solid rgba(45,212,191,0.3);border-radius:10px;padding:8px 16px"><span style="font-size:12.5px;font-weight:700;color:#5EEAD4">Payments team</span><span style="font-size:10.5px;color:#64748B;font-family:ui-monospace,Menlo,monospace">PAY · 6 members</span></div>
-              <div style="width:1px;height:20px;background:rgba(45,212,191,0.4)"></div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%">
-                <div style="display:flex;align-items:center;justify-content:space-between;background:#161E30;border:1px solid rgba(255,255,255,0.06);border-radius:9px;padding:9px 12px"><span style="font-size:12px;font-weight:600;color:#E2E8F0">Email</span><span style="width:26px;height:15px;border-radius:99px;background:#0D9488;position:relative"><span style="position:absolute;top:2px;right:2px;width:11px;height:11px;border-radius:50%;background:#F0FDFA"></span></span></div>
-                <div style="display:flex;align-items:center;justify-content:space-between;background:#161E30;border:1px solid rgba(255,255,255,0.06);border-radius:9px;padding:9px 12px"><span style="font-size:12px;font-weight:600;color:#E2E8F0">SMS</span><span style="width:26px;height:15px;border-radius:99px;background:#0D9488;position:relative"><span style="position:absolute;top:2px;right:2px;width:11px;height:11px;border-radius:50%;background:#F0FDFA"></span></span></div>
-                <div style="display:flex;align-items:center;justify-content:space-between;background:#161E30;border:1px solid rgba(255,255,255,0.06);border-radius:9px;padding:9px 12px"><span style="font-size:12px;font-weight:600;color:#E2E8F0">Microsoft Teams</span><span style="width:26px;height:15px;border-radius:99px;background:#0D9488;position:relative"><span style="position:absolute;top:2px;right:2px;width:11px;height:11px;border-radius:50%;background:#F0FDFA"></span></span></div>
-                <div style="display:flex;align-items:center;justify-content:space-between;background:#161E30;border:1px solid rgba(255,255,255,0.06);border-radius:9px;padding:9px 12px"><span style="font-size:12px;font-weight:600;color:#94A3B8">In-app</span><span style="width:26px;height:15px;border-radius:99px;background:#334155;position:relative"><span style="position:absolute;top:2px;left:2px;width:11px;height:11px;border-radius:50%;background:#94A3B8"></span></span></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- F6 orgs -->
-          <div class="st-feat" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
-            <div class="st-reveal" style="order:2">
-              <p style="margin:0 0 10px;font-size:12.5px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#5EEAD4">Built for organizations</p>
-              <h3 style="margin:0 0 14px;font-size:clamp(23px,4.8vw,27px);font-weight:700;letter-spacing:-0.015em;color:#F1F5F9;line-height:1.25">Multi-tenant from the first line of code</h3>
-              <p style="margin:0 0 18px;font-size:15.5px;line-height:1.65;color:#94A3B8;text-wrap:pretty">Hard isolation per organization, hierarchical roles, a full audit trail and rate-limited API keys whose secret is shown exactly once.</p>
-              <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:14.5px;color:#CBD5E1">
-                <li style="display:flex;gap:10px;align-items:baseline"><span style="color:#2DD4BF;font-weight:700">✓</span>Roles: super_admin → admin → operator → viewer</li>
-                <li style="display:flex;gap:10px;align-items:baseline"><span style="color:#2DD4BF;font-weight:700">✓</span>Audit log for every sensitive action</li>
-                <li style="display:flex;gap:10px;align-items:baseline"><span style="color:#2DD4BF;font-weight:700">✓</span>2FA with authenticator apps or email codes</li>
-              </ul>
-            </div>
-            <div class="st-reveal st-d1" style="order:1;background:#0F1623;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:12px">
-              <div style="display:flex;gap:6px;flex-wrap:wrap;font-family:ui-monospace,Menlo,monospace;font-size:11.5px">
-                <span style="padding:4px 10px;border-radius:7px;background:rgba(45,212,191,0.12);color:#5EEAD4;border:1px solid rgba(45,212,191,0.25)">super_admin</span><span style="color:#475569;align-self:center">›</span>
-                <span style="padding:4px 10px;border-radius:7px;background:rgba(255,255,255,0.05);color:#CBD5E1;border:1px solid rgba(255,255,255,0.08)">admin</span><span style="color:#475569;align-self:center">›</span>
-                <span style="padding:4px 10px;border-radius:7px;background:rgba(255,255,255,0.05);color:#CBD5E1;border:1px solid rgba(255,255,255,0.08)">operator</span><span style="color:#475569;align-self:center">›</span>
-                <span style="padding:4px 10px;border-radius:7px;background:rgba(255,255,255,0.05);color:#94A3B8;border:1px solid rgba(255,255,255,0.08)">viewer</span>
-              </div>
-              <div style="display:flex;align-items:center;justify-content:space-between;background:#161E30;border:1px solid rgba(255,255,255,0.06);border-radius:9px;padding:11px 14px">
-                <span><span style="display:block;font-size:12.5px;font-weight:600;color:#F1F5F9">Production Monitoring</span><span style="font-size:11.5px;color:#64748B;font-family:ui-monospace,Menlo,monospace">sk_4f2e1c••••••••••••</span></span>
-                <span style="font-size:11px;color:#94A3B8;font-family:ui-monospace,Menlo,monospace">120 req/min</span>
-              </div>
-              <div style="background:#0B1120;border:1px solid rgba(255,255,255,0.06);border-radius:9px;padding:10px 14px;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#64748B;line-height:1.8">
-                <span style="color:#475569">14:02:11</span> <span style="color:#CBD5E1">m.ruiz@acme.com</span> <span style="color:#5EEAD4">apikey.created</span><br>
-                <span style="color:#475569">13:58:47</span> <span style="color:#CBD5E1">j.holt@acme.com</span> <span style="color:#A78BFA">alert.acknowledged</span><br>
-                <span style="color:#475569">13:41:03</span> <span style="color:#CBD5E1">m.ruiz@acme.com</span> <span style="color:#34D399">team.member_added</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- HOW IT WORKS -->
-    <section class="st-sec" id="how" style="padding:88px 32px;border-top:1px solid rgba(255,255,255,0.05);scroll-margin-top:64px">
-      <div style="max-width:1080px;margin:0 auto">
-        <div class="st-reveal" style="text-align:center;max-width:560px;margin:0 auto 56px">
-          <p style="margin:0 0 12px;font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#2DD4BF">How it works</p>
-          <h2 style="margin:0;font-size:clamp(29px,5.5vw,38px);line-height:1.15;font-weight:700;letter-spacing:-0.02em;color:#F1F5F9">Live in three steps</h2>
-        </div>
-        <div class="st-cols3" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;align-items:stretch">
-          <div class="st-reveal" style="background:#0F1623;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:26px;display:flex;flex-direction:column;gap:12px">
-            <span style="font-size:13px;font-weight:800;font-family:ui-monospace,Menlo,monospace;color:#2DD4BF">01</span>
-            <h3 style="margin:0;font-size:18px;font-weight:700;color:#F1F5F9">Connect your systems</h3>
-            <p style="margin:0;font-size:14px;line-height:1.6;color:#94A3B8">Create an API key and push your first alert with a single request.</p>
-            <div style="background:#0B1120;border:1px solid rgba(255,255,255,0.07);border-radius:9px;padding:12px 14px;font-family:ui-monospace,Menlo,monospace;font-size:11px;line-height:1.75;color:#94A3B8;overflow:hidden">
-              <span style="color:#5EEAD4">curl</span> -X POST api.sigtake.com/api/ingest \<br>&nbsp;&nbsp;-H <span style="color:#99F6E4">"X-Api-Key: sk_9f3a1c04e2"</span> \<br>&nbsp;&nbsp;-d <span style="color:#99F6E4">'{"title":"High CPU on web-01",</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#99F6E4">"severity":"critical",</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#99F6E4">"source":"datadog-agent"}'</span>
-            </div>
-          </div>
-          <div class="st-reveal st-d1" style="background:#0F1623;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:26px;display:flex;flex-direction:column;gap:12px">
-            <span style="font-size:13px;font-weight:800;font-family:ui-monospace,Menlo,monospace;color:#2DD4BF">02</span>
-            <h3 style="margin:0;font-size:18px;font-weight:700;color:#F1F5F9">Route to teams &amp; channels</h3>
-            <p style="margin:0;font-size:14px;line-height:1.6;color:#94A3B8">Each key belongs to a team. Assign channels once and every alert finds its way to email, SMS, Teams or in-app.</p>
-            <div style="margin-top:auto;display:flex;flex-direction:column;gap:8px">
-              <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#CBD5E1"><span style="width:7px;height:7px;border-radius:50%;background:#2DD4BF"></span>Infrastructure → Email + Teams</div>
-              <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#CBD5E1"><span style="width:7px;height:7px;border-radius:50%;background:#2DD4BF"></span>Payments → Email + SMS</div>
-              <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#CBD5E1"><span style="width:7px;height:7px;border-radius:50%;background:#2DD4BF"></span>Platform → In-app</div>
-            </div>
-          </div>
-          <div class="st-reveal st-d2" style="background:#0F1623;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:26px;display:flex;flex-direction:column;gap:12px">
-            <span style="font-size:13px;font-weight:800;font-family:ui-monospace,Menlo,monospace;color:#2DD4BF">03</span>
-            <h3 style="margin:0;font-size:18px;font-weight:700;color:#F1F5F9">Acknowledge, resolve, improve</h3>
-            <p style="margin:0;font-size:14px;line-height:1.6;color:#94A3B8">Work alerts as a team and watch your median time-to-acknowledge trend down, week over week.</p>
-            <div style="margin-top:auto">
-              <div style="display:flex;justify-content:space-between;font-size:12px;color:#94A3B8;margin-bottom:4px"><span>MTTR · 8 weeks</span><span style="color:#34D399;font-weight:700">▾ 38%</span></div>
-              <svg viewBox="0 0 260 56" style="display:block;width:100%;height:56px" aria-hidden="true"><polyline points="0,14 37,20 74,16 111,26 148,30 185,36 222,40 260,44" fill="none" stroke="#2DD4BF" stroke-width="2" stroke-linejoin="round"></polyline></svg>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PRICING -->
-    <section class="st-sec" id="pricing" style="padding:88px 32px;border-top:1px solid rgba(255,255,255,0.05);scroll-margin-top:64px">
-      <div style="max-width:1080px;margin:0 auto">
-        <div class="st-reveal" style="text-align:center;max-width:560px;margin:0 auto 40px">
-          <p style="margin:0 0 12px;font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#2DD4BF">Pricing</p>
-          <h2 style="margin:0 0 14px;font-size:clamp(29px,5.5vw,38px);line-height:1.15;font-weight:700;letter-spacing:-0.02em;color:#F1F5F9">Start free, scale when you're paged</h2>
-          <p style="margin:0;font-size:16px;line-height:1.6;color:#94A3B8">Everything's free while we're in early access — paid plans will come as we grow.</p>
-        </div>
-        <!-- Business: informational band, not a pricing card (everything is free during early access) -->
-        <div class="st-biz st-reveal st-d1" style="max-width:760px;margin:0 auto;background:linear-gradient(180deg,#111A2B,#0F1623);border:1px solid rgba(45,212,191,0.25);border-radius:18px;padding:30px 32px;box-shadow:0 0 44px rgba(45,212,191,0.08)">
-          <div class="st-biz-head" style="display:flex;align-items:center;justify-content:space-between;gap:16px 24px;flex-wrap:wrap">
-            <div style="min-width:0">
-              <p style="margin:0 0 8px;font-size:12.5px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#5EEAD4">Business</p>
-              <h3 style="margin:0 0 6px;font-size:21px;font-weight:700;letter-spacing:-0.015em;color:#F1F5F9;line-height:1.3">For orgs that treat alerting as infrastructure</h3>
-              <p style="margin:0;font-size:14px;line-height:1.6;color:#94A3B8">Free during early access, like everything else — with the guarantees larger teams need.</p>
-            </div>
-            <a href="mailto:help@sigtake.com?subject=Talk%20to%20sales" class="st-btn-ghost" style="flex:none;display:inline-flex;justify-content:center;background:rgba(45,212,191,0.08);color:#5EEAD4;font-size:14px;font-weight:600;padding:11px 22px;border-radius:9px;border:1px solid rgba(45,212,191,0.35)">Talk to sales</a>
-          </div>
-          <div style="height:1px;background:rgba(255,255,255,0.06);margin:22px 0"></div>
-          <ul class="st-biz-list" style="margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px 24px;font-size:13.5px;color:#CBD5E1">
-            <li style="display:flex;gap:9px"><span style="color:#2DD4BF;font-weight:700">✓</span>Unlimited users, teams &amp; monitors</li>
-            <li style="display:flex;gap:9px"><span style="color:#2DD4BF;font-weight:700">✓</span>Unlimited alerts, custom rate limits</li>
-            <li style="display:flex;gap:9px"><span style="color:#2DD4BF;font-weight:700">✓</span>Enforced 2FA + full audit history</li>
-            <li style="display:flex;gap:9px"><span style="color:#2DD4BF;font-weight:700">✓</span>99.9% uptime SLA</li>
-            <li style="display:flex;gap:9px"><span style="color:#2DD4BF;font-weight:700">✓</span>Priority support</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- FINAL CTA -->
-    <section class="st-sec-cta" style="padding:56px 32px 96px">
-      <div class="st-band st-reveal" style="position:relative;max-width:1080px;margin:0 auto;background:#0F1623;border:1px solid rgba(45,212,191,0.25);border-radius:20px;padding:72px 32px;text-align:center;overflow:hidden">
-        <div style="position:absolute;top:-160px;left:50%;transform:translateX(-50%);width:700px;height:360px;background:radial-gradient(ellipse at center,rgba(45,212,191,0.18),transparent 65%);pointer-events:none"></div>
-        <h2 style="position:relative;margin:0 0 14px;font-size:clamp(29px,5.5vw,38px);line-height:1.15;font-weight:700;letter-spacing:-0.02em;color:#F8FAFC">Stop drowning in alert noise</h2>
-        <p style="position:relative;margin:0 0 28px;font-size:16.5px;color:#94A3B8">Your first API key is one click away. Free for small teams, forever.</p>
-        <div style="position:relative;display:flex;justify-content:center;flex-wrap:wrap;gap:14px">
-          <a href="https://app.sigtake.com/register" class="st-btn-primary" style="display:inline-flex;align-items:center;background:#2DD4BF;color:#0C1220;font-size:16px;font-weight:600;padding:13px 28px;border-radius:10px;box-shadow:0 0 32px rgba(45,212,191,0.4)">Start free</a>
-          <a href="https://docs.sigtake.com" class="st-btn-ghost" style="display:inline-flex;align-items:center;background:rgba(255,255,255,0.06);color:#E2E8F0;font-size:16px;font-weight:600;padding:13px 28px;border-radius:10px;border:1px solid rgba(255,255,255,0.08)">Read the docs</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="st-sec-foot" style="border-top:1px solid rgba(255,255,255,0.06);padding:64px 32px 40px;background:#070B14">
-    <div style="max-width:1080px;margin:0 auto">
-      <div class="st-foot" style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px">
-        <div>
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><span style="width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,#2DD4BF,#0D9488);display:inline-flex;align-items:center;justify-content:center"><span style="width:6px;height:6px;border-radius:50%;background:#042F2E"></span></span><span class="st-wordmark" style="font-size:15px;font-weight:700;color:#F1F5F9">Sigtake</span></div>
-          <p style="margin:0;max-width:280px;font-size:13.5px;line-height:1.6;color:#64748B">Real-time alert management and monitoring for ops teams. Multi-tenant, deduplicated, routed to the people on call.</p>
-        </div>
-        <nav aria-label="Product"><p style="margin:0 0 14px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#475569">Product</p><ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:13.5px"><li><a href="#features" class="st-flink" style="color:#94A3B8">Features</a></li><li><a href="#monitoring" class="st-flink" style="color:#94A3B8">Monitoring</a></li><li><a href="#pricing" class="st-flink" style="color:#94A3B8">Pricing</a></li><!-- TODO: re-enable when a changelog exists: <li><a href="#" class="st-flink" style="color:#94A3B8">Changelog</a></li> --></ul></nav>
-        <nav aria-label="Resources"><p style="margin:0 0 14px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#475569">Resources</p><ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:13.5px"><li><a href="https://docs.sigtake.com" class="st-flink" style="color:#94A3B8">Documentation</a></li><li><a href="https://docs.sigtake.com" class="st-flink" style="color:#94A3B8">API reference</a></li><!-- TODO: re-enable when a status page exists: <li><a href="#" class="st-flink" style="color:#94A3B8">Status</a></li> --><li><a href="mailto:help@sigtake.com?subject=Support" class="st-flink" style="color:#94A3B8">Support</a></li></ul></nav>
-        <nav aria-label="Legal"><p style="margin:0 0 14px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#475569">Legal</p><ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:13.5px"><li><a href="/privacy/" class="st-flink" style="color:#94A3B8">Privacy</a></li><li><a href="/terms/" class="st-flink" style="color:#94A3B8">Terms</a></li><!-- TODO: re-enable when a security page exists: <li><a href="#" class="st-flink" style="color:#94A3B8">Security</a></li> --></ul></nav>
-      </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;border-top:1px solid rgba(255,255,255,0.05);padding-top:24px;font-size:12.5px;color:#475569">
-        <span>© 2026 Sigtake, Inc.</span>
-        <!-- TODO: re-enable when the social profiles are live:
+        <div
+          style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;border-top:1px solid rgba(255,255,255,0.05);padding-top:24px;font-size:12.5px;color:#475569">
+          <span>© 2026 Sigtake, Inc.</span>
+          <!-- TODO: re-enable when the social profiles are live:
         <div style="display:flex;gap:20px"><a href="#" class="st-flink" style="color:#64748B">X</a><a href="#" class="st-flink" style="color:#64748B">GitHub</a><a href="#" class="st-flink" style="color:#64748B">LinkedIn</a></div>
         -->
+        </div>
       </div>
-    </div>
-  </footer>
-</div>
-<script>
-(function () {
-  document.documentElement.classList.add('st-js');
+    </footer>
+  </div>
+  <script>
+    (function () {
+      document.documentElement.classList.add('st-js');
 
-  var revealTargets = document.querySelectorAll('.st-reveal');
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduceMotion || !('IntersectionObserver' in window)) {
-    revealTargets.forEach(function (el) { el.classList.add('st-in'); });
-  } else {
-    var revealer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('st-in');
-          revealer.unobserve(entry.target);
-        }
+      var revealTargets = document.querySelectorAll('.st-reveal');
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduceMotion || !('IntersectionObserver' in window)) {
+        revealTargets.forEach(function (el) { el.classList.add('st-in'); });
+      } else {
+        var revealer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('st-in');
+              revealer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+        revealTargets.forEach(function (el) { revealer.observe(el); });
+      }
+
+      // Scrollspy: la sección que cruza la franja central del viewport marca su link del nav.
+      // #monitoring vive dentro de #features, por eso la prioridad va del bloque más específico al contenedor.
+      var priority = ['monitoring', 'pricing', 'features'];
+      var linksById = {};
+      document.querySelectorAll('.st-navlink[href^="#"]').forEach(function (a) {
+        linksById[a.getAttribute('href').slice(1)] = a;
       });
-    }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
-    revealTargets.forEach(function (el) { revealer.observe(el); });
-  }
-
-  // Scrollspy: la sección que cruza la franja central del viewport marca su link del nav.
-  // #monitoring vive dentro de #features, por eso la prioridad va del bloque más específico al contenedor.
-  var priority = ['monitoring', 'pricing', 'features'];
-  var linksById = {};
-  document.querySelectorAll('.st-navlink[href^="#"]').forEach(function (a) {
-    linksById[a.getAttribute('href').slice(1)] = a;
-  });
-  var visible = new Set();
-  var spy = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      visible[entry.isIntersecting ? 'add' : 'delete'](entry.target.id);
-    });
-    var activeId = priority.find(function (id) { return visible.has(id); });
-    Object.keys(linksById).forEach(function (id) {
-      linksById[id].classList.toggle('st-active', id === activeId);
-    });
-  }, { rootMargin: '-45% 0px -50% 0px' });
-  priority.forEach(function (id) {
-    var el = document.getElementById(id);
-    if (el && linksById[id]) spy.observe(el);
-  });
-})();
-</script>
+      var visible = new Set();
+      var spy = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          visible[entry.isIntersecting ? 'add' : 'delete'](entry.target.id);
+        });
+        var activeId = priority.find(function (id) { return visible.has(id); });
+        Object.keys(linksById).forEach(function (id) {
+          linksById[id].classList.toggle('st-active', id === activeId);
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      priority.forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el && linksById[id]) spy.observe(el);
+      });
+    })();
+  </script>
 </body>
+
 </html>

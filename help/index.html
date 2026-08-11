@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Help &amp; Support — Sigtake</title>
+  <meta name="description"
+    content="Get help with Sigtake: alert ingestion, notification channels, monitors and account questions. We reply within 2 business days.">
+  <link rel="canonical" href="https://sigtake.com/help/">
+  <link rel="preload" href="/public/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/public/fonts/bricolage-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" href="/public/favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="/public/favicon.svg">
+  <link rel="icon" type="image/png" sizes="96x96" href="/public/favicon-96x96.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
+  <link rel="manifest" href="/public/site.webmanifest">
+  <meta name="theme-color" content="#080D18">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Sigtake">
+  <meta property="og:url" content="https://sigtake.com/help/">
+  <meta property="og:title" content="Help &amp; Support — Sigtake">
+  <meta property="og:description"
+    content="Get help with Sigtake: alert ingestion, notification channels, monitors and account questions. We reply within 2 business days.">
+  <meta property="og:image" content="https://sigtake.com/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Help &amp; Support — Sigtake">
+  <meta name="twitter:image" content="https://sigtake.com/og.png">
+  <style>
+    @font-face {
+      font-family: "Inter";
+      src: url("/public/fonts/inter-var-latin.woff2") format("woff2");
+      font-weight: 400 800;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Bricolage Grotesque";
+      src: url("/public/fonts/bricolage-var-latin.woff2") format("woff2");
+      font-weight: 600 800;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    html, body { margin: 0; background: #080d18; }
+
+    /* ── Cromática compartida con la home. Mismos selectores `.st-landing …` a propósito:
+         el marcado de nav y footer se extrae de index.html, así que las reglas deben coincidir. ── */
+    .st-landing { background: #080d18; color: #e2e8f0; font-family: "Inter", system-ui, sans-serif;
+                  -webkit-font-smoothing: antialiased; min-height: 100vh; }
+    .st-landing h1, .st-landing h2, .st-landing h3, .st-landing .st-wordmark {
+      font-family: "Bricolage Grotesque", "Inter", system-ui, sans-serif; }
+    .st-landing a { color: #5eead4; text-decoration: none; }
+    .st-landing a:hover { color: #99f6e4; }
+    .st-landing ::selection { background: rgba(45, 212, 191, 0.3); }
+    .st-landing :focus-visible { outline: 2px solid #2dd4bf; outline-offset: 2px; border-radius: 4px; }
+
+    /* Dos clases: `.st-landing a` gana a `.st-skip` a secas y le devolvería el teal */
+    .st-landing .st-skip { position: absolute; left: 16px; top: -60px; z-index: 100; background: #2dd4bf;
+                           color: #0c1220; font-size: 14px; font-weight: 600; padding: 10px 18px;
+                           border-radius: 8px; transition: top .15s ease; }
+    .st-landing .st-skip:focus, .st-landing .st-skip:hover { top: 12px; color: #0c1220; }
+
+    .st-landing .st-navlink:hover { color: #e2e8f0 !important; }
+    .st-landing .st-loglink:hover { color: #99f6e4 !important; }
+    .st-landing .st-btn-primary:hover { background: #5eead4 !important; color: #0c1220 !important; }
+    .st-landing .st-flink:hover { color: #5eead4 !important; }
+
+    /* ── Página ── */
+    .st-landing .st-wrap { max-width: 1080px; margin: 0 auto; padding: 64px 24px 88px; }
+    .st-landing .st-head { text-align: center; }
+    .st-landing h1 { margin: 0 0 14px; font-size: clamp(30px, 6vw, 42px); font-weight: 800;
+                     letter-spacing: -0.02em; color: #F8FAFC; line-height: 1.12; }
+    .st-landing .st-lede { margin: 0 auto 28px; max-width: 560px; font-size: 16.5px; line-height: 1.65;
+                           color: #94A3B8; text-wrap: pretty; }
+
+    /* La promesa que Slack asocia a esta URL: visible sin scroll, no enterrada al pie */
+    .st-landing .st-sla { display: inline-flex; align-items: center; gap: 9px; padding: 7px 16px;
+                          border-radius: 999px; border: 1px solid rgba(45,212,191,0.28);
+                          background: rgba(45,212,191,0.07); font-size: 13.5px; font-weight: 600; color: #5EEAD4; }
+    .st-landing .st-dot { width: 7px; height: 7px; border-radius: 50%; background: #2DD4BF; flex: none;
+                          animation: st-pulse 1.8s infinite; }
+    @keyframes st-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+    .st-landing .st-first { margin: 44px 0 40px; background: #0F1623; border: 1px solid rgba(255,255,255,0.07);
+                            border-radius: 14px; padding: 22px 24px; display: flex; align-items: center;
+                            justify-content: space-between; flex-wrap: wrap; gap: 12px 24px; }
+    .st-landing .st-first p { margin: 0; font-size: 14.5px; line-height: 1.6; color: #94A3B8; max-width: 620px; }
+    .st-landing .st-first strong { color: #F1F5F9; font-weight: 600; }
+    .st-landing .st-docs { flex: none; display: inline-flex; align-items: center; background: rgba(255,255,255,0.06);
+                           border: 1px solid rgba(255,255,255,0.09); color: #E2E8F0; font-size: 14px;
+                           font-weight: 600; padding: 10px 20px; border-radius: 9px; transition: background .15s ease; }
+    .st-landing .st-docs:hover { background: rgba(255,255,255,0.1); color: #E2E8F0; }
+
+    .st-landing h2 { margin: 0 0 6px; font-size: 22px; font-weight: 700; letter-spacing: -0.015em; color: #F1F5F9; }
+    .st-landing .st-sub { margin: 0 0 24px; font-size: 14.5px; color: #94A3B8; }
+
+    /* min(310px,100%): un minmax(310px,…) a secas no baja de 310px, y en un viewport de 320px
+       el contenedor son 280px — la pista desbordaría y arrastraría scroll horizontal */
+    .st-landing .st-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(310px, 100%), 1fr));
+                           gap: 16px; }
+    .st-landing .st-card { display: flex; flex-direction: column; gap: 9px; background: #0F1623;
+                           border: 1px solid rgba(255,255,255,0.07); border-radius: 14px; padding: 22px;
+                           color: #E2E8F0; transition: border-color .15s ease, background .15s ease, transform .15s ease; }
+    .st-landing .st-card:hover { border-color: rgba(45,212,191,0.35); background: #111A2B;
+                                 transform: translateY(-2px); color: #E2E8F0; }
+    .st-landing .st-card-icon { width: 34px; height: 34px; border-radius: 9px; display: inline-flex;
+                                align-items: center; justify-content: center; background: rgba(45,212,191,0.1);
+                                color: #5EEAD4; margin-bottom: 3px; }
+    .st-landing .st-card-icon svg { width: 19px; height: 19px; }
+    .st-landing .st-card h3 { margin: 0; font-size: 16px; font-weight: 700; color: #F1F5F9; letter-spacing: -0.01em; }
+    .st-landing .st-card p { margin: 0; font-size: 13.5px; line-height: 1.6; color: #94A3B8; flex: 1; }
+    .st-landing .st-card-cta { font-size: 13px; font-weight: 600; color: #5EEAD4; margin-top: 4px; }
+
+    .st-landing .st-direct { margin-top: 40px; background: #0F1623; border: 1px solid rgba(255,255,255,0.07);
+                             border-radius: 14px; padding: 24px; text-align: center; }
+    .st-landing .st-direct p { margin: 0 0 8px; font-size: 14.5px; line-height: 1.6; color: #94A3B8; }
+    .st-landing .st-addr { font-family: ui-monospace, Menlo, monospace; font-size: 16px; font-weight: 600;
+                           color: #5EEAD4; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .st-landing *, .st-landing *::before, .st-landing *::after {
+        animation: none !important; transition: none !important; }
+    }
+
+    @media (max-width: 1080px) {
+      .st-landing .st-foot { grid-template-columns: 1fr 1fr !important; }
+    }
+
+    @media (max-width: 767px) {
+      .st-landing .st-nav-inner { height: auto !important; flex-wrap: wrap; row-gap: 6px;
+                                  padding: 10px 16px 8px !important; }
+      .st-landing .st-nav-links { order: 3; flex: 0 0 100%; gap: 16px !important; overflow-x: auto;
+                                  scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+      .st-landing .st-nav-links::-webkit-scrollbar { display: none; }
+      .st-landing .st-navlink { white-space: nowrap; }
+      .st-landing .st-wrap { padding: 48px 20px 64px; }
+      .st-landing .st-first { padding: 20px; }
+      .st-landing .st-docs { width: 100%; justify-content: center; }
+      .st-landing .st-sec-foot { padding: 48px 20px 32px !important; }
+      .st-landing .st-foot { grid-template-columns: 1fr !important; gap: 28px !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="st-landing">
+    <a href="#main" class="st-skip">Skip to content</a>
+<nav aria-label="Primary"
+      style="position:sticky;top:0;z-index:50;background:rgba(8,13,24,0.95);border-bottom:1px solid rgba(255,255,255,0.06)">
+      <div class="st-nav-inner"
+        style="max-width:1180px;margin:0 auto;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between">
+        <a href="/" style="display:flex;align-items:center;gap:10px;color:#F1F5F9">
+          <img src="/public/logo.svg" width="24" height="24" alt=""
+            style="flex:none;filter:drop-shadow(0 0 16px rgba(45,212,191,0.4))">
+          <span class="st-wordmark" style="font-size:16px;font-weight:700;letter-spacing:-0.01em">Sigtake</span>
+        </a>
+        <div class="st-nav-links" style="display:flex;align-items:center;gap:28px;font-size:14px;font-weight:500">
+          <a href="/#features" class="st-navlink" style="color:#94A3B8">Features</a>
+          <a href="/#monitoring" class="st-navlink" style="color:#94A3B8">Monitoring</a>
+          <a href="/#how" class="st-navlink" style="color:#94A3B8">How it works</a>
+          <a href="/#pricing" class="st-navlink" style="color:#94A3B8">Pricing</a>
+          <a href="https://docs.sigtake.com" class="st-navlink" style="color:#94A3B8">Docs</a>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px">
+          <a href="https://app.sigtake.com/login" class="st-loglink"
+            style="font-size:14px;font-weight:500;color:#E2E8F0">Log in</a>
+          <a href="https://app.sigtake.com/register" class="st-btn-primary"
+            style="display:inline-flex;align-items:center;background:#2DD4BF;color:#0C1220;font-size:14px;font-weight:600;padding:8px 16px;border-radius:8px;box-shadow:0 0 20px rgba(45,212,191,0.3)">Start
+            free</a>
+        </div>
+      </div>
+    </nav>
+
+    <main id="main" class="st-wrap" style="scroll-margin-top:64px">
+      <div class="st-head">
+        <h1>How can we help?</h1>
+        <p class="st-lede">Pick the topic that fits and your email opens with the details we need to
+          answer on the first reply — no back and forth.</p>
+        <span class="st-sla"><span class="st-dot"></span>We reply within 2 business days</span>
+      </div>
+
+      <div class="st-first">
+        <p><strong>Before you write:</strong> setup guides, the ingest API reference and the channel
+          configuration walkthroughs live in the documentation. Most answers are already there.</p>
+        <a class="st-docs" href="https://docs.sigtake.com">Read the docs</a>
+      </div>
+
+      <h2>Email our team</h2>
+      <p class="st-sub">Every link below opens your mail client with a template already filled in.</p>
+      <div class="st-grid">
+        <a class="st-card" href="mailto:help@sigtake.com?subject=Ingest%3A%20alerts%20not%20arriving&amp;body=Organization%3A%0AProject%3A%0ASource%20used%20in%20the%20payload%3A%0AHTTP%20status%20you%20got%20back%3A%0A%0AExample%20payload%20you%20sent%3A%0A%0A%0AWhat%20you%20expected%20to%20happen%3A%0A">
+          <span class="st-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                 stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+          </span>
+          <h3>Alerts not arriving</h3>
+          <p>You are pushing to the ingest API but nothing shows up in the Alert Center.</p>
+          <span class="st-card-cta">Write to us <span aria-hidden="true">&rarr;</span></span>
+        </a>
+        <a class="st-card" href="mailto:help@sigtake.com?subject=Channels%3A%20notification%20not%20delivered&amp;body=Organization%3A%0AProject%3A%0AChannel%20type%20%28Email%20/%20Slack%20/%20Microsoft%20Teams%20/%20Discord%20/%20Google%20Chat%20/%20in-app%29%3A%0ATeam%20assigned%20to%20the%20alert%3A%0ADid%20the%20alert%20appear%20in%20the%20Alert%20Center%3F%20%28yes%20/%20no%29%3A%0A%0AIf%20Slack%20or%20Discord%3A%20is%20the%20bot%20invited%20to%20the%20channel%3F%20%28yes%20/%20no%20/%20it%20is%20a%20public%20channel%29%0AIf%20Microsoft%20Teams%3A%20does%20the%20webhook%20URL%20still%20work%3F%0A%0AWhat%20you%20expected%20to%20happen%3A%0A">
+          <span class="st-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                 stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/><circle cx="19" cy="18" r="2"/></svg>
+          </span>
+          <h3>Notifications &amp; channels</h3>
+          <p>The alert is in Sigtake but the notification never reached your team.</p>
+          <span class="st-card-cta">Write to us <span aria-hidden="true">&rarr;</span></span>
+        </a>
+        <a class="st-card" href="mailto:help@sigtake.com?subject=Monitors%3A%20rule%20not%20behaving%20as%20configured&amp;body=Organization%3A%0AProject%3A%0AMonitor%20type%20%28website%20/%20signal%29%3A%0AMonitor%20name%3A%0ARule%20configured%20%28threshold%20/%20anomaly%20/%20heartbeat%2C%20and%20its%20values%29%3A%0A%0AWhat%20you%20expected%20to%20happen%3A%0A">
+          <span class="st-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                 stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-6 4 4 5-8 4 5"/><path d="M3 21h18"/></svg>
+          </span>
+          <h3>Monitors &amp; signals</h3>
+          <p>A website check or a signal rule is not firing the way you configured it.</p>
+          <span class="st-card-cta">Write to us <span aria-hidden="true">&rarr;</span></span>
+        </a>
+        <a class="st-card" href="mailto:help@sigtake.com?subject=Account%3A%20question&amp;body=Organization%3A%0AYour%20role%20%28admin%20/%20operator%20/%20viewer%29%3A%0A%0AHow%20can%20we%20help%3F%0A">
+          <span class="st-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                 stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          </span>
+          <h3>Account, users &amp; billing</h3>
+          <p>Access, roles, organizations, or anything about plans and early access.</p>
+          <span class="st-card-cta">Write to us <span aria-hidden="true">&rarr;</span></span>
+        </a>
+        <a class="st-card" href="mailto:help@sigtake.com?subject=Security%3A%20report&amp;body=Please%20do%20NOT%20include%20credentials%2C%20API%20keys%20or%20personal%20data%20in%20this%20email.%0A%0AOrganization%3A%0AWhat%20you%20found%3A%0ASteps%20to%20reproduce%3A%0AImpact%20as%20you%20understand%20it%3A%0A">
+          <span class="st-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                 stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 8.3-7 9-4-0.7-7-4.5-7-9V6l7-3z"/><path d="M9.5 12.5l1.8 1.8 3.4-3.6"/></svg>
+          </span>
+          <h3>Security</h3>
+          <p>Report a vulnerability or ask about how we handle your data.</p>
+          <span class="st-card-cta">Write to us <span aria-hidden="true">&rarr;</span></span>
+        </a>
+      </div>
+
+      <div class="st-direct">
+        <p>Prefer to write from scratch, or your mail client did not open?</p>
+        <p><a class="st-addr" href="mailto:help@sigtake.com">help@sigtake.com</a></p>
+        <p style="margin-top:14px;font-size:13px;color:#64748B">See also our
+          <a href="/privacy/">Privacy Policy</a> and <a href="/terms/">Terms of Service</a>.</p>
+      </div>
+    </main>
+
+<footer class="st-sec-foot"
+      style="border-top:1px solid rgba(255,255,255,0.06);padding:64px 32px 40px;background:#070B14">
+      <div style="max-width:1080px;margin:0 auto">
+        <div class="st-foot" style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px">
+          <div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><img src="/public/favicon.svg"
+                width="22" height="22" alt="" style="flex:none"><span class="st-wordmark"
+                style="font-size:15px;font-weight:700;color:#F1F5F9">Sigtake</span></div>
+            <p style="margin:0;max-width:280px;font-size:13.5px;line-height:1.6;color:#94A3B8">Real-time alert
+              management and monitoring for ops teams. Multi-tenant, deduplicated, routed to the people on call.</p>
+          </div>
+          <nav aria-label="Product">
+            <p
+              style="margin:0 0 14px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#94A3B8">
+              Product</p>
+            <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:13.5px">
+              <li><a href="/#features" class="st-flink" style="color:#CBD5E1">Features</a></li>
+              <li><a href="/#monitoring" class="st-flink" style="color:#CBD5E1">Monitoring</a></li>
+              <li><a href="/#pricing" class="st-flink" style="color:#CBD5E1">Pricing</a></li>
+              <!-- TODO: re-enable when a changelog exists: <li><a href="#" class="st-flink" style="color:#CBD5E1">Changelog</a></li> -->
+            </ul>
+          </nav>
+          <nav aria-label="Resources">
+            <p
+              style="margin:0 0 14px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#94A3B8">
+              Resources</p>
+            <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:13.5px">
+              <li><a href="https://docs.sigtake.com" class="st-flink" style="color:#CBD5E1">Documentation</a></li>
+              <li><a href="https://docs.sigtake.com" class="st-flink" style="color:#CBD5E1">API reference</a></li>
+              <!-- TODO: re-enable when a status page exists: <li><a href="#" class="st-flink" style="color:#CBD5E1">Status</a></li> -->
+              <li><a href="/help/" class="st-flink" style="color:#CBD5E1">Help &amp; support</a></li>
+            </ul>
+          </nav>
+          <nav aria-label="Legal">
+            <p
+              style="margin:0 0 14px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#94A3B8">
+              Legal</p>
+            <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:13.5px">
+              <li><a href="/privacy/" class="st-flink" style="color:#CBD5E1">Privacy</a></li>
+              <li><a href="/terms/" class="st-flink" style="color:#CBD5E1">Terms</a></li>
+              <!-- TODO: re-enable when a security page exists: <li><a href="#" class="st-flink" style="color:#CBD5E1">Security</a></li> -->
+            </ul>
+          </nav>
+        </div>
+        <div
+          style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;border-top:1px solid rgba(255,255,255,0.05);padding-top:24px;font-size:12.5px;color:#94A3B8">
+          <span>© 2026 Sigtake, Inc.</span>
+          <!-- TODO: re-enable when the social profiles are live:
+        <div style="display:flex;gap:20px"><a href="#" class="st-flink" style="color:#CBD5E1">X</a><a href="#" class="st-flink" style="color:#CBD5E1">GitHub</a><a href="#" class="st-flink" style="color:#CBD5E1">LinkedIn</a></div>
+        -->
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+
+</html>

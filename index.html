@@ -441,10 +441,10 @@
           <span class="st-wordmark" style="font-size:16px;font-weight:700;letter-spacing:-0.01em">Sigtake</span>
         </a>
         <div class="st-nav-links" style="display:flex;align-items:center;gap:28px;font-size:14px;font-weight:500">
-          <a href="#features" class="st-navlink" style="color:#94A3B8">Features</a>
-          <a href="#monitoring" class="st-navlink" style="color:#94A3B8">Monitoring</a>
-          <a href="#how" class="st-navlink" style="color:#94A3B8">How it works</a>
-          <a href="#pricing" class="st-navlink" style="color:#94A3B8">Pricing</a>
+          <a href="/#features" class="st-navlink" style="color:#94A3B8">Features</a>
+          <a href="/#monitoring" class="st-navlink" style="color:#94A3B8">Monitoring</a>
+          <a href="/#how" class="st-navlink" style="color:#94A3B8">How it works</a>
+          <a href="/#pricing" class="st-navlink" style="color:#94A3B8">Pricing</a>
           <a href="https://docs.sigtake.com" class="st-navlink" style="color:#94A3B8">Docs</a>
         </div>
         <div style="display:flex;align-items:center;gap:16px">
@@ -1220,9 +1220,9 @@
               style="margin:0 0 14px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#94A3B8">
               Product</p>
             <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:13.5px">
-              <li><a href="#features" class="st-flink" style="color:#CBD5E1">Features</a></li>
-              <li><a href="#monitoring" class="st-flink" style="color:#CBD5E1">Monitoring</a></li>
-              <li><a href="#pricing" class="st-flink" style="color:#CBD5E1">Pricing</a></li>
+              <li><a href="/#features" class="st-flink" style="color:#CBD5E1">Features</a></li>
+              <li><a href="/#monitoring" class="st-flink" style="color:#CBD5E1">Monitoring</a></li>
+              <li><a href="/#pricing" class="st-flink" style="color:#CBD5E1">Pricing</a></li>
               <!-- TODO: re-enable when a changelog exists: <li><a href="#" class="st-flink" style="color:#CBD5E1">Changelog</a></li> -->
             </ul>
           </nav>
@@ -1234,8 +1234,7 @@
               <li><a href="https://docs.sigtake.com" class="st-flink" style="color:#CBD5E1">Documentation</a></li>
               <li><a href="https://docs.sigtake.com" class="st-flink" style="color:#CBD5E1">API reference</a></li>
               <!-- TODO: re-enable when a status page exists: <li><a href="#" class="st-flink" style="color:#CBD5E1">Status</a></li> -->
-              <li><a href="mailto:help@sigtake.com?subject=Support" class="st-flink" style="color:#CBD5E1">Support</a>
-              </li>
+              <li><a href="/help/" class="st-flink" style="color:#CBD5E1">Help &amp; support</a></li>
             </ul>
           </nav>
           <nav aria-label="Legal">
@@ -1285,7 +1284,7 @@
       // del documento, por eso la CTA y el footer siguen marcando Pricing.
       var spyTargets = [];
       ['features', 'monitoring', 'how', 'pricing'].forEach(function (id) {
-        var link = document.querySelector('.st-navlink[href="#' + id + '"]');
+        var link = document.querySelector('.st-navlink[href="/#' + id + '"]');
         var section = document.getElementById(id);
         if (link && section) spyTargets.push({ link: link, section: section, top: 0 });
       });

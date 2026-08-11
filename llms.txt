@@ -29,6 +29,7 @@
 - [App / Sign up](https://app.sigtake.com/register)
 - [Log in](https://app.sigtake.com/login)
 - [Docs](https://docs.sigtake.com)
+- [Help & support](https://sigtake.com/help/): contact templates per topic; we reply within 2 business days
 - [Contact](mailto:help@sigtake.com)
 
 ## Legal

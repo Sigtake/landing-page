@@ -11,10 +11,11 @@
 <link rel="icon" type="image/png" sizes="96x96" href="/public/favicon-96x96.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
 <link rel="manifest" href="/public/site.webmanifest">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&display=swap" rel="stylesheet">
+<link rel="preload" href="/public/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/public/fonts/bricolage-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+@font-face { font-family: "Inter"; src: url("/public/fonts/inter-var-latin.woff2") format("woff2"); font-weight: 400 800; font-style: normal; font-display: swap; }
+@font-face { font-family: "Bricolage Grotesque"; src: url("/public/fonts/bricolage-var-latin.woff2") format("woff2"); font-weight: 600 800; font-style: normal; font-display: swap; }
 html, body { margin: 0; background: #080d18; }
 body { color: #e2e8f0; font-family: "Inter", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
 a { color: #5eead4; text-decoration: none; }

@@ -2,13 +2,21 @@
 
 > Real-time alert management & monitoring for ops teams. Sigtake ingests alerts
 > from all your systems, collapses duplicates into one row, and routes what
-> matters to the right team — by email, SMS, Microsoft Teams or in-app. Uptime
+> matters to the right team — by email, Slack, Microsoft Teams or in-app. Uptime
 > and signal monitoring included.
 
 ## Product
 - [Features](https://sigtake.com/#features): alert deduplication, routing, multi-tenant workspaces
 - [Monitoring](https://sigtake.com/#monitoring): uptime and signal monitoring built in
+- [How it works](https://sigtake.com/#how): connect, route, then acknowledge and resolve
 - [Pricing](https://sigtake.com/#pricing): free during early access; paid plans as we grow
+
+## Notification channels
+- Live: email, Slack, Microsoft Teams, in-app (in-app push is always on and not configurable).
+- In progress: Discord, Google Chat.
+- Slack: one workspace per organization, a separate Slack channel per project.
+  Repeat occurrences of an incident reply in the thread of the first card and update it in place.
+- Routing: every API key belongs to a team; a team's channels decide where its alerts land.
 
 ## Signals & monitoring
 - Push numeric metrics via API (`POST /api/signals/ingest`); rules evaluate every minute.

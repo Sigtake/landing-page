@@ -240,6 +240,62 @@
       align-items: start;
     }
 
+    /* Ritmo 1 — asimétrico: el pilar diferenciador, donde el mockup manda */
+    .st-landing .st-pillar-lg {
+      display: grid;
+      grid-template-columns: 4fr 6fr;
+      gap: var(--s8);
+      align-items: center;
+    }
+
+    .st-landing .st-pillar-mocks {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s4);
+    }
+
+    /* Ritmo 3 — tarjetas gemelas */
+    .st-landing .st-twin {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--s5);
+      align-items: stretch;
+    }
+
+    .st-landing .st-twin>div {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s4);
+    }
+
+    /* Ritmo 4 — tira de tres: importa, pero no vende */
+    .st-landing .st-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s5);
+    }
+
+    .st-landing .st-strip>div {
+      background: var(--surface-1);
+      border: 1px solid var(--line);
+      border-radius: var(--r-card);
+      padding: var(--s5);
+    }
+
+    .st-landing .st-card-h {
+      margin: 0 0 var(--s2);
+      font-size: var(--t5);
+      font-weight: 700;
+      color: var(--ink-1);
+    }
+
+    .st-landing .st-card-p {
+      margin: 0;
+      font-size: var(--t4);
+      line-height: 1.6;
+      color: var(--ink-3);
+    }
+
     /* Las copias repetidas del canal: mismo texto, distinta hora — el argumento es la repetición */
     .st-landing .st-dupe {
       display: flex;
@@ -517,8 +573,16 @@
         grid-template-columns: 1fr !important;
       }
 
-      .st-landing .st-vs {
+      .st-landing .st-vs,
+      .st-landing .st-pillar-lg,
+      .st-landing .st-twin,
+      .st-landing .st-strip {
         grid-template-columns: minmax(0, 1fr);
+      }
+
+      .st-landing .st-pillar-lg,
+      .st-landing .st-strip {
+        gap: var(--s6);
       }
 
       .st-landing .st-foot {
@@ -937,29 +1001,21 @@
           </div>
 
           <div style="display:flex;flex-direction:column;gap:88px">
-            <!-- F1 realtime -->
-            <div class="st-feat">
+            <!-- PILAR 1 — capture & dedupe: ritmo asimétrico, dos mockups apilados -->
+            <div class="st-pillar-lg">
               <div class="st-reveal">
-                <p
-                  class="st-eyebrow">
-                  Real-time alert center</p>
-                <h3
-                  class="st-h3">
-                  See every alert the second it fires</h3>
-                <p class="st-lede">Alerts
-                  stream in the second they fire — no refresh button. Acknowledge and resolve in one click, and keep the
-                  conversation on the alert itself.</p>
-                <ul
-                  class="st-checks">
-                  <li><span
-                      class="st-ck">✓</span>Live updates over server-sent events, scoped to your
+                <p class="st-eyebrow">Capture &amp; dedupe</p>
+                <h3 class="st-h3">One alert — not four hundred</h3>
+                <p class="st-lede">Repeated alerts collapse into a single row with an occurrence counter, while
+                  everything streams in live — acknowledge, resolve and discuss without leaving the incident.</p>
+                <ul class="st-checks">
+                  <li><span class="st-ck">✓</span>Fingerprint on source + title + severity</li>
+                  <li><span class="st-ck">✓</span>Live updates over server-sent events, scoped to your
                     organization</li>
-                  <li><span
-                      class="st-ck">✓</span>One-click acknowledge &amp; resolve workflow</li>
-                  <li><span
-                      class="st-ck">✓</span>Threaded comments with @mentions</li>
+                  <li><span class="st-ck">✓</span>Threaded comments with @mentions</li>
                 </ul>
               </div>
+              <div class="st-pillar-mocks">
               <div class="st-reveal st-d1" role="img"
                 aria-label="A critical alert with Acknowledge and Resolve buttons, and a comment thread where a teammate is being @mentioned."
                 style="background:#0F1623;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:10px">
@@ -996,36 +1052,12 @@
                     </div>
                   </div>
                 </div>
+                <!-- Reserva sitio al desplegable de menciones, que es position:absolute y si no invade la tarjeta de abajo -->
                 <div style="height:26px"></div>
               </div>
-            </div>
-
-            <!-- F2 dedup -->
-            <div class="st-feat">
-              <div class="st-reveal" style="order:2">
-                <p
-                  class="st-eyebrow">
-                  Smart deduplication</p>
-                <h3
-                  class="st-h3">
-                  One alert — not four hundred</h3>
-                <p class="st-lede">Repeated
-                  alerts collapse into a single row with an occurrence counter and a last-seen timestamp. Notifications
-                  fire at sane thresholds — 1, 10, 25, 50, 100 — never as a storm.</p>
-                <ul
-                  class="st-checks">
-                  <li><span
-                      class="st-ck">✓</span>Fingerprint on source + title + severity</li>
-                  <li><span
-                      class="st-ck">✓</span>First-seen / last-seen history on every alert</li>
-                  <li><span
-                      class="st-ck">✓</span>Threshold-based notifications stop flapping noise
-                  </li>
-                </ul>
-              </div>
-              <div class="st-reveal st-d1" role="img"
+              <div class="st-reveal st-d2" role="img"
                 aria-label="Repeated copies of one alert collapsing into a single row with a ×47 occurrence counter, first seen 2 days ago, last seen 12 seconds ago, notified at occurrences 1, 10 and 25."
-                style="order:1;background:#0F1623;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:24px;display:flex;flex-direction:column;align-items:center;gap:0">
+                style="background:#0F1623;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:24px;display:flex;flex-direction:column;align-items:center;gap:0">
                 <div
                   style="width:82%;height:12px;background:#141C2C;border:1px solid rgba(255,255,255,0.05);border-bottom:none;border-radius:10px 10px 0 0;opacity:.35">
                 </div>
@@ -1046,9 +1078,10 @@
                   <span>first seen 2d ago</span><span>notified at 1 · 10 · 25</span><span>last seen 12s ago</span>
                 </div>
               </div>
+              </div>
             </div>
 
-            <!-- F5 teams & channels -->
+            <!-- PILAR 2 — route & notify: el split clásico, ahora usado una vez y no seis -->
             <div class="st-feat">
               <div class="st-reveal">
                 <p
@@ -1068,14 +1101,6 @@
                   <li><span
                       class="st-ck">✓</span>One Slack workspace, a different channel per project
                   </li>
-                  <li><span
-                      class="st-ck">✓</span>Repeat alerts thread under the first card instead of
-                    flooding the channel</li>
-                  <li><span
-                      class="st-ck">✓</span>External recipients outside your org, marked as such
-                  </li>
-                  <li><span
-                      class="st-ck">✓</span>Automatic retries with exponential backoff</li>
                   <li><span
                       style="color:#94A3B8;font-weight:700">◦</span><span style="color:#94A3B8">Discord and Google Chat
                       are in progress</span></li>
@@ -1137,60 +1162,26 @@
               </div>
             </div>
 
-            <!-- F6 orgs -->
-            <div class="st-feat">
-              <div class="st-reveal" style="order:2">
-                <p
-                  class="st-eyebrow">
-                  Built for organizations</p>
-                <h3
-                  class="st-h3">
-                  Multi-tenant from the first line of code</h3>
-                <p class="st-lede">Hard
-                  isolation per organization, hierarchical roles, a full audit trail and rate-limited API keys whose
-                  secret is shown exactly once.</p>
-                <ul
-                  class="st-checks">
-                  <li><span
-                      class="st-ck">✓</span>Roles: super_admin → admin → operator → viewer</li>
-                  <li><span
-                      class="st-ck">✓</span>Audit log for every sensitive action</li>
-                  <li><span
-                      class="st-ck">✓</span>2FA with authenticator apps or email codes</li>
-                </ul>
+            <!-- PILAR 4 — organizations: degradado a tira de tres. Importa, pero no vende -->
+            <div style="display:flex;flex-direction:column;gap:32px">
+              <div class="st-reveal" style="max-width:620px">
+                <p class="st-eyebrow">Built for organizations</p>
+                <h3 class="st-h3">Multi-tenant from the first line of code</h3>
+                <p class="st-lede" style="margin-bottom:0">Hard isolation per organization, hierarchical roles, a
+                  full audit trail and rate-limited API keys whose secret is shown exactly once.</p>
               </div>
-              <div class="st-reveal st-d1" role="img"
-                aria-label="The role hierarchy super_admin, admin, operator, viewer; a rate-limited API key with its secret masked; and an audit log of recent actions by named users."
-                style="order:1;background:#0F1623;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:12px">
-                <div
-                  style="display:flex;gap:6px;flex-wrap:wrap;font-family:ui-monospace,Menlo,monospace;font-size:11.5px">
-                  <span
-                    style="padding:4px 10px;border-radius:7px;background:rgba(45,212,191,0.12);color:#5EEAD4;border:1px solid rgba(45,212,191,0.25)">super_admin</span><span
-                    style="color:#475569;align-self:center">›</span>
-                  <span
-                    style="padding:4px 10px;border-radius:7px;background:rgba(255,255,255,0.05);color:#CBD5E1;border:1px solid rgba(255,255,255,0.08)">admin</span><span
-                    style="color:#475569;align-self:center">›</span>
-                  <span
-                    style="padding:4px 10px;border-radius:7px;background:rgba(255,255,255,0.05);color:#CBD5E1;border:1px solid rgba(255,255,255,0.08)">operator</span><span
-                    style="color:#475569;align-self:center">›</span>
-                  <span
-                    style="padding:4px 10px;border-radius:7px;background:rgba(255,255,255,0.05);color:#94A3B8;border:1px solid rgba(255,255,255,0.08)">viewer</span>
+              <div class="st-strip">
+                <div class="st-reveal">
+                  <p class="st-card-h">Roles</p>
+                  <p class="st-card-p">super_admin → admin → operator → viewer, enforced on every route.</p>
                 </div>
-                <div
-                  style="display:flex;align-items:center;justify-content:space-between;background:#161E30;border:1px solid rgba(255,255,255,0.06);border-radius:9px;padding:11px 14px">
-                  <span><span style="display:block;font-size:12.5px;font-weight:600;color:#F1F5F9">Production
-                      Monitoring</span><span
-                      style="font-size:11.5px;color:#64748B;font-family:ui-monospace,Menlo,monospace">sk_4f2e1c••••••••••••</span></span>
-                  <span style="font-size:11px;color:#94A3B8;font-family:ui-monospace,Menlo,monospace">120 req/min</span>
+                <div class="st-reveal st-d1">
+                  <p class="st-card-h">Audit log</p>
+                  <p class="st-card-p">Every sensitive action recorded, with actor and timestamp.</p>
                 </div>
-                <div
-                  style="background:#0B1120;border:1px solid rgba(255,255,255,0.06);border-radius:9px;padding:10px 14px;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#64748B;line-height:1.8">
-                  <span style="color:#475569">14:02:11</span> <span style="color:#CBD5E1">m.ruiz@acme.com</span> <span
-                    style="color:#5EEAD4">apikey.created</span><br>
-                  <span style="color:#475569">13:58:47</span> <span style="color:#CBD5E1">j.holt@acme.com</span> <span
-                    style="color:#A78BFA">alert.acknowledged</span><br>
-                  <span style="color:#475569">13:41:03</span> <span style="color:#CBD5E1">m.ruiz@acme.com</span> <span
-                    style="color:#34D399">team.member_added</span>
+                <div class="st-reveal st-d2">
+                  <p class="st-card-h">2FA</p>
+                  <p class="st-card-p">Authenticator apps or email codes, enforceable org-wide.</p>
                 </div>
               </div>
             </div>
@@ -1210,9 +1201,9 @@
               like every other.</p>
           </div>
 
-          <div style="display:flex;flex-direction:column;gap:88px">
-              <!-- F3 website monitoring -->
-              <div class="st-feat">
+          <div class="st-twin">
+              <!-- Gemela 1 — website -->
+              <div>
                 <div class="st-reveal">
                   <p
                     class="st-eyebrow">
@@ -1287,9 +1278,9 @@
                 </div>
               </div>
 
-              <!-- F4 signals -->
-              <div class="st-feat">
-                <div class="st-reveal" style="order:2">
+              <!-- Gemela 2 — signals -->
+              <div>
+                <div class="st-reveal">
                   <p
                     class="st-eyebrow">
                     Signal monitoring</p>
@@ -1302,8 +1293,6 @@
                   <ul
                     class="st-checks">
                     <li><span
-                        class="st-ck">✓</span>Batch-push metrics with the same API key</li>
-                    <li><span
                         class="st-ck">✓</span>Thresholds over avg / min / max / last, in any time
                       window</li>
                     <li><span
@@ -1315,14 +1304,11 @@
                         class="st-ck">✓</span><strong
                         style="color:#F1F5F9;font-weight:600">Heartbeat alerts</strong>&nbsp;when a metric goes silent
                     </li>
-                    <li><span
-                        class="st-ck">✓</span>Every alert flows into the same dedup &amp; routing
-                      pipeline</li>
                   </ul>
                 </div>
                 <div class="st-reveal st-d1" role="img"
                   aria-label="Signal monitor queue_depth for payments, currently at 86.2 and climbing toward a threshold of 90; the rule reads: value above 90 for 5 minutes raises a critical alert."
-                  style="order:1;background:#0F1623;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px">
+                  style="background:#0F1623;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px">
                   <div style="display:flex;align-items:center;justify-content:space-between">
                     <span style="display:flex;align-items:center;gap:10px"><span
                         style="position:relative;width:9px;height:9px;flex:none"><span

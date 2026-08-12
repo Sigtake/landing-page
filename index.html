@@ -233,6 +233,30 @@
       align-items: center;
     }
 
+    .st-landing .st-vs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--s5);
+      align-items: start;
+    }
+
+    /* Las copias repetidas del canal: mismo texto, distinta hora — el argumento es la repetición */
+    .st-landing .st-dupe {
+      display: flex;
+      gap: var(--s2);
+      font-family: var(--mono);
+      font-size: var(--t2);
+      color: var(--ink-3);
+      background: var(--fill-soft);
+      border-radius: var(--r-chip);
+      padding: 7px 10px;
+    }
+
+    .st-landing .st-dupe span {
+      color: var(--ink-5);
+      flex: none;
+    }
+
     .st-landing .st-eyebrow-sec {
       margin: 0 0 var(--s3);
       font-size: var(--t3);
@@ -493,6 +517,10 @@
         grid-template-columns: 1fr !important;
       }
 
+      .st-landing .st-vs {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
       .st-landing .st-foot {
         grid-template-columns: 1fr 1fr !important;
       }
@@ -531,6 +559,7 @@
 
       /* La nav pasa de 64px a 74px con la segunda fila: los anclajes aterrizan por debajo */
       .st-landing #main,
+      .st-landing #problem,
       .st-landing #features,
       .st-landing #monitoring,
       .st-landing #how,
@@ -821,6 +850,70 @@
                 <span><span style="display:block;font-size:12px;font-weight:700;color:#F1F5F9">New critical
                     alert</span><span style="font-size:11px;color:#94A3B8">Payment gateway timeout —
                     checkout-api</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROBLEMA — antes/despues con el mismo lenguaje de mockups del resto -->
+      <section class="st-sec" id="problem"
+        style="padding:88px 32px;border-top:1px solid rgba(255,255,255,0.05);scroll-margin-top:64px">
+        <div style="max-width:1080px;margin:0 auto">
+          <div class="st-reveal" style="max-width:620px;margin-bottom:56px">
+            <p class="st-eyebrow-sec">The problem</p>
+            <h2 class="st-h2">Nobody reads the alert channel anymore</h2>
+            <p class="st-lede-sec">One incident arrives four hundred times, nothing says who is on it, and the
+              alert that mattered scrolled past at 3am.</p>
+          </div>
+
+          <div class="st-vs">
+            <!-- Hoy -->
+            <div class="st-reveal" role="img"
+              aria-label="A chat channel repeating the same CPU alert for prod-web-03 at 02:58, 03:01, 03:04 and 03:07, plus 394 more copies, with no owner and nobody acknowledging."
+              style="background:#0F1623;border:1px solid rgba(248,113,113,0.22);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:12px">
+              <div style="display:flex;align-items:center;justify-content:space-between">
+                <span
+                  style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#94A3B8">#alerts-prod</span>
+                <span
+                  style="font-size:10px;font-weight:700;letter-spacing:0.05em;color:#F87171;background:rgba(248,113,113,0.12);border-radius:6px;padding:2px 8px">TODAY</span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <div class="st-dupe"><span>02:58</span>CPU above 92% on prod-web-03</div>
+                <div class="st-dupe"><span>03:01</span>CPU above 92% on prod-web-03</div>
+                <div class="st-dupe"><span>03:04</span>CPU above 92% on prod-web-03</div>
+                <div class="st-dupe" style="opacity:.55"><span>03:07</span>CPU above 92% on prod-web-03</div>
+                <div class="st-dupe" style="opacity:.3"><span>03:10</span>CPU above 92% on prod-web-03</div>
+              </div>
+              <div
+                style="font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#64748B;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px">
+                + 394 more · no owner · nobody acknowledged</div>
+            </div>
+
+            <!-- Con Sigtake -->
+            <div class="st-reveal st-d1" role="img"
+              aria-label="The same incident as a single row with a ×47 occurrence counter, acknowledged by Marta Ruiz two minutes ago and routed to the Infrastructure team."
+              style="background:#0F1623;border:1px solid rgba(45,212,191,0.28);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:12px;box-shadow:0 0 32px rgba(45,212,191,0.07)">
+              <div style="display:flex;align-items:center;justify-content:space-between">
+                <span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#94A3B8">Alert center</span>
+                <span
+                  style="font-size:10px;font-weight:700;letter-spacing:0.05em;color:#5EEAD4;background:rgba(45,212,191,0.12);border-radius:6px;padding:2px 8px">WITH
+                  SIGTAKE</span>
+              </div>
+              <div
+                style="display:flex;align-items:center;justify-content:space-between;gap:10px;background:#161E30;border:1px solid rgba(45,212,191,0.25);border-radius:10px;padding:14px 16px">
+                <span style="display:flex;align-items:center;gap:10px;min-width:0"><span
+                    style="display:inline-flex;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.05em;background:rgba(239,68,68,0.12);color:#F87171">CRITICAL</span><span
+                    style="font-size:13.5px;font-weight:600;color:#F1F5F9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">CPU
+                    above 92% on prod-web-03</span></span>
+                <span
+                  style="font-size:15px;font-weight:700;font-family:ui-monospace,Menlo,monospace;color:#5EEAD4;background:rgba(45,212,191,0.12);border:1px solid rgba(45,212,191,0.3);border-radius:8px;padding:4px 10px;flex:none">×47</span>
+              </div>
+              <div
+                style="display:flex;align-items:center;gap:8px;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#64748B;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px">
+                <span
+                  style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:rgba(45,212,191,0.15);color:#5EEAD4;font-size:9px;font-weight:700;flex:none">MR</span>
+                acked by Marta Ruiz · 2m · team Infrastructure
               </div>
             </div>
           </div>

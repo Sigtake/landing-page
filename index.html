@@ -83,6 +83,77 @@
       font-display: swap;
     }
 
+    :root {
+      /* Espaciado */
+      --s1: 4px;
+      --s2: 8px;
+      --s3: 12px;
+      --s4: 16px;
+      --s5: 24px;
+      --s6: 32px;
+      --s7: 48px;
+      --s8: 64px;
+      --s9: 96px;
+      --s10: 128px;
+
+      /* Tipografía */
+      --t1: 11px;
+      --t2: 12px;
+      --t3: 13px;
+      --t4: 14px;
+      --t5: 16px;
+      --t6: 18px;
+      --t7: 21px;
+      --t8: 26px;
+      --t-h1: clamp(38px, 7vw, 60px);
+      --t-h2: clamp(28px, 5.4vw, 38px);
+      --t-h3: clamp(23px, 4.8vw, 27px);
+
+      /* Radios */
+      --r-chip: 6px;
+      --r-ctrl: 10px;
+      --r-card: 16px;
+      --r-pill: 999px;
+
+      /* Superficies */
+      --bg: #080d18;
+      --surface-1: #0f1623;
+      --surface-2: #161e30;
+      --well: #0b1120;
+      --footer: #070b14;
+
+      /* Líneas y rellenos */
+      --line-soft: rgba(255, 255, 255, .06);
+      --line: rgba(255, 255, 255, .08);
+      --line-strong: rgba(255, 255, 255, .12);
+      --fill-soft: rgba(255, 255, 255, .04);
+      --fill: rgba(255, 255, 255, .07);
+
+      /* Tinta */
+      --ink-1: #f1f5f9;
+      --ink-2: #cbd5e1;
+      --ink-3: #94a3b8;
+      --ink-4: #64748b;
+      --ink-5: #475569;
+      --ink-inverse: #0c1220;
+
+      /* Acento */
+      --teal-500: #0d9488;
+      --teal-400: #2dd4bf;
+      --teal-300: #5eead4;
+      --teal-200: #99f6e4;
+
+      /* Severidad — independientes de la marca */
+      --sev-critical: #f87171;
+      --sev-high: #fb923c;
+      --sev-medium: #fbbf24;
+      --sev-low: #60a5fa;
+      --ok: #34d399;
+      --ack: #a78bfa;
+
+      --mono: ui-monospace, Menlo, monospace;
+    }
+
     html {
       scroll-behavior: smooth;
     }
@@ -90,11 +161,11 @@
     html,
     body {
       margin: 0;
-      background: #080d18;
+      background: var(--bg);
     }
 
     .st-landing {
-      background: #080d18;
+      background: var(--bg);
       color: #e2e8f0;
       font-family: "Inter", system-ui, sans-serif;
       -webkit-font-smoothing: antialiased;
@@ -150,33 +221,126 @@
     }
 
     .st-landing #features {
-      scroll-margin-top: 64px;
+      scroll-margin-top: var(--s8);
     }
 
-    /* Hover que debe ganar sobre los color inline (por eso !important) */
+    /* ---- Patrones repetidos ---- */
+
+    .st-landing .st-feat {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--s8);
+      align-items: center;
+    }
+
+    .st-landing .st-eyebrow {
+      margin: 0 0 var(--s3);
+      font-size: var(--t3);
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--teal-300);
+    }
+
+    .st-landing .st-h3 {
+      margin: 0 0 var(--s4);
+      font-size: var(--t-h3);
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      color: var(--ink-1);
+      line-height: 1.25;
+    }
+
+    .st-landing .st-lede {
+      margin: 0 0 var(--s4);
+      font-size: var(--t5);
+      line-height: 1.65;
+      color: var(--ink-3);
+      text-wrap: pretty;
+    }
+
+    .st-landing .st-checks {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--s3);
+      font-size: var(--t4);
+      color: var(--ink-2);
+    }
+
+    .st-landing .st-checks li {
+      display: flex;
+      gap: var(--s3);
+      align-items: baseline;
+    }
+
+    .st-landing .st-ck {
+      color: var(--teal-400);
+      font-weight: 700;
+    }
+
+    .st-landing .st-bar {
+      flex: 1;
+      height: 22px;
+      border-radius: 3px;
+      background: #10b981;
+      opacity: .85;
+    }
+
+    .st-landing .st-navlink {
+      color: var(--ink-3);
+    }
+
+    .st-landing .st-flink {
+      color: var(--ink-2);
+    }
+
+    .st-landing .st-btn-primary {
+      background: var(--teal-400);
+      color: var(--ink-inverse);
+    }
+
+    .st-landing .st-btn-ghost {
+      background: rgba(255, 255, 255, 0.06);
+      color: #e2e8f0;
+      border: 1px solid var(--line);
+    }
+
+    .st-landing .st-btn-ghost-teal {
+      background: rgba(45, 212, 191, 0.08);
+      color: var(--teal-300);
+      border: 1px solid rgba(45, 212, 191, 0.35);
+    }
+
+    .st-landing .st-loglink {
+      color: #e2e8f0;
+    }
+
     .st-landing .st-navlink:hover {
-      color: #e2e8f0 !important;
+      color: #e2e8f0;
     }
 
     .st-landing .st-loglink:hover {
-      color: #99f6e4 !important;
+      color: var(--teal-200);
     }
 
     .st-landing .st-btn-primary:hover {
-      background: #5eead4 !important;
-      color: #0c1220 !important;
+      background: var(--teal-300);
+      color: var(--ink-inverse);
     }
 
     .st-landing .st-btn-ghost:hover {
-      background: rgba(255, 255, 255, 0.1) !important;
+      background: rgba(255, 255, 255, 0.1);
     }
 
     .st-landing .st-flink:hover {
-      color: #5eead4 !important;
+      color: var(--teal-300);
     }
 
     .st-landing .st-navlink.st-active {
-      color: #5eead4 !important;
+      color: var(--teal-300);
     }
 
     /* Reveal on scroll: hidden state only applies once JS tags <html> with .st-js (no-JS fallback = everything visible) */
@@ -291,8 +455,8 @@
 
       /* minmax(0,1fr): plain 1fr is minmax(auto,1fr) and the nowrap text inside the cards inflates the track past the viewport */
       .st-landing .st-feat {
-        grid-template-columns: minmax(0, 1fr) !important;
-        gap: 32px !important;
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--s6);
       }
 
       .st-landing .st-feat>div {
@@ -441,17 +605,17 @@
           <span class="st-wordmark" style="font-size:16px;font-weight:700;letter-spacing:-0.01em">Sigtake</span>
         </a>
         <div class="st-nav-links" style="display:flex;align-items:center;gap:28px;font-size:14px;font-weight:500">
-          <a href="/#features" class="st-navlink" style="color:#94A3B8">Features</a>
-          <a href="/#monitoring" class="st-navlink" style="color:#94A3B8">Monitoring</a>
-          <a href="/#how" class="st-navlink" style="color:#94A3B8">How it works</a>
-          <a href="/#pricing" class="st-navlink" style="color:#94A3B8">Pricing</a>
-          <a href="https://docs.sigtake.com" class="st-navlink" style="color:#94A3B8">Docs</a>
+          <a href="/#features" class="st-navlink">Features</a>
+          <a href="/#monitoring" class="st-navlink">Monitoring</a>
+          <a href="/#how" class="st-navlink">How it works</a>
+          <a href="/#pricing" class="st-navlink">Pricing</a>
+          <a href="https://docs.sigtake.com" class="st-navlink">Docs</a>
         </div>
         <div style="display:flex;align-items:center;gap:16px">
           <a href="https://app.sigtake.com/login" class="st-loglink"
-            style="font-size:14px;font-weight:500;color:#E2E8F0">Log in</a>
+            style="font-size:14px;font-weight:500">Log in</a>
           <a href="https://app.sigtake.com/register" class="st-btn-primary"
-            style="display:inline-flex;align-items:center;background:#2DD4BF;color:#0C1220;font-size:14px;font-weight:600;padding:8px 16px;border-radius:8px;box-shadow:0 0 20px rgba(45,212,191,0.3)">Start
+            style="display:inline-flex;align-items:center;font-size:14px;font-weight:600;padding:8px 16px;border-radius:8px;box-shadow:0 0 20px rgba(45,212,191,0.3)">Start
             free</a>
         </div>
       </div>
@@ -480,10 +644,10 @@
             right team — by email, Slack, Microsoft Teams or in-app. Uptime and signal monitoring included.</p>
           <div style="display:flex;align-items:center;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:8px">
             <a href="https://app.sigtake.com/register" class="st-btn-primary"
-              style="display:inline-flex;align-items:center;gap:8px;background:#2DD4BF;color:#0C1220;font-size:16px;font-weight:600;padding:13px 28px;border-radius:10px;box-shadow:0 0 32px rgba(45,212,191,0.38)">Start
+              style="display:inline-flex;align-items:center;gap:8px;font-size:16px;font-weight:600;padding:13px 28px;border-radius:10px;box-shadow:0 0 32px rgba(45,212,191,0.38)">Start
               free</a>
             <a href="mailto:help@sigtake.com?subject=Book%20a%20demo" class="st-btn-ghost"
-              style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.06);color:#E2E8F0;font-size:16px;font-weight:600;padding:13px 28px;border-radius:10px;border:1px solid rgba(255,255,255,0.08)">Book
+              style="display:inline-flex;align-items:center;gap:8px;font-size:16px;font-weight:600;padding:13px 28px;border-radius:10px">Book
               a demo</a>
           </div>
           <p style="margin:0;font-size:13px;color:#94A3B8">Free during early access · No credit card · Set up in under 5
@@ -655,26 +819,26 @@
 
           <div style="display:flex;flex-direction:column;gap:88px">
             <!-- F1 realtime -->
-            <div class="st-feat" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
+            <div class="st-feat">
               <div class="st-reveal">
                 <p
-                  style="margin:0 0 10px;font-size:12.5px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#5EEAD4">
+                  class="st-eyebrow">
                   Real-time alert center</p>
                 <h3
-                  style="margin:0 0 14px;font-size:clamp(23px,4.8vw,27px);font-weight:700;letter-spacing:-0.015em;color:#F1F5F9;line-height:1.25">
+                  class="st-h3">
                   See every alert the second it fires</h3>
-                <p style="margin:0 0 18px;font-size:15.5px;line-height:1.65;color:#94A3B8;text-wrap:pretty">Alerts
+                <p class="st-lede">Alerts
                   stream in the second they fire — no refresh button. Acknowledge and resolve in one click, and keep the
                   conversation on the alert itself.</p>
                 <ul
-                  style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:14.5px;color:#CBD5E1">
-                  <li style="display:flex;gap:10px;align-items:baseline"><span
-                      style="color:#2DD4BF;font-weight:700">✓</span>Live updates over server-sent events, scoped to your
+                  class="st-checks">
+                  <li><span
+                      class="st-ck">✓</span>Live updates over server-sent events, scoped to your
                     organization</li>
-                  <li style="display:flex;gap:10px;align-items:baseline"><span
-                      style="color:#2DD4BF;font-weight:700">✓</span>One-click acknowledge &amp; resolve workflow</li>
-                  <li style="display:flex;gap:10px;align-items:baseline"><span
-                      style="color:#2DD4BF;font-weight:700">✓</span>Threaded comments with @mentions</li>
+                  <li><span
+                      class="st-ck">✓</span>One-click acknowledge &amp; resolve workflow</li>
+                  <li><span
+                      class="st-ck">✓</span>Threaded comments with @mentions</li>
                 </ul>
               </div>
               <div class="st-reveal st-d1" role="img"
@@ -718,25 +882,25 @@
             </div>
 
             <!-- F2 dedup -->
-            <div class="st-feat" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
+            <div class="st-feat">
               <div class="st-reveal" style="order:2">
                 <p
-                  style="margin:0 0 10px;font-size:12.5px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#5EEAD4">
+                  class="st-eyebrow">
                   Smart deduplication</p>
                 <h3
-                  style="margin:0 0 14px;font-size:clamp(23px,4.8vw,27px);font-weight:700;letter-spacing:-0.015em;color:#F1F5F9;line-height:1.25">
+                  class="st-h3">
                   One alert — not four hundred</h3>
-                <p style="margin:0 0 18px;font-size:15.5px;line-height:1.65;color:#94A3B8;text-wrap:pretty">Repeated
+                <p class="st-lede">Repeated
                   alerts collapse into a single row with an occurrence counter and a last-seen timestamp. Notifications
                   fire at sane thresholds — 1, 10, 25, 50, 100 — never as a storm.</p>
                 <ul
-                  style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:14.5px;color:#CBD5E1">
-                  <li style="display:flex;gap:10px;align-items:baseline"><span
-                      style="color:#2DD4BF;font-weight:700">✓</span>Fingerprint on source + title + severity</li>
-                  <li style="display:flex;gap:10px;align-items:baseline"><span
-                      style="color:#2DD4BF;font-weight:700">✓</span>First-seen / last-seen history on every alert</li>
-                  <li style="display:flex;gap:10px;align-items:baseline"><span
-                      style="color:#2DD4BF;font-weight:700">✓</span>Threshold-based notifications stop flapping noise
+                  class="st-checks">
+                  <li><span
+                      class="st-ck">✓</span>Fingerprint on source + title + severity</li>
+                  <li><span
+                      class="st-ck">✓</span>First-seen / last-seen history on every alert</li>
+                  <li><span
+                      class="st-ck">✓</span>Threshold-based notifications stop flapping noise
                   </li>
                 </ul>
               </div>
@@ -766,34 +930,34 @@
             </div>
 
             <!-- F5 teams & channels -->
-            <div class="st-feat" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
+            <div class="st-feat">
               <div class="st-reveal">
                 <p
-                  style="margin:0 0 10px;font-size:12.5px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#5EEAD4">
+                  class="st-eyebrow">
                   Teams &amp; notification channels</p>
                 <h3
-                  style="margin:0 0 14px;font-size:clamp(23px,4.8vw,27px);font-weight:700;letter-spacing:-0.015em;color:#F1F5F9;line-height:1.25">
+                  class="st-h3">
                   Route the right alert to the right people</h3>
-                <p style="margin:0 0 18px;font-size:15.5px;line-height:1.65;color:#94A3B8;text-wrap:pretty">Every API
+                <p class="st-lede">Every API
                   key belongs to a team; every team has its channels. Configure a channel once — email, Slack, Microsoft
                   Teams or in-app — and reuse it across teams with per-team toggles.</p>
                 <ul
-                  style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:14.5px;color:#CBD5E1">
-                  <li style="display:flex;gap:10px;align-items:baseline"><span
-                      style="color:#2DD4BF;font-weight:700">✓</span>Email, Slack, Microsoft Teams and in-app delivery
+                  class="st-checks">
+                  <li><span
+                      class="st-ck">✓</span>Email, Slack, Microsoft Teams and in-app delivery
                   </li>
-                  <li style="display:flex;gap:10px;align-items:baseline"><span
-                      style="color:#2DD4BF;font-weight:700">✓</span>One Slack workspace, a different channel per project
+                  <li><span
+                      class="st-ck">✓</span>One Slack workspace, a different channel per project
                   </li>
-                  <li style="display:flex;gap:10px;align-items:baseline"><span
-                      style="color:#2DD4BF;font-weight:700">✓</span>Repeat alerts thread under the first card instead of
+                  <li><span
+                      class="st-ck">✓</span>Repeat alerts thread under the first card instead of
                     flooding the channel</li>
-                  <li style="display:flex;gap:10px;align-items:baseline"><span
-                      style="color:#2DD4BF;font-weight:700">✓</span>External recipients outside your org, marked as such
+                  <li><span
+                      class="st-ck">✓</span>External recipients outside your org, marked as such
                   </li>
-                  <li style="display:flex;gap:10px;align-items:baseline"><span
-                      style="color:#2DD4BF;font-weight:700">✓</span>Automatic retries with exponential backoff</li>
-                  <li style="display:flex;gap:10px;align-items:baseline"><span
+                  <li><span
+                      class="st-ck">✓</span>Automatic retries with exponential backoff</li>
+                  <li><span
                       style="color:#94A3B8;font-weight:700">◦</span><span style="color:#94A3B8">Discord and Google Chat
                       are in progress</span></li>
                 </ul>
@@ -855,25 +1019,25 @@
             </div>
 
             <!-- F6 orgs -->
-            <div class="st-feat" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
+            <div class="st-feat">
               <div class="st-reveal" style="order:2">
                 <p
-                  style="margin:0 0 10px;font-size:12.5px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#5EEAD4">
+                  class="st-eyebrow">
                   Built for organizations</p>
                 <h3
-                  style="margin:0 0 14px;font-size:clamp(23px,4.8vw,27px);font-weight:700;letter-spacing:-0.015em;color:#F1F5F9;line-height:1.25">
+                  class="st-h3">
                   Multi-tenant from the first line of code</h3>
-                <p style="margin:0 0 18px;font-size:15.5px;line-height:1.65;color:#94A3B8;text-wrap:pretty">Hard
+                <p class="st-lede">Hard
                   isolation per organization, hierarchical roles, a full audit trail and rate-limited API keys whose
                   secret is shown exactly once.</p>
                 <ul
-                  style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:14.5px;color:#CBD5E1">
-                  <li style="display:flex;gap:10px;align-items:baseline"><span
-                      style="color:#2DD4BF;font-weight:700">✓</span>Roles: super_admin → admin → operator → viewer</li>
-                  <li style="display:flex;gap:10px;align-items:baseline"><span
-                      style="color:#2DD4BF;font-weight:700">✓</span>Audit log for every sensitive action</li>
-                  <li style="display:flex;gap:10px;align-items:baseline"><span
-                      style="color:#2DD4BF;font-weight:700">✓</span>2FA with authenticator apps or email codes</li>
+                  class="st-checks">
+                  <li><span
+                      class="st-ck">✓</span>Roles: super_admin → admin → operator → viewer</li>
+                  <li><span
+                      class="st-ck">✓</span>Audit log for every sensitive action</li>
+                  <li><span
+                      class="st-ck">✓</span>2FA with authenticator apps or email codes</li>
                 </ul>
               </div>
               <div class="st-reveal st-d1" role="img"
@@ -914,25 +1078,25 @@
             <section id="monitoring"
               style="display:flex;flex-direction:column;gap:88px;scroll-margin-top:88px">
               <!-- F3 website monitoring -->
-              <div class="st-feat" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
+              <div class="st-feat">
                 <div class="st-reveal">
                   <p
-                    style="margin:0 0 10px;font-size:12.5px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#5EEAD4">
+                    class="st-eyebrow">
                     Website monitoring</p>
                   <h3
-                    style="margin:0 0 14px;font-size:clamp(23px,4.8vw,27px);font-weight:700;letter-spacing:-0.015em;color:#F1F5F9;line-height:1.25">
+                    class="st-h3">
                     Know you're down before your users do</h3>
-                  <p style="margin:0 0 18px;font-size:15.5px;line-height:1.65;color:#94A3B8;text-wrap:pretty">Scheduled
+                  <p class="st-lede">Scheduled
                     checks against your endpoints, with uptime percentage, latency trends and a plain up/down semaphore. A
                     failed check is just another alert — routed like the rest.</p>
                   <ul
-                    style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:14.5px;color:#CBD5E1">
-                    <li style="display:flex;gap:10px;align-items:baseline"><span
-                        style="color:#2DD4BF;font-weight:700">✓</span>Checks down to every 60 seconds</li>
-                    <li style="display:flex;gap:10px;align-items:baseline"><span
-                        style="color:#2DD4BF;font-weight:700">✓</span>Uptime % over 24h / 7d / 30d windows</li>
-                    <li style="display:flex;gap:10px;align-items:baseline"><span
-                        style="color:#2DD4BF;font-weight:700">✓</span>Latency history per monitor</li>
+                    class="st-checks">
+                    <li><span
+                        class="st-ck">✓</span>Checks down to every 60 seconds</li>
+                    <li><span
+                        class="st-ck">✓</span>Uptime % over 24h / 7d / 30d windows</li>
+                    <li><span
+                        class="st-ck">✓</span>Latency history per monitor</li>
                   </ul>
                 </div>
                 <div class="st-reveal st-d1" role="img"
@@ -953,20 +1117,20 @@
                       <span>Uptime · 30d</span><span style="color:#34D399;font-weight:700">99.98%</span>
                     </div>
                     <div style="display:flex;gap:2px">
-                      <span style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span
-                        style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span
-                        style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span
-                        style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span
+                      <span class="st-bar"></span><span
+                        class="st-bar"></span><span
+                        class="st-bar"></span><span
+                        class="st-bar"></span><span
                         style="flex:1;height:22px;border-radius:3px;background:#EF4444"></span><span
-                        style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span
-                        style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span
-                        style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span
-                        style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span
-                        style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span
-                        style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span
-                        style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span
-                        style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span><span
-                        style="flex:1;height:22px;border-radius:3px;background:#10B981;opacity:.85"></span>
+                        class="st-bar"></span><span
+                        class="st-bar"></span><span
+                        class="st-bar"></span><span
+                        class="st-bar"></span><span
+                        class="st-bar"></span><span
+                        class="st-bar"></span><span
+                        class="st-bar"></span><span
+                        class="st-bar"></span><span
+                        class="st-bar"></span>
                     </div>
                   </div>
                   <div>
@@ -990,35 +1154,35 @@
               </div>
 
               <!-- F4 signals -->
-              <div class="st-feat" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
+              <div class="st-feat">
                 <div class="st-reveal" style="order:2">
                   <p
-                    style="margin:0 0 10px;font-size:12.5px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#5EEAD4">
+                    class="st-eyebrow">
                     Signal monitoring</p>
                   <h3
-                    style="margin:0 0 14px;font-size:clamp(23px,4.8vw,27px);font-weight:700;letter-spacing:-0.015em;color:#F1F5F9;line-height:1.25">
+                    class="st-h3">
                     Watch the numbers that matter</h3>
-                  <p style="margin:0 0 18px;font-size:15.5px;line-height:1.65;color:#94A3B8;text-wrap:pretty">Push any
+                  <p class="st-lede">Push any
                     numeric metric through the API — queue depth, error rate, temperature. Rules evaluate every minute and
                     raise a real alert the moment something's off.</p>
                   <ul
-                    style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:14.5px;color:#CBD5E1">
-                    <li style="display:flex;gap:10px;align-items:baseline"><span
-                        style="color:#2DD4BF;font-weight:700">✓</span>Batch-push metrics with the same API key</li>
-                    <li style="display:flex;gap:10px;align-items:baseline"><span
-                        style="color:#2DD4BF;font-weight:700">✓</span>Thresholds over avg / min / max / last, in any time
+                    class="st-checks">
+                    <li><span
+                        class="st-ck">✓</span>Batch-push metrics with the same API key</li>
+                    <li><span
+                        class="st-ck">✓</span>Thresholds over avg / min / max / last, in any time
                       window</li>
-                    <li style="display:flex;gap:10px;align-items:baseline"><span
-                        style="color:#2DD4BF;font-weight:700">✓</span><span><strong
+                    <li><span
+                        class="st-ck">✓</span><span><strong
                           style="color:#F1F5F9;font-weight:600">Anomaly detection</strong> — learns each metric's normal
                         by
                         hour &amp; weekday, no threshold to set</span></li>
-                    <li style="display:flex;gap:10px;align-items:baseline"><span
-                        style="color:#2DD4BF;font-weight:700">✓</span><strong
+                    <li><span
+                        class="st-ck">✓</span><strong
                         style="color:#F1F5F9;font-weight:600">Heartbeat alerts</strong>&nbsp;when a metric goes silent
                     </li>
-                    <li style="display:flex;gap:10px;align-items:baseline"><span
-                        style="color:#2DD4BF;font-weight:700">✓</span>Every alert flows into the same dedup &amp; routing
+                    <li><span
+                        class="st-ck">✓</span>Every alert flows into the same dedup &amp; routing
                       pipeline</li>
                   </ul>
                 </div>
@@ -1160,21 +1324,21 @@
                 <p style="margin:0;font-size:14px;line-height:1.6;color:#94A3B8">Free during early access, like
                   everything else — with the guarantees larger teams need.</p>
               </div>
-              <a href="mailto:help@sigtake.com?subject=Talk%20to%20sales" class="st-btn-ghost"
-                style="flex:none;display:inline-flex;justify-content:center;background:rgba(45,212,191,0.08);color:#5EEAD4;font-size:14px;font-weight:600;padding:11px 22px;border-radius:9px;border:1px solid rgba(45,212,191,0.35)">Talk
+              <a href="mailto:help@sigtake.com?subject=Talk%20to%20sales" class="st-btn-ghost st-btn-ghost-teal"
+                style="flex:none;display:inline-flex;justify-content:center;font-size:14px;font-weight:600;padding:11px 22px;border-radius:9px">Talk
                 to sales</a>
             </div>
             <div style="height:1px;background:rgba(255,255,255,0.06);margin:22px 0"></div>
             <ul class="st-biz-list"
               style="margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px 24px;font-size:13.5px;color:#CBD5E1">
-              <li style="display:flex;gap:9px"><span style="color:#2DD4BF;font-weight:700">✓</span>Unlimited users,
+              <li style="display:flex;gap:9px"><span class="st-ck">✓</span>Unlimited users,
                 teams &amp; monitors</li>
-              <li style="display:flex;gap:9px"><span style="color:#2DD4BF;font-weight:700">✓</span>Unlimited alerts,
+              <li style="display:flex;gap:9px"><span class="st-ck">✓</span>Unlimited alerts,
                 custom rate limits</li>
-              <li style="display:flex;gap:9px"><span style="color:#2DD4BF;font-weight:700">✓</span>Enforced 2FA + full
+              <li style="display:flex;gap:9px"><span class="st-ck">✓</span>Enforced 2FA + full
                 audit history</li>
-              <li style="display:flex;gap:9px"><span style="color:#2DD4BF;font-weight:700">✓</span>99.9% uptime SLA</li>
-              <li style="display:flex;gap:9px"><span style="color:#2DD4BF;font-weight:700">✓</span>Priority support</li>
+              <li style="display:flex;gap:9px"><span class="st-ck">✓</span>99.9% uptime SLA</li>
+              <li style="display:flex;gap:9px"><span class="st-ck">✓</span>Priority support</li>
             </ul>
           </div>
         </div>
@@ -1194,10 +1358,10 @@
             away. Free for every team while we're in early access.</p>
           <div style="position:relative;display:flex;justify-content:center;flex-wrap:wrap;gap:14px">
             <a href="https://app.sigtake.com/register" class="st-btn-primary"
-              style="display:inline-flex;align-items:center;background:#2DD4BF;color:#0C1220;font-size:16px;font-weight:600;padding:13px 28px;border-radius:10px;box-shadow:0 0 32px rgba(45,212,191,0.4)">Start
+              style="display:inline-flex;align-items:center;font-size:16px;font-weight:600;padding:13px 28px;border-radius:10px;box-shadow:0 0 32px rgba(45,212,191,0.4)">Start
               free</a>
             <a href="https://docs.sigtake.com" class="st-btn-ghost"
-              style="display:inline-flex;align-items:center;background:rgba(255,255,255,0.06);color:#E2E8F0;font-size:16px;font-weight:600;padding:13px 28px;border-radius:10px;border:1px solid rgba(255,255,255,0.08)">Read
+              style="display:inline-flex;align-items:center;font-size:16px;font-weight:600;padding:13px 28px;border-radius:10px">Read
               the docs</a>
           </div>
         </div>
@@ -1220,10 +1384,10 @@
               style="margin:0 0 14px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#94A3B8">
               Product</p>
             <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:13.5px">
-              <li><a href="/#features" class="st-flink" style="color:#CBD5E1">Features</a></li>
-              <li><a href="/#monitoring" class="st-flink" style="color:#CBD5E1">Monitoring</a></li>
-              <li><a href="/#pricing" class="st-flink" style="color:#CBD5E1">Pricing</a></li>
-              <!-- TODO: re-enable when a changelog exists: <li><a href="#" class="st-flink" style="color:#CBD5E1">Changelog</a></li> -->
+              <li><a href="/#features" class="st-flink">Features</a></li>
+              <li><a href="/#monitoring" class="st-flink">Monitoring</a></li>
+              <li><a href="/#pricing" class="st-flink">Pricing</a></li>
+              <!-- TODO: re-enable when a changelog exists: <li><a href="#" class="st-flink">Changelog</a></li> -->
             </ul>
           </nav>
           <nav aria-label="Resources">
@@ -1231,10 +1395,10 @@
               style="margin:0 0 14px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#94A3B8">
               Resources</p>
             <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:13.5px">
-              <li><a href="https://docs.sigtake.com" class="st-flink" style="color:#CBD5E1">Documentation</a></li>
-              <li><a href="https://docs.sigtake.com" class="st-flink" style="color:#CBD5E1">API reference</a></li>
-              <!-- TODO: re-enable when a status page exists: <li><a href="#" class="st-flink" style="color:#CBD5E1">Status</a></li> -->
-              <li><a href="/help/" class="st-flink" style="color:#CBD5E1">Help &amp; support</a></li>
+              <li><a href="https://docs.sigtake.com" class="st-flink">Documentation</a></li>
+              <li><a href="https://docs.sigtake.com" class="st-flink">API reference</a></li>
+              <!-- TODO: re-enable when a status page exists: <li><a href="#" class="st-flink">Status</a></li> -->
+              <li><a href="/help/" class="st-flink">Help &amp; support</a></li>
             </ul>
           </nav>
           <nav aria-label="Legal">
@@ -1242,9 +1406,9 @@
               style="margin:0 0 14px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#94A3B8">
               Legal</p>
             <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:13.5px">
-              <li><a href="/privacy/" class="st-flink" style="color:#CBD5E1">Privacy</a></li>
-              <li><a href="/terms/" class="st-flink" style="color:#CBD5E1">Terms</a></li>
-              <!-- TODO: re-enable when a security page exists: <li><a href="#" class="st-flink" style="color:#CBD5E1">Security</a></li> -->
+              <li><a href="/privacy/" class="st-flink">Privacy</a></li>
+              <li><a href="/terms/" class="st-flink">Terms</a></li>
+              <!-- TODO: re-enable when a security page exists: <li><a href="#" class="st-flink">Security</a></li> -->
             </ul>
           </nav>
         </div>
@@ -1252,7 +1416,7 @@
           style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;border-top:1px solid rgba(255,255,255,0.05);padding-top:24px;font-size:12.5px;color:#94A3B8">
           <span>© 2026 Sigtake, Inc.</span>
           <!-- TODO: re-enable when the social profiles are live:
-        <div style="display:flex;gap:20px"><a href="#" class="st-flink" style="color:#CBD5E1">X</a><a href="#" class="st-flink" style="color:#CBD5E1">GitHub</a><a href="#" class="st-flink" style="color:#CBD5E1">LinkedIn</a></div>
+        <div style="display:flex;gap:20px"><a href="#" class="st-flink">X</a><a href="#" class="st-flink">GitHub</a><a href="#" class="st-flink">LinkedIn</a></div>
         -->
         </div>
       </div>

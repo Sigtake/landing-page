@@ -15,7 +15,7 @@
   <link rel="icon" type="image/png" sizes="96x96" href="/public/favicon-96x96.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
   <link rel="manifest" href="/public/site.webmanifest">
-  <meta name="theme-color" content="#080D18">
+  <meta name="theme-color" content="#040609">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="en_US">
   <meta property="og:site_name" content="Sigtake">
@@ -44,11 +44,11 @@
       font-display: swap;
     }
 
-    html, body { margin: 0; background: #080d18; }
+    html, body { margin: 0; background: #040609; }
 
     /* ── Cromática compartida con la home. Mismos selectores `.st-landing …` a propósito:
          el marcado de nav y footer se extrae de index.html, así que las reglas deben coincidir. ── */
-    .st-landing { background: #080d18; color: #e2e8f0; font-family: "Inter", system-ui, sans-serif;
+    .st-landing { background: #040609; color: #e2e8f0; font-family: "Inter", system-ui, sans-serif;
                   -webkit-font-smoothing: antialiased; min-height: 100vh; }
     .st-landing h1, .st-landing h2, .st-landing h3, .st-landing .st-wordmark {
       font-family: "Bricolage Grotesque", "Inter", system-ui, sans-serif; }
@@ -84,7 +84,7 @@
                           animation: st-pulse 1.8s infinite; }
     @keyframes st-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-    .st-landing .st-first { margin: 44px 0 40px; background: #0F1623; border: 1px solid rgba(255,255,255,0.07);
+    .st-landing .st-first { margin: 44px 0 40px; background: #0F1115; border: 1px solid rgba(255,255,255,0.07);
                             border-radius: 14px; padding: 22px 24px; display: flex; align-items: center;
                             justify-content: space-between; flex-wrap: wrap; gap: 12px 24px; }
     .st-landing .st-first p { margin: 0; font-size: 14.5px; line-height: 1.6; color: #94A3B8; max-width: 620px; }
@@ -101,10 +101,10 @@
        el contenedor son 280px — la pista desbordaría y arrastraría scroll horizontal */
     .st-landing .st-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(310px, 100%), 1fr));
                            gap: 16px; }
-    .st-landing .st-card { display: flex; flex-direction: column; gap: 9px; background: #0F1623;
+    .st-landing .st-card { display: flex; flex-direction: column; gap: 9px; background: #0F1115;
                            border: 1px solid rgba(255,255,255,0.07); border-radius: 14px; padding: 22px;
                            color: #E2E8F0; transition: border-color .15s ease, background .15s ease, transform .15s ease; }
-    .st-landing .st-card:hover { border-color: rgba(45,212,191,0.35); background: #111A2B;
+    .st-landing .st-card:hover { border-color: rgba(45,212,191,0.35); background: #13161B;
                                  transform: translateY(-2px); color: #E2E8F0; }
     .st-landing .st-card-icon { width: 34px; height: 34px; border-radius: 9px; display: inline-flex;
                                 align-items: center; justify-content: center; background: rgba(45,212,191,0.1);
@@ -114,7 +114,7 @@
     .st-landing .st-card p { margin: 0; font-size: 13.5px; line-height: 1.6; color: #94A3B8; flex: 1; }
     .st-landing .st-card-cta { font-size: 13px; font-weight: 600; color: #5EEAD4; margin-top: 4px; }
 
-    .st-landing .st-direct { margin-top: 40px; background: #0F1623; border: 1px solid rgba(255,255,255,0.07);
+    .st-landing .st-direct { margin-top: 40px; background: #0F1115; border: 1px solid rgba(255,255,255,0.07);
                              border-radius: 14px; padding: 24px; text-align: center; }
     .st-landing .st-direct p { margin: 0 0 8px; font-size: 14.5px; line-height: 1.6; color: #94A3B8; }
     .st-landing .st-addr { font-family: ui-monospace, Menlo, monospace; font-size: 16px; font-weight: 600;
@@ -149,7 +149,7 @@
   <div class="st-landing">
     <a href="#main" class="st-skip">Skip to content</a>
 <nav aria-label="Primary"
-      style="position:sticky;top:0;z-index:50;background:rgba(8,13,24,0.95);border-bottom:1px solid rgba(255,255,255,0.06)">
+      style="position:sticky;top:0;z-index:50;background:rgba(4,6,9,0.95);border-bottom:1px solid rgba(255,255,255,0.06)">
       <div class="st-nav-inner"
         style="max-width:1180px;margin:0 auto;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between">
         <a href="/" style="display:flex;align-items:center;gap:10px;color:#F1F5F9">
@@ -247,7 +247,7 @@
     </main>
 
 <footer class="st-sec-foot"
-      style="border-top:1px solid rgba(255,255,255,0.06);padding:64px 32px 40px;background:#070B14">
+      style="border-top:1px solid rgba(255,255,255,0.06);padding:64px 32px 40px;background:#060709">
       <div style="max-width:1080px;margin:0 auto">
         <div class="st-foot" style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px">
           <div>

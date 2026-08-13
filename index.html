@@ -267,6 +267,76 @@
       mask-image: radial-gradient(ellipse 70% 60% at 50% 32%, #000 30%, transparent 78%);
     }
 
+    .st-landing .st-close {
+      position: relative;
+      overflow: hidden;
+      padding: var(--s9) var(--s6) var(--s10);
+      border-top: 1px solid var(--line-soft);
+      text-align: center;
+    }
+
+    /* Espejado: es el mismo motivo del hero devuelto al final, no una repetición */
+    .st-landing .st-radar-close {
+      -webkit-mask-image: radial-gradient(ellipse 65% 75% at 50% 100%, #000 20%, transparent 75%);
+      mask-image: radial-gradient(ellipse 65% 75% at 50% 100%, #000 20%, transparent 75%);
+    }
+
+    .st-landing .st-close-inner {
+      position: relative;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* El arco del h1 —"from firing to fixed"— cerrado literalmente */
+    .st-landing .st-arc {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s3);
+      margin: 0 0 var(--s5);
+      padding: 6px 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--r-pill);
+      font-family: var(--mono);
+      font-size: var(--t2);
+      color: var(--ink-3);
+    }
+
+    .st-landing .st-arc span {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s2);
+    }
+
+    .st-landing .st-arc i {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex: none;
+    }
+
+    .st-landing .st-arc-sep {
+      color: var(--ink-5);
+    }
+
+    .st-landing .st-close-h {
+      margin-bottom: var(--s3);
+      text-wrap: balance;
+    }
+
+    .st-landing .st-close-p {
+      margin: 0 0 var(--s6);
+      font-family: var(--mono);
+      font-size: var(--t4);
+      color: var(--ink-4);
+    }
+
+    .st-landing .st-close-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: var(--s3);
+    }
+
     .st-landing .st-sdk {
       background: var(--surface-1);
       border: 1px solid var(--line);
@@ -1681,7 +1751,7 @@
             <a href="https://app.sigtake.com/register" class="st-btn-primary"
               style="display:inline-flex;align-items:center;font-size:16px;font-weight:600;padding:13px 28px;border-radius:10px;box-shadow:0 0 32px rgba(45,212,191,0.32)">Get
               your API key</a>
-            <span style="font-size:14px;color:#64748B">Free during early access · no credit card</span>
+            <span style="font-size:14px;color:#64748B">No credit card</span>
           </div>
         </div>
       </section>
@@ -1740,20 +1810,34 @@
         </div>
       </section>
 
-      <!-- FINAL CTA -->
-      <section class="st-sec-cta" style="padding:56px 32px 96px">
-        <div class="st-band st-reveal"
-          style="position:relative;max-width:1080px;margin:0 auto;background:#0F1115;border:1px solid rgba(45,212,191,0.25);border-radius:20px;padding:72px 32px;text-align:center;overflow:hidden">
-          <div
-            style="position:absolute;top:-160px;left:50%;transform:translateX(-50%);width:700px;height:360px;background:radial-gradient(ellipse at center,rgba(45,212,191,0.18),transparent 65%);pointer-events:none">
-          </div>
-          <h2
-            style="position:relative;margin:0 0 14px;font-size:clamp(29px,5.5vw,38px);line-height:1.15;font-weight:700;letter-spacing:-0.02em;color:#F8FAFC">
-            Stop drowning in alert noise</h2>
-          <p style="position:relative;margin:0 0 28px;font-size:16.5px;color:#94A3B8">Your first API key is one click away.</p>
-          <div style="position:relative;display:flex;justify-content:center;flex-wrap:wrap;gap:14px">
+      <!-- CIERRE — responde a la sección de Problema ("nobody reads the alert channel")
+           y cierra el arco del h1 ("from firing to fixed"). Sin caja ni halo: el radar del
+           hero vuelve espejado, así la página abre y cierra con el mismo motivo. -->
+      <section class="st-sec-cta st-close">
+        <svg class="st-radar st-radar-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520"
+          aria-hidden="true" preserveAspectRatio="xMidYMid slice">
+          <g fill="none" stroke="#FFFFFF">
+            <circle cx="600" cy="470" r="120" stroke-width="1" opacity="0.05" />
+            <circle cx="600" cy="470" r="240" stroke-width="1" opacity="0.04" />
+            <circle cx="600" cy="470" r="380" stroke-width="1" opacity="0.03" />
+            <circle cx="600" cy="470" r="540" stroke-width="1" opacity="0.022" />
+          </g>
+          <g stroke="#FFFFFF" opacity="0.028">
+            <line x1="600" y1="0" x2="600" y2="520" stroke-width="1" />
+          </g>
+        </svg>
+
+        <div class="st-close-inner st-reveal">
+          <p class="st-arc" aria-label="An incident going from firing to resolved">
+            <span><i style="background:#F87171"></i>Firing</span>
+            <span class="st-arc-sep">→</span>
+            <span><i style="background:#34D399"></i>Resolved</span>
+          </p>
+          <h2 class="st-h2 st-close-h">Make the alert channel worth reading again</h2>
+          <p class="st-close-p">One API key, one POST.</p>
+          <div class="st-close-actions">
             <a href="https://app.sigtake.com/register" class="st-btn-primary"
-              style="display:inline-flex;align-items:center;font-size:16px;font-weight:600;padding:13px 28px;border-radius:10px;box-shadow:0 0 32px rgba(45,212,191,0.4)">Start
+              style="display:inline-flex;align-items:center;font-size:16px;font-weight:600;padding:13px 28px;border-radius:10px;box-shadow:0 0 32px rgba(45,212,191,0.35)">Start
               free</a>
             <a href="https://docs.sigtake.com" class="st-btn-ghost"
               style="display:inline-flex;align-items:center;font-size:16px;font-weight:600;padding:13px 28px;border-radius:10px">Read

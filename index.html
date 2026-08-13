@@ -233,6 +233,107 @@
       align-items: center;
     }
 
+    .st-landing .st-sdk {
+      background: var(--surface-1);
+      border: 1px solid var(--line);
+      border-radius: var(--r-card);
+      padding: var(--s5);
+    }
+
+    .st-landing .st-sdk-tabs {
+      display: flex;
+      gap: var(--s1);
+      margin-bottom: var(--s4);
+    }
+
+    .st-landing .st-sdk-tab {
+      font: inherit;
+      font-size: var(--t4);
+      font-weight: 600;
+      color: var(--ink-3);
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: var(--r-ctrl);
+      padding: 7px 16px;
+      cursor: pointer;
+    }
+
+    .st-landing .st-sdk-tab[aria-selected="true"] {
+      color: var(--teal-300);
+      background: rgba(45, 212, 191, 0.1);
+      border-color: rgba(45, 212, 191, 0.3);
+    }
+
+    .st-landing .st-sdk-install {
+      margin: 0 0 var(--s3);
+      font-family: var(--mono);
+      font-size: var(--t3);
+      color: var(--ink-3);
+      background: var(--well);
+      border: 1px solid var(--line-soft);
+      border-radius: var(--r-chip);
+      padding: 9px 12px;
+    }
+
+    .st-landing .st-code {
+      margin: 0;
+      overflow-x: auto;
+      background: var(--well);
+      border: 1px solid var(--line-soft);
+      border-radius: var(--r-ctrl);
+      padding: var(--s4);
+      font-family: var(--mono);
+      font-size: var(--t3);
+      line-height: 1.7;
+      color: var(--ink-2);
+      tab-size: 2;
+    }
+
+    .st-landing .c-k {
+      color: var(--ack);
+    }
+
+    .st-landing .c-s {
+      color: var(--teal-300);
+    }
+
+    .st-landing .c-f {
+      color: var(--sev-medium);
+    }
+
+    .st-landing .st-sdk-foot {
+      margin: var(--s4) 0 0;
+      font-size: var(--t3);
+      color: var(--ink-4);
+    }
+
+    .st-landing .st-sources {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s2) var(--s5);
+      font-family: var(--mono);
+      font-size: var(--t3);
+      color: var(--ink-2);
+    }
+
+    .st-landing .st-sources li {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s2);
+    }
+
+    .st-landing .st-sources span {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--teal-400);
+      opacity: .7;
+      flex: none;
+    }
+
     .st-landing .st-vs {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -920,6 +1021,27 @@
         </div>
       </section>
 
+      <!-- FUENTES — prueba visual de la promesa del hero. Sin logos de terceros: nombre en texto
+           y un punto teal, que además no envejece cuando una marca cambia de identidad. -->
+      <section class="st-band" aria-label="Alert sources"
+        style="padding:40px 32px;border-top:1px solid rgba(255,255,255,0.05)">
+        <div
+          style="max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:14px 28px">
+          <span class="st-reveal"
+            style="font-size:12px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#64748B">Anything
+            that can POST</span>
+          <ul class="st-reveal st-d1 st-sources">
+            <li><span></span>Prometheus</li>
+            <li><span></span>Datadog</li>
+            <li><span></span>Grafana</li>
+            <li><span></span>Sentry</li>
+            <li><span></span>Zabbix</li>
+            <li><span></span>cron</li>
+            <li><span></span>webhook</li>
+          </ul>
+        </div>
+      </section>
+
       <!-- PROBLEMA — antes/despues con el mismo lenguaje de mockups del resto -->
       <section class="st-sec" id="problem"
         style="padding:88px 32px;border-top:1px solid rgba(255,255,255,0.05);scroll-margin-top:64px">
@@ -1414,6 +1536,71 @@
         </div>
       </section>
 
+      <!-- SDKs — prueba, no referencia: el mismo ejemplo en los dos lenguajes.
+           Los dos paneles viven en el DOM (solo se ocultan), así que el crawler los lee. -->
+      <section class="st-sec" id="sdks"
+        style="padding:88px 32px;border-top:1px solid rgba(255,255,255,0.05);scroll-margin-top:64px">
+        <div style="max-width:1080px;margin:0 auto">
+          <div class="st-reveal" style="max-width:620px;margin-bottom:40px">
+            <p class="st-eyebrow-sec">SDKs</p>
+            <h2 class="st-h2">Your first alert, in eight lines</h2>
+            <p class="st-lede-sec">Official SDKs for Node and Python. Same surface, same fields — pick the one
+              your service already speaks.</p>
+          </div>
+
+          <div class="st-reveal st-d1 st-sdk">
+            <div class="st-sdk-tabs" role="tablist" aria-label="Choose an SDK">
+              <button type="button" role="tab" id="tab-node" aria-controls="panel-node" aria-selected="true"
+                class="st-sdk-tab">Node</button>
+              <button type="button" role="tab" id="tab-python" aria-controls="panel-python" aria-selected="false"
+                tabindex="-1" class="st-sdk-tab">Python</button>
+            </div>
+
+            <div role="tabpanel" id="panel-node" aria-labelledby="tab-node" tabindex="0">
+              <p class="st-sdk-install">npm install @sigtake/sdk</p>
+              <pre class="st-code"><span class="c-k">import</span> { Sigtake } <span class="c-k">from</span> <span class="c-s">'@sigtake/sdk'</span>;
+
+<span class="c-k">const</span> sigtake = <span class="c-k">new</span> <span class="c-f">Sigtake</span>({ apiKey: process.env.SIGTAKE_API_KEY });
+
+<span class="c-k">await</span> sigtake.alerts.<span class="c-f">ingest</span>({
+  title: <span class="c-s">'Checkout latency above threshold'</span>,
+  severity: <span class="c-s">'high'</span>,
+  source: <span class="c-s">'checkout-api'</span>,
+  team_code: <span class="c-s">'OPS'</span>,
+});</pre>
+            </div>
+
+            <div role="tabpanel" id="panel-python" aria-labelledby="tab-python" tabindex="0">
+              <p class="st-sdk-install">pip install sigtake</p>
+              <pre class="st-code"><span class="c-k">from</span> sigtake <span class="c-k">import</span> Sigtake
+
+<span class="c-k">with</span> <span class="c-f">Sigtake</span>(api_key=os.environ[<span class="c-s">"SIGTAKE_API_KEY"</span>]) <span class="c-k">as</span> sigtake:
+    sigtake.alerts.<span class="c-f">ingest</span>(
+        title=<span class="c-s">"Checkout latency above threshold"</span>,
+        severity=<span class="c-s">"high"</span>,
+        source=<span class="c-s">"checkout-api"</span>,
+        team_code=<span class="c-s">"OPS"</span>,
+    )</pre>
+            </div>
+
+            <p class="st-sdk-foot">Zero dependencies, typed, ESM + CJS · sync and async ·
+              <a href="https://www.npmjs.com/package/@sigtake/sdk">npm</a> ·
+              <a href="https://pypi.org/project/sigtake/">PyPI</a> ·
+              <a href="https://github.com/Sigtake">GitHub</a>
+            </p>
+          </div>
+
+          <!-- CTA intermedia: aquí es donde el visitante ya entendió el producto -->
+          <div class="st-reveal st-d2"
+            style="margin-top:48px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:16px">
+            <a href="https://app.sigtake.com/register" class="st-btn-primary"
+              style="display:inline-flex;align-items:center;font-size:16px;font-weight:600;padding:13px 28px;border-radius:10px;box-shadow:0 0 32px rgba(45,212,191,0.32)">Get
+              your API key</a>
+            <span style="font-size:14px;color:#64748B">Free during early access · no credit card</span>
+          </div>
+        </div>
+      </section>
+
       <!-- PRICING -->
       <section class="st-sec" id="pricing"
         style="padding:88px 32px;border-top:1px solid rgba(255,255,255,0.05);scroll-margin-top:64px">
@@ -1544,6 +1731,30 @@
   <script>
     (function () {
       document.documentElement.classList.add('st-js');
+
+      // Pestañas de SDK. Sin JS los dos paneles quedan visibles: `hidden` solo se aplica aquí.
+      var sdkTabs = [].slice.call(document.querySelectorAll('.st-sdk-tab'));
+      if (sdkTabs.length) {
+        var selectTab = function (tab, focus) {
+          sdkTabs.forEach(function (t) {
+            var on = t === tab;
+            t.setAttribute('aria-selected', on ? 'true' : 'false');
+            t.tabIndex = on ? 0 : -1;
+            document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+          });
+          if (focus) tab.focus();
+        };
+        selectTab(sdkTabs[0], false);
+        sdkTabs.forEach(function (tab, i) {
+          tab.addEventListener('click', function () { selectTab(tab, false); });
+          tab.addEventListener('keydown', function (e) {
+            var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+            if (!d) return;
+            e.preventDefault();
+            selectTab(sdkTabs[(i + d + sdkTabs.length) % sdkTabs.length], true);
+          });
+        });
+      }
 
       var revealTargets = document.querySelectorAll('.st-reveal');
       var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

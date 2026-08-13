@@ -7,9 +7,19 @@
 
 ## Product
 - [Features](https://sigtake.com/#features): alert deduplication, routing, multi-tenant workspaces
+- [SDKs](https://sigtake.com/#sdks): official Node and Python clients
 - [Monitoring](https://sigtake.com/#monitoring): uptime and signal monitoring built in
 - [How it works](https://sigtake.com/#how): connect, route, then acknowledge and resolve
 - [Pricing](https://sigtake.com/#pricing): free during early access; paid plans as we grow
+
+## SDKs
+- Node.js: `npm install @sigtake/sdk` (Node 18+, zero dependencies, ESM + CJS, typed).
+  https://www.npmjs.com/package/@sigtake/sdk
+- Python: `pip install sigtake` (Python 3.10+, sync and async, typed).
+  https://pypi.org/project/sigtake/
+- Both expose the same surface: `alerts.ingest({title, severity, source, team_code, payload})`
+  and `signals.send(source, {metric: value})`. The API key resolves tenant and project, so
+  there is no project id to pass.
 
 ## Notification channels
 - Live: email, Slack, Microsoft Teams, in-app (in-app push is always on and not configurable).

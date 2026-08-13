@@ -601,10 +601,6 @@
       transition: stroke-dashoffset 1.1s cubic-bezier(.22, 1, .36, 1);
     }
 
-    .st-landing .st-draw.st-drawn {
-      stroke-dashoffset: 0 !important;
-    }
-
     /* Los mockups entran con una escala mínima; los bloques de texto solo suben. No es el mismo gesto */
     .st-js .st-landing .st-reveal[role="img"],
     .st-js .st-landing .st-sdk {
@@ -1851,7 +1847,7 @@
           entries.forEach(function (entry) {
             if (!entry.isIntersecting) return;
             drawObs.unobserve(entry.target);
-            entry.target.classList.add('st-drawn');
+            entry.target.style.strokeDashoffset = '0';
           });
         }, { threshold: 0.4 });
         lines.forEach(function (el) {

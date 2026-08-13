@@ -448,6 +448,14 @@
       flex: none;
     }
 
+    .st-landing .st-feat-rev>:first-child {
+      order: 2;
+    }
+
+    .st-landing .st-feat-rev>:last-child {
+      order: 1;
+    }
+
     .st-landing .st-eyebrow-sec {
       margin: 0 0 var(--s3);
       font-size: var(--t3);
@@ -1279,8 +1287,10 @@
               </div>
             </div>
 
-            <!-- PILAR 2 — route & notify: el split clásico, ahora usado una vez y no seis -->
-            <div class="st-feat">
+            <!-- PILAR 2 — route & notify: el split clásico, ahora usado una vez y no seis.
+                 Invertido: el pilar 1 ya deja sus mockups a la derecha y dos seguidos en la
+                 misma columna se leen como un solo bloque encolado. -->
+            <div class="st-feat st-feat-rev">
               <div class="st-reveal">
                 <p
                   class="st-eyebrow">

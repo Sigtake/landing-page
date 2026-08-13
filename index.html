@@ -233,6 +233,29 @@
       align-items: center;
     }
 
+    .st-landing .st-faq {
+      margin: 0;
+    }
+
+    .st-landing .st-faq dt {
+      font-size: var(--t5);
+      font-weight: 600;
+      color: var(--ink-1);
+      margin-top: var(--s5);
+    }
+
+    .st-landing .st-faq dt:first-of-type {
+      margin-top: 0;
+    }
+
+    .st-landing .st-faq dd {
+      margin: var(--s2) 0 0;
+      font-size: var(--t4);
+      line-height: 1.65;
+      color: var(--ink-3);
+      text-wrap: pretty;
+    }
+
     .st-landing .st-sdk {
       background: var(--surface-1);
       border: 1px solid var(--line);
@@ -1117,9 +1140,8 @@
               class="st-h2">
               Everything between <span style="color:#F87171">“it fired”</span> and <span style="color:#34D399">“it's
                 fixed”</span></h2>
-            <p class="st-lede-sec">One platform for the whole
-              on-call loop: ingestion, deduplication, routing, acknowledgement and the metrics to prove you're getting
-              faster.</p>
+            <p class="st-lede-sec">The whole on-call loop: ingestion, deduplication, routing and
+              acknowledgement.</p>
           </div>
 
           <div style="display:flex;flex-direction:column;gap:88px">
@@ -1129,7 +1151,7 @@
                 <p class="st-eyebrow">Capture &amp; dedupe</p>
                 <h3 class="st-h3">One alert — not four hundred</h3>
                 <p class="st-lede">Repeated alerts collapse into a single row with an occurrence counter, while
-                  everything streams in live — acknowledge, resolve and discuss without leaving the incident.</p>
+                  everything streams in live — acknowledge and resolve without leaving the incident.</p>
                 <ul class="st-checks">
                   <li><span class="st-ck">✓</span>Fingerprint on source + title + severity</li>
                   <li><span class="st-ck">✓</span>Live updates over server-sent events, scoped to your
@@ -1290,7 +1312,7 @@
                 <p class="st-eyebrow">Built for organizations</p>
                 <h3 class="st-h3">Multi-tenant from the first line of code</h3>
                 <p class="st-lede" style="margin-bottom:0">Hard isolation per organization, hierarchical roles, a
-                  full audit trail and rate-limited API keys whose secret is shown exactly once.</p>
+                  full audit trail and rate-limited API keys.</p>
               </div>
               <div class="st-strip">
                 <div class="st-reveal">
@@ -1334,8 +1356,8 @@
                     class="st-h3">
                     Know you're down before your users do</h3>
                   <p class="st-lede">Scheduled
-                    checks against your endpoints, with uptime percentage, latency trends and a plain up/down semaphore. A
-                    failed check is just another alert — routed like the rest.</p>
+                    checks against your endpoints, with uptime percentage, latency trends and a plain up/down
+                    semaphore.</p>
                   <ul
                     class="st-checks">
                     <li><span
@@ -1410,8 +1432,8 @@
                     class="st-h3">
                     Watch the numbers that matter</h3>
                   <p class="st-lede">Push any
-                    numeric metric through the API — queue depth, error rate, temperature. Rules evaluate every minute and
-                    raise a real alert the moment something's off.</p>
+                    numeric metric through the API — queue depth, error rate, temperature. Rules evaluate every
+                    minute.</p>
                   <ul
                     class="st-checks">
                     <li><span
@@ -1544,8 +1566,7 @@
           <div class="st-reveal" style="max-width:620px;margin-bottom:40px">
             <p class="st-eyebrow-sec">SDKs</p>
             <h2 class="st-h2">Your first alert, in eight lines</h2>
-            <p class="st-lede-sec">Official SDKs for Node and Python. Same surface, same fields — pick the one
-              your service already speaks.</p>
+            <p class="st-lede-sec">Official SDKs for Node and Python. Same surface, same fields.</p>
           </div>
 
           <div class="st-reveal st-d1 st-sdk">
@@ -1615,37 +1636,42 @@
             <p class="st-lede-sec">Everything's free while we're in early
               access — paid plans will come as we grow.</p>
           </div>
-          <!-- Business: informational band, not a pricing card (everything is free during early access) -->
+          <!-- Teaser: el detalle de planes vive en /pricing (spec 82, fase 5), no aquí -->
           <div class="st-biz st-reveal st-d1"
-            style="max-width:760px;margin:0 auto;background:linear-gradient(180deg,#111A2B,#0F1623);border:1px solid rgba(45,212,191,0.25);border-radius:18px;padding:30px 32px;box-shadow:0 0 44px rgba(45,212,191,0.08)">
+            style="max-width:760px;margin:0 auto;background:linear-gradient(180deg,#111A2B,#0F1623);border:1px solid rgba(45,212,191,0.25);border-radius:18px;padding:26px 32px;box-shadow:0 0 44px rgba(45,212,191,0.08)">
             <div class="st-biz-head"
               style="display:flex;align-items:center;justify-content:space-between;gap:16px 24px;flex-wrap:wrap">
               <div style="min-width:0">
-                <p
-                  style="margin:0 0 8px;font-size:12.5px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#5EEAD4">
-                  Business</p>
-                <h3
-                  style="margin:0 0 6px;font-size:21px;font-weight:700;letter-spacing:-0.015em;color:#F1F5F9;line-height:1.3">
+                <p class="st-eyebrow" style="margin-bottom:6px">Business</p>
+                <h3 style="margin:0 0 6px;font-size:21px;font-weight:700;letter-spacing:-0.015em;color:#F1F5F9;line-height:1.3">
                   For orgs that treat alerting as infrastructure</h3>
-                <p style="margin:0;font-size:14px;line-height:1.6;color:#94A3B8">Free during early access, like
-                  everything else — with the guarantees larger teams need.</p>
+                <p class="st-card-p">Unlimited users, teams, alerts and monitors. Enforced 2FA, full audit
+                  history and priority support.</p>
               </div>
               <a href="mailto:help@sigtake.com?subject=Talk%20to%20sales" class="st-btn-ghost st-btn-ghost-teal"
                 style="flex:none;display:inline-flex;justify-content:center;font-size:14px;font-weight:600;padding:11px 22px;border-radius:9px">Talk
                 to sales</a>
             </div>
-            <div style="height:1px;background:rgba(255,255,255,0.06);margin:22px 0"></div>
-            <ul class="st-biz-list"
-              style="margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px 24px;font-size:13.5px;color:#CBD5E1">
-              <li style="display:flex;gap:9px"><span class="st-ck">✓</span>Unlimited users,
-                teams &amp; monitors</li>
-              <li style="display:flex;gap:9px"><span class="st-ck">✓</span>Unlimited alerts,
-                custom rate limits</li>
-              <li style="display:flex;gap:9px"><span class="st-ck">✓</span>Enforced 2FA + full
-                audit history</li>
-              <li style="display:flex;gap:9px"><span class="st-ck">✓</span>99.9% uptime SLA</li>
-              <li style="display:flex;gap:9px"><span class="st-ck">✓</span>Priority support</li>
-            </ul>
+          </div>
+
+          <!-- FAQ. Sin marcado FAQPage a propósito: ese schema se reserva para /pricing y
+               dos FAQPage en el mismo sitio compiten entre sí. -->
+          <div class="st-reveal st-d2" style="max-width:760px;margin:56px auto 0">
+            <h3 class="st-h3" style="font-size:21px;margin-bottom:20px">Before you ask</h3>
+            <dl class="st-faq">
+              <dt>Do I have to replace my current monitoring?</dt>
+              <dd>No. Sigtake sits downstream of whatever you already run — point an Alertmanager webhook or a
+                cron job at the API and you are ingesting.</dd>
+              <dt>How does it decide two alerts are the same incident?</dt>
+              <dd>A fingerprint over source, title and severity, scoped to one project. The same failure in
+                staging and production stays two separate incidents.</dd>
+              <dt>Who gets notified?</dt>
+              <dd>The team the API key belongs to, through that team's channels in that project. In-app push
+                always lands, so nothing is lost while a channel is misconfigured.</dd>
+              <dt>What happens if a channel is down?</dt>
+              <dd>The dispatch retries with exponential backoff, and the failure is recorded rather
+                than swallowed.</dd>
+            </dl>
           </div>
         </div>
       </section>
@@ -1660,8 +1686,7 @@
           <h2
             style="position:relative;margin:0 0 14px;font-size:clamp(29px,5.5vw,38px);line-height:1.15;font-weight:700;letter-spacing:-0.02em;color:#F8FAFC">
             Stop drowning in alert noise</h2>
-          <p style="position:relative;margin:0 0 28px;font-size:16.5px;color:#94A3B8">Your first API key is one click
-            away. Free for every team while we're in early access.</p>
+          <p style="position:relative;margin:0 0 28px;font-size:16.5px;color:#94A3B8">Your first API key is one click away.</p>
           <div style="position:relative;display:flex;justify-content:center;flex-wrap:wrap;gap:14px">
             <a href="https://app.sigtake.com/register" class="st-btn-primary"
               style="display:inline-flex;align-items:center;font-size:16px;font-weight:600;padding:13px 28px;border-radius:10px;box-shadow:0 0 32px rgba(45,212,191,0.4)">Start

@@ -62,11 +62,8 @@
     ]
   }
   </script>
-  <!-- Destino de todos los CTA: adelanta el handshake al clic de conversión -->
   <link rel="preconnect" href="https://app.sigtake.com">
   <style>
-    /* Subsets propios: solo los glifos que usan estas tres páginas, y el eje wght recortado
-       a los pesos que algún selector puede pedir. opsz 14-62 cubre del wordmark de 15px al h1 de 60px. */
     @font-face {
       font-family: "Inter";
       src: url("/public/fonts/inter-var-latin.woff2") format("woff2");
@@ -84,7 +81,7 @@
     }
 
     :root {
-      /* Espaciado */
+      /* Spacing */
       --s1: 4px;
       --s2: 8px;
       --s3: 12px;
@@ -96,7 +93,7 @@
       --s9: 96px;
       --s10: 128px;
 
-      /* Tipografía */
+      /* Typography */
       --t1: 11px;
       --t2: 12px;
       --t3: 13px;
@@ -109,27 +106,27 @@
       --t-h2: clamp(28px, 5.4vw, 38px);
       --t-h3: clamp(23px, 4.8vw, 27px);
 
-      /* Radios */
+      /* Radii */
       --r-chip: 6px;
       --r-ctrl: 10px;
       --r-card: 16px;
       --r-pill: 999px;
 
-      /* Superficies */
+      /* Surfaces */
       --bg: #040609;
       --surface-1: #0f1115;
       --surface-2: #171a20;
       --well: #0a0c10;
       --footer: #060709;
 
-      /* Líneas y rellenos */
+      /* Lines and fills */
       --line-soft: rgba(255, 255, 255, .06);
       --line: rgba(255, 255, 255, .08);
       --line-strong: rgba(255, 255, 255, .12);
       --fill-soft: rgba(255, 255, 255, .04);
       --fill: rgba(255, 255, 255, .07);
 
-      /* Tinta */
+      /* Ink */
       --ink-1: #f1f5f9;
       --ink-2: #cbd5e1;
       --ink-3: #94a3b8;
@@ -137,13 +134,13 @@
       --ink-5: #475569;
       --ink-inverse: #0c1220;
 
-      /* Acento */
+      /* Accent */
       --teal-500: #0d9488;
       --teal-400: #2dd4bf;
       --teal-300: #5eead4;
       --teal-200: #99f6e4;
 
-      /* Severidad — independientes de la marca */
+      /* Severity — independent of the brand */
       --sev-critical: #f87171;
       --sev-high: #fb923c;
       --sev-medium: #fbbf24;
@@ -172,7 +169,6 @@
       min-height: 100vh;
     }
 
-    /* Display face: headlines and wordmark only; body stays Inter, data stays monospace */
     .st-landing h1,
     .st-landing h2,
     .st-landing h3,
@@ -199,7 +195,7 @@
       border-radius: 4px;
     }
 
-    /* Especificidad de dos clases: `.st-landing a` gana a `.st-skip` a secas y le devolvería el color teal */
+    /* Two classes required: `.st-landing a` outranks a bare `.st-skip` and repaints it teal */
     .st-landing .st-skip {
       position: absolute;
       left: 16px;
@@ -224,7 +220,7 @@
       scroll-margin-top: var(--s8);
     }
 
-    /* ---- Patrones repetidos ---- */
+    /* ---- Repeated patterns ---- */
 
     .st-landing .st-feat {
       display: grid;
@@ -262,7 +258,6 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
-      /* El h1 manda: el radar se apaga hacia abajo para no competir con el texto ni con el mockup */
       -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 32%, #000 30%, transparent 78%);
       mask-image: radial-gradient(ellipse 70% 60% at 50% 32%, #000 30%, transparent 78%);
     }
@@ -275,7 +270,6 @@
       text-align: center;
     }
 
-    /* Espejado: es el mismo motivo del hero devuelto al final, no una repetición */
     .st-landing .st-radar-close {
       -webkit-mask-image: radial-gradient(ellipse 65% 75% at 50% 100%, #000 20%, transparent 75%);
       mask-image: radial-gradient(ellipse 65% 75% at 50% 100%, #000 20%, transparent 75%);
@@ -287,7 +281,6 @@
       margin: 0 auto;
     }
 
-    /* El arco del h1 —"from firing to fixed"— cerrado literalmente */
     .st-landing .st-arc {
       display: inline-flex;
       align-items: center;
@@ -445,7 +438,7 @@
       align-items: start;
     }
 
-    /* Ritmo 1 — asimétrico: el pilar diferenciador, donde el mockup manda */
+    /* Rhythm 1 — asymmetric */
     .st-landing .st-pillar-lg {
       display: grid;
       grid-template-columns: 4fr 6fr;
@@ -459,7 +452,7 @@
       gap: var(--s4);
     }
 
-    /* Ritmo 3 — tarjetas gemelas */
+    /* Rhythm 3 — twin cards */
     .st-landing .st-twin {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -473,7 +466,7 @@
       gap: var(--s4);
     }
 
-    /* Ritmo 4 — tira de tres: importa, pero no vende */
+    /* Rhythm 4 — three-up strip */
     .st-landing .st-strip {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -501,7 +494,6 @@
       color: var(--ink-3);
     }
 
-    /* Las copias repetidas del canal: mismo texto, distinta hora — el argumento es la repetición */
     .st-landing .st-dupe {
       display: flex;
       gap: var(--s2);
@@ -662,7 +654,7 @@
       color: var(--teal-300);
     }
 
-    /* Reveal on scroll: hidden state only applies once JS tags <html> with .st-js (no-JS fallback = everything visible) */
+    /* The hidden state applies only once JS tags <html> with .st-js, so the no-JS fallback shows everything */
     .st-js .st-landing .st-reveal {
       opacity: 0;
       transform: translateY(18px);
@@ -674,12 +666,10 @@
       transform: none;
     }
 
-    /* El trazo se dibuja; sin JS y con reduced-motion nunca se pone dasharray, así que se ve entero */
     .st-landing .st-draw {
       transition: stroke-dashoffset 1.1s cubic-bezier(.22, 1, .36, 1);
     }
 
-    /* Los mockups entran con una escala mínima; los bloques de texto solo suben. No es el mismo gesto */
     .st-js .st-landing .st-reveal[role="img"],
     .st-js .st-landing .st-sdk {
       transform: translateY(18px) scale(.985);
@@ -739,10 +729,10 @@
       }
     }
 
-    /* Sobre un pseudo-elemento y con opacity: animar `background` es paint en el main thread
-       en cada frame; opacity la compone la GPU. La fila es un grid, de ahí el ::before absoluto. */
-    /* isolation: crea contexto de apilamiento propio, así el z-index:-1 queda detrás del
-       contenido de la fila sin escaparse detrás del fondo de la tarjeta. */
+    /* Animating `background` repaints on the main thread every frame; the absolute ::before fades
+       via opacity instead, which the GPU composites. */
+    /* isolation gives the row its own stacking context, keeping the z-index:-1 layer behind the
+       row content instead of behind the card background. */
     .st-landing .st-row-new {
       position: relative;
       isolation: isolate;
@@ -788,7 +778,7 @@
 
     @media (max-width: 1080px) {
 
-      /* minmax(0,1fr): plain 1fr is minmax(auto,1fr) and the nowrap text inside the cards inflates the track past the viewport */
+      /* minmax(0,1fr): a plain 1fr is minmax(auto,1fr), and the nowrap card text inflates the track past the viewport */
       .st-landing .st-feat {
         grid-template-columns: minmax(0, 1fr);
         gap: var(--s6);
@@ -821,9 +811,8 @@
 
     @media (max-width: 767px) {
 
-      /* Los enlaces bajan a una segunda fila con scroll horizontal. Son los MISMOS nodos
-         recolocados, no un menú duplicado: el scrollspy indexa `.st-navlink` por id y con
-         dos copias solo registraría la última. */
+      /* The same nav nodes reflowed into a scrollable second row, never a duplicate menu: the
+         scrollspy indexes `.st-navlink` by id and would only register the last copy. */
       .st-landing .st-nav-inner {
         height: auto !important;
         flex-wrap: wrap;
@@ -831,8 +820,6 @@
         padding: 10px 16px 8px !important;
       }
 
-      /* 16px es lo que hace que el último enlace asome: es la única señal de que la fila
-         se arrastra, porque la barra de scroll va oculta. */
       .st-landing .st-nav-links {
         order: 3;
         flex: 0 0 100%;
@@ -850,7 +837,6 @@
         white-space: nowrap;
       }
 
-      /* La nav pasa de 64px a 74px con la segunda fila: los anclajes aterrizan por debajo */
       .st-landing #main,
       .st-landing #problem,
       .st-landing #features,
@@ -921,9 +907,7 @@
       }
     }
   </style>
-  <!-- Google Tag Manager. Va después del CSS y del preload de fuentes a propósito:
-       arriba se descubría antes que ellos y sus ~118 KB competían por ancho de banda
-       justo en la ventana del LCP. -->
+  <!-- Google Tag Manager -->
   <script>(function (w, d, s, l, i) {
       w[l] = w[l] || []; w[l].push({
         'gtm.start':
@@ -938,8 +922,8 @@
 
 <body>
   <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N5834SWZ" title="Google Tag Manager"
-      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N5834SWZ" title="Google Tag Manager" height="0"
+      width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
   <div class="st-landing">
     <a href="#main" class="st-skip">Skip to content</a>
@@ -960,8 +944,7 @@
           <a href="https://docs.sigtake.com" class="st-navlink">Docs</a>
         </div>
         <div style="display:flex;align-items:center;gap:16px">
-          <a href="https://app.sigtake.com/login" class="st-loglink"
-            style="font-size:14px;font-weight:500">Log in</a>
+          <a href="https://app.sigtake.com/login" class="st-loglink" style="font-size:14px;font-weight:500">Log in</a>
           <a href="https://app.sigtake.com/register" class="st-btn-primary"
             style="display:inline-flex;align-items:center;font-size:14px;font-weight:600;padding:8px 16px;border-radius:8px;box-shadow:0 0 20px rgba(45,212,191,0.3)">Start
             free</a>
@@ -975,8 +958,6 @@
         <div
           style="position:absolute;top:-220px;left:50%;transform:translateX(-50%);width:900px;height:520px;background:radial-gradient(ellipse at center,rgba(45,212,191,0.14),transparent 65%);pointer-events:none">
         </div>
-        <!-- Radar de señal: el mismo motivo que el login de la app (AuthLayout.vue). Decorativo,
-             une las dos superficies y no cuesta un solo request. -->
         <svg class="st-radar" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" aria-hidden="true"
           preserveAspectRatio="xMidYMid slice">
           <g fill="none" stroke="#FFFFFF">
@@ -1028,8 +1009,6 @@
           <p style="margin:0;font-size:13px;color:#94A3B8">Free during early access · No credit card · Set up in under 5
             minutes</p>
 
-          <!-- Product mockup. role="img" + aria-label: es una ilustración de UI, no datos —
-               sin él un lector de pantalla lee la tabla como un muro de texto sin relación fila/columna. -->
           <div role="img"
             aria-label="Screenshot of the Sigtake alert center: a list of five alerts with severity, team, occurrence count and status, and a toast announcing a new critical alert."
             style="position:relative;width:100%;max-width:1080px;margin-top:40px">
@@ -1176,8 +1155,7 @@
         </div>
       </section>
 
-      <!-- FUENTES — prueba visual de la promesa del hero. Sin logos de terceros: nombre en texto
-           y un punto teal, que además no envejece cuando una marca cambia de identidad. -->
+      <!-- SOURCES -->
       <section class="st-band" aria-label="Alert sources"
         style="padding:40px 32px;border-top:1px solid rgba(255,255,255,0.05)">
         <div
@@ -1197,7 +1175,7 @@
         </div>
       </section>
 
-      <!-- PROBLEMA — antes/despues con el mismo lenguaje de mockups del resto -->
+      <!-- PROBLEM -->
       <section class="st-sec" id="problem"
         style="padding:88px 32px;border-top:1px solid rgba(255,255,255,0.05);scroll-margin-top:64px">
         <div style="max-width:1080px;margin:0 auto">
@@ -1209,13 +1187,12 @@
           </div>
 
           <div class="st-vs">
-            <!-- Hoy -->
+            <!-- Today -->
             <div class="st-reveal" role="img"
               aria-label="A chat channel repeating the same CPU alert for prod-web-03 at 02:58, 03:01, 03:04 and 03:07, plus 394 more copies, with no owner and nobody acknowledging."
               style="background:#0F1115;border:1px solid rgba(248,113,113,0.22);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:12px">
               <div style="display:flex;align-items:center;justify-content:space-between">
-                <span
-                  style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#94A3B8">#alerts-prod</span>
+                <span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#94A3B8">#alerts-prod</span>
                 <span
                   style="font-size:10px;font-weight:700;letter-spacing:0.05em;color:#F87171;background:rgba(248,113,113,0.12);border-radius:6px;padding:2px 8px">TODAY</span>
               </div>
@@ -1231,7 +1208,7 @@
                 + 394 more · no owner · nobody acknowledged</div>
             </div>
 
-            <!-- Con Sigtake -->
+            <!-- With Sigtake -->
             <div class="st-reveal st-d1" role="img"
               aria-label="The same incident as a single row with a ×47 occurrence counter, acknowledged by Marta Ruiz two minutes ago and routed to the Infrastructure team."
               style="background:#0F1115;border:1px solid rgba(45,212,191,0.28);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:12px;box-shadow:0 0 32px rgba(45,212,191,0.07)">
@@ -1247,8 +1224,8 @@
                     style="display:inline-flex;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.05em;background:rgba(239,68,68,0.12);color:#F87171">CRITICAL</span><span
                     style="font-size:13.5px;font-weight:600;color:#F1F5F9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">CPU
                     above 92% on prod-web-03</span></span>
-                <span
-                  class="st-count" data-to="47" style="font-size:15px;font-weight:700;font-family:ui-monospace,Menlo,monospace;color:#5EEAD4;background:rgba(45,212,191,0.12);border:1px solid rgba(45,212,191,0.3);border-radius:8px;padding:4px 10px;flex:none">×47</span>
+                <span class="st-count" data-to="47"
+                  style="font-size:15px;font-weight:700;font-family:ui-monospace,Menlo,monospace;color:#5EEAD4;background:rgba(45,212,191,0.12);border:1px solid rgba(45,212,191,0.3);border-radius:8px;padding:4px 10px;flex:none">×47</span>
               </div>
               <div
                 style="display:flex;align-items:center;gap:8px;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#64748B;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px">
@@ -1265,11 +1242,9 @@
       <section class="st-sec" id="features" style="padding:88px 32px;border-top:1px solid rgba(255,255,255,0.05)">
         <div style="max-width:1080px;margin:0 auto">
           <div class="st-reveal" style="max-width:620px;margin-bottom:72px">
-            <p
-              class="st-eyebrow-sec">
+            <p class="st-eyebrow-sec">
               Product</p>
-            <h2
-              class="st-h2">
+            <h2 class="st-h2">
               Everything between <span style="color:#F87171">“it fired”</span> and <span style="color:#34D399">“it's
                 fixed”</span></h2>
             <p class="st-lede-sec">The whole on-call loop: ingestion, deduplication, routing and
@@ -1277,7 +1252,7 @@
           </div>
 
           <div style="display:flex;flex-direction:column;gap:88px">
-            <!-- PILAR 1 — capture & dedupe: ritmo asimétrico, dos mockups apilados -->
+            <!-- PILLAR 1 — capture & dedupe -->
             <div class="st-pillar-lg">
               <div class="st-reveal">
                 <p class="st-eyebrow">Capture &amp; dedupe</p>
@@ -1292,95 +1267,88 @@
                 </ul>
               </div>
               <div class="st-pillar-mocks">
-              <div class="st-reveal st-d1" role="img"
-                aria-label="A critical alert with Acknowledge and Resolve buttons, and a comment thread where a teammate is being @mentioned."
-                style="background:#0F1115;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:10px">
-                <div
-                  style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px 12px;background:#171A20;border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px 14px">
-                  <span style="display:flex;align-items:center;gap:10px;min-width:0"><span
-                      style="display:inline-flex;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.05em;background:rgba(239,68,68,0.12);color:#F87171">CRITICAL</span><span
-                      style="font-size:13px;font-weight:600;color:#F1F5F9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">CPU
-                      above 92% on prod-web-03</span></span>
-                  <span style="display:flex;gap:8px"><span
-                      style="font-size:11.5px;font-weight:600;color:#0C1220;background:#2DD4BF;border-radius:7px;padding:4px 10px">Acknowledge</span><span
-                      style="font-size:11.5px;font-weight:600;color:#E2E8F0;background:rgba(255,255,255,0.07);border-radius:7px;padding:4px 10px">Resolve</span></span>
-                </div>
-                <div
-                  style="background:#171A20;border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px 14px">
-                  <p style="margin:0 0 8px;font-size:12.5px;line-height:1.5;color:#CBD5E1"><span
-                      style="font-weight:600;color:#F1F5F9">Marta Ruiz</span> <span style="color:#64748B">·
-                      2m</span><br>Rolling restart on prod-web-03, watching load…</p>
+                <div class="st-reveal st-d1" role="img"
+                  aria-label="A critical alert with Acknowledge and Resolve buttons, and a comment thread where a teammate is being @mentioned."
+                  style="background:#0F1115;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:10px">
                   <div
-                    style="position:relative;background:#0A0C10;border:1px solid rgba(45,212,191,0.3);border-radius:8px;padding:8px 12px;font-size:12.5px;color:#E2E8F0">
-                    cc <span style="color:#5EEAD4;font-weight:600">@mar</span><span
-                      style="display:inline-block;width:1px;height:13px;background:#2DD4BF;vertical-align:-2px;animation:st-pulse 1s infinite"></span>
+                    style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px 12px;background:#171A20;border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px 14px">
+                    <span style="display:flex;align-items:center;gap:10px;min-width:0"><span
+                        style="display:inline-flex;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.05em;background:rgba(239,68,68,0.12);color:#F87171">CRITICAL</span><span
+                        style="font-size:13px;font-weight:600;color:#F1F5F9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">CPU
+                        above 92% on prod-web-03</span></span>
+                    <span style="display:flex;gap:8px"><span
+                        style="font-size:11.5px;font-weight:600;color:#0C1220;background:#2DD4BF;border-radius:7px;padding:4px 10px">Acknowledge</span><span
+                        style="font-size:11.5px;font-weight:600;color:#E2E8F0;background:rgba(255,255,255,0.07);border-radius:7px;padding:4px 10px">Resolve</span></span>
+                  </div>
+                  <div
+                    style="background:#171A20;border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px 14px">
+                    <p style="margin:0 0 8px;font-size:12.5px;line-height:1.5;color:#CBD5E1"><span
+                        style="font-weight:600;color:#F1F5F9">Marta Ruiz</span> <span style="color:#64748B">·
+                        2m</span><br>Rolling restart on prod-web-03, watching load…</p>
                     <div
-                      style="position:absolute;left:34px;top:36px;z-index:2;background:#1E2229;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:5px;box-shadow:0 10px 28px rgba(0,0,0,0.5);min-width:170px">
+                      style="position:relative;background:#0A0C10;border:1px solid rgba(45,212,191,0.3);border-radius:8px;padding:8px 12px;font-size:12.5px;color:#E2E8F0">
+                      cc <span style="color:#5EEAD4;font-weight:600">@mar</span><span
+                        style="display:inline-block;width:1px;height:13px;background:#2DD4BF;vertical-align:-2px;animation:st-pulse 1s infinite"></span>
                       <div
-                        style="display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:6px;background:rgba(45,212,191,0.12)">
-                        <span
-                          style="width:18px;height:18px;border-radius:50%;background:#0D9488;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#F0FDFA">MR</span><span
-                          style="font-size:12px;color:#F1F5F9">Marta Ruiz</span>
+                        style="position:absolute;left:34px;top:36px;z-index:2;background:#1E2229;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:5px;box-shadow:0 10px 28px rgba(0,0,0,0.5);min-width:170px">
+                        <div
+                          style="display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:6px;background:rgba(45,212,191,0.12)">
+                          <span
+                            style="width:18px;height:18px;border-radius:50%;background:#0D9488;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#F0FDFA">MR</span><span
+                            style="font-size:12px;color:#F1F5F9">Marta Ruiz</span>
+                        </div>
+                        <div style="display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:6px"><span
+                            style="width:18px;height:18px;border-radius:50%;background:#334155;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#E2E8F0">MC</span><span
+                            style="font-size:12px;color:#CBD5E1">Marcus Chen</span></div>
                       </div>
-                      <div style="display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:6px"><span
-                          style="width:18px;height:18px;border-radius:50%;background:#334155;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#E2E8F0">MC</span><span
-                          style="font-size:12px;color:#CBD5E1">Marcus Chen</span></div>
                     </div>
                   </div>
+                  <!-- Reserves room for the mention dropdown, which is absolutely positioned and would otherwise overlap the card below -->
+                  <div style="height:26px"></div>
                 </div>
-                <!-- Reserva sitio al desplegable de menciones, que es position:absolute y si no invade la tarjeta de abajo -->
-                <div style="height:26px"></div>
-              </div>
-              <div class="st-reveal st-d2" role="img"
-                aria-label="Repeated copies of one alert collapsing into a single row with a ×47 occurrence counter, first seen 2 days ago, last seen 12 seconds ago, notified at occurrences 1, 10 and 25."
-                style="background:#0F1115;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:24px;display:flex;flex-direction:column;align-items:center;gap:0">
-                <div
-                  style="width:82%;height:12px;background:#14171C;border:1px solid rgba(255,255,255,0.05);border-bottom:none;border-radius:10px 10px 0 0;opacity:.35">
+                <div class="st-reveal st-d2" role="img"
+                  aria-label="Repeated copies of one alert collapsing into a single row with a ×47 occurrence counter, first seen 2 days ago, last seen 12 seconds ago, notified at occurrences 1, 10 and 25."
+                  style="background:#0F1115;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:24px;display:flex;flex-direction:column;align-items:center;gap:0">
+                  <div
+                    style="width:82%;height:12px;background:#14171C;border:1px solid rgba(255,255,255,0.05);border-bottom:none;border-radius:10px 10px 0 0;opacity:.35">
+                  </div>
+                  <div
+                    style="width:90%;height:12px;background:#14171C;border:1px solid rgba(255,255,255,0.05);border-bottom:none;border-radius:10px 10px 0 0;opacity:.6">
+                  </div>
+                  <div
+                    style="width:100%;display:flex;align-items:center;justify-content:space-between;background:#171A20;border:1px solid rgba(45,212,191,0.25);border-radius:10px;padding:14px 16px;box-shadow:0 0 24px rgba(45,212,191,0.12)">
+                    <span style="display:flex;align-items:center;gap:10px;min-width:0"><span
+                        style="display:inline-flex;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.05em;background:rgba(239,68,68,0.12);color:#F87171">CRITICAL</span><span
+                        style="font-size:13.5px;font-weight:600;color:#F1F5F9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">CPU
+                        above 92% on prod-web-03</span></span>
+                    <span class="st-count" data-to="47"
+                      style="font-size:15px;font-weight:700;font-family:ui-monospace,Menlo,monospace;color:#5EEAD4;background:rgba(45,212,191,0.12);border:1px solid rgba(45,212,191,0.3);border-radius:8px;padding:4px 10px;flex:none">×47</span>
+                  </div>
+                  <div
+                    style="width:100%;display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 12px;margin-top:14px;font-size:11.5px;color:#64748B;font-family:ui-monospace,Menlo,monospace">
+                    <span>first seen 2d ago</span><span>notified at 1 · 10 · 25</span><span>last seen 12s ago</span>
+                  </div>
                 </div>
-                <div
-                  style="width:90%;height:12px;background:#14171C;border:1px solid rgba(255,255,255,0.05);border-bottom:none;border-radius:10px 10px 0 0;opacity:.6">
-                </div>
-                <div
-                  style="width:100%;display:flex;align-items:center;justify-content:space-between;background:#171A20;border:1px solid rgba(45,212,191,0.25);border-radius:10px;padding:14px 16px;box-shadow:0 0 24px rgba(45,212,191,0.12)">
-                  <span style="display:flex;align-items:center;gap:10px;min-width:0"><span
-                      style="display:inline-flex;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.05em;background:rgba(239,68,68,0.12);color:#F87171">CRITICAL</span><span
-                      style="font-size:13.5px;font-weight:600;color:#F1F5F9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">CPU
-                      above 92% on prod-web-03</span></span>
-                  <span
-                    class="st-count" data-to="47" style="font-size:15px;font-weight:700;font-family:ui-monospace,Menlo,monospace;color:#5EEAD4;background:rgba(45,212,191,0.12);border:1px solid rgba(45,212,191,0.3);border-radius:8px;padding:4px 10px;flex:none">×47</span>
-                </div>
-                <div
-                  style="width:100%;display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 12px;margin-top:14px;font-size:11.5px;color:#64748B;font-family:ui-monospace,Menlo,monospace">
-                  <span>first seen 2d ago</span><span>notified at 1 · 10 · 25</span><span>last seen 12s ago</span>
-                </div>
-              </div>
               </div>
             </div>
 
-            <!-- PILAR 2 — route & notify: el split clásico, ahora usado una vez y no seis.
-                 Invertido: el pilar 1 ya deja sus mockups a la derecha y dos seguidos en la
-                 misma columna se leen como un solo bloque encolado. -->
+            <!-- PILLAR 2 — route & notify -->
             <div class="st-feat st-feat-rev">
               <div class="st-reveal">
-                <p
-                  class="st-eyebrow">
+                <p class="st-eyebrow">
                   Teams &amp; notification channels</p>
-                <h3
-                  class="st-h3">
+                <h3 class="st-h3">
                   Route the right alert to the right people</h3>
                 <p class="st-lede">Every API
                   key belongs to a team; every team has its channels. Configure a channel once — email, Slack, Microsoft
                   Teams or in-app — and reuse it across teams with per-team toggles.</p>
-                <ul
-                  class="st-checks">
-                  <li><span
-                      class="st-ck">✓</span>Email, Slack, Microsoft Teams and in-app delivery
+                <ul class="st-checks">
+                  <li><span class="st-ck">✓</span>Email, Slack, Microsoft Teams and in-app delivery
                   </li>
-                  <li><span
-                      class="st-ck">✓</span>One Slack workspace, a different channel per project
+                  <li><span class="st-ck">✓</span>One Slack workspace, a different channel per project
                   </li>
-                  <li><span
-                      style="color:#94A3B8;font-weight:700">◦</span><span style="color:#94A3B8">Discord and Google Chat
+                  <li><span style="color:#94A3B8;font-weight:700">◦</span><span style="color:#94A3B8">Discord and Google
+                      Chat
                       are in progress</span></li>
                 </ul>
               </div>
@@ -1440,7 +1408,7 @@
               </div>
             </div>
 
-            <!-- PILAR 4 — organizations: degradado a tira de tres. Importa, pero no vende -->
+            <!-- PILLAR 4 — organizations -->
             <div style="display:flex;flex-direction:column;gap:32px">
               <div class="st-reveal" style="max-width:620px">
                 <p class="st-eyebrow">Built for organizations</p>
@@ -1467,7 +1435,7 @@
         </div>
       </section>
 
-      <!-- MONITORING — pilar propio, no un feature más: sección hermana con su propio h2 -->
+      <!-- MONITORING -->
       <section class="st-sec" id="monitoring"
         style="padding:88px 32px;border-top:1px solid rgba(255,255,255,0.05);scroll-margin-top:64px">
         <div style="max-width:1080px;margin:0 auto">
@@ -1480,145 +1448,125 @@
           </div>
 
           <div class="st-twin">
-              <!-- Gemela 1 — website -->
-              <div>
-                <div class="st-reveal">
-                  <p
-                    class="st-eyebrow">
-                    Website monitoring</p>
-                  <h3
-                    class="st-h3">
-                    Know you're down before your users do</h3>
-                  <p class="st-lede">Scheduled
-                    checks against your endpoints, with uptime percentage, latency trends and a plain up/down
-                    semaphore.</p>
-                  <ul
-                    class="st-checks">
-                    <li><span
-                        class="st-ck">✓</span>Checks down to every 60 seconds</li>
-                    <li><span
-                        class="st-ck">✓</span>Uptime % over 24h / 7d / 30d windows</li>
-                    <li><span
-                        class="st-ck">✓</span>Latency history per monitor</li>
-                  </ul>
-                </div>
-                <div class="st-reveal st-d1" role="img"
-                  aria-label="Uptime panel for acme.com: status UP, 99.98% uptime over 30 days with one failed day, and a latency chart averaging 184 milliseconds, checked every 60 seconds."
-                  style="background:#0F1115;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px">
-                  <div style="display:flex;align-items:center;justify-content:space-between">
-                    <span style="display:flex;align-items:center;gap:10px"><span
-                        style="position:relative;width:9px;height:9px;flex:none"><span
-                          style="position:absolute;inset:0;border-radius:50%;background:#10B981"></span><span
-                          style="position:absolute;inset:0;border-radius:50%;border:1.5px solid #10B981;animation:st-ping 1.8s cubic-bezier(0,0,.2,1) infinite"></span></span><span
-                        style="font-size:14px;font-weight:600;color:#F1F5F9;font-family:ui-monospace,Menlo,monospace">acme.com</span></span>
-                    <span
-                      style="font-size:11px;font-weight:600;color:#34D399;background:rgba(16,185,129,0.12);border-radius:6px;padding:3px 9px">UP</span>
-                  </div>
-                  <div>
-                    <div
-                      style="display:flex;justify-content:space-between;font-size:12px;color:#94A3B8;margin-bottom:6px">
-                      <span>Uptime · 30d</span><span style="color:#34D399;font-weight:700">99.98%</span>
-                    </div>
-                    <div style="display:flex;gap:2px">
-                      <span class="st-bar"></span><span
-                        class="st-bar"></span><span
-                        class="st-bar"></span><span
-                        class="st-bar"></span><span
-                        style="flex:1;height:22px;border-radius:3px;background:#EF4444"></span><span
-                        class="st-bar"></span><span
-                        class="st-bar"></span><span
-                        class="st-bar"></span><span
-                        class="st-bar"></span><span
-                        class="st-bar"></span><span
-                        class="st-bar"></span><span
-                        class="st-bar"></span><span
-                        class="st-bar"></span><span
-                        class="st-bar"></span>
-                    </div>
-                  </div>
-                  <div>
-                    <div
-                      style="display:flex;justify-content:space-between;font-size:12px;color:#94A3B8;margin-bottom:4px">
-                      <span>Latency</span><span style="font-family:ui-monospace,Menlo,monospace;color:#5EEAD4">avg 184
-                        ms</span>
-                    </div>
-                    <svg viewBox="0 0 300 64" style="display:block;width:100%;height:64px" aria-hidden="true">
-                      <polyline
-                        points="0,40 25,36 50,42 75,30 100,34 125,22 150,30 175,18 200,26 225,20 250,30 275,24 300,28"
-                        fill="none" stroke="#2DD4BF" stroke-width="2" stroke-linejoin="round" class="st-draw"></polyline>
-                      <line x1="0" y1="56" x2="300" y2="56" stroke="rgba(255,255,255,0.08)" stroke-width="1"></line>
-                    </svg>
-                    <div
-                      style="display:flex;justify-content:space-between;font-size:10.5px;color:#475569;font-family:ui-monospace,Menlo,monospace">
-                      <span>-24h</span><span>checked every 60s</span><span>now</span>
-                    </div>
-                  </div>
-                </div>
+            <!-- Twin 1 — website -->
+            <div>
+              <div class="st-reveal">
+                <p class="st-eyebrow">
+                  Website monitoring</p>
+                <h3 class="st-h3">
+                  Know you're down before your users do</h3>
+                <p class="st-lede">Scheduled
+                  checks against your endpoints, with uptime percentage, latency trends and a plain up/down
+                  semaphore.</p>
+                <ul class="st-checks">
+                  <li><span class="st-ck">✓</span>Checks down to every 60 seconds</li>
+                  <li><span class="st-ck">✓</span>Uptime % over 24h / 7d / 30d windows</li>
+                  <li><span class="st-ck">✓</span>Latency history per monitor</li>
+                </ul>
               </div>
-
-              <!-- Gemela 2 — signals -->
-              <div>
-                <div class="st-reveal">
-                  <p
-                    class="st-eyebrow">
-                    Signal monitoring</p>
-                  <h3
-                    class="st-h3">
-                    Watch the numbers that matter</h3>
-                  <p class="st-lede">Push any
-                    numeric metric through the API — queue depth, error rate, temperature. Rules evaluate every
-                    minute.</p>
-                  <ul
-                    class="st-checks">
-                    <li><span
-                        class="st-ck">✓</span>Thresholds over avg / min / max / last, in any time
-                      window</li>
-                    <li><span
-                        class="st-ck">✓</span><span><strong
-                          style="color:#F1F5F9;font-weight:600">Anomaly detection</strong> — learns each metric's normal
-                        by
-                        hour &amp; weekday, no threshold to set</span></li>
-                    <li><span
-                        class="st-ck">✓</span><strong
-                        style="color:#F1F5F9;font-weight:600">Heartbeat alerts</strong>&nbsp;when a metric goes silent
-                    </li>
-                  </ul>
+              <div class="st-reveal st-d1" role="img"
+                aria-label="Uptime panel for acme.com: status UP, 99.98% uptime over 30 days with one failed day, and a latency chart averaging 184 milliseconds, checked every 60 seconds."
+                style="background:#0F1115;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px">
+                <div style="display:flex;align-items:center;justify-content:space-between">
+                  <span style="display:flex;align-items:center;gap:10px"><span
+                      style="position:relative;width:9px;height:9px;flex:none"><span
+                        style="position:absolute;inset:0;border-radius:50%;background:#10B981"></span><span
+                        style="position:absolute;inset:0;border-radius:50%;border:1.5px solid #10B981;animation:st-ping 1.8s cubic-bezier(0,0,.2,1) infinite"></span></span><span
+                      style="font-size:14px;font-weight:600;color:#F1F5F9;font-family:ui-monospace,Menlo,monospace">acme.com</span></span>
+                  <span
+                    style="font-size:11px;font-weight:600;color:#34D399;background:rgba(16,185,129,0.12);border-radius:6px;padding:3px 9px">UP</span>
                 </div>
-                <div class="st-reveal st-d1" role="img"
-                  aria-label="Signal monitor queue_depth for payments, currently at 86.2 and climbing toward a threshold of 90; the rule reads: value above 90 for 5 minutes raises a critical alert."
-                  style="background:#0F1115;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px">
-                  <div style="display:flex;align-items:center;justify-content:space-between">
-                    <span style="display:flex;align-items:center;gap:10px"><span
-                        style="position:relative;width:9px;height:9px;flex:none"><span
-                          style="position:absolute;inset:0;border-radius:50%;background:#10B981"></span><span
-                          style="position:absolute;inset:0;border-radius:50%;border:1.5px solid #10B981;animation:st-ping 1.8s cubic-bezier(0,0,.2,1) infinite"></span></span><span
-                        style="font-size:14px;font-weight:600;color:#F1F5F9;font-family:ui-monospace,Menlo,monospace">queue_depth
-                        · payments</span></span>
-                    <span
-                      style="font-size:13px;font-weight:700;font-family:ui-monospace,Menlo,monospace;color:#FBBF24">86.2</span>
-                  </div>
-                  <div style="position:relative">
-                    <svg viewBox="0 0 300 80" style="display:block;width:100%;height:80px" aria-hidden="true">
-                      <line x1="0" y1="18" x2="300" y2="18" stroke="#EF4444" stroke-width="1" stroke-dasharray="5 4"
-                        opacity="0.7"></line>
-                      <polyline
-                        points="0,62 25,58 50,60 75,50 100,54 125,44 150,48 175,36 200,40 225,30 250,26 275,24 300,21"
-                        fill="none" stroke="#2DD4BF" stroke-width="2" stroke-linejoin="round" class="st-draw"></polyline>
-                      <circle cx="300" cy="21" r="3.5" fill="#FBBF24"></circle>
-                    </svg>
-                    <span
-                      style="position:absolute;top:6px;right:0;font-size:10px;font-weight:700;font-family:ui-monospace,Menlo,monospace;color:#F87171">threshold
-                      90</span>
-                  </div>
+                <div>
                   <div
-                    style="display:flex;align-items:center;gap:10px;background:#0A0C10;border:1px solid rgba(255,255,255,0.07);border-radius:9px;padding:10px 12px;font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#CBD5E1;flex-wrap:wrap">
-                    <span style="color:#5EEAD4">value &gt; 90</span><span style="color:#475569">for</span><span
-                      style="color:#5EEAD4">5 min</span><span style="color:#475569">→</span><span
-                      style="display:inline-flex;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.05em;background:rgba(239,68,68,0.12);color:#F87171;font-family:'Inter',system-ui,sans-serif">CRITICAL</span><span
-                      style="color:#475569">alert</span>
+                    style="display:flex;justify-content:space-between;font-size:12px;color:#94A3B8;margin-bottom:6px">
+                    <span>Uptime · 30d</span><span style="color:#34D399;font-weight:700">99.98%</span>
+                  </div>
+                  <div style="display:flex;gap:2px">
+                    <span class="st-bar"></span><span class="st-bar"></span><span class="st-bar"></span><span
+                      class="st-bar"></span><span
+                      style="flex:1;height:22px;border-radius:3px;background:#EF4444"></span><span
+                      class="st-bar"></span><span class="st-bar"></span><span class="st-bar"></span><span
+                      class="st-bar"></span><span class="st-bar"></span><span class="st-bar"></span><span
+                      class="st-bar"></span><span class="st-bar"></span><span class="st-bar"></span>
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style="display:flex;justify-content:space-between;font-size:12px;color:#94A3B8;margin-bottom:4px">
+                    <span>Latency</span><span style="font-family:ui-monospace,Menlo,monospace;color:#5EEAD4">avg 184
+                      ms</span>
+                  </div>
+                  <svg viewBox="0 0 300 64" style="display:block;width:100%;height:64px" aria-hidden="true">
+                    <polyline
+                      points="0,40 25,36 50,42 75,30 100,34 125,22 150,30 175,18 200,26 225,20 250,30 275,24 300,28"
+                      fill="none" stroke="#2DD4BF" stroke-width="2" stroke-linejoin="round" class="st-draw"></polyline>
+                    <line x1="0" y1="56" x2="300" y2="56" stroke="rgba(255,255,255,0.08)" stroke-width="1"></line>
+                  </svg>
+                  <div
+                    style="display:flex;justify-content:space-between;font-size:10.5px;color:#475569;font-family:ui-monospace,Menlo,monospace">
+                    <span>-24h</span><span>checked every 60s</span><span>now</span>
                   </div>
                 </div>
               </div>
+            </div>
+
+            <!-- Twin 2 — signals -->
+            <div>
+              <div class="st-reveal">
+                <p class="st-eyebrow">
+                  Signal monitoring</p>
+                <h3 class="st-h3">
+                  Watch the numbers that matter</h3>
+                <p class="st-lede">Push any
+                  numeric metric through the API — queue depth, error rate, temperature. Rules evaluate every
+                  minute.</p>
+                <ul class="st-checks">
+                  <li><span class="st-ck">✓</span>Thresholds over avg / min / max / last, in any time
+                    window</li>
+                  <li><span class="st-ck">✓</span><span><strong style="color:#F1F5F9;font-weight:600">Anomaly
+                        detection</strong> — learns each metric's normal
+                      by
+                      hour &amp; weekday, no threshold to set</span></li>
+                  <li><span class="st-ck">✓</span><strong style="color:#F1F5F9;font-weight:600">Heartbeat
+                      alerts</strong>&nbsp;when a metric goes silent
+                  </li>
+                </ul>
+              </div>
+              <div class="st-reveal st-d1" role="img"
+                aria-label="Signal monitor queue_depth for payments, currently at 86.2 and climbing toward a threshold of 90; the rule reads: value above 90 for 5 minutes raises a critical alert."
+                style="background:#0F1115;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px">
+                <div style="display:flex;align-items:center;justify-content:space-between">
+                  <span style="display:flex;align-items:center;gap:10px"><span
+                      style="position:relative;width:9px;height:9px;flex:none"><span
+                        style="position:absolute;inset:0;border-radius:50%;background:#10B981"></span><span
+                        style="position:absolute;inset:0;border-radius:50%;border:1.5px solid #10B981;animation:st-ping 1.8s cubic-bezier(0,0,.2,1) infinite"></span></span><span
+                      style="font-size:14px;font-weight:600;color:#F1F5F9;font-family:ui-monospace,Menlo,monospace">queue_depth
+                      · payments</span></span>
+                  <span
+                    style="font-size:13px;font-weight:700;font-family:ui-monospace,Menlo,monospace;color:#FBBF24">86.2</span>
+                </div>
+                <div style="position:relative">
+                  <svg viewBox="0 0 300 80" style="display:block;width:100%;height:80px" aria-hidden="true">
+                    <line x1="0" y1="18" x2="300" y2="18" stroke="#EF4444" stroke-width="1" stroke-dasharray="5 4"
+                      opacity="0.7"></line>
+                    <polyline
+                      points="0,62 25,58 50,60 75,50 100,54 125,44 150,48 175,36 200,40 225,30 250,26 275,24 300,21"
+                      fill="none" stroke="#2DD4BF" stroke-width="2" stroke-linejoin="round" class="st-draw"></polyline>
+                    <circle cx="300" cy="21" r="3.5" fill="#FBBF24"></circle>
+                  </svg>
+                  <span
+                    style="position:absolute;top:6px;right:0;font-size:10px;font-weight:700;font-family:ui-monospace,Menlo,monospace;color:#F87171">threshold
+                    90</span>
+                </div>
+                <div
+                  style="display:flex;align-items:center;gap:10px;background:#0A0C10;border:1px solid rgba(255,255,255,0.07);border-radius:9px;padding:10px 12px;font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#CBD5E1;flex-wrap:wrap">
+                  <span style="color:#5EEAD4">value &gt; 90</span><span style="color:#475569">for</span><span
+                    style="color:#5EEAD4">5 min</span><span style="color:#475569">→</span><span
+                    style="display:inline-flex;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.05em;background:rgba(239,68,68,0.12);color:#F87171;font-family:'Inter',system-ui,sans-serif">CRITICAL</span><span
+                    style="color:#475569">alert</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1628,11 +1576,9 @@
         style="padding:88px 32px;border-top:1px solid rgba(255,255,255,0.05);scroll-margin-top:64px">
         <div style="max-width:1080px;margin:0 auto">
           <div class="st-reveal" style="text-align:center;max-width:560px;margin:0 auto 56px">
-            <p
-              class="st-eyebrow-sec">
+            <p class="st-eyebrow-sec">
               How it works</p>
-            <h2
-              class="st-h2" style="margin-bottom:0">
+            <h2 class="st-h2" style="margin-bottom:0">
               Live in three steps</h2>
           </div>
           <div class="st-cols3" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;align-items:stretch">
@@ -1692,8 +1638,7 @@
         </div>
       </section>
 
-      <!-- SDKs — prueba, no referencia: el mismo ejemplo en los dos lenguajes.
-           Los dos paneles viven en el DOM (solo se ocultan), así que el crawler los lee. -->
+      <!-- SDKs -->
       <section class="st-sec" id="sdks"
         style="padding:88px 32px;border-top:1px solid rgba(255,255,255,0.05);scroll-margin-top:64px">
         <div style="max-width:1080px;margin:0 auto">
@@ -1745,7 +1690,7 @@
             </p>
           </div>
 
-          <!-- CTA intermedia: aquí es donde el visitante ya entendió el producto -->
+          <!-- Mid-page CTA -->
           <div class="st-reveal st-d2"
             style="margin-top:48px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:16px">
             <a href="https://app.sigtake.com/register" class="st-btn-primary"
@@ -1761,23 +1706,21 @@
         style="padding:88px 32px;border-top:1px solid rgba(255,255,255,0.05);scroll-margin-top:64px">
         <div style="max-width:1080px;margin:0 auto">
           <div class="st-reveal" style="text-align:center;max-width:560px;margin:0 auto 40px">
-            <p
-              class="st-eyebrow-sec">
+            <p class="st-eyebrow-sec">
               Pricing</p>
-            <h2
-              class="st-h2">
+            <h2 class="st-h2">
               Start free, scale when you're paged</h2>
             <p class="st-lede-sec">Everything's free while we're in early
               access — paid plans will come as we grow.</p>
           </div>
-          <!-- Teaser: el detalle de planes vive en /pricing (spec 82, fase 5), no aquí -->
           <div class="st-biz st-reveal st-d1"
             style="max-width:760px;margin:0 auto;background:linear-gradient(180deg,#13161B,#0F1115);border:1px solid rgba(45,212,191,0.25);border-radius:18px;padding:26px 32px;box-shadow:0 0 44px rgba(45,212,191,0.08)">
             <div class="st-biz-head"
               style="display:flex;align-items:center;justify-content:space-between;gap:16px 24px;flex-wrap:wrap">
               <div style="min-width:0">
                 <p class="st-eyebrow" style="margin-bottom:6px">Business</p>
-                <h3 style="margin:0 0 6px;font-size:21px;font-weight:700;letter-spacing:-0.015em;color:#F1F5F9;line-height:1.3">
+                <h3
+                  style="margin:0 0 6px;font-size:21px;font-weight:700;letter-spacing:-0.015em;color:#F1F5F9;line-height:1.3">
                   For orgs that treat alerting as infrastructure</h3>
                 <p class="st-card-p">Unlimited users, teams, alerts and monitors. Enforced 2FA, full audit
                   history and priority support.</p>
@@ -1788,8 +1731,8 @@
             </div>
           </div>
 
-          <!-- FAQ. Sin marcado FAQPage a propósito: ese schema se reserva para /pricing y
-               dos FAQPage en el mismo sitio compiten entre sí. -->
+          <!-- FAQ. No FAQPage markup on purpose: that schema is reserved for /pricing, and two FAQPage
+               blocks on one site compete with each other. -->
           <div class="st-reveal st-d2" style="max-width:760px;margin:56px auto 0">
             <h3 class="st-h3" style="font-size:21px;margin-bottom:20px">Before you ask</h3>
             <dl class="st-faq">
@@ -1810,9 +1753,7 @@
         </div>
       </section>
 
-      <!-- CIERRE — responde a la sección de Problema ("nobody reads the alert channel")
-           y cierra el arco del h1 ("from firing to fixed"). Sin caja ni halo: el radar del
-           hero vuelve espejado, así la página abre y cierra con el mismo motivo. -->
+      <!-- CLOSING -->
       <section class="st-sec-cta st-close">
         <svg class="st-radar st-radar-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520"
           aria-hidden="true" preserveAspectRatio="xMidYMid slice">
@@ -1894,9 +1835,13 @@
         <div
           style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;border-top:1px solid rgba(255,255,255,0.05);padding-top:24px;font-size:12.5px;color:#94A3B8">
           <span>© 2026 Sigtake, Inc.</span>
-          <!-- TODO: re-enable when the social profiles are live:
-        <div style="display:flex;gap:20px"><a href="#" class="st-flink">X</a><a href="#" class="st-flink">GitHub</a><a href="#" class="st-flink">LinkedIn</a></div>
-        -->
+          <div style="display:flex;flex-wrap:wrap;gap:20px">
+            <a href="https://github.com/Sigtake" class="st-flink">GitHub</a>
+            <a href="https://www.linkedin.com/company/sigtake" class="st-flink">LinkedIn</a>
+            <a href="https://www.youtube.com/@Sigtake" class="st-flink">YouTube</a>
+            <a href="https://www.instagram.com/sig_take/" class="st-flink">Instagram</a>
+            <a href="https://www.facebook.com/sigtake/" class="st-flink">Facebook</a>
+          </div>
         </div>
       </div>
     </footer>
@@ -1905,12 +1850,9 @@
     (function () {
       document.documentElement.classList.add('st-js');
 
-      // Movimiento con propósito: solo lo que demuestra algo. Nada se ejecuta fuera de viewport,
-      // y con reduced-motion se salta directo al estado final en vez de animar.
       var motionOk = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
         && 'IntersectionObserver' in window;
 
-      // El contador ×47 subiendo ES la deduplicación: un número quieto no demuestra nada.
       var counters = [].slice.call(document.querySelectorAll('.st-count'));
       if (counters.length) {
         if (!motionOk) {
@@ -1934,7 +1876,6 @@
         }
       }
 
-      // Sparklines dibujándose: stroke-dashoffset sobre la longitud real del trazo.
       var lines = [].slice.call(document.querySelectorAll('.st-draw'));
       if (lines.length && motionOk) {
         var drawObs = new IntersectionObserver(function (entries) {
@@ -1952,7 +1893,7 @@
         });
       }
 
-      // Pestañas de SDK. Sin JS los dos paneles quedan visibles: `hidden` solo se aplica aquí.
+      // `hidden` is only ever set here, so both panels stay visible without JS.
       var sdkTabs = [].slice.call(document.querySelectorAll('.st-sdk-tab'));
       if (sdkTabs.length) {
         var selectTab = function (tab, focus) {
@@ -1992,10 +1933,7 @@
         revealTargets.forEach(function (el) { revealer.observe(el); });
       }
 
-      // Scrollspy: activo = el último rango cuyo inicio ya cruzó la línea de lectura, que va
-      // justo debajo de la nav sticky. `#monitoring` anida dentro de `#features`, así que el
-      // orden por offset es lo único que los desempata. El último rango llega hasta el final
-      // del documento, por eso la CTA y el footer siguen marcando Pricing.
+      // `#monitoring` nests inside `#features`, so sorting the ranges by offset is what separates them.
       var spyTargets = [];
       ['features', 'monitoring', 'how', 'pricing'].forEach(function (id) {
         var link = document.querySelector('.st-navlink[href="/#' + id + '"]');

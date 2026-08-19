@@ -46,8 +46,8 @@
 
     html, body { margin: 0; background: #040609; }
 
-    /* ── Cromática compartida con la home. Mismos selectores `.st-landing …` a propósito:
-         el marcado de nav y footer se extrae de index.html, así que las reglas deben coincidir. ── */
+    /* ── Palette shared with index.html: the nav and footer markup is copied from there, so these
+         selectors have to match. ── */
     .st-landing { background: #040609; color: #e2e8f0; font-family: "Inter", system-ui, sans-serif;
                   -webkit-font-smoothing: antialiased; min-height: 100vh; }
     .st-landing h1, .st-landing h2, .st-landing h3, .st-landing .st-wordmark {
@@ -57,7 +57,7 @@
     .st-landing ::selection { background: rgba(45, 212, 191, 0.3); }
     .st-landing :focus-visible { outline: 2px solid #2dd4bf; outline-offset: 2px; border-radius: 4px; }
 
-    /* Dos clases: `.st-landing a` gana a `.st-skip` a secas y le devolvería el teal */
+    /* Two classes required: `.st-landing a` outranks a bare `.st-skip` and repaints it teal */
     .st-landing .st-skip { position: absolute; left: 16px; top: -60px; z-index: 100; background: #2dd4bf;
                            color: #0c1220; font-size: 14px; font-weight: 600; padding: 10px 18px;
                            border-radius: 8px; transition: top .15s ease; }
@@ -68,7 +68,7 @@
     .st-landing .st-btn-primary:hover { background: #5eead4 !important; color: #0c1220 !important; }
     .st-landing .st-flink:hover { color: #5eead4 !important; }
 
-    /* ── Página ── */
+    /* ── Page ── */
     .st-landing .st-wrap { max-width: 1080px; margin: 0 auto; padding: 64px 24px 88px; }
     .st-landing .st-head { text-align: center; }
     .st-landing h1 { margin: 0 0 14px; font-size: clamp(30px, 6vw, 42px); font-weight: 800;
@@ -76,7 +76,6 @@
     .st-landing .st-lede { margin: 0 auto 28px; max-width: 560px; font-size: 16.5px; line-height: 1.65;
                            color: #94A3B8; text-wrap: pretty; }
 
-    /* La promesa que Slack asocia a esta URL: visible sin scroll, no enterrada al pie */
     .st-landing .st-sla { display: inline-flex; align-items: center; gap: 9px; padding: 7px 16px;
                           border-radius: 999px; border: 1px solid rgba(45,212,191,0.28);
                           background: rgba(45,212,191,0.07); font-size: 13.5px; font-weight: 600; color: #5EEAD4; }
@@ -97,8 +96,8 @@
     .st-landing h2 { margin: 0 0 6px; font-size: 22px; font-weight: 700; letter-spacing: -0.015em; color: #F1F5F9; }
     .st-landing .st-sub { margin: 0 0 24px; font-size: 14.5px; color: #94A3B8; }
 
-    /* min(310px,100%): un minmax(310px,…) a secas no baja de 310px, y en un viewport de 320px
-       el contenedor son 280px — la pista desbordaría y arrastraría scroll horizontal */
+    /* min(310px,100%): a bare minmax(310px,…) never shrinks below 310px, so on a 320px viewport the
+       280px container overflows and drags in horizontal scroll. */
     .st-landing .st-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(310px, 100%), 1fr));
                            gap: 16px; }
     .st-landing .st-card { display: flex; flex-direction: column; gap: 9px; background: #0F1115;
@@ -293,9 +292,13 @@
         <div
           style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;border-top:1px solid rgba(255,255,255,0.05);padding-top:24px;font-size:12.5px;color:#94A3B8">
           <span>© 2026 Sigtake, Inc.</span>
-          <!-- TODO: re-enable when the social profiles are live:
-        <div style="display:flex;gap:20px"><a href="#" class="st-flink" style="color:#CBD5E1">X</a><a href="#" class="st-flink" style="color:#CBD5E1">GitHub</a><a href="#" class="st-flink" style="color:#CBD5E1">LinkedIn</a></div>
-        -->
+          <div style="display:flex;flex-wrap:wrap;gap:20px">
+            <a href="https://github.com/Sigtake" class="st-flink" style="color:#CBD5E1">GitHub</a>
+            <a href="https://www.linkedin.com/company/sigtake" class="st-flink" style="color:#CBD5E1">LinkedIn</a>
+            <a href="https://www.youtube.com/@Sigtake" class="st-flink" style="color:#CBD5E1">YouTube</a>
+            <a href="https://www.instagram.com/sig_take/" class="st-flink" style="color:#CBD5E1">Instagram</a>
+            <a href="https://www.facebook.com/sigtake/" class="st-flink" style="color:#CBD5E1">Facebook</a>
+          </div>
         </div>
       </div>
     </footer>

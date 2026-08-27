@@ -1,0 +1,64 @@
+name: Sitemap lastmod
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sitemap-lastmod
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      # Full history: `git log` on each page needs its commits, not just the tip.
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Rewrite each lastmod from the page's own last commit
+        run: |
+          python3 - <<'PY'
+          import io, re, subprocess
+
+          path = 'sitemap.xml'
+          xml = io.open(path, encoding='utf-8').read()
+
+          def page_file(loc):
+              slug = loc.replace('https://sigtake.com/', '').strip('/')
+              return 'index.html' if not slug else slug + '/index.html'
+
+          def last_commit_date(f):
+              out = subprocess.run(['git', 'log', '-1', '--format=%cs', '--', f],
+                                   capture_output=True, text=True).stdout.strip()
+              return out or None
+
+          def replace(match):
+              loc, lastmod = match.group(2), match.group(4)
+              date = last_commit_date(page_file(loc))
+              return match.group(0) if not date else (
+                  match.group(1) + loc + match.group(3) + date + match.group(5))
+
+          xml = re.sub(
+              r'(<loc>)(.*?)(</loc>\s*<lastmod>)(.*?)(</lastmod>)',
+              replace, xml, flags=re.S)
+
+          io.open(path, 'w', encoding='utf-8').write(xml)
+          PY
+
+      - name: Commit if it moved
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # No change is the common case; committing anyway would push an empty commit every time.
+          if git diff --quiet -- sitemap.xml; then
+            echo "sitemap.xml already in sync"
+            exit 0
+          fi
+          git add sitemap.xml
+          git commit -m "Sync sitemap lastmod with each page's last commit [skip ci]"
+          git push

@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pricing — Sigtake Alert Management &amp; Monitoring</title>
+  <meta name="description"
+    content="Sigtake is free during early access: unlimited users, teams, alerts and monitors, every notification channel, no credit card. See what is included and what happens next.">
+  <link rel="canonical" href="https://sigtake.com/pricing/">
+  <link rel="preload" href="/public/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/public/fonts/bricolage-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" href="/public/favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="/public/favicon.svg">
+  <link rel="icon" type="image/png" sizes="96x96" href="/public/favicon-96x96.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
+  <link rel="manifest" href="/public/site.webmanifest">
+  <meta name="theme-color" content="#040609">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Sigtake">
+  <meta property="og:url" content="https://sigtake.com/pricing/">
+  <meta property="og:title" content="Pricing — Free while Sigtake is in early access">
+  <meta property="og:description"
+    content="Unlimited users, teams, alerts and monitors. Every notification channel. No credit card.">
+  <meta property="og:image" content="https://sigtake.com/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Sigtake — Own every alert, from firing to fixed">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pricing — Free while Sigtake is in early access">
+  <meta name="twitter:description"
+    content="Unlimited users, teams, alerts and monitors. Every notification channel. No credit card.">
+  <meta name="twitter:image" content="https://sigtake.com/og.png">
+  <meta name="twitter:image:alt" content="Sigtake — Own every alert, from firing to fixed">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "FAQPage",
+        "@id": "https://sigtake.com/pricing/#faq",
+        "url": "https://sigtake.com/pricing/",
+        "name": "Sigtake pricing questions",
+        "publisher": { "@id": "https://sigtake.com/#organization" },
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is it really free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Every feature listed on this page is on while Sigtake is in early access — no trial clock counting down, no card on file, no feature held back for a paid tier that does not exist yet."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What happens to my data when early access ends?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "It stays. Your projects, teams, notification channels, API keys and alert history are not touched when pricing changes, and we announce any change by email before it takes effect."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is there a limit on how many alerts I can send?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "There is no hard cap during early access. Deduplication also means volume behaves differently than you expect: a flapping check collapses into one incident with an occurrence counter instead of a thousand rows, and renotification only fires at 1, 10, 25, 50, 100 and every 100 after that."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need a credit card?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. There is no billing in the product today. Registering takes an email address, and your first alert can be in the Alert Center a few minutes later."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I move over from the alerting tool I use today?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sigtake sits downstream of whatever you already run, so there is no migration to schedule. Point an existing Alertmanager webhook, cron job or SDK call at the ingest API with one key and run both systems in parallel until you trust the routing."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What does Business include that early access does not?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Nothing is feature-gated today. Business is the conversation for organizations that need it in writing: 2FA enforced across every user, full audit history and priority support, under a contract rather than a promise on a pricing page."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://app.sigtake.com">
+  <style>
+    @font-face {
+      font-family: "Inter";
+      src: url("/public/fonts/inter-var-latin.woff2") format("woff2");
+      font-weight: 400 800;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Bricolage Grotesque";
+      src: url("/public/fonts/bricolage-var-latin.woff2") format("woff2");
+      font-weight: 600 800;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* Token layer copied from index.html. Same names, same values: this page has to age with the
+       home, and a second palette is how the two drift apart. */
+    :root {
+      --s1: 4px;
+      --s2: 8px;
+      --s3: 12px;
+      --s4: 16px;
+      --s5: 24px;
+      --s6: 32px;
+      --s7: 48px;
+      --s8: 64px;
+      --s9: 96px;
+      --s10: 128px;
+
+      --t1: 11px;
+      --t2: 12px;
+      --t3: 13px;
+      --t4: 14px;
+      --t5: 16px;
+      --t6: 18px;
+      --t7: 21px;
+      --t8: 26px;
+      --t-h1: clamp(34px, 6.4vw, 50px);
+      --t-h2: clamp(28px, 5.4vw, 38px);
+      --t-h3: clamp(23px, 4.8vw, 27px);
+
+      --r-chip: 6px;
+      --r-ctrl: 10px;
+      --r-card: 16px;
+      --r-pill: 999px;
+
+      --bg: #040609;
+      --surface-1: #0f1115;
+      --surface-2: #171a20;
+      --well: #0a0c10;
+      --footer: #060709;
+
+      --line-soft: rgba(255, 255, 255, .06);
+      --line: rgba(255, 255, 255, .08);
+      --line-strong: rgba(255, 255, 255, .12);
+      --fill-soft: rgba(255, 255, 255, .04);
+      --fill: rgba(255, 255, 255, .07);
+
+      --ink-1: #f1f5f9;
+      --ink-2: #cbd5e1;
+      --ink-3: #94a3b8;
+      --ink-4: #64748b;
+      --ink-5: #475569;
+      --ink-inverse: #0c1220;
+
+      --teal-500: #0d9488;
+      --teal-400: #2dd4bf;
+      --teal-300: #5eead4;
+      --teal-200: #99f6e4;
+
+      --ok: #34d399;
+
+      --mono: ui-monospace, Menlo, monospace;
+    }
+
+    html,
+    body {
+      margin: 0;
+      background: var(--bg);
+    }
+
+    .st-landing {
+      background: var(--bg);
+      color: #e2e8f0;
+      font-family: "Inter", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    .st-landing h1,
+    .st-landing h2,
+    .st-landing h3,
+    .st-landing .st-wordmark {
+      font-family: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
+    }
+
+    .st-landing a {
+      color: var(--teal-300);
+      text-decoration: none;
+    }
+
+    .st-landing a:hover {
+      color: var(--teal-200);
+    }
+
+    .st-landing ::selection {
+      background: rgba(45, 212, 191, 0.3);
+    }
+
+    .st-landing :focus-visible {
+      outline: 2px solid var(--teal-400);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    /* Two classes required: `.st-landing a` outranks a bare `.st-skip` and repaints it teal */
+    .st-landing .st-skip {
+      position: absolute;
+      left: 16px;
+      top: -60px;
+      z-index: 100;
+      background: var(--teal-400);
+      color: var(--ink-inverse);
+      font-size: var(--t4);
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: 8px;
+      transition: top .15s ease;
+    }
+
+    .st-landing .st-skip:focus,
+    .st-landing .st-skip:hover {
+      top: 12px;
+      color: var(--ink-inverse);
+    }
+
+    .st-landing .st-navlink {
+      color: var(--ink-3);
+    }
+
+    .st-landing .st-navlink:hover {
+      color: #e2e8f0;
+    }
+
+    .st-landing .st-navlink.st-active {
+      color: var(--teal-300);
+    }
+
+    .st-landing .st-flink {
+      color: var(--ink-2);
+    }
+
+    .st-landing .st-flink:hover {
+      color: var(--teal-300);
+    }
+
+    .st-landing .st-loglink {
+      color: #e2e8f0;
+    }
+
+    .st-landing .st-loglink:hover {
+      color: var(--teal-200);
+    }
+
+    .st-landing .st-btn-primary {
+      background: var(--teal-400);
+      color: var(--ink-inverse);
+    }
+
+    .st-landing .st-btn-primary:hover {
+      background: var(--teal-300);
+      color: var(--ink-inverse);
+    }
+
+    .st-landing .st-btn-ghost {
+      background: rgba(255, 255, 255, 0.06);
+      color: #e2e8f0;
+      border: 1px solid var(--line);
+    }
+
+    .st-landing .st-btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #e2e8f0;
+    }
+
+    .st-landing .st-btn-ghost-teal {
+      background: rgba(45, 212, 191, 0.08);
+      color: var(--teal-300);
+      border: 1px solid rgba(45, 212, 191, 0.35);
+    }
+
+    .st-landing .st-eyebrow-sec {
+      margin: 0 0 var(--s3);
+      font-size: var(--t3);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal-400);
+    }
+
+    .st-landing .st-eyebrow {
+      margin: 0 0 var(--s3);
+      font-size: var(--t3);
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--teal-300);
+    }
+
+    .st-landing .st-h2 {
+      margin: 0 0 var(--s4);
+      font-size: var(--t-h2);
+      line-height: 1.15;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink-1);
+    }
+
+    .st-landing .st-h3 {
+      margin: 0 0 var(--s4);
+      font-size: var(--t-h3);
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      color: var(--ink-1);
+      line-height: 1.25;
+    }
+
+    .st-landing .st-lede-sec {
+      margin: 0;
+      font-size: var(--t5);
+      line-height: 1.6;
+      color: var(--ink-3);
+      text-wrap: pretty;
+    }
+
+    .st-landing .st-card-h {
+      margin: 0 0 var(--s2);
+      font-size: var(--t5);
+      font-weight: 700;
+      color: var(--ink-1);
+    }
+
+    .st-landing .st-card-p {
+      margin: 0;
+      font-size: var(--t4);
+      line-height: 1.6;
+      color: var(--ink-3);
+    }
+
+    .st-landing .st-checks {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--s3);
+      font-size: var(--t4);
+      color: var(--ink-2);
+    }
+
+    .st-landing .st-checks li {
+      display: flex;
+      gap: var(--s3);
+      align-items: baseline;
+    }
+
+    .st-landing .st-ck {
+      color: var(--teal-400);
+      font-weight: 700;
+      flex: none;
+    }
+
+    .st-landing .st-faq {
+      margin: 0;
+    }
+
+    .st-landing .st-faq dt {
+      font-size: var(--t5);
+      font-weight: 600;
+      color: var(--ink-1);
+      margin-top: var(--s5);
+    }
+
+    .st-landing .st-faq dt:first-of-type {
+      margin-top: 0;
+    }
+
+    .st-landing .st-faq dd {
+      margin: var(--s2) 0 0;
+      font-size: var(--t4);
+      line-height: 1.65;
+      color: var(--ink-3);
+      text-wrap: pretty;
+    }
+
+    @keyframes st-pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.3;
+      }
+    }
+
+    /* ---- Page ---- */
+
+    .st-landing .st-hero {
+      position: relative;
+      overflow: hidden;
+      padding: var(--s9) var(--s6) var(--s7);
+      text-align: center;
+    }
+
+    .st-landing .st-glow {
+      position: absolute;
+      top: -240px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 520px;
+      background: radial-gradient(ellipse at center, rgba(45, 212, 191, 0.13), transparent 65%);
+      pointer-events: none;
+    }
+
+    .st-landing .st-hero-inner {
+      position: relative;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .st-landing h1 {
+      margin: 0 0 var(--s4);
+      font-size: var(--t-h1);
+      line-height: 1.1;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #f8fafc;
+      text-wrap: balance;
+    }
+
+    .st-landing .st-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s2);
+      margin-bottom: var(--s5);
+      padding: 5px 14px;
+      border-radius: var(--r-pill);
+      border: 1px solid rgba(45, 212, 191, 0.25);
+      background: rgba(45, 212, 191, 0.07);
+      font-size: var(--t3);
+      font-weight: 500;
+      color: var(--teal-300);
+    }
+
+    .st-landing .st-badge i {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--teal-400);
+      animation: st-pulse 1.8s infinite;
+    }
+
+    .st-landing .st-sec {
+      padding: var(--s8) var(--s6);
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .st-landing .st-wrap {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    .st-landing .st-narrow {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .st-landing .st-plans {
+      display: grid;
+      grid-template-columns: 5fr 4fr;
+      gap: var(--s5);
+      align-items: start;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .st-landing .st-plan {
+      position: relative;
+      background: var(--surface-1);
+      border: 1px solid var(--line);
+      border-radius: var(--r-card);
+      padding: var(--s6);
+      /* Declared here and nowhere else: the reveal rules below only set the start and end state,
+         so entering and hovering share one set of timings instead of fighting over them. */
+      transition: opacity .6s ease, transform .38s cubic-bezier(.16, 1, .3, 1),
+        border-color .25s ease, box-shadow .25s ease;
+    }
+
+    /* The hidden state applies only once JS tags <html> with .st-js, so the no-JS fallback shows everything */
+    .st-js .st-landing .st-plan.st-reveal {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+
+    .st-js .st-landing .st-plan.st-reveal.st-in {
+      opacity: 1;
+      transform: none;
+    }
+
+    .st-js .st-landing .st-d1 {
+      transition-delay: .09s;
+    }
+
+    /* Scoped to .st-reveal: the same list renders in sections that never get .st-in, and there it
+       has to stay visible. */
+    .st-js .st-landing .st-reveal .st-checks li {
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity .45s ease, transform .45s ease;
+    }
+
+    .st-js .st-landing .st-reveal.st-in .st-checks li {
+      opacity: 1;
+      transform: none;
+    }
+
+    .st-js .st-landing .st-reveal .st-checks li:nth-child(1) { transition-delay: .16s; }
+    .st-js .st-landing .st-reveal .st-checks li:nth-child(2) { transition-delay: .22s; }
+    .st-js .st-landing .st-reveal .st-checks li:nth-child(3) { transition-delay: .28s; }
+    .st-js .st-landing .st-reveal .st-checks li:nth-child(4) { transition-delay: .34s; }
+    .st-js .st-landing .st-reveal .st-checks li:nth-child(5) { transition-delay: .40s; }
+
+    /* Pointer-only: on touch the hover state sticks after the tap and the card stays lifted. */
+    @media (hover: hover) {
+      .st-landing .st-plan:hover {
+        transform: translateY(-2px);
+        border-color: rgba(45, 212, 191, 0.35);
+        box-shadow: 0 0 44px rgba(45, 212, 191, 0.10);
+      }
+
+      .st-landing .st-plan-free:hover {
+        border-color: rgba(45, 212, 191, 0.5);
+        box-shadow: 0 0 60px rgba(45, 212, 191, 0.16);
+      }
+    }
+
+    .st-landing .st-tag {
+      position: absolute;
+      top: -11px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 3px 14px;
+      border-radius: var(--r-pill);
+      background: var(--teal-400);
+      color: var(--ink-inverse);
+      font-size: var(--t2);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .st-landing .st-plan-free {
+      background: linear-gradient(180deg, #13161b, #0f1115);
+      border-color: rgba(45, 212, 191, 0.25);
+      box-shadow: 0 0 44px rgba(45, 212, 191, 0.08);
+    }
+
+    .st-landing .st-price {
+      display: flex;
+      align-items: baseline;
+      gap: var(--s3);
+      margin: 0 0 var(--s2);
+    }
+
+    .st-landing .st-price b {
+      font-family: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
+      font-size: 44px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--ink-1);
+      line-height: 1;
+    }
+
+    .st-landing .st-price span {
+      font-family: var(--mono);
+      font-size: var(--t3);
+      color: var(--ink-4);
+    }
+
+    .st-landing .st-cta-wrap {
+      position: relative;
+      display: block;
+      margin: var(--s5) 0;
+    }
+
+    .st-landing .st-plan-cta {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      box-sizing: border-box;
+      font-size: var(--t5);
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: var(--r-ctrl);
+    }
+
+    /* ::before paints before the anchor, so the glow sits behind it without a negative z-index
+       that would have to escape the card's stacking context. */
+    .st-landing .st-plan-free .st-cta-wrap::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: var(--r-ctrl);
+      box-shadow: 0 0 30px rgba(45, 212, 191, 0.45);
+      animation: st-breathe 3.4s ease-in-out infinite;
+    }
+
+    @keyframes st-breathe {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.35;
+      }
+    }
+
+    .st-landing .st-note {
+      margin: var(--s4) 0 0;
+      font-family: var(--mono);
+      font-size: var(--t2);
+      color: var(--ink-4);
+    }
+
+    .st-landing .st-incl {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--s5);
+    }
+
+    .st-landing .st-incl h3 {
+      margin: 0 0 var(--s3);
+      font-size: var(--t4);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+    }
+
+    .st-landing .st-after {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--s5);
+    }
+
+    .st-landing .st-after>div {
+      background: var(--surface-1);
+      border: 1px solid var(--line);
+      border-radius: var(--r-card);
+      padding: var(--s5);
+    }
+
+    .st-landing .st-step {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      margin-bottom: var(--s3);
+      border-radius: 50%;
+      background: rgba(45, 212, 191, 0.1);
+      border: 1px solid rgba(45, 212, 191, 0.3);
+      font-family: var(--mono);
+      font-size: var(--t2);
+      color: var(--teal-300);
+    }
+
+    .st-landing .st-close {
+      padding: var(--s8) var(--s6) var(--s9);
+      border-top: 1px solid var(--line-soft);
+      text-align: center;
+    }
+
+    .st-landing .st-close-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: var(--s3);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .st-landing *,
+      .st-landing *::before,
+      .st-landing *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .st-js .st-landing .st-plan.st-reveal,
+      .st-js .st-landing .st-reveal .st-checks li {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+
+    @media (max-width: 1080px) {
+
+      .st-landing .st-plans,
+      .st-landing .st-incl,
+      .st-landing .st-after {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .st-landing .st-foot {
+        grid-template-columns: 1fr 1fr !important;
+      }
+    }
+
+    @media (max-width: 767px) {
+
+      /* The same nav nodes reflowed into a scrollable second row, never a duplicate menu. */
+      .st-landing .st-nav-inner {
+        height: auto !important;
+        flex-wrap: wrap;
+        row-gap: 6px;
+        padding: 10px 16px 8px !important;
+      }
+
+      .st-landing .st-nav-links {
+        order: 3;
+        flex: 0 0 100%;
+        gap: 16px !important;
+        overflow-x: auto;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .st-landing .st-nav-links::-webkit-scrollbar {
+        display: none;
+      }
+
+      .st-landing .st-navlink {
+        white-space: nowrap;
+      }
+
+      .st-landing .st-hero {
+        padding: 64px 20px 40px;
+      }
+
+      .st-landing .st-sec {
+        padding: 56px 20px;
+      }
+
+      .st-landing .st-plan {
+        padding: var(--s5);
+      }
+
+      .st-landing .st-close {
+        padding: 56px 20px 72px;
+      }
+
+      .st-landing .st-sec-foot {
+        padding: 48px 20px 32px !important;
+      }
+
+      .st-landing .st-foot {
+        grid-template-columns: 1fr !important;
+        gap: 28px !important;
+      }
+    }
+  </style>
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-N5834SWZ');
+  </script>
+  <!-- End Google Tag Manager -->
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N5834SWZ" title="Google Tag Manager" height="0"
+      width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <div class="st-landing">
+    <a href="#main" class="st-skip">Skip to content</a>
+    <nav aria-label="Primary"
+      style="position:sticky;top:0;z-index:50;background:rgba(4,6,9,0.95);border-bottom:1px solid rgba(255,255,255,0.06)">
+      <div class="st-nav-inner"
+        style="max-width:1180px;margin:0 auto;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between">
+        <a href="/" style="display:flex;align-items:center;gap:10px;color:#F1F5F9">
+          <img src="/public/logo.svg" width="24" height="24" alt=""
+            style="flex:none;filter:drop-shadow(0 0 16px rgba(45,212,191,0.4))">
+          <span class="st-wordmark" style="font-size:16px;font-weight:700;letter-spacing:-0.01em">Sigtake</span>
+        </a>
+        <div class="st-nav-links" style="display:flex;align-items:center;gap:28px;font-size:14px;font-weight:500">
+          <a href="/#features" class="st-navlink">Features</a>
+          <a href="/#monitoring" class="st-navlink">Monitoring</a>
+          <a href="/#how" class="st-navlink">How it works</a>
+          <a href="/pricing/" class="st-navlink st-active" aria-current="page">Pricing</a>
+          <a href="https://docs.sigtake.com" class="st-navlink">Docs</a>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px">
+          <a href="https://app.sigtake.com/login" class="st-loglink" style="font-size:14px;font-weight:500">Log in</a>
+          <a href="https://app.sigtake.com/register" class="st-btn-primary"
+            style="display:inline-flex;align-items:center;font-size:14px;font-weight:600;padding:8px 16px;border-radius:8px;box-shadow:0 0 20px rgba(45,212,191,0.3)">Start
+            free</a>
+        </div>
+      </div>
+    </nav>
+
+    <main id="main" style="scroll-margin-top:64px">
+      <section class="st-hero">
+        <div class="st-glow"></div>
+        <div class="st-hero-inner">
+          <span class="st-badge"><i></i>Early access</span>
+          <h1>Free while we're in early access</h1>
+          <p class="st-lede-sec">Unlimited users, teams, alerts and monitors. Every notification channel we
+            ship. No credit card, no trial clock. Paid plans will come as we grow, and you'll hear about them
+            by email before anything changes.</p>
+        </div>
+      </section>
+
+      <section class="st-sec">
+        <div class="st-plans">
+          <div class="st-plan st-plan-free st-reveal">
+            <span class="st-tag">Recommended</span>
+            <p class="st-eyebrow" style="margin-bottom:6px">Early access</p>
+            <p class="st-price"><b>$0</b><span>/ month, per organization</span></p>
+            <p class="st-card-p">The whole product, for as long as early access lasts. Nothing is held back for
+              a paid tier that doesn't exist yet.</p>
+            <span class="st-cta-wrap"><a href="https://app.sigtake.com/register"
+                class="st-btn-primary st-plan-cta">Start free</a></span>
+            <ul class="st-checks">
+              <li><span class="st-ck" aria-hidden="true">✓</span><span>Unlimited users, teams, projects and
+                  API keys</span></li>
+              <li><span class="st-ck" aria-hidden="true">✓</span><span>Unlimited alert ingestion, with
+                  deduplication and occurrence counting</span></li>
+              <li><span class="st-ck" aria-hidden="true">✓</span><span>Email, Slack, Microsoft Teams and in-app
+                  notification channels — Discord and Google Chat coming soon</span></li>
+              <li><span class="st-ck" aria-hidden="true">✓</span><span>Website monitoring and signal monitors
+                  with threshold, anomaly detection and heartbeat rules</span></li>
+              <li><span class="st-ck" aria-hidden="true">✓</span><span>Real-time alert center over server-sent
+                  events, with the Node and Python SDKs</span></li>
+            </ul>
+            <p class="st-note">No card required. Registering takes an email address.</p>
+          </div>
+
+          <div class="st-plan st-reveal st-d1">
+            <p class="st-eyebrow" style="margin-bottom:6px">Business</p>
+            <p class="st-price"><b>Talk</b><span>to us</span></p>
+            <p class="st-card-p">For orgs that treat alerting as infrastructure and need the guarantees in
+              writing rather than on a pricing page.</p>
+            <span class="st-cta-wrap"><a href="mailto:help@sigtake.com?subject=Talk%20to%20sales"
+                class="st-btn-ghost st-btn-ghost-teal st-plan-cta">Talk to sales</a></span>
+            <ul class="st-checks">
+              <li><span class="st-ck" aria-hidden="true">✓</span><span>Everything in early access</span></li>
+              <li><span class="st-ck" aria-hidden="true">✓</span><span>2FA enforced across every user in the
+                  organization</span></li>
+              <li><span class="st-ck" aria-hidden="true">✓</span><span>Full audit log history</span></li>
+              <li><span class="st-ck" aria-hidden="true">✓</span><span>Priority support with a named
+                  contact</span></li>
+            </ul>
+            <p class="st-note">Pricing agreed per organization.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="st-sec">
+        <div class="st-wrap">
+          <div style="max-width:640px;margin:0 0 40px">
+            <p class="st-eyebrow-sec">What's included</p>
+            <h2 class="st-h2">Every part of the on-call loop, not a starter tier</h2>
+            <p class="st-lede-sec">Early access isn't a stripped-down plan with the useful half behind a
+              paywall. It's the same product a paying org would get today.</p>
+          </div>
+          <div class="st-incl">
+            <div>
+              <h3>Ingestion &amp; incidents</h3>
+              <ul class="st-checks">
+                <li><span class="st-ck" aria-hidden="true">✓</span><span>One POST from anything that can reach
+                    an HTTPS endpoint</span></li>
+                <li><span class="st-ck" aria-hidden="true">✓</span><span>Fingerprint on source, title and
+                    severity collapses repeats into one incident</span></li>
+                <li><span class="st-ck" aria-hidden="true">✓</span><span>Acknowledge, resolve, comment and
+                    @mention on a shared timeline</span></li>
+              </ul>
+            </div>
+            <div>
+              <h3>Routing &amp; channels</h3>
+              <ul class="st-checks">
+                <li><span class="st-ck" aria-hidden="true">✓</span><span>Per-project routing: the team
+                    subscribes, the project provides the channel</span></li>
+                <li><span class="st-ck" aria-hidden="true">✓</span><span>Slack over OAuth, Microsoft Teams over
+                    webhook, email always — one workspace, a channel per project</span></li>
+                <li><span class="st-ck" aria-hidden="true">✓</span><span>In-app push that lands even while a
+                    channel is misconfigured</span></li>
+              </ul>
+            </div>
+            <div>
+              <h3>Monitoring &amp; access</h3>
+              <ul class="st-checks">
+                <li><span class="st-ck" aria-hidden="true">✓</span><span>Uptime and latency checks that open a
+                    real alert, not a dashboard nobody watches</span></li>
+                <li><span class="st-ck" aria-hidden="true">✓</span><span>Multi-tenant isolation, projects,
+                    roles and an audit log of every action</span></li>
+                <li><span class="st-ck" aria-hidden="true">✓</span><span>2FA by TOTP or email code, per
+                    user</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="st-sec">
+        <div class="st-wrap">
+          <div style="max-width:640px;margin:0 0 40px">
+            <p class="st-eyebrow-sec">What happens next</p>
+            <h2 class="st-h2">When paid plans arrive</h2>
+            <p class="st-lede-sec">Alerting is the thing you notice only when it stops. Here is what we commit
+              to, so early access doesn't become a surprise.</p>
+          </div>
+          <div class="st-after">
+            <div>
+              <p class="st-step" aria-hidden="true">1</p>
+              <p class="st-card-h">You hear it by email first</p>
+              <p class="st-card-p">Pricing changes are announced to every organization owner before they take
+                effect, never discovered inside the product.</p>
+            </div>
+            <div>
+              <p class="st-step" aria-hidden="true">2</p>
+              <p class="st-card-h">Nothing you configured is deleted</p>
+              <p class="st-card-p">Projects, teams, channels, API keys and alert history stay exactly where
+                they are while you decide.</p>
+            </div>
+            <div>
+              <p class="st-step" aria-hidden="true">3</p>
+              <p class="st-card-h">Nothing can be charged silently</p>
+              <p class="st-card-p">There's no card on file to charge. A paid plan starts when you choose one,
+                not when a trial expires.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="st-sec" id="faq">
+        <div class="st-narrow">
+          <p class="st-eyebrow-sec">Questions</p>
+          <h2 class="st-h2" style="margin-bottom:28px">Before you sign up</h2>
+          <dl class="st-faq">
+            <dt>Is it really free?</dt>
+            <dd>Yes. Every feature listed on this page is on while Sigtake is in early access — no trial clock
+              counting down, no card on file, no feature held back for a paid tier that doesn't exist yet.</dd>
+            <dt>What happens to my data when early access ends?</dt>
+            <dd>It stays. Your projects, teams, notification channels, API keys and alert history are not
+              touched when pricing changes, and we announce any change by email before it takes effect.</dd>
+            <dt>Is there a limit on how many alerts I can send?</dt>
+            <dd>There's no hard cap during early access. Deduplication also means volume behaves differently
+              than you expect: a flapping check collapses into one incident with an occurrence counter instead
+              of a thousand rows, and renotification only fires at 1, 10, 25, 50, 100 and every 100 after
+              that.</dd>
+            <dt>Do I need a credit card?</dt>
+            <dd>No. There's no billing in the product today. Registering takes an email address, and your
+              first alert can be in the Alert Center a few minutes later.</dd>
+            <dt>Can I move over from the alerting tool I use today?</dt>
+            <dd>Sigtake sits downstream of whatever you already run, so there's no migration to schedule.
+              Point an existing Alertmanager webhook, cron job or SDK call at the ingest API with one key and
+              run both systems in parallel until you trust the routing.</dd>
+            <dt>What does Business include that early access doesn't?</dt>
+            <dd>Nothing is feature-gated today. Business is the conversation for organizations that need it in
+              writing: 2FA enforced across every user, full audit history and priority support, under a
+              contract rather than a promise on a pricing page.</dd>
+          </dl>
+          <p class="st-card-p" style="margin-top:32px">Something else? <a href="/help/">Help &amp; support</a>
+            answers within two business days, and the <a href="https://docs.sigtake.com">documentation</a>
+            covers setup end to end.</p>
+        </div>
+      </section>
+
+      <section class="st-close">
+        <div class="st-narrow">
+          <h2 class="st-h2">One API key, one POST</h2>
+          <p class="st-lede-sec" style="margin-bottom:32px">Start free today and decide about plans when they
+            exist.</p>
+          <div class="st-close-actions">
+            <a href="https://app.sigtake.com/register" class="st-btn-primary"
+              style="display:inline-flex;align-items:center;font-size:16px;font-weight:600;padding:13px 28px;border-radius:10px;box-shadow:0 0 32px rgba(45,212,191,0.35)">Start
+              free</a>
+            <a href="/#features" class="st-btn-ghost"
+              style="display:inline-flex;align-items:center;font-size:16px;font-weight:600;padding:13px 28px;border-radius:10px">See
+              what it does</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="st-sec-foot"
+      style="border-top:1px solid rgba(255,255,255,0.06);padding:64px 32px 40px;background:#060709">
+      <div style="max-width:1080px;margin:0 auto">
+        <div class="st-foot" style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px">
+          <div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><img src="/public/favicon.svg"
+                width="22" height="22" alt="" style="flex:none"><span class="st-wordmark"
+                style="font-size:15px;font-weight:700;color:#F1F5F9">Sigtake</span></div>
+            <p style="margin:0;max-width:280px;font-size:13.5px;line-height:1.6;color:#94A3B8">Real-time alert
+              management and monitoring for ops teams. Multi-tenant, deduplicated, routed to the people on call.</p>
+          </div>
+          <nav aria-label="Product">
+            <p
+              style="margin:0 0 14px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#94A3B8">
+              Product</p>
+            <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:13.5px">
+              <li><a href="/#features" class="st-flink">Features</a></li>
+              <li><a href="/#monitoring" class="st-flink">Monitoring</a></li>
+              <li><a href="/pricing/" class="st-flink">Pricing</a></li>
+            </ul>
+          </nav>
+          <nav aria-label="Resources">
+            <p
+              style="margin:0 0 14px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#94A3B8">
+              Resources</p>
+            <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:13.5px">
+              <li><a href="https://docs.sigtake.com" class="st-flink">Documentation</a></li>
+              <li><a href="https://docs.sigtake.com" class="st-flink">API reference</a></li>
+              <li><a href="/help/" class="st-flink">Help &amp; support</a></li>
+            </ul>
+          </nav>
+          <nav aria-label="Legal">
+            <p
+              style="margin:0 0 14px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#94A3B8">
+              Legal</p>
+            <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:13.5px">
+              <li><a href="/privacy/" class="st-flink">Privacy</a></li>
+              <li><a href="/terms/" class="st-flink">Terms</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div
+          style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;border-top:1px solid rgba(255,255,255,0.05);padding-top:24px;font-size:12.5px;color:#94A3B8">
+          <span>© 2026 Sigtake, Inc.</span>
+          <div style="display:flex;flex-wrap:wrap;gap:20px">
+            <a href="https://github.com/Sigtake" class="st-flink">GitHub</a>
+            <a href="https://www.linkedin.com/company/sigtake" class="st-flink">LinkedIn</a>
+            <a href="https://www.youtube.com/@Sigtake" class="st-flink">YouTube</a>
+            <a href="https://www.instagram.com/sig_take/" class="st-flink">Instagram</a>
+            <a href="https://www.facebook.com/sigtake/" class="st-flink">Facebook</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <script>
+    (function () {
+      document.documentElement.classList.add('st-js');
+
+      var targets = [].slice.call(document.querySelectorAll('.st-reveal'));
+      if (!targets.length) return;
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        || !('IntersectionObserver' in window)) {
+        targets.forEach(function (el) { el.classList.add('st-in'); });
+        return;
+      }
+
+      var revealer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('st-in');
+          revealer.unobserve(entry.target);
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+
+      targets.forEach(function (el) { revealer.observe(el); });
+    })();
+  </script>
+</body>
+
+</html>

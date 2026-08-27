@@ -4,9 +4,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sigtake — Own every alert, from firing to fixed</title>
+  <title>Sigtake — Alert Management &amp; Monitoring for Ops Teams</title>
   <meta name="description"
-    content="Sigtake ingests alerts from all your systems, deduplicates them, and routes what matters to the right team — email, Slack, Microsoft Teams or in-app.">
+    content="Sigtake ingests alerts from every system, deduplicates them and routes what matters to the right team — email, Slack, Teams or in-app. Free during early access.">
   <link rel="preload" href="/public/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/public/fonts/bricolage-var-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="/public/favicon.ico" sizes="32x32">
@@ -43,7 +43,30 @@
         "name": "Sigtake",
         "url": "https://sigtake.com/",
         "logo": "https://sigtake.com/public/web-app-manifest-512x512.png",
-        "description": "Real-time alert management & monitoring for ops teams."
+        "description": "Real-time alert management & monitoring for ops teams.",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer support",
+          "email": "help@sigtake.com",
+          "url": "https://sigtake.com/help/",
+          "availableLanguage": ["English", "Spanish"]
+        },
+        "sameAs": [
+          "https://github.com/Sigtake",
+          "https://www.linkedin.com/company/sigtake",
+          "https://www.youtube.com/@Sigtake",
+          "https://www.instagram.com/sig_take/",
+          "https://www.facebook.com/sigtake/"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://sigtake.com/#website",
+        "url": "https://sigtake.com/",
+        "name": "Sigtake",
+        "description": "Real-time alert management & monitoring for ops teams.",
+        "inLanguage": "en-US",
+        "publisher": { "@id": "https://sigtake.com/#organization" }
       },
       {
         "@type": "SoftwareApplication",
@@ -892,19 +915,6 @@
         right: 10px !important;
         top: 44px !important;
       }
-
-      .st-landing .st-biz {
-        padding: 24px 20px !important;
-      }
-
-      .st-landing .st-biz-head {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .st-landing .st-biz-list {
-        grid-template-columns: 1fr !important;
-      }
     }
   </style>
   <!-- Google Tag Manager -->
@@ -940,7 +950,7 @@
           <a href="/#features" class="st-navlink">Features</a>
           <a href="/#monitoring" class="st-navlink">Monitoring</a>
           <a href="/#how" class="st-navlink">How it works</a>
-          <a href="/#pricing" class="st-navlink">Pricing</a>
+          <a href="/pricing/" class="st-navlink">Pricing</a>
           <a href="https://docs.sigtake.com" class="st-navlink">Docs</a>
         </div>
         <div style="display:flex;align-items:center;gap:16px">
@@ -1710,29 +1720,21 @@
               Pricing</p>
             <h2 class="st-h2">
               Start free, scale when you're paged</h2>
-            <p class="st-lede-sec">Everything's free while we're in early
-              access — paid plans will come as we grow.</p>
+            <p class="st-lede-sec">Everything's free while we're in early access — unlimited users, teams,
+              alerts and monitors, no credit card. Paid plans will come as we grow.</p>
           </div>
-          <div class="st-biz st-reveal st-d1"
-            style="max-width:760px;margin:0 auto;background:linear-gradient(180deg,#13161B,#0F1115);border:1px solid rgba(45,212,191,0.25);border-radius:18px;padding:26px 32px;box-shadow:0 0 44px rgba(45,212,191,0.08)">
-            <div class="st-biz-head"
-              style="display:flex;align-items:center;justify-content:space-between;gap:16px 24px;flex-wrap:wrap">
-              <div style="min-width:0">
-                <p class="st-eyebrow" style="margin-bottom:6px">Business</p>
-                <h3
-                  style="margin:0 0 6px;font-size:21px;font-weight:700;letter-spacing:-0.015em;color:#F1F5F9;line-height:1.3">
-                  For orgs that treat alerting as infrastructure</h3>
-                <p class="st-card-p">Unlimited users, teams, alerts and monitors. Enforced 2FA, full audit
-                  history and priority support.</p>
-              </div>
-              <a href="mailto:help@sigtake.com?subject=Talk%20to%20sales" class="st-btn-ghost st-btn-ghost-teal"
-                style="flex:none;display:inline-flex;justify-content:center;font-size:14px;font-weight:600;padding:11px 22px;border-radius:9px">Talk
-                to sales</a>
-            </div>
+          <div class="st-reveal st-d1"
+            style="display:flex;justify-content:center;flex-wrap:wrap;gap:12px">
+            <a href="https://app.sigtake.com/register" class="st-btn-primary"
+              style="display:inline-flex;align-items:center;font-size:15px;font-weight:600;padding:12px 26px;border-radius:10px;box-shadow:0 0 28px rgba(45,212,191,0.3)">Start
+              free</a>
+            <a href="/pricing/" class="st-btn-ghost st-btn-ghost-teal"
+              style="display:inline-flex;align-items:center;font-size:15px;font-weight:600;padding:12px 26px;border-radius:10px">See
+              what's included</a>
           </div>
 
-          <!-- FAQ. No FAQPage markup on purpose: that schema is reserved for /pricing, and two FAQPage
-               blocks on one site compete with each other. -->
+          <!-- FAQ. No FAQPage markup on purpose: that schema lives on /pricing, and two FAQPage blocks
+               on one site compete with each other. -->
           <div class="st-reveal st-d2" style="max-width:760px;margin:56px auto 0">
             <h3 class="st-h3" style="font-size:21px;margin-bottom:20px">Before you ask</h3>
             <dl class="st-faq">
@@ -1806,7 +1808,7 @@
             <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:13.5px">
               <li><a href="/#features" class="st-flink">Features</a></li>
               <li><a href="/#monitoring" class="st-flink">Monitoring</a></li>
-              <li><a href="/#pricing" class="st-flink">Pricing</a></li>
+              <li><a href="/pricing/" class="st-flink">Pricing</a></li>
               <!-- TODO: re-enable when a changelog exists: <li><a href="#" class="st-flink">Changelog</a></li> -->
             </ul>
           </nav>
@@ -1935,7 +1937,7 @@
 
       // `#monitoring` nests inside `#features`, so sorting the ranges by offset is what separates them.
       var spyTargets = [];
-      ['features', 'monitoring', 'how', 'pricing'].forEach(function (id) {
+      ['features', 'monitoring', 'how'].forEach(function (id) {
         var link = document.querySelector('.st-navlink[href="/#' + id + '"]');
         var section = document.getElementById(id);
         if (link && section) spyTargets.push({ link: link, section: section, top: 0 });

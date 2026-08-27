@@ -10,7 +10,8 @@
 - [SDKs](https://sigtake.com/#sdks): official Node and Python clients
 - [Monitoring](https://sigtake.com/#monitoring): uptime and signal monitoring built in
 - [How it works](https://sigtake.com/#how): connect, route, then acknowledge and resolve
-- [Pricing](https://sigtake.com/#pricing): free during early access; paid plans as we grow
+- [Pricing](https://sigtake.com/pricing/): free during early access — unlimited users, teams,
+  alerts and monitors, no credit card; paid plans as we grow
 
 ## SDKs
 - Node.js: `npm install @sigtake/sdk` (Node 18+, zero dependencies, ESM + CJS, typed).

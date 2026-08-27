@@ -50,6 +50,8 @@ jobs:
           io.open(path, 'w', encoding='utf-8').write(xml)
           PY
 
+      # Careful when writing about this file: GitHub reads the skip token from the whole commit
+      # message, body included, so a commit that merely mentions it suppresses its own run.
       - name: Commit if it moved
         run: |
           git config user.name  "github-actions[bot]"

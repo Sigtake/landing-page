@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="theme-color" content="#040609">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found — Sigtake</title>
+  <meta name="description" content="The page you were looking for does not exist on sigtake.com.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/public/favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="/public/favicon.svg">
+  <link rel="icon" type="image/png" sizes="96x96" href="/public/favicon-96x96.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
+  <link rel="manifest" href="/public/site.webmanifest">
+  <link rel="preload" href="/public/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/public/fonts/bricolage-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    @font-face {
+      font-family: "Inter";
+      src: url("/public/fonts/inter-var-latin.woff2") format("woff2");
+      font-weight: 400 800;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Bricolage Grotesque";
+      src: url("/public/fonts/bricolage-var-latin.woff2") format("woff2");
+      font-weight: 600 800;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    html,
+    body {
+      margin: 0;
+      background: #040609;
+    }
+
+    body {
+      color: #e2e8f0;
+      font-family: "Inter", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: #5eead4;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #99f6e4;
+    }
+
+    ::selection {
+      background: rgba(45, 212, 191, 0.3);
+    }
+
+    .st-nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(4, 6, 9, 0.82);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .st-nav-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .st-wordmark {
+      font-family: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
+    }
+
+    .st-main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 72px 24px 88px;
+    }
+
+    .st-card {
+      width: 100%;
+      max-width: 560px;
+      text-align: center;
+    }
+
+    .st-glyph {
+      position: relative;
+      width: 96px;
+      height: 96px;
+      margin: 0 auto 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      background: rgba(45, 212, 191, 0.07);
+      border: 1px solid rgba(45, 212, 191, 0.28);
+    }
+
+    .st-glyph::before,
+    .st-glyph::after {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: 999px;
+      border: 1px solid rgba(45, 212, 191, 0.32);
+      animation: st-ping 3.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+
+    .st-glyph::after {
+      animation-delay: 1.6s;
+    }
+
+    @keyframes st-ping {
+      0% {
+        transform: scale(1);
+        opacity: .55;
+      }
+
+      70%,
+      100% {
+        transform: scale(1.65);
+        opacity: 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .st-glyph::before,
+      .st-glyph::after {
+        animation: none;
+        opacity: 0;
+      }
+    }
+
+    .st-code {
+      font-family: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #5eead4;
+    }
+
+    h1 {
+      font-family: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
+      margin: 0 0 12px;
+      font-size: clamp(28px, 6vw, 38px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #F8FAFC;
+      line-height: 1.15;
+    }
+
+    .st-lead {
+      margin: 0 auto 26px;
+      max-width: 440px;
+      font-size: 15.5px;
+      line-height: 1.7;
+      color: #94A3B8;
+    }
+
+    .st-path {
+      display: inline-block;
+      max-width: 100%;
+      margin: 0 0 30px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-family: ui-monospace, Menlo, monospace;
+      font-size: 12.5px;
+      color: #64748B;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      vertical-align: bottom;
+    }
+
+    .st-path[hidden] {
+      display: none;
+    }
+
+    .st-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 34px;
+    }
+
+    .st-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      height: 44px;
+      padding: 0 22px;
+      border-radius: 10px;
+      font-size: 14.5px;
+      font-weight: 600;
+      transition: background .18s ease, color .18s ease;
+    }
+
+    .st-btn-primary {
+      background: #2dd4bf;
+      border: 1px solid #2dd4bf;
+      color: #0c1220;
+    }
+
+    .st-btn-primary:hover {
+      background: #5eead4;
+      color: #0c1220;
+    }
+
+    .st-btn-ghost {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #e2e8f0;
+    }
+
+    .st-btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #e2e8f0;
+    }
+
+    .st-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      justify-content: center;
+      font-size: 13.5px;
+    }
+
+    .st-links a {
+      color: #64748B;
+    }
+
+    .st-links a:hover {
+      color: #5eead4;
+    }
+
+    .st-foot {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 28px 24px;
+      background: #060709;
+    }
+
+    .st-foot-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px 20px;
+      font-size: 12.5px;
+      color: #475569;
+    }
+
+    .st-foot-inner a {
+      color: #64748B;
+    }
+
+    .st-foot-inner a:hover {
+      color: #5eead4;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="st-nav">
+    <div class="st-nav-inner">
+      <a href="/" style="display:flex;align-items:center;gap:10px;color:#F1F5F9">
+        <img src="/public/logo.svg" width="24" height="24" alt=""
+          style="flex:none;filter:drop-shadow(0 0 16px rgba(45,212,191,0.4))">
+        <span class="st-wordmark" style="font-size:16px;font-weight:700;letter-spacing:-0.01em">Sigtake</span>
+      </a>
+      <a href="/" style="font-size:14px;font-weight:500;color:#94A3B8">← Back to sigtake.com</a>
+    </div>
+  </nav>
+
+  <main class="st-main">
+    <div class="st-card">
+      <div class="st-glyph" role="img" aria-label="404">
+        <span class="st-code">404</span>
+      </div>
+
+      <h1>No signal at this address</h1>
+      <p class="st-lead">This page doesn't exist, or it moved. Nothing is wrong with your
+        monitors — only with this link.</p>
+
+      <p class="st-path" id="st-path" hidden></p>
+
+      <div class="st-actions">
+        <a class="st-btn st-btn-primary" href="/">Go to homepage</a>
+        <a class="st-btn st-btn-ghost" href="https://app.sigtake.com">Open the dashboard</a>
+      </div>
+
+      <nav class="st-links" aria-label="Popular pages">
+        <a href="/pricing/">Pricing</a>
+        <a href="/help/">Help &amp; support</a>
+        <a href="https://docs.sigtake.com">Docs</a>
+        <a href="mailto:help@sigtake.com">Contact us</a>
+      </nav>
+    </div>
+  </main>
+
+  <footer class="st-foot">
+    <div class="st-foot-inner">
+      <span>© 2026 Sigtake, Inc.</span>
+      <span><a href="/">Home</a> · <a href="/privacy/">Privacy</a> · <a href="/terms/">Terms of Service</a></span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var el = document.getElementById('st-path');
+      if (!el || location.pathname === '/' || location.pathname === '/404.html') return;
+      var path = (location.pathname + location.search).slice(0, 120);
+      el.textContent = 'GET ' + path + ' → 404';
+      el.hidden = false;
+    })();
+  </script>
+</body>
+
+</html>

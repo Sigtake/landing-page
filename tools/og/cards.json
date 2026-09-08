@@ -1,0 +1,35 @@
+{
+  "home": {
+    "out": "og/home.png",
+    "layout": "rows",
+    "titleHtml": "Own every alert,<br>from <em class=\"fire\">firing</em> to <em class=\"fixed\">fixed</em>.",
+    "sub": "Alert management, uptime and signal monitoring for ops teams."
+  },
+  "pricing": {
+    "out": "og/pricing.png",
+    "layout": "stat",
+    "titleHtml": "Free while we're<br>in early access",
+    "sub": "Unlimited users, teams, alerts and monitors. Every notification channel.",
+    "stat": "$0",
+    "statNote": "/ month, per organization",
+    "checks": ["Unlimited users and teams", "Unlimited alerts and monitors", "Every notification channel", "No credit card"]
+  },
+  "help": {
+    "out": "og/help.png",
+    "layout": "plain",
+    "titleHtml": "How can<br>we help?",
+    "sub": "Tell us what broke. We reply within 2 business days."
+  },
+  "privacy": {
+    "out": "og/privacy.png",
+    "layout": "plain",
+    "titleHtml": "Privacy Policy",
+    "sub": "Sigtake — alert management and monitoring for ops teams."
+  },
+  "terms": {
+    "out": "og/terms.png",
+    "layout": "plain",
+    "titleHtml": "Terms of Service",
+    "sub": "Sigtake — alert management and monitoring for ops teams."
+  }
+}

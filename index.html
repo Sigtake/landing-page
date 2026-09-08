@@ -897,12 +897,56 @@
         display: none !important;
       }
 
+      /* The row is a 6-cell grid in semantic order (severity, alert, team, count, status, seen);
+         on mobile those same cells are re-placed as a 3-line card, so there is no second copy of
+         the alert list to keep in sync with this one. */
       .st-landing .st-mock-body {
-        overflow-x: auto;
+        overflow-x: visible;
       }
 
       .st-landing .st-mock-table {
-        min-width: 620px;
+        min-width: 0;
+      }
+
+      .st-landing .st-mock-table>div:first-child {
+        display: none !important;
+      }
+
+      .st-landing .st-mock-table>div {
+        grid-template-columns: auto auto 1fr !important;
+        gap: 7px 10px !important;
+        padding: 12px 14px !important;
+      }
+
+      .st-landing .st-mock-table>div>span:nth-child(1) {
+        grid-area: 1 / 1;
+        padding: 2px 9px !important;
+      }
+
+      .st-landing .st-mock-table>div>span:nth-child(4) {
+        grid-area: 1 / 2;
+      }
+
+      .st-landing .st-mock-table>div>span:nth-child(2) {
+        grid-area: 2 / 1 / auto / -1;
+      }
+
+      .st-landing .st-mock-table>div>span:nth-child(2)>span:first-child {
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: clip !important;
+      }
+
+      .st-landing .st-mock-table>div>span:nth-child(3) {
+        grid-area: 3 / 1;
+      }
+
+      .st-landing .st-mock-table>div>span:nth-child(5) {
+        grid-area: 3 / 2;
+      }
+
+      .st-landing .st-mock-table>div>span:nth-child(6) {
+        grid-area: 3 / 3;
       }
 
       .st-landing .st-foot {
@@ -910,10 +954,11 @@
         gap: 28px !important;
       }
 
+      /* Absolute placement puts it across the mock's own header at this width; static drops it
+         below the panel instead. */
       .st-landing .st-toast {
-        left: 10px !important;
-        right: 10px !important;
-        top: 44px !important;
+        position: static !important;
+        margin: 14px 0 0 !important;
       }
     }
   </style>

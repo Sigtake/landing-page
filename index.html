@@ -629,6 +629,30 @@
       color: var(--ink-3);
     }
 
+    .st-landing .st-navtoggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      margin: 0 -10px 0 0;
+      padding: 0;
+      border: 0;
+      border-radius: 8px;
+      background: none;
+      color: var(--ink-2);
+      cursor: pointer;
+    }
+
+    .st-landing .st-navtoggle .st-ico-close,
+    .st-landing .st-navtoggle[aria-expanded="true"] .st-ico-menu {
+      display: none;
+    }
+
+    .st-landing .st-navtoggle[aria-expanded="true"] .st-ico-close {
+      display: inline;
+    }
+
     .st-landing .st-flink {
       color: var(--ink-2);
     }
@@ -836,8 +860,10 @@
 
     @media (max-width: 767px) {
 
-      /* The same nav nodes reflowed into a scrollable second row, never a duplicate menu: the
-         scrollspy indexes `.st-navlink` by id and would only register the last copy. */
+      /* The same nav nodes revealed as a panel, never a duplicate menu: the scrollspy indexes
+         `.st-navlink` by id and would only register the last copy. The toggle sits before them in
+         the DOM so Tab reaches what it just opened, and is placed on the right with `order`.
+         Without JS nothing is ever collapsed, so the panel simply stays open. */
       .st-landing .st-nav-inner {
         height: auto !important;
         flex-wrap: wrap;
@@ -845,21 +871,78 @@
         padding: 10px 16px 8px !important;
       }
 
-      .st-landing .st-nav-links {
-        order: 3;
-        flex: 0 0 100%;
-        gap: 16px !important;
-        overflow-x: auto;
-        scrollbar-width: none;
-        -webkit-overflow-scrolling: touch;
+      .st-landing .st-nav-inner {
+        justify-content: flex-start;
+        column-gap: 12px;
       }
 
-      .st-landing .st-nav-links::-webkit-scrollbar {
-        display: none;
+      .st-landing .st-nav-inner>a:first-of-type {
+        order: 1;
+        margin-right: auto;
+        min-height: 44px;
+      }
+
+      .st-landing .st-nav-cta {
+        order: 2;
+        gap: 12px !important;
+      }
+
+      .st-js .st-landing .st-navtoggle {
+        display: inline-flex;
+        order: 3;
+      }
+
+      .st-landing .st-nav-links {
+        order: 4;
+        flex: 0 0 100%;
+        flex-direction: column;
+        align-items: stretch !important;
+        gap: 0 !important;
+        margin-top: 4px;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .st-landing .st-nav-links.st-closed {
+        display: none !important;
       }
 
       .st-landing .st-navlink {
-        white-space: nowrap;
+        display: block;
+        text-align: left;
+        padding: 13px 2px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .st-landing .st-nav-links .st-navlink:last-child {
+        border-bottom: 0;
+        padding-bottom: 14px;
+      }
+
+      /* 44px minimum touch target: nav row, footer columns and the social row all sat at 15-17px. */
+      .st-landing .st-loglink {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        padding: 0 4px;
+      }
+
+      .st-landing .st-nav-cta .st-btn-primary {
+        padding: 14px 16px !important;
+      }
+
+      .st-landing .st-flink {
+        display: inline-block;
+        box-sizing: border-box;
+        min-height: 44px;
+        padding: 14px 0;
+      }
+
+      .st-landing .st-sec-foot ul {
+        gap: 0 !important;
+      }
+
+      .st-landing [role="tab"] {
+        min-height: 44px;
       }
 
       .st-landing #main,
@@ -868,7 +951,7 @@
       .st-landing #monitoring,
       .st-landing #how,
       .st-landing #pricing {
-        scroll-margin-top: 100px !important;
+        scroll-margin-top: 88px !important;
       }
 
       .st-landing .st-sec {
@@ -999,14 +1082,20 @@
             style="flex:none;filter:drop-shadow(0 0 16px rgba(45,212,191,0.4))">
           <span class="st-wordmark" style="font-size:16px;font-weight:700;letter-spacing:-0.01em">Sigtake</span>
         </a>
-        <div class="st-nav-links" style="display:flex;align-items:center;gap:28px;font-size:14px;font-weight:500">
+        <button type="button" class="st-navtoggle" aria-expanded="false" aria-controls="st-nav-links"
+          aria-label="Menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path class="st-ico-menu" d="M4 7h16M4 12h16M4 17h16" />
+            <path class="st-ico-close" d="M6 6l12 12M18 6L6 18" />
+          </svg></button>
+        <div class="st-nav-links" id="st-nav-links" style="display:flex;align-items:center;gap:28px;font-size:14px;font-weight:500">
           <a href="/#features" class="st-navlink">Features</a>
           <a href="/#monitoring" class="st-navlink">Monitoring</a>
           <a href="/#how" class="st-navlink">How it works</a>
           <a href="/pricing/" class="st-navlink">Pricing</a>
           <a href="https://docs.sigtake.com" class="st-navlink">Docs</a>
         </div>
-        <div style="display:flex;align-items:center;gap:16px">
+        <div class="st-nav-cta" style="display:flex;align-items:center;gap:16px">
           <a href="https://app.sigtake.com/login" class="st-loglink" style="font-size:14px;font-weight:500">Log in</a>
           <a href="https://app.sigtake.com/register" class="st-btn-primary"
             style="display:inline-flex;align-items:center;font-size:14px;font-weight:600;padding:8px 16px;border-radius:8px;box-shadow:0 0 20px rgba(45,212,191,0.3)">Start
@@ -1907,6 +1996,28 @@
 
       var motionOk = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
         && 'IntersectionObserver' in window;
+
+      var navToggle = document.querySelector('.st-navtoggle');
+      var navLinks = document.querySelector('.st-nav-links');
+      if (navToggle && navLinks) {
+        var setNav = function (open) {
+          navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+          navLinks.classList.toggle('st-closed', !open);
+        };
+        setNav(false);
+        navToggle.addEventListener('click', function () {
+          setNav(navToggle.getAttribute('aria-expanded') !== 'true');
+        });
+        navLinks.addEventListener('click', function (e) {
+          if (e.target.closest('a')) setNav(false);
+        });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && navToggle.getAttribute('aria-expanded') === 'true') {
+            setNav(false);
+            navToggle.focus();
+          }
+        });
+      }
 
       var counters = [].slice.call(document.querySelectorAll('.st-count'));
       if (counters.length) {

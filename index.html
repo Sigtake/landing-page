@@ -153,8 +153,10 @@
       --ink-1: #f1f5f9;
       --ink-2: #cbd5e1;
       --ink-3: #94a3b8;
-      --ink-4: #64748b;
-      --ink-5: #475569;
+      /* Contrast floor: the darkest ink that still clears 4.5:1 on every surface in use,
+         #112123 (the teal-tinted team chip) being the lightest of them. There is no step
+         below it — two would be indistinguishable from each other at this luminance. */
+      --ink-4: #7A8899;
       --ink-inverse: #0c1220;
 
       /* Accent */
@@ -331,7 +333,7 @@
     }
 
     .st-landing .st-arc-sep {
-      color: var(--ink-5);
+      color: var(--ink-4);
     }
 
     .st-landing .st-close-h {
@@ -529,7 +531,7 @@
     }
 
     .st-landing .st-dupe span {
-      color: var(--ink-5);
+      color: var(--ink-4);
       flex: none;
     }
 
@@ -927,6 +929,12 @@
         grid-area: 1 / 2;
       }
 
+      /* In a card the absence of a count chip already says "no repeats"; the dash is a
+         placeholder for a column that does not exist at this width. */
+      .st-landing .st-nocount {
+        display: none !important;
+      }
+
       .st-landing .st-mock-table>div>span:nth-child(2) {
         grid-area: 2 / 1 / auto / -1;
       }
@@ -1078,7 +1086,7 @@
                   style="width:10px;height:10px;border-radius:50%;background:#1E2229"></span><span
                   style="width:10px;height:10px;border-radius:50%;background:#1E2229"></span>
                 <span
-                  style="margin:0 auto;font-size:11.5px;color:#475569;background:rgba(255,255,255,0.04);border-radius:6px;padding:3px 32px;font-family:ui-monospace,Menlo,monospace">app.sigtake.com/alerts</span>
+                  style="margin:0 auto;font-size:11.5px;color:#7A8899;background:rgba(255,255,255,0.04);border-radius:6px;padding:3px 32px;font-family:ui-monospace,Menlo,monospace">app.sigtake.com/alerts</span>
               </div>
               <div class="st-mock-grid" style="display:grid;grid-template-columns:176px 1fr">
                 <div class="st-mock-side"
@@ -1087,15 +1095,15 @@
                       style="width:18px;height:18px;border-radius:5px;background:linear-gradient(135deg,#2DD4BF,#0D9488)"></span><span
                       style="font-size:12.5px;font-weight:700;color:#E2E8F0">Acme Corp</span></div>
                   <span
-                    style="font-size:12.5px;font-weight:500;color:#64748B;padding:7px 10px;border-radius:7px">Dashboard</span>
+                    style="font-size:12.5px;font-weight:500;color:#7A8899;padding:7px 10px;border-radius:7px">Dashboard</span>
                   <span
                     style="display:flex;justify-content:space-between;align-items:center;font-size:12.5px;font-weight:600;color:#5EEAD4;padding:7px 10px;border-radius:7px;background:rgba(45,212,191,0.1)">Alerts<span
                       style="font-size:10px;font-weight:700;background:rgba(239,68,68,0.18);color:#F87171;border-radius:99px;padding:1px 7px">3</span></span>
-                  <span style="font-size:12.5px;font-weight:500;color:#64748B;padding:7px 10px">Monitors</span>
-                  <span style="font-size:12.5px;font-weight:500;color:#64748B;padding:7px 10px">Signals</span>
-                  <span style="font-size:12.5px;font-weight:500;color:#64748B;padding:7px 10px">Teams</span>
-                  <span style="font-size:12.5px;font-weight:500;color:#64748B;padding:7px 10px">API Keys</span>
-                  <span style="font-size:12.5px;font-weight:500;color:#64748B;padding:7px 10px">Channels</span>
+                  <span style="font-size:12.5px;font-weight:500;color:#7A8899;padding:7px 10px">Monitors</span>
+                  <span style="font-size:12.5px;font-weight:500;color:#7A8899;padding:7px 10px">Signals</span>
+                  <span style="font-size:12.5px;font-weight:500;color:#7A8899;padding:7px 10px">Teams</span>
+                  <span style="font-size:12.5px;font-weight:500;color:#7A8899;padding:7px 10px">API Keys</span>
+                  <span style="font-size:12.5px;font-weight:500;color:#7A8899;padding:7px 10px">Channels</span>
                 </div>
                 <div class="st-mock-body" style="padding:16px 18px 18px">
                   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
@@ -1112,7 +1120,7 @@
                   <div class="st-mock-table"
                     style="border:1px solid rgba(255,255,255,0.07);border-radius:10px;overflow:hidden">
                     <div
-                      style="display:grid;grid-template-columns:74px 1fr 96px 46px 110px 58px;gap:12px;align-items:center;padding:8px 14px;background:rgba(255,255,255,0.03);font-size:10px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:#64748B">
+                      style="display:grid;grid-template-columns:74px 1fr 96px 46px 110px 58px;gap:12px;align-items:center;padding:8px 14px;background:rgba(255,255,255,0.03);font-size:10px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:#7A8899">
                       <span>Severity</span><span>Alert</span><span>Team</span><span>Count</span><span>Status</span><span
                         style="text-align:right">Seen</span>
                     </div>
@@ -1123,14 +1131,14 @@
                       <span style="min-width:0"><span
                           style="display:block;font-size:12.5px;font-weight:600;color:#F1F5F9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Payment
                           gateway timeout — checkout-api</span><span
-                          style="font-size:11px;color:#64748B;font-family:ui-monospace,Menlo,monospace">payments-service</span></span>
+                          style="font-size:11px;color:#7A8899;font-family:ui-monospace,Menlo,monospace">payments-service</span></span>
                       <span style="font-size:11.5px;color:#94A3B8">Payments</span>
                       <span
                         style="font-size:11px;font-weight:600;font-family:ui-monospace,Menlo,monospace;color:#5EEAD4;background:rgba(45,212,191,0.12);border-radius:6px;padding:2px 6px;text-align:center">×3</span>
                       <span
                         style="display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:#F87171"><span
                           style="width:7px;height:7px;border-radius:50%;background:#EF4444;animation:st-pulse 1.5s infinite"></span>Firing</span>
-                      <span style="font-size:11px;color:#64748B;text-align:right">just now</span>
+                      <span style="font-size:11px;color:#7A8899;text-align:right">just now</span>
                     </div>
                     <div
                       style="display:grid;grid-template-columns:74px 1fr 96px 46px 110px 58px;gap:12px;align-items:center;padding:11px 14px;border-top:1px solid rgba(255,255,255,0.05)">
@@ -1139,14 +1147,14 @@
                       <span style="min-width:0"><span
                           style="display:block;font-size:12.5px;font-weight:600;color:#F1F5F9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">CPU
                           above 92% on prod-web-03</span><span
-                          style="font-size:11px;color:#64748B;font-family:ui-monospace,Menlo,monospace">prometheus</span></span>
+                          style="font-size:11px;color:#7A8899;font-family:ui-monospace,Menlo,monospace">prometheus</span></span>
                       <span style="font-size:11.5px;color:#94A3B8">Infrastructure</span>
                       <span
                         style="font-size:11px;font-weight:600;font-family:ui-monospace,Menlo,monospace;color:#5EEAD4;background:rgba(45,212,191,0.12);border-radius:6px;padding:2px 6px;text-align:center">×47</span>
                       <span
                         style="display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:#F87171"><span
                           style="width:7px;height:7px;border-radius:50%;background:#EF4444;animation:st-pulse 1.5s infinite"></span>Firing</span>
-                      <span style="font-size:11px;color:#64748B;text-align:right">12s ago</span>
+                      <span style="font-size:11px;color:#7A8899;text-align:right">12s ago</span>
                     </div>
                     <div
                       style="display:grid;grid-template-columns:74px 1fr 96px 46px 110px 58px;gap:12px;align-items:center;padding:11px 14px;border-top:1px solid rgba(255,255,255,0.05)">
@@ -1155,13 +1163,13 @@
                       <span style="min-width:0"><span
                           style="display:block;font-size:12.5px;font-weight:600;color:#F1F5F9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">TLS
                           certificate expires in 7 days — api.acme.com</span><span
-                          style="font-size:11px;color:#64748B;font-family:ui-monospace,Menlo,monospace">datadog-agent</span></span>
+                          style="font-size:11px;color:#7A8899;font-family:ui-monospace,Menlo,monospace">datadog-agent</span></span>
                       <span style="font-size:11.5px;color:#94A3B8">Platform</span>
-                      <span style="font-size:11px;color:#334155;text-align:center">—</span>
+                      <span class="st-nocount" style="font-size:11px;color:#7A8899;text-align:center">—</span>
                       <span
                         style="display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:#F87171"><span
                           style="width:7px;height:7px;border-radius:50%;background:#EF4444"></span>Firing</span>
-                      <span style="font-size:11px;color:#64748B;text-align:right">4m ago</span>
+                      <span style="font-size:11px;color:#7A8899;text-align:right">4m ago</span>
                     </div>
                     <div
                       style="display:grid;grid-template-columns:74px 1fr 96px 46px 110px 58px;gap:12px;align-items:center;padding:11px 14px;border-top:1px solid rgba(255,255,255,0.05)">
@@ -1170,14 +1178,14 @@
                       <span style="min-width:0"><span
                           style="display:block;font-size:12.5px;font-weight:600;color:#F1F5F9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Payments
                           queue backlog: 1,240 messages</span><span
-                          style="font-size:11px;color:#64748B;font-family:ui-monospace,Menlo,monospace">payments-service</span></span>
+                          style="font-size:11px;color:#7A8899;font-family:ui-monospace,Menlo,monospace">payments-service</span></span>
                       <span style="font-size:11.5px;color:#94A3B8">Payments</span>
                       <span
                         style="font-size:11px;font-weight:600;font-family:ui-monospace,Menlo,monospace;color:#5EEAD4;background:rgba(45,212,191,0.12);border-radius:6px;padding:2px 6px;text-align:center">×12</span>
                       <span
                         style="display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:#A78BFA"><span
                           style="width:7px;height:7px;border-radius:50%;background:#8B5CF6"></span>Acked</span>
-                      <span style="font-size:11px;color:#64748B;text-align:right">18m ago</span>
+                      <span style="font-size:11px;color:#7A8899;text-align:right">18m ago</span>
                     </div>
                     <div
                       style="display:grid;grid-template-columns:74px 1fr 96px 46px 110px 58px;gap:12px;align-items:center;padding:11px 14px;border-top:1px solid rgba(255,255,255,0.05)">
@@ -1186,13 +1194,13 @@
                       <span style="min-width:0"><span
                           style="display:block;font-size:12.5px;font-weight:600;color:#F1F5F9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Nightly
                           backup completed with warnings</span><span
-                          style="font-size:11px;color:#64748B;font-family:ui-monospace,Menlo,monospace">datadog-agent</span></span>
+                          style="font-size:11px;color:#7A8899;font-family:ui-monospace,Menlo,monospace">datadog-agent</span></span>
                       <span style="font-size:11.5px;color:#94A3B8">Infrastructure</span>
-                      <span style="font-size:11px;color:#334155;text-align:center">—</span>
+                      <span class="st-nocount" style="font-size:11px;color:#7A8899;text-align:center">—</span>
                       <span
                         style="display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:#34D399"><span
                           style="width:7px;height:7px;border-radius:50%;background:#10B981"></span>Resolved</span>
-                      <span style="font-size:11px;color:#64748B;text-align:right">2h ago</span>
+                      <span style="font-size:11px;color:#7A8899;text-align:right">2h ago</span>
                     </div>
                   </div>
                 </div>
@@ -1216,7 +1224,7 @@
         <div
           style="max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:14px 28px">
           <span class="st-reveal"
-            style="font-size:12px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#64748B">Anything
+            style="font-size:12px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#7A8899">Anything
             that can POST</span>
           <ul class="st-reveal st-d1 st-sources">
             <li><span></span>Prometheus</li>
@@ -1259,7 +1267,7 @@
                 <div class="st-dupe" style="opacity:.3"><span>03:10</span>CPU above 92% on prod-web-03</div>
               </div>
               <div
-                style="font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#64748B;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px">
+                style="font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#7A8899;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px">
                 + 394 more · no owner · nobody acknowledged</div>
             </div>
 
@@ -1283,7 +1291,7 @@
                   style="font-size:15px;font-weight:700;font-family:ui-monospace,Menlo,monospace;color:#5EEAD4;background:rgba(45,212,191,0.12);border:1px solid rgba(45,212,191,0.3);border-radius:8px;padding:4px 10px;flex:none">×47</span>
               </div>
               <div
-                style="display:flex;align-items:center;gap:8px;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#64748B;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px">
+                style="display:flex;align-items:center;gap:8px;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#7A8899;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px">
                 <span
                   style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:rgba(45,212,191,0.15);color:#5EEAD4;font-size:9px;font-weight:700;flex:none">MR</span>
                 acked by Marta Ruiz · 2m · team Infrastructure
@@ -1338,7 +1346,7 @@
                   <div
                     style="background:#171A20;border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px 14px">
                     <p style="margin:0 0 8px;font-size:12.5px;line-height:1.5;color:#CBD5E1"><span
-                        style="font-weight:600;color:#F1F5F9">Marta Ruiz</span> <span style="color:#64748B">·
+                        style="font-weight:600;color:#F1F5F9">Marta Ruiz</span> <span style="color:#7A8899">·
                         2m</span><br>Rolling restart on prod-web-03, watching load…</p>
                     <div
                       style="position:relative;background:#0A0C10;border:1px solid rgba(45,212,191,0.3);border-radius:8px;padding:8px 12px;font-size:12.5px;color:#E2E8F0">
@@ -1349,7 +1357,7 @@
                         <div
                           style="display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:6px;background:rgba(45,212,191,0.12)">
                           <span
-                            style="width:18px;height:18px;border-radius:50%;background:#0D9488;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#F0FDFA">MR</span><span
+                            style="width:18px;height:18px;border-radius:50%;background:#0F766E;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#F0FDFA">MR</span><span
                             style="font-size:12px;color:#F1F5F9">Marta Ruiz</span>
                         </div>
                         <div style="display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:6px"><span
@@ -1380,7 +1388,7 @@
                       style="font-size:15px;font-weight:700;font-family:ui-monospace,Menlo,monospace;color:#5EEAD4;background:rgba(45,212,191,0.12);border:1px solid rgba(45,212,191,0.3);border-radius:8px;padding:4px 10px;flex:none">×47</span>
                   </div>
                   <div
-                    style="width:100%;display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 12px;margin-top:14px;font-size:11.5px;color:#64748B;font-family:ui-monospace,Menlo,monospace">
+                    style="width:100%;display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 12px;margin-top:14px;font-size:11.5px;color:#7A8899;font-family:ui-monospace,Menlo,monospace">
                     <span>first seen 2d ago</span><span>notified at 1 · 10 · 25</span><span>last seen 12s ago</span>
                   </div>
                 </div>
@@ -1420,7 +1428,7 @@
                 <div
                   style="display:inline-flex;align-items:center;gap:8px;background:rgba(45,212,191,0.08);border:1px solid rgba(45,212,191,0.3);border-radius:10px;padding:8px 16px">
                   <span style="font-size:12.5px;font-weight:700;color:#5EEAD4">Payments team</span><span
-                    style="font-size:10.5px;color:#64748B;font-family:ui-monospace,Menlo,monospace">PAY · 6
+                    style="font-size:10.5px;color:#7A8899;font-family:ui-monospace,Menlo,monospace">PAY · 6
                     members</span>
                 </div>
                 <div style="width:1px;height:20px;background:rgba(45,212,191,0.4)"></div>
@@ -1558,7 +1566,7 @@
                     <line x1="0" y1="56" x2="300" y2="56" stroke="rgba(255,255,255,0.08)" stroke-width="1"></line>
                   </svg>
                   <div
-                    style="display:flex;justify-content:space-between;font-size:10.5px;color:#475569;font-family:ui-monospace,Menlo,monospace">
+                    style="display:flex;justify-content:space-between;font-size:10.5px;color:#7A8899;font-family:ui-monospace,Menlo,monospace">
                     <span>-24h</span><span>checked every 60s</span><span>now</span>
                   </div>
                 </div>
@@ -1615,10 +1623,10 @@
                 </div>
                 <div
                   style="display:flex;align-items:center;gap:10px;background:#0A0C10;border:1px solid rgba(255,255,255,0.07);border-radius:9px;padding:10px 12px;font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#CBD5E1;flex-wrap:wrap">
-                  <span style="color:#5EEAD4">value &gt; 90</span><span style="color:#475569">for</span><span
-                    style="color:#5EEAD4">5 min</span><span style="color:#475569">→</span><span
+                  <span style="color:#5EEAD4">value &gt; 90</span><span style="color:#7A8899">for</span><span
+                    style="color:#5EEAD4">5 min</span><span style="color:#7A8899">→</span><span
                     style="display:inline-flex;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.05em;background:rgba(239,68,68,0.12);color:#F87171;font-family:'Inter',system-ui,sans-serif">CRITICAL</span><span
-                    style="color:#475569">alert</span>
+                    style="color:#7A8899">alert</span>
                 </div>
               </div>
             </div>
@@ -1751,7 +1759,7 @@
             <a href="https://app.sigtake.com/register" class="st-btn-primary"
               style="display:inline-flex;align-items:center;font-size:16px;font-weight:600;padding:13px 28px;border-radius:10px;box-shadow:0 0 32px rgba(45,212,191,0.32)">Get
               your API key</a>
-            <span style="font-size:14px;color:#64748B">No credit card</span>
+            <span style="font-size:14px;color:#7A8899">No credit card</span>
           </div>
         </div>
       </section>

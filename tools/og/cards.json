@@ -12,7 +12,12 @@
     "sub": "Unlimited users, teams, alerts and monitors. Every notification channel.",
     "stat": "$0",
     "statNote": "/ month, per organization",
-    "checks": ["Unlimited users and teams", "Unlimited alerts and monitors", "Every notification channel", "No credit card"]
+    "checks": [
+      "Unlimited users and teams",
+      "Unlimited alerts and monitors",
+      "Every notification channel",
+      "No credit card"
+    ]
   },
   "help": {
     "out": "og/help.png",
@@ -31,5 +36,41 @@
     "layout": "plain",
     "titleHtml": "Terms of Service",
     "sub": "Sigtake — alert management and monitoring for ops teams."
+  },
+  "academy": {
+    "out": "og/academy.png",
+    "layout": "plain",
+    "titleHtml": "Sigtake<br>Academy",
+    "sub": "Practical guides on alerting and monitoring for small ops teams."
+  },
+  "academy-opsgenie-alternative-small-teams": {
+    "out": "og/academy-opsgenie-alternative-small-teams.png",
+    "layout": "plain",
+    "titleHtml": "Replacing Opsgenie<br>on a small team",
+    "sub": "Opsgenie shuts down on April 5, 2027. What to move, and how to migrate."
+  },
+  "academy-alert-deduplication-alert-fatigue": {
+    "out": "og/academy-alert-deduplication-alert-fatigue.png",
+    "layout": "plain",
+    "titleHtml": "Alert deduplication:<br>stop alert fatigue",
+    "sub": "One incident per problem, not one message per event."
+  },
+  "academy-alert-notification-channels-slack-teams-email": {
+    "out": "og/academy-alert-notification-channels-slack-teams-email.png",
+    "layout": "plain",
+    "titleHtml": "Slack, Teams and email<br>alert channels",
+    "sub": "Who each channel reaches, and how it handles repeats."
+  },
+  "academy-alert-routing-by-team": {
+    "out": "og/academy-alert-routing-by-team.png",
+    "layout": "plain",
+    "titleHtml": "Route every alert<br>to the team that owns it",
+    "sub": "How teams, projects and channels decide who hears about what."
+  },
+  "academy-set-up-alert-notifications": {
+    "out": "og/academy-set-up-alert-notifications.png",
+    "layout": "plain",
+    "titleHtml": "Set up alert notifications<br>for a team",
+    "sub": "Team, project, channel, test alert. About fifteen minutes."
   }
 }

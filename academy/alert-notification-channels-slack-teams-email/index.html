@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alert Channels: Slack, Microsoft Teams and Email — Sigtake Academy</title>
+  <meta name="description" content="How alert notification channels work in Sigtake: who gets an email, how Slack threads repeats, how Microsoft Teams webhooks post, and how to turn a channel off.">
+  <link rel="canonical" href="https://sigtake.com/academy/alert-notification-channels-slack-teams-email/">
+  <link rel="preload" href="/public/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/public/fonts/bricolage-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" href="/public/favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="/public/favicon.svg">
+  <link rel="icon" type="image/png" sizes="96x96" href="/public/favicon-96x96.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
+  <link rel="manifest" href="/public/site.webmanifest">
+  <meta name="theme-color" content="#040609">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Sigtake">
+  <meta property="og:url" content="https://sigtake.com/academy/alert-notification-channels-slack-teams-email/">
+  <meta property="og:title" content="Alert Notification Channels: Slack, Microsoft Teams and Email">
+  <meta property="og:description" content="How alert notification channels work in Sigtake: who gets an email, how Slack threads repeats, how Microsoft Teams webhooks post, and how to turn a channel off.">
+  <meta property="og:image" content="https://sigtake.com/og/academy-alert-notification-channels-slack-teams-email.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Alert Notification Channels: Slack, Microsoft Teams and Email">
+  <meta property="article:published_time" content="2026-10-02">
+  <meta property="article:modified_time" content="2026-10-02">
+  <meta property="article:author" content="https://www.linkedin.com/in/darwing-sanchez/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Alert Notification Channels: Slack, Microsoft Teams and Email">
+  <meta name="twitter:description" content="How alert notification channels work in Sigtake: who gets an email, how Slack threads repeats, how Microsoft Teams webhooks post, and how to turn a channel off.">
+  <meta name="twitter:image" content="https://sigtake.com/og/academy-alert-notification-channels-slack-teams-email.png">
+  <meta name="twitter:image:alt" content="Alert Notification Channels: Slack, Microsoft Teams and Email">
+  <link rel="stylesheet" href="/academy/academy.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://sigtake.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Academy",
+            "item": "https://sigtake.com/academy/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Alert Notification Channels: Slack, Microsoft Teams and Email"
+          }
+        ]
+      },
+      {
+        "@type": "Article",
+        "@id": "https://sigtake.com/academy/alert-notification-channels-slack-teams-email/#article",
+        "headline": "Alert Notification Channels: Slack, Microsoft Teams and Email",
+        "description": "How alert notification channels work in Sigtake: who gets an email, how Slack threads repeats, how Microsoft Teams webhooks post, and how to turn a channel off.",
+        "image": "https://sigtake.com/og/academy-alert-notification-channels-slack-teams-email.png",
+        "datePublished": "2026-10-02",
+        "dateModified": "2026-10-02",
+        "inLanguage": "en",
+        "mainEntityOfPage": "https://sigtake.com/academy/alert-notification-channels-slack-teams-email/",
+        "author": {
+          "@type": "Person",
+          "name": "Darwing Sánchez",
+          "url": "https://www.linkedin.com/in/darwing-sanchez/"
+        },
+        "publisher": {
+          "@id": "https://sigtake.com/#organization"
+        },
+        "isPartOf": {
+          "@id": "https://sigtake.com/#website"
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <a href="#main" class="ac-skip">Skip to content</a>
+
+  <header class="ac-head">
+    <div class="ac-wrap">
+      <a href="/" class="ac-brand">
+        <img src="/public/logo.svg" width="24" height="24" alt="">
+        Sigtake
+      </a>
+      <a href="/academy/" class="ac-head-link">Academy</a>
+      <a href="https://app.sigtake.com/register" class="ac-btn ac-head-cta">Start free</a>
+    </div>
+  </header>
+
+  <main id="main" class="ac-wrap">
+    <article class="ac-article">
+      <header class="ac-article-head">
+      <nav class="ac-crumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><a href="/academy/">Academy</a></li>
+          <li aria-current="page">Notification channels</li>
+        </ol>
+      </nav>
+
+      <h1>Alert Notification Channels: Slack, Microsoft Teams and Email</h1>
+      <p class="ac-lede">A channel is where an alert ends up: an inbox, a Slack channel, a Microsoft Teams channel. This guide covers what each type does with an alert, who it reaches, and the small details that decide whether a notification lands where people are looking.</p>
+
+      <p class="ac-byline">
+        <span>By <a href="https://www.linkedin.com/in/darwing-sanchez/" rel="author">Darwing Sánchez</a></span>
+        <span>Updated <time datetime="2026-10-02">Oct 2, 2026</time> · 4 min read</span>
+      </p>
+      </header>
+
+      <nav class="ac-toc" aria-labelledby="toc-title">
+        <p class="ac-toc-title" id="toc-title">On this page</p>
+        <ol>
+          <li><a href="#what-is-a-channel">What a channel is</a></li>
+          <li><a href="#email">Email</a></li>
+          <li><a href="#slack">Slack</a></li>
+          <li><a href="#microsoft-teams">Microsoft Teams</a></li>
+          <li><a href="#in-app">In-app notifications</a></li>
+          <li><a href="#turning-off">Turning a channel off</a></li>
+          <li><a href="#which-one">Which channel to use</a></li>
+        </ol>
+      </nav>
+
+      <div class="ac-article-body">
+      <div class="ac-prose">
+        <h2 id="what-is-a-channel">What a channel is</h2>
+        <p>In Sigtake a notification channel is a destination that belongs to <strong>one project</strong>. Your production project might have a <code>#alerts-prod</code> Slack channel and an on-call email list; staging has its own, quieter ones. A channel on its own sends nothing: it starts receiving alerts once it's attached to a team. That link is covered in <a href="/academy/set-up-alert-notifications/">how to set up alert notifications</a>.</p>
+        <p>There are three channel types you can create, plus in-app notifications, which are always on:</p>
+
+        <div class="ac-table">
+          <table>
+            <thead>
+              <tr><th>Type</th><th>Who it reaches</th><th>What it needs</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Email</td><td>The team's members, plus any extra people you list</td><td>Nothing beyond the team</td></tr>
+              <tr><td>Slack</td><td>Everyone in one Slack channel</td><td>Your workspace connected once, then a channel picked</td></tr>
+              <tr><td>Microsoft Teams</td><td>Everyone in one Teams channel</td><td>An incoming webhook URL</td></tr>
+              <tr><td>In-app</td><td>The team's members, in Sigtake</td><td>Nothing. It can't be turned off</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="email">Email</h2>
+        <p>An email channel sends to the <strong>members of the team that owns the alert</strong>. When the team changes, so does the recipient list: add someone to the team and their next alert email arrives without touching the channel.</p>
+        <p>Two optional fields widen it:</p>
+        <ul>
+          <li><strong>Additional internal users:</strong> people in your Sigtake account who aren't on the team but should still get this channel's alerts, such as an engineering manager.</li>
+          <li><strong>External emails:</strong> addresses outside your account, such as a vendor or a shared mailbox.</li>
+        </ul>
+        <p>All three lists are merged and deduplicated, so nobody gets the same alert twice from one channel.</p>
+        <div class="ac-callout">
+          <strong class="ac-callout-title">No per-person opt-out</strong>
+          <p>There is no individual setting to stop alert emails. Team membership decides who receives them. To stop someone getting a team's alerts, remove them from the team.</p>
+        </div>
+
+        <h2 id="slack">Slack</h2>
+        <p>Slack is connected once per account and then reused by every project. An admin connects the workspace from the channel form, approves Sigtake in Slack, and from then on anyone who can create channels picks a Slack channel from a list: <code>#alerts-prod</code> for production and <code>#alerts-staging</code> for staging, both on the same connection.</p>
+        <p>What a Slack channel does with an alert:</p>
+        <ul>
+          <li><strong>One card per incident.</strong> The first notification posts a card with the alert's title, severity and details.</li>
+          <li><strong>Repeats go in the thread.</strong> Later notifications for the same incident reply in that card's thread without being echoed back to the channel. See <a href="/academy/alert-deduplication-alert-fatigue/">how deduplication works</a> for when those happen.</li>
+          <li><strong>The card follows the incident.</strong> When someone acknowledges or resolves the alert, the original card changes color and says who did it, so the channel reads as a status board rather than a log.</li>
+        </ul>
+        <div class="ac-callout ac-callout--warn">
+          <strong class="ac-callout-title">Private channels need an invite</strong>
+          <p>Public channels show up in the picker straight away. A private channel only appears after you invite the Sigtake app to it in Slack (<code>/invite @Sigtake</code> from inside the channel).</p>
+        </div>
+        <p>If the app is removed from the workspace, Slack channels stop delivering and the connection is marked as revoked. Reconnecting the same workspace brings every Slack channel back as it was, with nothing to reconfigure.</p>
+
+        <h2 id="microsoft-teams">Microsoft Teams</h2>
+        <p>A Microsoft Teams channel posts to one Teams channel through a webhook URL. You create the URL on the Teams side, either with the channel's <strong>Incoming Webhook</strong> connector or with a <strong>Power Automate</strong> flow that starts from an HTTP request, and paste it into Sigtake.</p>
+        <p>Each notification is a new message in that channel. There's no threading or card update as in Slack, so a long-running incident shows up as a message at each notification point.</p>
+
+        <h2 id="in-app">In-app notifications</h2>
+        <p>Every alert also reaches the owning team's members inside Sigtake, under the bell icon. This doesn't depend on any channel and there's no setting to turn it off: it's the one path that always works, even if a Slack token is revoked or a webhook breaks.</p>
+        <p>Each person gets one entry per incident. When the incident notifies again, the same entry moves back to unread instead of piling up copies.</p>
+
+        <h2 id="turning-off">Turning a channel off</h2>
+        <p>There are two switches, and they do different things:</p>
+        <ul>
+          <li><strong>The channel itself.</strong> Disabling a channel stops it for every team it's attached to. Use it when a destination is broken or being replaced.</li>
+          <li><strong>The channel for one team.</strong> On a team's page, each attached channel can be switched off for that team only. Use it when one team shouldn't post to a shared channel any more, while the others still do.</li>
+        </ul>
+        <p>If a team ends up with no active channels, its page warns that its alerts notify nobody outside the app. That warning is worth fixing quickly: in-app notifications only help people who are already looking at Sigtake.</p>
+
+        <h2 id="which-one">Which channel to use</h2>
+        <ul>
+          <li><strong>Slack</strong> if that's where your team talks during an incident. Threads and live cards keep a noisy incident to one line in the channel.</li>
+          <li><strong>Microsoft Teams</strong> if your company lives in Teams. Expect one message per notification.</li>
+          <li><strong>Email</strong> for people who need to know but aren't watching chat: a manager, a vendor, a shared support inbox. It's also a sensible backup to a chat channel.</li>
+        </ul>
+        <p>Nothing stops a team from having several. A common setup for a small team is a Slack channel for the people on the incident, plus an email channel with a manager or two as additional users.</p>
+      </div>
+
+      <section class="ac-cta" aria-labelledby="cta">
+        <h2 id="cta">Send alerts where your team already looks</h2>
+        <p>Free during early access. Unlimited users, teams, alerts and monitors — no credit card.</p>
+        <div class="ac-cta-actions">
+          <a href="https://app.sigtake.com/register" class="ac-btn">Start free</a>
+          <a href="https://docs.sigtake.com">Read the docs</a>
+        </div>
+      </section>
+      </div>
+    </article>
+  </main>
+
+  <footer class="ac-foot">
+    <div class="ac-wrap">
+      <span>© 2026 Sigtake, Inc.</span>
+      <nav aria-label="Footer">
+        <a href="/academy/">Academy</a>
+        <a href="https://docs.sigtake.com">Docs</a>
+        <a href="/help/">Help</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const links = [...document.querySelectorAll('.ac-toc a')];
+      const heads = links.map((a) => document.getElementById(a.hash.slice(1)));
+      if (!links.length || heads.includes(null)) return;
+      let queued = false;
+      const update = () => {
+        queued = false;
+        let i = 0;
+        heads.forEach((h, j) => { if (h.getBoundingClientRect().top < 120) i = j; });
+        if (innerHeight + scrollY >= document.documentElement.scrollHeight - 2) i = heads.length - 1;
+        links.forEach((a, j) => j === i ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current'));
+      };
+      addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(update); } }, { passive: true });
+      update();
+    })();
+  </script>
+</body>
+
+</html>

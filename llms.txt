@@ -36,6 +36,19 @@
 - Signal alerts flow into the same dedup, routing and notification pipeline.
 - Website/uptime monitoring: periodic checks with uptime % and latency trends.
 
+## Academy
+Practical guides for small ops teams: https://sigtake.com/academy/
+- [Replacing Opsgenie on a Small Team](https://sigtake.com/academy/opsgenie-alternative-small-teams/): Opsgenie shuts down on
+  April 5, 2027; concept map, step-by-step migration, and when Sigtake is the wrong replacement (no on-call schedules,
+  escalations or phone/SMS paging)
+- [Alert Deduplication](https://sigtake.com/academy/alert-deduplication-alert-fatigue/): fingerprint is
+  source|title|severity per project; notifications at occurrences 1, 10, 25, 50, 100, then every 100
+- [Alert Notification Channels](https://sigtake.com/academy/alert-notification-channels-slack-teams-email/): who email,
+  Slack and Microsoft Teams channels reach, Slack threading, turning a channel off
+- [Alert Routing by Team](https://sigtake.com/academy/alert-routing-by-team/): every alert belongs to one team via its
+  team_code; teams span projects, channels are per project
+- [Set Up Alert Notifications](https://sigtake.com/academy/set-up-alert-notifications/): team, project, channel, test alert
+
 ## Links
 - [App / Sign up](https://app.sigtake.com/register)
 - [Log in](https://app.sigtake.com/login)

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alert Deduplication: Stop Alert Fatigue — Sigtake Academy</title>
+  <meta name="description" content="How alert deduplication folds repeats into one incident, why titles decide what gets grouped, and how to cut alert fatigue without muting real problems.">
+  <link rel="canonical" href="https://sigtake.com/academy/alert-deduplication-alert-fatigue/">
+  <link rel="preload" href="/public/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/public/fonts/bricolage-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" href="/public/favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="/public/favicon.svg">
+  <link rel="icon" type="image/png" sizes="96x96" href="/public/favicon-96x96.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
+  <link rel="manifest" href="/public/site.webmanifest">
+  <meta name="theme-color" content="#040609">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Sigtake">
+  <meta property="og:url" content="https://sigtake.com/academy/alert-deduplication-alert-fatigue/">
+  <meta property="og:title" content="Alert Deduplication: Stop Alert Fatigue Without Muting Anything">
+  <meta property="og:description" content="How alert deduplication folds repeats into one incident, why titles decide what gets grouped, and how to cut alert fatigue without muting real problems.">
+  <meta property="og:image" content="https://sigtake.com/og/academy-alert-deduplication-alert-fatigue.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Alert Deduplication: Stop Alert Fatigue Without Muting Anything">
+  <meta property="article:published_time" content="2026-10-02">
+  <meta property="article:modified_time" content="2026-10-02">
+  <meta property="article:author" content="https://www.linkedin.com/in/darwing-sanchez/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Alert Deduplication: Stop Alert Fatigue Without Muting Anything">
+  <meta name="twitter:description" content="How alert deduplication folds repeats into one incident, why titles decide what gets grouped, and how to cut alert fatigue without muting real problems.">
+  <meta name="twitter:image" content="https://sigtake.com/og/academy-alert-deduplication-alert-fatigue.png">
+  <meta name="twitter:image:alt" content="Alert Deduplication: Stop Alert Fatigue Without Muting Anything">
+  <link rel="stylesheet" href="/academy/academy.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://sigtake.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Academy", "item": "https://sigtake.com/academy/" },
+          { "@type": "ListItem", "position": 3, "name": "Alert Deduplication: Stop Alert Fatigue Without Muting Anything" }
+        ]
+      },
+      {
+        "@type": "Article",
+        "@id": "https://sigtake.com/academy/alert-deduplication-alert-fatigue/#article",
+        "headline": "Alert Deduplication: Stop Alert Fatigue Without Muting Anything",
+        "description": "How alert deduplication folds repeats into one incident, why titles decide what gets grouped, and how to cut alert fatigue without muting real problems.",
+        "image": "https://sigtake.com/og/academy-alert-deduplication-alert-fatigue.png",
+        "datePublished": "2026-10-02",
+        "dateModified": "2026-10-02",
+        "inLanguage": "en",
+        "mainEntityOfPage": "https://sigtake.com/academy/alert-deduplication-alert-fatigue/",
+        "author": {
+          "@type": "Person",
+          "name": "Darwing Sánchez",
+          "url": "https://www.linkedin.com/in/darwing-sanchez/"
+        },
+        "publisher": { "@id": "https://sigtake.com/#organization" },
+        "isPartOf": { "@id": "https://sigtake.com/#website" }
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <a href="#main" class="ac-skip">Skip to content</a>
+
+  <header class="ac-head">
+    <div class="ac-wrap">
+      <a href="/" class="ac-brand">
+        <img src="/public/logo.svg" width="24" height="24" alt="">
+        Sigtake
+      </a>
+      <a href="/academy/" class="ac-head-link">Academy</a>
+      <a href="https://app.sigtake.com/register" class="ac-btn ac-head-cta">Start free</a>
+    </div>
+  </header>
+
+  <main id="main" class="ac-wrap">
+    <article class="ac-article">
+      <header class="ac-article-head">
+      <nav class="ac-crumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><a href="/academy/">Academy</a></li>
+          <li aria-current="page">Alert deduplication</li>
+        </ol>
+      </nav>
+
+      <h1>Alert Deduplication: Stop Alert Fatigue Without Muting Anything</h1>
+      <p class="ac-lede">A failing job that fires every minute shouldn't page you every minute. Deduplication turns a thousand identical alerts into one incident with a counter, so the channel stays readable and nothing real gets muted. This guide covers how it decides what's "the same", and how to write alerts that group the way you expect.</p>
+
+      <p class="ac-byline">
+        <span>By <a href="https://www.linkedin.com/in/darwing-sanchez/" rel="author">Darwing Sánchez</a></span>
+        <span>Updated <time datetime="2026-10-02">Oct 2, 2026</time> · 7 min read</span>
+      </p>
+      </header>
+
+      <nav class="ac-toc" aria-labelledby="toc-title">
+        <p class="ac-toc-title" id="toc-title">On this page</p>
+        <ol>
+          <li><a href="#fatigue">How duplicates become fatigue</a></li>
+          <li><a href="#same-alert">What counts as the same alert</a></li>
+          <li><a href="#occurrences">The 2nd, 10th and 100th occurrence</a></li>
+          <li><a href="#titles">Writing alerts that group cleanly</a></li>
+          <li><a href="#reopen">When an alert folds, and when it reopens</a></li>
+          <li><a href="#channels">What you see in Slack, email and the app</a></li>
+        </ol>
+      </nav>
+
+      <div class="ac-article-body">
+      <div class="ac-prose">
+        <h2 id="fatigue">How duplicates become fatigue</h2>
+        <p>Alert fatigue rarely starts with too many problems. It starts with one problem reported too many times. A database connection pool runs dry, every request that fails sends an alert, and within ten minutes the channel holds four hundred copies of the same message. People mute the channel to get work done, and the next, different alert goes unseen.</p>
+        <p>The usual fixes all lose something. Raising thresholds hides the early signal. Rate-limiting the sender drops data. Muting a channel drops everything. Deduplication keeps every occurrence but changes what you're shown: <strong>one incident, with a count</strong>, instead of one message per event.</p>
+
+        <h2 id="same-alert">What counts as the same alert</h2>
+        <p>Sigtake builds a fingerprint from three fields of every alert you send:</p>
+<pre data-lang="text"><code>fingerprint = SHA-256(source | title | severity)</code></pre>
+        <p>When an alert arrives and there's already an <strong>open</strong> incident with that fingerprint in the same project, the new one folds into it: the occurrence count goes up, "last seen" moves to now, and the repeat is logged on the incident's timeline. No second incident is created.</p>
+        <p>A few details decide whether two alerts match:</p>
+        <ul>
+          <li><strong>The match is exact.</strong> <code>DB connection pool exhausted</code> and <code>db connection pool exhausted</code> are different fingerprints, as is a trailing space.</li>
+          <li><strong>It's per project.</strong> The same alert in staging and production produces two independent incidents, which is usually what you want.</li>
+          <li><strong>The team isn't part of it.</strong> If two senders with different <code>team_code</code>s send the same source, title and severity, the second folds into the first one's incident and notifies that team.</li>
+        </ul>
+        <p>The ingest response tells you which case happened:</p>
+<pre data-lang="js"><code>const { meta } = await sigtake.alerts.ingest({
+  title: 'DB connection pool exhausted',
+  severity: 'critical',
+  source: 'orders-api',
+  team_code: 'K7Q2XD',
+  payload: { pool_size: 20, waiting: 143 },
+});
+
+meta.is_duplicate;      // true when it folded into an open incident
+meta.occurrence_count;  // how many times this incident has fired</code></pre>
+
+        <h2 id="occurrences">The 2nd, 10th and 100th occurrence</h2>
+        <p>Folding repeats into one incident fixes the list. Notifications need their own rule, or a busy incident would still ping you on every repeat. Sigtake notifies at occurrence <strong>1, 10, 25, 50 and 100</strong>, then <strong>every 100</strong> after that.</p>
+
+        <figure class="ac-figure">
+          <svg class="ac-fig-wide" viewBox="0 0 600 150" role="img" aria-labelledby="fig-dedup">
+            <title id="fig-dedup">One hundred occurrences of the same alert fold into a single incident. Notifications go out only at occurrences 1, 10, 25, 50 and 100.</title>
+            <defs>
+              <pattern id="tick-wide" x="48" y="0" width="5" height="150" patternUnits="userSpaceOnUse">
+                <rect x="0" y="0" width="2" height="150" fill="rgba(148,163,184,.35)" />
+              </pattern>
+            </defs>
+            <g font-family="Inter, system-ui, sans-serif" font-size="14" fill="#94a3b8">
+              <rect x="50" y="10" width="2" height="16" fill="rgba(148,163,184,.6)" />
+              <text x="62" y="23">Occurrence folded into the incident</text>
+              <circle cx="345" cy="18" r="6" fill="#2dd4bf" />
+              <text x="358" y="23">Notification sent</text>
+            </g>
+            <rect x="48" y="56" width="500" height="36" fill="url(#tick-wide)" />
+            <g stroke="#2dd4bf" stroke-width="2">
+              <line x1="49" y1="50" x2="49" y2="98" />
+              <line x1="94" y1="50" x2="94" y2="98" />
+              <line x1="169" y1="50" x2="169" y2="98" />
+              <line x1="294" y1="50" x2="294" y2="98" />
+              <line x1="544" y1="50" x2="544" y2="98" />
+            </g>
+            <g fill="#2dd4bf">
+              <circle cx="49" cy="48" r="6" />
+              <circle cx="94" cy="48" r="6" />
+              <circle cx="169" cy="48" r="6" />
+              <circle cx="294" cy="48" r="6" />
+              <circle cx="544" cy="48" r="6" />
+            </g>
+            <g font-family="ui-monospace, Menlo, monospace" font-size="15" fill="#5eead4" text-anchor="middle">
+              <text x="49" y="122">1</text>
+              <text x="94" y="122">10</text>
+              <text x="169" y="122">25</text>
+              <text x="294" y="122">50</text>
+              <text x="544" y="122">100</text>
+            </g>
+          </svg>
+          <svg class="ac-fig-narrow" viewBox="0 0 320 170" role="img" aria-labelledby="fig-dedup-narrow">
+            <title id="fig-dedup-narrow">One hundred occurrences of the same alert fold into a single incident. Notifications go out only at occurrences 1, 10, 25, 50 and 100.</title>
+            <defs>
+              <pattern id="tick-narrow" x="20" y="0" width="2.8" height="170" patternUnits="userSpaceOnUse">
+                <rect x="0" y="0" width="1.2" height="170" fill="rgba(148,163,184,.4)" />
+              </pattern>
+            </defs>
+            <g font-family="Inter, system-ui, sans-serif" font-size="13" fill="#94a3b8">
+              <rect x="20" y="8" width="2" height="14" fill="rgba(148,163,184,.6)" />
+              <text x="30" y="20">Occurrence folded into the incident</text>
+              <circle cx="21" cy="40" r="5" fill="#2dd4bf" />
+              <text x="30" y="45">Notification sent</text>
+            </g>
+            <rect x="20" y="82" width="280" height="30" fill="url(#tick-narrow)" />
+            <g stroke="#2dd4bf" stroke-width="2">
+              <line x1="21" y1="76" x2="21" y2="118" />
+              <line x1="46" y1="76" x2="46" y2="118" />
+              <line x1="88" y1="76" x2="88" y2="118" />
+              <line x1="158" y1="76" x2="158" y2="118" />
+              <line x1="298" y1="76" x2="298" y2="118" />
+            </g>
+            <g fill="#2dd4bf">
+              <circle cx="21" cy="74" r="5" />
+              <circle cx="46" cy="74" r="5" />
+              <circle cx="88" cy="74" r="5" />
+              <circle cx="158" cy="74" r="5" />
+              <circle cx="298" cy="74" r="5" />
+            </g>
+            <g font-family="ui-monospace, Menlo, monospace" font-size="13" fill="#5eead4" text-anchor="middle">
+              <text x="21" y="140">1</text>
+              <text x="46" y="140">10</text>
+              <text x="88" y="140">25</text>
+              <text x="158" y="140">50</text>
+              <text x="298" y="140">100</text>
+            </g>
+          </svg>
+          <figcaption>A hundred repeats, one incident, five notifications. A thousand repeats would send fourteen.</figcaption>
+        </figure>
+
+        <p>The spacing is deliberate. The first notification tells you something broke. The 10th tells you it wasn't a blip. By the 100th it's still going, and the reminder is what keeps a noisy incident from being forgotten while someone works on it.</p>
+
+        <div class="ac-callout">
+          <strong class="ac-callout-title">Acknowledging doesn't mute an incident</strong>
+          <p>An acknowledged incident is still open, so repeats keep folding into it and the thresholds still notify. If an acknowledged alert reaches its 25th occurrence, the team hears about it again, which is usually the point: whatever was being tried hasn't fixed it yet.</p>
+        </div>
+
+        <h2 id="titles">Writing alerts that group cleanly</h2>
+        <p>Since grouping comes entirely from <code>source</code>, <code>title</code> and <code>severity</code>, the way you write those three fields is your dedup configuration. The rule is short: <strong>the title names the condition, the payload carries the details.</strong></p>
+
+        <div class="ac-table">
+          <table>
+            <thead>
+              <tr><th>Groups badly</th><th>Groups well</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>Payment failed for order 88412</code></td><td><code>Payment provider returning errors</code><br>payload: <code>{ order_id: 88412 }</code></td></tr>
+              <tr><td><code>Disk 91% full on web-03</code></td><td><code>Disk usage above 90%</code><br>payload: <code>{ host: "web-03", used: 0.91 }</code></td></tr>
+              <tr><td><code>Timeout after 30012ms</code></td><td><code>Upstream timeout: inventory service</code><br>payload: <code>{ elapsed_ms: 30012 }</code></td></tr>
+              <tr><td><code>Job failed at 2026-10-02T03:00:00Z</code></td><td><code>Nightly invoice job failed</code><br>payload: <code>{ run_at: "2026-10-02T03:00:00Z" }</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Any ID, number, hostname or timestamp in the title makes every occurrence a new fingerprint, and you're back to one incident per event. Move it to <code>payload</code>, where it doesn't affect grouping.</p>
+        <p>Use <code>source</code> for the service that's reporting, not the machine. <code>checkout-api</code> groups the same failure across ten replicas into one incident. <code>checkout-api-7f9c</code> gives you ten.</p>
+
+        <h3>Severity is part of the identity</h3>
+        <p>Because severity is in the fingerprint, the same title sent as <code>high</code> and then as <code>critical</code> opens two incidents. That's useful when the severities describe different conditions: "Disk usage above 80%" at <code>high</code> and "Disk usage above 95%" at <code>critical</code> really are separate problems, with separate urgency.</p>
+        <p>It works against you when a sender picks severity on the fly for the same condition, for example raising it after a few retries. Pick one severity per condition, and if urgency changes, give the worse state its own title.</p>
+
+        <h2 id="reopen">When an alert folds, and when it reopens</h2>
+        <p>Folding only happens into an <strong>open</strong> incident, meaning one that's firing or acknowledged. Once someone resolves it, the chain ends:</p>
+        <ul>
+          <li><strong>Firing or acknowledged:</strong> a repeat folds in and the count goes up.</li>
+          <li><strong>Resolved:</strong> the next repeat opens a <strong>new</strong> incident with the count back at 1, and notifies as a first occurrence.</li>
+        </ul>
+        <p>That makes resolving meaningful. If a problem comes back after you've marked it fixed, it deserves a fresh notification rather than a quiet bump on a closed incident. Resolve when the cause is actually fixed, not just when the noise stops.</p>
+
+        <h2 id="channels">What you see in Slack, email and the app</h2>
+        <p>Each channel shows a folded incident in the way that suits it:</p>
+        <ul>
+          <li><strong>Slack:</strong> the first occurrence posts one card. Later notifications reply in that card's thread without being broadcast back to the channel, so the channel shows one line per incident. When someone acknowledges or resolves it, the original card updates its color and says who did it.</li>
+          <li><strong>Email and Microsoft Teams:</strong> one message per notification, so at 1, 10, 25, 50 and 100.</li>
+          <li><strong>In the app:</strong> each person gets one entry per incident in their notifications. At each threshold that entry is refreshed and marked unread again, rather than stacking identical lines.</li>
+        </ul>
+        <p>The incident itself keeps the full picture: total occurrences, when it was first and last seen, and a timeline entry for every repeat.</p>
+      </div>
+
+
+      <section class="ac-cta" aria-labelledby="cta">
+        <h2 id="cta">One incident per problem, not per event</h2>
+        <p>Free during early access. Unlimited users, teams, alerts and monitors — no credit card.</p>
+        <div class="ac-cta-actions">
+          <a href="https://app.sigtake.com/register" class="ac-btn">Start free</a>
+          <a href="https://docs.sigtake.com">Read the docs</a>
+        </div>
+      </section>
+      </div>
+    </article>
+  </main>
+
+  <footer class="ac-foot">
+    <div class="ac-wrap">
+      <span>© 2026 Sigtake, Inc.</span>
+      <nav aria-label="Footer">
+        <a href="/academy/">Academy</a>
+        <a href="https://docs.sigtake.com">Docs</a>
+        <a href="/help/">Help</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const links = [...document.querySelectorAll('.ac-toc a')];
+      const heads = links.map((a) => document.getElementById(a.hash.slice(1)));
+      if (!links.length || heads.includes(null)) return;
+      let queued = false;
+      const update = () => {
+        queued = false;
+        let i = 0;
+        heads.forEach((h, j) => { if (h.getBoundingClientRect().top < 120) i = j; });
+        if (innerHeight + scrollY >= document.documentElement.scrollHeight - 2) i = heads.length - 1;
+        links.forEach((a, j) => j === i ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current'));
+      };
+      addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(update); } }, { passive: true });
+      update();
+    })();
+  </script>
+</body>
+
+</html>

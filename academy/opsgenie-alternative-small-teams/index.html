@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Opsgenie Alternative for Small Teams — Sigtake Academy</title>
+  <meta name="description" content="Opsgenie shuts down on April 5, 2027. If your small team used it to route alerts to Slack or email without rotations, here's how to migrate, and when not to.">
+  <link rel="canonical" href="https://sigtake.com/academy/opsgenie-alternative-small-teams/">
+  <link rel="preload" href="/public/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/public/fonts/bricolage-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" href="/public/favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="/public/favicon.svg">
+  <link rel="icon" type="image/png" sizes="96x96" href="/public/favicon-96x96.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
+  <link rel="manifest" href="/public/site.webmanifest">
+  <meta name="theme-color" content="#040609">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Sigtake">
+  <meta property="og:url" content="https://sigtake.com/academy/opsgenie-alternative-small-teams/">
+  <meta property="og:title" content="Replacing Opsgenie on a Small Team (Without an On-Call Rotation)">
+  <meta property="og:description" content="Opsgenie shuts down on April 5, 2027. If your small team used it to route alerts to Slack or email without rotations, here's how to migrate, and when not to.">
+  <meta property="og:image" content="https://sigtake.com/og/academy-opsgenie-alternative-small-teams.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Replacing Opsgenie on a Small Team (Without an On-Call Rotation)">
+  <meta property="article:published_time" content="2026-10-02">
+  <meta property="article:modified_time" content="2026-10-02">
+  <meta property="article:author" content="https://www.linkedin.com/in/darwing-sanchez/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Replacing Opsgenie on a Small Team (Without an On-Call Rotation)">
+  <meta name="twitter:description" content="Opsgenie shuts down on April 5, 2027. If your small team used it to route alerts to Slack or email without rotations, here's how to migrate, and when not to.">
+  <meta name="twitter:image" content="https://sigtake.com/og/academy-opsgenie-alternative-small-teams.png">
+  <meta name="twitter:image:alt" content="Replacing Opsgenie on a Small Team (Without an On-Call Rotation)">
+  <link rel="stylesheet" href="/academy/academy.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://sigtake.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Academy", "item": "https://sigtake.com/academy/" },
+          { "@type": "ListItem", "position": 3, "name": "Replacing Opsgenie on a Small Team (Without an On-Call Rotation)" }
+        ]
+      },
+      {
+        "@type": "Article",
+        "@id": "https://sigtake.com/academy/opsgenie-alternative-small-teams/#article",
+        "headline": "Replacing Opsgenie on a Small Team (Without an On-Call Rotation)",
+        "description": "Opsgenie shuts down on April 5, 2027. If your small team used it to route alerts to Slack or email without rotations, here's how to migrate, and when not to.",
+        "image": "https://sigtake.com/og/academy-opsgenie-alternative-small-teams.png",
+        "datePublished": "2026-10-02",
+        "dateModified": "2026-10-02",
+        "inLanguage": "en",
+        "mainEntityOfPage": "https://sigtake.com/academy/opsgenie-alternative-small-teams/",
+        "about": { "@type": "SoftwareApplication", "name": "Opsgenie" },
+        "author": {
+          "@type": "Person",
+          "name": "Darwing Sánchez",
+          "url": "https://www.linkedin.com/in/darwing-sanchez/"
+        },
+        "publisher": { "@id": "https://sigtake.com/#organization" },
+        "isPartOf": { "@id": "https://sigtake.com/#website" }
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <a href="#main" class="ac-skip">Skip to content</a>
+
+  <header class="ac-head">
+    <div class="ac-wrap">
+      <a href="/" class="ac-brand">
+        <img src="/public/logo.svg" width="24" height="24" alt="">
+        Sigtake
+      </a>
+      <a href="/academy/" class="ac-head-link">Academy</a>
+      <a href="https://app.sigtake.com/register" class="ac-btn ac-head-cta">Start free</a>
+    </div>
+  </header>
+
+  <main id="main" class="ac-wrap">
+    <article class="ac-article">
+      <header class="ac-article-head">
+      <nav class="ac-crumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><a href="/academy/">Academy</a></li>
+          <li aria-current="page">Replacing Opsgenie</li>
+        </ol>
+      </nav>
+
+      <h1>Replacing Opsgenie on a Small Team (Without an On-Call Rotation)</h1>
+      <p class="ac-lede">Opsgenie goes dark on April 5, 2027. If your team mostly used it to collect alerts and push them into Slack or email, you don't need an enterprise incident platform to replace it. This guide shows what to move, how to move it, and when Sigtake is the wrong answer.</p>
+
+      <p class="ac-byline">
+        <span>By <a href="https://www.linkedin.com/in/darwing-sanchez/" rel="author">Darwing Sánchez</a></span>
+        <span>Updated <time datetime="2026-10-02">Oct 2, 2026</time> · 8 min read</span>
+      </p>
+      </header>
+
+      <nav class="ac-toc" aria-labelledby="toc-title">
+        <p class="ac-toc-title" id="toc-title">On this page</p>
+        <ol>
+          <li><a href="#whats-happening">What's happening to Opsgenie</a></li>
+          <li><a href="#what-small-teams-used">What small teams actually used it for</a></li>
+          <li><a href="#fit">Where Sigtake fits, and where it doesn't</a></li>
+          <li><a href="#concept-map">Opsgenie → Sigtake concept map</a></li>
+          <li><a href="#migrate">How to migrate</a></li>
+          <li><a href="#parallel">Run both before you cut over</a></li>
+          <li><a href="#before-april">Before April 5, 2027</a></li>
+        </ol>
+      </nav>
+
+      <div class="ac-article-body">
+      <div class="ac-prose">
+        <h2 id="whats-happening">What's happening to Opsgenie</h2>
+        <p>Atlassian stopped selling Opsgenie on <strong>June 4, 2025</strong>. On <strong>April 5, 2027</strong> the product shuts down: nobody can log in, and any data that hasn't been moved is deleted. Atlassian's own path forward is to fold alerting and on-call into Jira Service Management (or Compass), with a migration tool for configuration and history.</p>
+        <p>That path makes sense if you already live in Jira Service Management. For a five-person team that just wanted "tell #ops when checkout breaks", it means adopting a service-desk product to keep doing something small.</p>
+
+        <figure class="ac-figure">
+          <svg class="ac-fig-wide" viewBox="0 50 600 136" role="img" aria-labelledby="fig-timeline">
+            <title id="fig-timeline">Timeline: Opsgenie end of sale on June 4, 2025, your cutover window where you run both tools in parallel, and the shutdown on April 5, 2027 when unmigrated data is deleted.</title>
+            <line x1="30" y1="104" x2="570" y2="104" stroke="rgba(255,255,255,.14)" stroke-width="2" />
+            <rect x="268" y="96" width="150" height="16" rx="8" fill="rgba(45,212,191,.22)" stroke="#2dd4bf" stroke-width="1.5" />
+            <circle cx="40" cy="104" r="7" fill="#040609" stroke="#94a3b8" stroke-width="2" />
+            <circle cx="560" cy="104" r="7" fill="#f87171" />
+            <g font-family="ui-monospace, Menlo, monospace" font-size="15" letter-spacing="1" fill="#7A8899">
+              <text x="30" y="74">JUN 4, 2025</text>
+              <text x="343" y="74" text-anchor="middle" fill="#5eead4">YOUR CUTOVER</text>
+              <text x="570" y="74" text-anchor="end">APR 5, 2027</text>
+            </g>
+            <g font-family="Inter, system-ui, sans-serif" font-size="19">
+              <text x="30" y="146" fill="#f1f5f9">End of sale</text>
+              <text x="343" y="146" text-anchor="middle" fill="#f1f5f9">Run both, then switch</text>
+              <text x="570" y="146" text-anchor="end" fill="#f87171">Shutdown</text>
+              <text x="570" y="172" text-anchor="end" fill="#94a3b8" font-size="16">data deleted</text>
+            </g>
+          </svg>
+          <svg class="ac-fig-narrow" viewBox="0 0 320 236" role="img" aria-labelledby="fig-timeline-narrow">
+            <title id="fig-timeline-narrow">Timeline: Opsgenie end of sale on June 4, 2025, your cutover window where you run both tools in parallel, and the shutdown on April 5, 2027 when unmigrated data is deleted.</title>
+            <line x1="16" y1="20" x2="16" y2="206" stroke="rgba(255,255,255,.14)" stroke-width="2" />
+            <rect x="8" y="88" width="16" height="64" rx="8" fill="rgba(45,212,191,.22)" stroke="#2dd4bf" stroke-width="1.5" />
+            <circle cx="16" cy="20" r="7" fill="#040609" stroke="#94a3b8" stroke-width="2" />
+            <circle cx="16" cy="206" r="7" fill="#f87171" />
+            <g font-family="ui-monospace, Menlo, monospace" font-size="12" letter-spacing="1" fill="#7A8899">
+              <text x="40" y="16">JUN 4, 2025</text>
+              <text x="40" y="112" fill="#5eead4">YOUR CUTOVER</text>
+              <text x="40" y="202">APR 5, 2027</text>
+            </g>
+            <g font-family="Inter, system-ui, sans-serif" font-size="16">
+              <text x="40" y="38" fill="#f1f5f9">End of sale</text>
+              <text x="40" y="134" fill="#f1f5f9">Run both, then switch</text>
+              <text x="40" y="224" fill="#f87171">Shutdown <tspan fill="#94a3b8" font-size="14">· data deleted</tspan></text>
+            </g>
+          </svg>
+          <figcaption>Leave room for a parallel run. Cutting over the week before the shutdown means finding missing senders the hard way.</figcaption>
+        </figure>
+
+        <h2 id="what-small-teams-used">What small teams actually used it for</h2>
+        <p>Opsgenie is an on-call product, but plenty of teams only ever touched a slice of it. Look at your account and be honest about which list you're in:</p>
+        <ul>
+          <li><strong>The slice:</strong> an API integration or two, a few heartbeats for cron jobs, alerts deduplicated by alias, and notifications landing in Slack, Microsoft Teams or email. Everyone sees the channel; whoever's around picks it up.</li>
+          <li><strong>The full product:</strong> on-call schedules with rotations, escalation policies ("page Ana, then Luis after 10 minutes"), phone calls, SMS and mobile push that wake someone up at 3am.</li>
+        </ul>
+        <p>If you're in the first list, most of what Opsgenie did for you is ingestion, deduplication and routing. Those are much easier to replace than the second list.</p>
+
+        <h2 id="fit">Where Sigtake fits, and where it doesn't</h2>
+        <p>Sigtake takes alerts from your code and tools, collapses repeats into one incident, and routes each one to the team that owns it, by email, Slack, Microsoft Teams and in-app notifications. It also has uptime checks and signal monitors, including heartbeats.</p>
+
+        <div class="ac-callout ac-callout--warn">
+          <strong class="ac-callout-title">When Sigtake isn't the right replacement</strong>
+          <p>Sigtake has <strong>no on-call schedules, no escalation policies, and no phone, SMS or mobile push paging</strong>. If your team depends on any of those to wake a specific person up, stay with Jira Service Management or move to a dedicated on-call tool such as PagerDuty or incident.io. Replacing a rotation with a Slack channel is how incidents go unanswered overnight.</p>
+        </div>
+
+        <p>Two smaller gaps to know before you start:</p>
+        <ul>
+          <li><strong>Alerts are opened over the API, not closed over it.</strong> There is one ingest endpoint. Acknowledging and resolving happen in the app. If your monitoring auto-closed Opsgenie alerts, that step becomes manual.</li>
+          <li><strong>There are no prebuilt integrations</strong> for Grafana, Datadog or Prometheus Alertmanager. Anything that can send an HTTP request with your own JSON body and headers can call Sigtake directly. Tools with a fixed webhook format need a small relay in between.</li>
+        </ul>
+
+        <h2 id="concept-map">Opsgenie → Sigtake concept map</h2>
+        <p>Most of the work in a migration is translating fields. Here is how each Opsgenie concept lands:</p>
+
+        <div class="ac-table">
+          <table>
+            <thead>
+              <tr><th>Opsgenie</th><th>Sigtake</th><th>Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>API integration + GenieKey</td><td>API key per project</td><td>Sent as <code>X-Api-Key</code>. The key decides the project, so staging and production use different keys.</td></tr>
+              <tr><td><code>message</code></td><td><code>title</code></td><td>Up to 500 characters.</td></tr>
+              <tr><td><code>priority</code> P1–P5</td><td><code>severity</code></td><td>P1 <code>critical</code>, P2 <code>high</code>, P3 <code>medium</code>, P4 <code>low</code>, P5 <code>info</code>.</td></tr>
+              <tr><td><code>source</code></td><td><code>source</code></td><td>Required. Name the service, not the host.</td></tr>
+              <tr><td><code>description</code>, <code>details</code>, <code>tags</code></td><td><code>payload</code></td><td>Free-form JSON, 8 KB max.</td></tr>
+              <tr><td><code>responders</code> (team)</td><td><code>team_code</code></td><td>The team must be assigned to the key's project.</td></tr>
+              <tr><td><code>alias</code></td><td>No equivalent</td><td>Repeats are matched on <code>source + title + severity</code>. See below.</td></tr>
+              <tr><td>Heartbeats</td><td>Signal monitor + "Missing signal" rule</td><td>Alerts when readings stop arriving.</td></tr>
+              <tr><td>Teams, routing, notification rules</td><td>Teams + channels</td><td>A team's channels decide where its alerts land.</td></tr>
+              <tr><td>Schedules, escalations, phone/SMS</td><td>No equivalent</td><td>See the warning above.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>The alias trap</h3>
+        <p>In Opsgenie you control deduplication: send the same <code>alias</code> and the open alert's count goes up. Sigtake has no alias field. It fingerprints every alert from <code>source</code>, <code>title</code> and <code>severity</code>, and folds a repeat into the open incident with the same fingerprint.</p>
+        <p>Two consequences matter when you port your senders:</p>
+        <ul>
+          <li><strong>Keep titles stable.</strong> An order ID, timestamp or hostname inside the title makes every occurrence unique, and you're back to one alert per event. Put variable data in <code>payload</code>.</li>
+          <li><strong>Severity is part of the identity.</strong> If a sender escalates the same problem from <code>high</code> to <code>critical</code>, that opens a second incident rather than updating the first.</li>
+        </ul>
+        <p>Repeats don't re-notify every time either. Sigtake notifies at occurrences 1, 10, 25, 50 and 100, then every 100. The <a href="/academy/alert-deduplication-alert-fatigue/">deduplication guide</a> covers this in detail.</p>
+
+        <h2 id="migrate">How to migrate</h2>
+        <ol class="ac-steps">
+          <li id="step-1">
+            <h3>Take inventory in Opsgenie</h3>
+            <p>Before touching Sigtake, list what's live in Opsgenie: every integration that sends alerts and who owns it, every heartbeat, every team, and every schedule or escalation policy that's actually used. If that last list isn't empty, re-read the warning above before going further.</p>
+          </li>
+          <li id="step-2">
+            <h3>Recreate your teams and projects</h3>
+            <p>In Sigtake, a project is an environment (production, staging) and a team is a group of people who own alerts. Create a project per environment under <strong>Projects</strong>. Under <strong>Teams</strong>, create each team and add it to the projects it covers. Sigtake gives every team a six-character <code>team_code</code> (such as <code>K7Q2XD</code>): that's what your senders will put in each alert. Invite people from <strong>Users</strong>.</p>
+          </li>
+          <li id="step-3">
+            <h3>Connect where alerts should land</h3>
+            <p>Under <strong>Channels</strong>, add your Slack, Microsoft Teams or email channels for each project. Then open the team and attach them under <strong>Channels</strong>. This replaces Opsgenie's routing and notification rules: a team's alerts go to that team's channels, in the alert's own project.</p>
+          </li>
+          <li id="step-4">
+            <h3>Create an API key per project</h3>
+            <p>Under <strong>API Keys</strong>, create one key for each project. It's shown once, so put it straight into your secret manager. An admin role is required.</p>
+          </li>
+          <li id="step-5">
+            <h3>Point your senders at Sigtake</h3>
+            <p>Each place that calls the Opsgenie Alert API gets a Sigtake call next to it. A typical Opsgenie request:</p>
+<pre data-lang="bash"><code>curl -X POST https://api.opsgenie.com/v2/alerts \
+  -H "Authorization: GenieKey $OPSGENIE_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "message": "Checkout latency above threshold",
+    "alias": "checkout-latency",
+    "priority": "P2",
+    "source": "checkout-api",
+    "responders": [{ "name": "ops", "type": "team" }],
+    "details": { "p95_ms": "2400" }
+  }'</code></pre>
+            <p>The same alert sent to Sigtake:</p>
+<pre data-lang="bash"><code>curl -X POST https://api.sigtake.com/api/ingest \
+  -H "X-Api-Key: $SIGTAKE_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Checkout latency above threshold",
+    "severity": "high",
+    "source": "checkout-api",
+    "team_code": "K7Q2XD",
+    "payload": { "p95_ms": 2400 }
+  }'</code></pre>
+            <p>From application code, the <a href="https://www.npmjs.com/package/@sigtake/sdk">Node</a> and <a href="https://pypi.org/project/sigtake/">Python</a> SDKs wrap the same call and retry on rate limits and server errors:</p>
+<pre data-lang="js"><code>import { Sigtake } from '@sigtake/sdk';
+
+const sigtake = new Sigtake({ apiKey: process.env.SIGTAKE_API_KEY });
+
+sigtake.alerts
+  .ingest({
+    title: 'Checkout latency above threshold',
+    severity: 'high',
+    source: 'checkout-api',
+    team_code: 'K7Q2XD',
+    payload: { p95_ms: 2400 },
+  })
+  .catch((err) =&gt; console.warn('sigtake ingest failed', err));</code></pre>
+            <p>If a team code isn't assigned to the key's project, the call fails with <code>TEAM_NOT_IN_PROJECT</code>. Fix it from the team's <strong>Projects</strong> section. Full request and response details are in the <a href="https://docs.sigtake.com">API docs</a>.</p>
+          </li>
+          <li id="step-6">
+            <h3>Move your heartbeats</h3>
+            <p>An Opsgenie heartbeat becomes a signal monitor with a <strong>Missing signal</strong> rule ("alert if no readings arrive in X minutes"). Create the monitor under <strong>Signals</strong>, have your job send a reading when it finishes, and add the rule.</p>
+            <div class="ac-callout">
+              <strong class="ac-callout-title">Send a reading before adding the rule</strong>
+              <p>A monitor that has never received a reading counts as missing straight away. Send one first so the rule doesn't fire the moment you save it.</p>
+            </div>
+          </li>
+        </ol>
+
+        <h2 id="parallel">Run both before you cut over</h2>
+        <p>Don't switch senders over in one go. For a week or two, send every alert to <strong>both</strong> Opsgenie and Sigtake, and compare:</p>
+        <ul>
+          <li>Does every alert that shows up in Opsgenie also show up in Sigtake? A missing one is a sender you didn't find in step 1.</li>
+          <li>Do repeats fold the way you expect? If one Opsgenie alert turns into many Sigtake alerts, a title contains variable data.</li>
+          <li>Does each alert reach the right Slack channel or inbox? If not, check which team the <code>team_code</code> points at and which channels that team has.</li>
+          <li>Did each heartbeat stay quiet while its job ran, and fire when you paused it on purpose?</li>
+        </ul>
+        <p>Once a full week passes with no differences, remove the Opsgenie calls.</p>
+
+        <h2 id="before-april">Before April 5, 2027</h2>
+        <ul>
+          <li>Export any alert history you want to keep for postmortems or audits. Atlassian deletes whatever hasn't been migrated at shutdown.</li>
+          <li>Disable Opsgenie integrations once senders are switched, so nothing keeps writing to an account that's about to disappear.</li>
+          <li>Remove Opsgenie API keys from your secret store and CI variables.</li>
+        </ul>
+        <p>None of this needs to happen at the last minute. A small team with a handful of senders can run the whole migration, parallel run included, in two or three weeks.</p>
+      </div>
+
+
+      <section class="ac-cta" aria-labelledby="cta">
+        <h2 id="cta">Move off Opsgenie before the deadline does it for you</h2>
+        <p>Free during early access. Unlimited users, teams, alerts and monitors — no credit card.</p>
+        <div class="ac-cta-actions">
+          <a href="https://app.sigtake.com/register" class="ac-btn">Start free</a>
+          <a href="https://docs.sigtake.com">Read the docs</a>
+        </div>
+      </section>
+      </div>
+    </article>
+  </main>
+
+  <footer class="ac-foot">
+    <div class="ac-wrap">
+      <span>© 2026 Sigtake, Inc.</span>
+      <nav aria-label="Footer">
+        <a href="/academy/">Academy</a>
+        <a href="https://docs.sigtake.com">Docs</a>
+        <a href="/help/">Help</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const links = [...document.querySelectorAll('.ac-toc a')];
+      const heads = links.map((a) => document.getElementById(a.hash.slice(1)));
+      if (!links.length || heads.includes(null)) return;
+      let queued = false;
+      const update = () => {
+        queued = false;
+        let i = 0;
+        heads.forEach((h, j) => { if (h.getBoundingClientRect().top < 120) i = j; });
+        if (innerHeight + scrollY >= document.documentElement.scrollHeight - 2) i = heads.length - 1;
+        links.forEach((a, j) => j === i ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current'));
+      };
+      addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(update); } }, { passive: true });
+      update();
+    })();
+  </script>
+</body>
+
+</html>

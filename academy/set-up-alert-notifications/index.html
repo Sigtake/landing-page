@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How to Set Up Alert Notifications for a Team — Sigtake Academy</title>
+  <meta name="description" content="Step by step: create a team, add it to a project, connect Slack, Microsoft Teams or email, attach the channel, and send a test alert to check it lands.">
+  <link rel="canonical" href="https://sigtake.com/academy/set-up-alert-notifications/">
+  <link rel="preload" href="/public/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/public/fonts/bricolage-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" href="/public/favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="/public/favicon.svg">
+  <link rel="icon" type="image/png" sizes="96x96" href="/public/favicon-96x96.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
+  <link rel="manifest" href="/public/site.webmanifest">
+  <meta name="theme-color" content="#040609">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Sigtake">
+  <meta property="og:url" content="https://sigtake.com/academy/set-up-alert-notifications/">
+  <meta property="og:title" content="How to Set Up Alert Notifications for a Team">
+  <meta property="og:description" content="Step by step: create a team, add it to a project, connect Slack, Microsoft Teams or email, attach the channel, and send a test alert to check it lands.">
+  <meta property="og:image" content="https://sigtake.com/og/academy-set-up-alert-notifications.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="How to Set Up Alert Notifications for a Team">
+  <meta property="article:published_time" content="2026-10-02">
+  <meta property="article:modified_time" content="2026-10-02">
+  <meta property="article:author" content="https://www.linkedin.com/in/darwing-sanchez/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Set Up Alert Notifications for a Team">
+  <meta name="twitter:description" content="Step by step: create a team, add it to a project, connect Slack, Microsoft Teams or email, attach the channel, and send a test alert to check it lands.">
+  <meta name="twitter:image" content="https://sigtake.com/og/academy-set-up-alert-notifications.png">
+  <meta name="twitter:image:alt" content="How to Set Up Alert Notifications for a Team">
+  <link rel="stylesheet" href="/academy/academy.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://sigtake.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Academy",
+            "item": "https://sigtake.com/academy/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "How to Set Up Alert Notifications for a Team"
+          }
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://sigtake.com/academy/set-up-alert-notifications/#howto",
+        "name": "How to Set Up Alert Notifications for a Team",
+        "description": "Step by step: create a team, add it to a project, connect Slack, Microsoft Teams or email, attach the channel, and send a test alert to check it lands.",
+        "image": "https://sigtake.com/og/academy-set-up-alert-notifications.png",
+        "datePublished": "2026-10-02",
+        "dateModified": "2026-10-02",
+        "inLanguage": "en",
+        "mainEntityOfPage": "https://sigtake.com/academy/set-up-alert-notifications/",
+        "author": {
+          "@type": "Person",
+          "name": "Darwing Sánchez",
+          "url": "https://www.linkedin.com/in/darwing-sanchez/"
+        },
+        "publisher": {
+          "@id": "https://sigtake.com/#organization"
+        },
+        "isPartOf": {
+          "@id": "https://sigtake.com/#website"
+        },
+        "totalTime": "PT15M",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Create the team and add its members",
+            "text": "Go to Teams, create the team and give it a name people will recognize, such as Payments. Then add the people who should hear about its alerts.",
+            "url": "https://sigtake.com/academy/set-up-alert-notifications/#step-1"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Add the team to the project",
+            "text": "On the team's page, under Projects, use Add to Project and pick the project its alerts come from, such as Production.",
+            "url": "https://sigtake.com/academy/set-up-alert-notifications/#step-2"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Create a channel in that project",
+            "text": "Switch to the project in the project switcher, open Channels and use Add Notification Channel. Pick the type:",
+            "url": "https://sigtake.com/academy/set-up-alert-notifications/#step-3"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Attach the channel to the team",
+            "text": "Back on the team's page, under Channels, assign the channel you just created. Channels are listed by project, so you'll see it under the project from step 2.",
+            "url": "https://sigtake.com/academy/set-up-alert-notifications/#step-4"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 5,
+            "name": "Send a test alert",
+            "text": "Use an API key from the same project (API Keys in the sidebar) and send an alert with the team's code:",
+            "url": "https://sigtake.com/academy/set-up-alert-notifications/#step-5"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 6,
+            "name": "Check it landed, then resolve it",
+            "text": "Within a few seconds the alert should appear in each place you set up: the Slack or Teams channel, the members' inboxes, and the bell icon for every member. Then open the alert in Sigtake and resolve it, so the next real alert with the same title starts a fresh incident.",
+            "url": "https://sigtake.com/academy/set-up-alert-notifications/#step-6"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <a href="#main" class="ac-skip">Skip to content</a>
+
+  <header class="ac-head">
+    <div class="ac-wrap">
+      <a href="/" class="ac-brand">
+        <img src="/public/logo.svg" width="24" height="24" alt="">
+        Sigtake
+      </a>
+      <a href="/academy/" class="ac-head-link">Academy</a>
+      <a href="https://app.sigtake.com/register" class="ac-btn ac-head-cta">Start free</a>
+    </div>
+  </header>
+
+  <main id="main" class="ac-wrap">
+    <article class="ac-article">
+      <header class="ac-article-head">
+      <nav class="ac-crumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><a href="/academy/">Academy</a></li>
+          <li aria-current="page">Set up notifications</li>
+        </ol>
+      </nav>
+
+      <h1>How to Set Up Alert Notifications for a Team</h1>
+      <p class="ac-lede">Teams decide who owns an alert, channels decide where it's delivered, and the project ties them together. This guide connects the three in about fifteen minutes and ends with a test alert arriving where your team will see it.</p>
+
+      <p class="ac-byline">
+        <span>By <a href="https://www.linkedin.com/in/darwing-sanchez/" rel="author">Darwing Sánchez</a></span>
+        <span>Updated <time datetime="2026-10-02">Oct 2, 2026</time> · 5 min read</span>
+      </p>
+      </header>
+
+      <nav class="ac-toc" aria-labelledby="toc-title">
+        <p class="ac-toc-title" id="toc-title">On this page</p>
+        <ol>
+          <li><a href="#how-routing-works">How routing works</a></li>
+          <li><a href="#steps">Set it up</a></li>
+          <li><a href="#troubleshooting">If the alert didn't arrive</a></li>
+          <li><a href="#next">What to set up next</a></li>
+        </ol>
+      </nav>
+
+      <div class="ac-article-body">
+      <div class="ac-prose">
+        <h2 id="how-routing-works">How routing works</h2>
+        <p>Every alert names a team. When it fires, Sigtake looks at that team's channels <strong>in the alert's project</strong> and delivers to each of them, and every member of the team also gets it in the app:</p>
+
+        <figure class="ac-figure">
+          <svg class="ac-fig-wide" viewBox="0 0 600 200" role="img" aria-labelledby="fig-route">
+            <title id="fig-route">An alert carries a team code. The team's members are notified in the app, and the team's channels in the alert's project deliver it to Slack, Microsoft Teams or email.</title>
+            <g fill="none" stroke="rgba(255,255,255,.18)" stroke-width="1.5">
+              <path d="M150 100 L 210 100" />
+              <path d="M340 88 C 375 88, 375 46, 404 46" />
+              <path d="M340 112 C 375 112, 375 154, 404 154" />
+            </g>
+            <path d="M204 95 L 212 100 L 204 105" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5" />
+            <rect x="20" y="70" width="130" height="60" rx="12" fill="#171a20" stroke="rgba(255,255,255,.12)" />
+            <text x="85" y="96" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="16" fill="#f1f5f9">Alert</text>
+            <text x="85" y="117" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="12" fill="#5eead4">team_code</text>
+            <rect x="210" y="70" width="130" height="60" rx="12" fill="rgba(45,212,191,.08)" stroke="#2dd4bf" stroke-width="1.5" />
+            <text x="275" y="106" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="16" fill="#f1f5f9">Team</text>
+            <g font-family="ui-monospace, Menlo, monospace" font-size="12" letter-spacing="1" fill="#7A8899">
+              <text x="404" y="20">MEMBERS</text>
+              <text x="404" y="128">PROJECT CHANNELS</text>
+            </g>
+            <g font-family="Inter, system-ui, sans-serif" font-size="15">
+              <rect x="404" y="30" width="186" height="32" rx="8" fill="#0f1115" stroke="rgba(255,255,255,.12)" />
+              <text x="418" y="51" fill="#cbd5e1">In-app, always</text>
+              <rect x="404" y="138" width="186" height="32" rx="8" fill="#0f1115" stroke="rgba(255,255,255,.12)" />
+              <text x="418" y="159" fill="#cbd5e1">Slack · Teams · Email</text>
+            </g>
+          </svg>
+          <svg class="ac-fig-narrow" viewBox="0 0 320 290" role="img" aria-labelledby="fig-route-narrow">
+            <title id="fig-route-narrow">An alert carries a team code. The team's members are notified in the app, and the team's channels in the alert's project deliver it to Slack, Microsoft Teams or email.</title>
+            <g fill="none" stroke="rgba(255,255,255,.18)" stroke-width="1.5">
+              <path d="M160 64 L 160 96" />
+              <path d="M130 152 L 80 190" />
+              <path d="M190 152 L 240 190" />
+            </g>
+            <rect x="90" y="8" width="140" height="56" rx="12" fill="#171a20" stroke="rgba(255,255,255,.12)" />
+            <text x="160" y="32" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="15" fill="#f1f5f9">Alert</text>
+            <text x="160" y="52" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="12" fill="#5eead4">team_code</text>
+            <rect x="90" y="96" width="140" height="56" rx="12" fill="rgba(45,212,191,.08)" stroke="#2dd4bf" stroke-width="1.5" />
+            <text x="160" y="130" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="15" fill="#f1f5f9">Team</text>
+            <g font-family="ui-monospace, Menlo, monospace" font-size="11" letter-spacing="1" fill="#7A8899" text-anchor="middle">
+              <text x="80" y="212">MEMBERS</text>
+              <text x="240" y="212">PROJECT CHANNELS</text>
+            </g>
+            <g font-family="Inter, system-ui, sans-serif" font-size="14" text-anchor="middle">
+              <rect x="10" y="222" width="140" height="32" rx="8" fill="#0f1115" stroke="rgba(255,255,255,.12)" />
+              <text x="80" y="243" fill="#cbd5e1">In-app, always</text>
+              <rect x="170" y="222" width="140" height="32" rx="8" fill="#0f1115" stroke="rgba(255,255,255,.12)" />
+              <text x="240" y="243" fill="#cbd5e1">Slack · Teams · Email</text>
+            </g>
+          </svg>
+          <figcaption>The team answers "who". The alert's project answers "which channels". Both have to be set up for an alert to leave the app.</figcaption>
+        </figure>
+
+        <p>So the setup is four links: people into a team, the team into a project, a channel into that project, and the channel onto the team. The steps below make each one, then test the chain. For the model behind it, see <a href="/academy/alert-routing-by-team/">routing alerts by team</a> and <a href="/academy/alert-notification-channels-slack-teams-email/">how channels work</a>.</p>
+
+        <h2 id="steps">Set it up</h2>
+        <ol class="ac-steps">
+          <li id="step-1">
+            <h3>Create the team and add its members</h3>
+            <p>Go to Teams, create the team and give it a name people will recognize, such as Payments. Then add the people who should hear about its alerts.</p>
+            <p>Sigtake generates a six-character team code, such as <code>K7Q2XD</code>, and shows it on the team's page. Your alerts will use it in the next steps. Operators and admins can do this step.</p>
+          </li>
+          <li id="step-2">
+            <h3>Add the team to the project</h3>
+            <p>On the team's page, under Projects, use Add to Project and pick the project its alerts come from, such as Production.</p>
+            <p>Repeat for every environment the team covers. A team outside a project can't receive that project's alerts: they're rejected with <code>TEAM_NOT_IN_PROJECT</code>. This step needs an admin.</p>
+          </li>
+          <li id="step-3">
+            <h3>Create a channel in that project</h3>
+            <p>Switch to the project in the project switcher, open Channels and use Add Notification Channel. Pick the type:</p>
+            <ul>
+              <li><strong>Email:</strong> nothing else is required. It goes to the team's members, and you can add internal users or external addresses on top.</li>
+              <li><strong>Slack:</strong> the first time, an admin connects your workspace from this form. Then pick the Slack channel. For a private channel, run <code>/invite @Sigtake</code> in it first.</li>
+              <li><strong>Microsoft Teams:</strong> paste an incoming webhook URL, created in Teams from the channel's Incoming Webhook connector or a Power Automate HTTP flow.</li>
+            </ul>
+          </li>
+          <li id="step-4">
+            <h3>Attach the channel to the team</h3>
+            <p>Back on the team's page, under Channels, assign the channel you just created. Channels are listed by project, so you'll see it under the project from step 2.</p>
+            <p>This is the link that's easiest to forget. Until it exists the team's page warns that its alerts notify nobody, and the alert only shows up in the app. Attaching channels needs an admin.</p>
+          </li>
+          <li id="step-5">
+            <h3>Send a test alert</h3>
+            <p>Use an API key from the same project (API Keys in the sidebar) and send an alert with the team's code:</p>
+<pre data-lang="bash"><code>curl -X POST https://api.sigtake.com/api/ingest \
+  -H "X-Api-Key: $SIGTAKE_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Test alert: notification setup",
+    "severity": "info",
+    "source": "setup-check",
+    "team_code": "K7Q2XD"
+  }'</code></pre>
+            <p>A <code>201</code> response means the alert was accepted. The full request and response format is in the <a href="https://docs.sigtake.com">API docs</a>.</p>
+          </li>
+          <li id="step-6">
+            <h3>Check it landed, then resolve it</h3>
+            <p>Within a few seconds the alert should appear in each place you set up: the Slack or Teams channel, the members' inboxes, and the bell icon for every member. Then open the alert in Sigtake and resolve it, so the next real alert with the same title starts a fresh incident.</p>
+          </li>
+        </ol>
+
+        <h2 id="troubleshooting">If the alert didn't arrive</h2>
+        <div class="ac-table">
+          <table>
+            <thead>
+              <tr><th>What you see</th><th>Likely cause</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>The request fails with <code>TEAM_NOT_IN_PROJECT</code></td><td>The team isn't in the API key's project. Redo step 2, or use a key from the right project.</td></tr>
+              <tr><td>The request fails with team code not found</td><td>A typo in <code>team_code</code>. Copy it from the team's page.</td></tr>
+              <tr><td>The alert shows in the app but nowhere else</td><td>The team has no active channel in this project. Check step 4, and that the channel wasn't created in a different project.</td></tr>
+              <tr><td>One channel got it, another didn't</td><td>That channel is switched off, either entirely or for this team. Both switches are on the team's page and the channel list.</td></tr>
+              <tr><td>Slack channel missing from the picker</td><td>It's private and the app hasn't been invited. Run <code>/invite @Sigtake</code> in the channel and reload.</td></tr>
+              <tr><td>The email didn't reach someone</td><td>They aren't a member of the team, or added as an additional user on the email channel.</td></tr>
+              <tr><td>A second test showed nothing new</td><td>The first test is still open, so the second folded into it. Resolve it and send again, or <a href="/academy/alert-deduplication-alert-fatigue/">read how deduplication works</a>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="next">What to set up next</h2>
+        <ul>
+          <li><strong>A team per area of ownership,</strong> so each alert reaches the people who can fix it. <a href="/academy/alert-routing-by-team/">Routing by team</a> has patterns that work for small companies.</li>
+          <li><strong>Quieter channels in staging,</strong> by adding the same team to your staging project with its own Slack channel.</li>
+          <li><strong>A backup channel,</strong> such as email next to Slack, so an alert still lands if one destination breaks.</li>
+        </ul>
+      </div>
+
+      <section class="ac-cta" aria-labelledby="cta">
+        <h2 id="cta">Set up your first team in fifteen minutes</h2>
+        <p>Free during early access. Unlimited users, teams, alerts and monitors — no credit card.</p>
+        <div class="ac-cta-actions">
+          <a href="https://app.sigtake.com/register" class="ac-btn">Start free</a>
+          <a href="https://docs.sigtake.com">Read the docs</a>
+        </div>
+      </section>
+      </div>
+    </article>
+  </main>
+
+  <footer class="ac-foot">
+    <div class="ac-wrap">
+      <span>© 2026 Sigtake, Inc.</span>
+      <nav aria-label="Footer">
+        <a href="/academy/">Academy</a>
+        <a href="https://docs.sigtake.com">Docs</a>
+        <a href="/help/">Help</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const links = [...document.querySelectorAll('.ac-toc a')];
+      const heads = links.map((a) => document.getElementById(a.hash.slice(1)));
+      if (!links.length || heads.includes(null)) return;
+      let queued = false;
+      const update = () => {
+        queued = false;
+        let i = 0;
+        heads.forEach((h, j) => { if (h.getBoundingClientRect().top < 120) i = j; });
+        if (innerHeight + scrollY >= document.documentElement.scrollHeight - 2) i = heads.length - 1;
+        links.forEach((a, j) => j === i ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current'));
+      };
+      addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(update); } }, { passive: true });
+      update();
+    })();
+  </script>
+</body>
+
+</html>

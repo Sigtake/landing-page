@@ -11,3 +11,6 @@
 
 # Logs
 *.log
+
+# Design-lint config (local tooling, not part of the site)
+.impeccable/

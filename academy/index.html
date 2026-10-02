@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sigtake Academy — Alerting &amp; Monitoring Guides</title>
+  <meta name="description" content="Practical guides on alerting and monitoring for small ops teams: deduplication, heartbeats, routing alerts to Slack, and moving off Opsgenie.">
+  <link rel="canonical" href="https://sigtake.com/academy/">
+  <link rel="preload" href="/public/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/public/fonts/bricolage-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" href="/public/favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="/public/favicon.svg">
+  <link rel="icon" type="image/png" sizes="96x96" href="/public/favicon-96x96.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
+  <link rel="manifest" href="/public/site.webmanifest">
+  <meta name="theme-color" content="#040609">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Sigtake">
+  <meta property="og:url" content="https://sigtake.com/academy/">
+  <meta property="og:title" content="Sigtake Academy — Alerting &amp; Monitoring Guides">
+  <meta property="og:description" content="Practical guides on alerting and monitoring for small ops teams: deduplication, heartbeats, routing alerts to Slack, and moving off Opsgenie.">
+  <meta property="og:image" content="https://sigtake.com/og/academy.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Sigtake Academy">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sigtake Academy — Alerting &amp; Monitoring Guides">
+  <meta name="twitter:description" content="Practical guides on alerting and monitoring for small ops teams: deduplication, heartbeats, routing alerts to Slack, and moving off Opsgenie.">
+  <meta name="twitter:image" content="https://sigtake.com/og/academy.png">
+  <meta name="twitter:image:alt" content="Sigtake Academy">
+  <link rel="stylesheet" href="/academy/academy.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://sigtake.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Academy" }
+        ]
+      },
+      {
+        "@type": "CollectionPage",
+        "@id": "https://sigtake.com/academy/#page",
+        "url": "https://sigtake.com/academy/",
+        "name": "Sigtake Academy",
+        "description": "Practical guides on alerting and monitoring for small ops teams: deduplication, heartbeats, routing alerts to Slack, and moving off Opsgenie.",
+        "inLanguage": "en",
+        "publisher": { "@id": "https://sigtake.com/#organization" },
+        "isPartOf": { "@id": "https://sigtake.com/#website" },
+        "mainEntity": {
+          "@type": "ItemList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "url": "https://sigtake.com/academy/opsgenie-alternative-small-teams/",
+              "name": "Replacing Opsgenie on a Small Team (Without an On-Call Rotation)"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "url": "https://sigtake.com/academy/alert-deduplication-alert-fatigue/",
+              "name": "Alert Deduplication: Stop Alert Fatigue Without Muting Anything"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "url": "https://sigtake.com/academy/set-up-alert-notifications/",
+              "name": "How to Set Up Alert Notifications for a Team"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "url": "https://sigtake.com/academy/alert-routing-by-team/",
+              "name": "Alert Routing by Team: Getting Every Alert to the People Who Own It"
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "url": "https://sigtake.com/academy/alert-notification-channels-slack-teams-email/",
+              "name": "Alert Notification Channels: Slack, Microsoft Teams and Email"
+            }
+          ]
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <a href="#main" class="ac-skip">Skip to content</a>
+
+  <header class="ac-head">
+    <div class="ac-wrap">
+      <a href="/" class="ac-brand">
+        <img src="/public/logo.svg" width="24" height="24" alt="">
+        Sigtake
+      </a>
+      <a href="/academy/" class="ac-head-link" aria-current="page">Academy</a>
+      <a href="https://app.sigtake.com/register" class="ac-btn ac-head-cta">Start free</a>
+    </div>
+  </header>
+
+  <main id="main" class="ac-wrap">
+    <div class="ac-index">
+      <nav class="ac-crumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li aria-current="page">Academy</li>
+        </ol>
+      </nav>
+
+      <h1>Sigtake Academy</h1>
+      <p class="ac-lede">Practical guides for small teams who own their alerts: how to stop duplicate noise, catch jobs that fail silently, and get the right alert to the right people. Each one ends with something working.</p>
+
+      <h2 class="ac-section-label ac-index-label">Guides</h2>
+      <ul class="ac-cards">
+        <li class="ac-card">
+          <h3><a href="/academy/opsgenie-alternative-small-teams/">Replacing Opsgenie on a Small Team</a></h3>
+          <p>Opsgenie shuts down on April 5, 2027. What to move, how to migrate step by step, and when Sigtake is the wrong replacement.</p>
+          <ul class="ac-tags">
+            <li class="ac-tag">alerting</li>
+            <li class="ac-tag">migration</li>
+          </ul>
+        </li>
+        <li class="ac-card">
+          <h3><a href="/academy/alert-deduplication-alert-fatigue/">Alert Deduplication: Stop Alert Fatigue</a></h3>
+          <p>How repeats fold into one incident, when you get notified, and how to write titles that group the way you expect.</p>
+          <ul class="ac-tags">
+            <li class="ac-tag">alerting</li>
+          </ul>
+        </li>
+
+        <li class="ac-card">
+          <h3><a href="/academy/set-up-alert-notifications/">Set Up Alert Notifications for a Team</a></h3>
+          <p>Create a team, add it to a project, connect Slack, Teams or email, and send a test alert.</p>
+          <ul class="ac-tags">
+            <li class="ac-tag">alerting</li>
+            <li class="ac-tag">setup</li>
+          </ul>
+        </li>
+        <li class="ac-card">
+          <h3><a href="/academy/alert-routing-by-team/">Alert Routing by Team</a></h3>
+          <p>How an alert finds its team, how teams span projects, and who can change what.</p>
+          <ul class="ac-tags">
+            <li class="ac-tag">alerting</li>
+          </ul>
+        </li>
+        <li class="ac-card">
+          <h3><a href="/academy/alert-notification-channels-slack-teams-email/">Notification Channels: Slack, Teams and Email</a></h3>
+          <p>Who each channel reaches, how Slack threads repeats, and how to switch a channel off.</p>
+          <ul class="ac-tags">
+            <li class="ac-tag">integrations</li>
+          </ul>
+        </li>
+      </ul>
+
+      <p class="ac-index-docs">Looking for endpoints, request bodies and error codes? That lives in the <a href="https://docs.sigtake.com">API docs</a>.</p>
+    </div>
+  </main>
+
+  <footer class="ac-foot">
+    <div class="ac-wrap">
+      <span>© 2026 Sigtake, Inc.</span>
+      <nav aria-label="Footer">
+        <a href="/academy/">Academy</a>
+        <a href="https://docs.sigtake.com">Docs</a>
+        <a href="/help/">Help</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+
+</html>

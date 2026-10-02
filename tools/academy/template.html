@@ -1,0 +1,246 @@
+<!--
+PUBLISH CHECKLIST — copy this file to academy/<slug>/index.html, then:
+[ ] slug kebab-case, never changes after publishing; folder academy/<slug>/index.html
+[ ] <title> <=60 chars, keyword first; description <=160 with a hook
+[ ] canonical = https://sigtake.com/academy/<slug>/ ; og:url the same; og:image exists in /og/
+[ ] schema: HowTo (steps ending in a working alert) or Article (a mechanism); NEVER FAQPage — delete the unused block
+[ ] HowTo: every step <li> has its {name, text} in the JSON-LD and they match the body
+[ ] BreadcrumbList: Home / Academy / <h1>; datePublished and dateModified = the visible date
+[ ] snippets checked against the real SDK README and the backend code; no invented fields
+[ ] link to docs.sigtake.com on any API call; closing CTA
+[ ] no mention of Discord as pending
+[ ] remove <meta name="robots" content="noindex"> below
+[ ] add a <url> to sitemap.xml and a line to llms.txt; add the guide to /academy/
+[ ] JSON-LD passes Rich Results Test; no horizontal scroll at 390px
+[ ] figure labels readable at 390px; if not, add a vertical svg.ac-fig-narrow next to svg.ac-fig-wide
+Replace every {{PLACEHOLDER}}.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>{{TITLE}} — Sigtake Academy</title>
+  <meta name="description" content="{{DESCRIPTION}}">
+  <link rel="canonical" href="https://sigtake.com/academy/{{SLUG}}/">
+  <link rel="preload" href="/public/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/public/fonts/bricolage-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" href="/public/favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="/public/favicon.svg">
+  <link rel="icon" type="image/png" sizes="96x96" href="/public/favicon-96x96.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
+  <link rel="manifest" href="/public/site.webmanifest">
+  <meta name="theme-color" content="#040609">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Sigtake">
+  <meta property="og:url" content="https://sigtake.com/academy/{{SLUG}}/">
+  <meta property="og:title" content="{{TITLE}}">
+  <meta property="og:description" content="{{DESCRIPTION}}">
+  <meta property="og:image" content="https://sigtake.com/og/academy-{{SLUG}}.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{{TITLE}}">
+  <meta property="article:published_time" content="{{DATE_PUBLISHED}}">
+  <meta property="article:modified_time" content="{{DATE_MODIFIED}}">
+  <meta property="article:author" content="https://www.linkedin.com/in/darwing-sanchez/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{TITLE}}">
+  <meta name="twitter:description" content="{{DESCRIPTION}}">
+  <meta name="twitter:image" content="https://sigtake.com/og/academy-{{SLUG}}.png">
+  <meta name="twitter:image:alt" content="{{TITLE}}">
+  <link rel="stylesheet" href="/academy/academy.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://sigtake.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Academy", "item": "https://sigtake.com/academy/" },
+          { "@type": "ListItem", "position": 3, "name": "{{H1}}" }
+        ]
+      },
+      {
+        "@type": "Article",
+        "@id": "https://sigtake.com/academy/{{SLUG}}/#article",
+        "headline": "{{H1}}",
+        "description": "{{DESCRIPTION}}",
+        "image": "https://sigtake.com/og/academy-{{SLUG}}.png",
+        "datePublished": "{{DATE_PUBLISHED}}",
+        "dateModified": "{{DATE_MODIFIED}}",
+        "inLanguage": "en",
+        "mainEntityOfPage": "https://sigtake.com/academy/{{SLUG}}/",
+        "author": {
+          "@type": "Person",
+          "name": "Darwing Sánchez",
+          "url": "https://www.linkedin.com/in/darwing-sanchez/"
+        },
+        "publisher": { "@id": "https://sigtake.com/#organization" },
+        "isPartOf": { "@id": "https://sigtake.com/#website" }
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://sigtake.com/academy/{{SLUG}}/#howto",
+        "name": "{{H1}}",
+        "description": "{{DESCRIPTION}}",
+        "image": "https://sigtake.com/og/academy-{{SLUG}}.png",
+        "totalTime": "{{ISO_DURATION, e.g. PT10M}}",
+        "datePublished": "{{DATE_PUBLISHED}}",
+        "dateModified": "{{DATE_MODIFIED}}",
+        "inLanguage": "en",
+        "mainEntityOfPage": "https://sigtake.com/academy/{{SLUG}}/",
+        "author": {
+          "@type": "Person",
+          "name": "Darwing Sánchez",
+          "url": "https://www.linkedin.com/in/darwing-sanchez/"
+        },
+        "publisher": { "@id": "https://sigtake.com/#organization" },
+        "isPartOf": { "@id": "https://sigtake.com/#website" },
+        "step": [
+          { "@type": "HowToStep", "position": 1, "name": "{{STEP_1_NAME}}", "text": "{{STEP_1_TEXT}}", "url": "https://sigtake.com/academy/{{SLUG}}/#step-1" },
+          { "@type": "HowToStep", "position": 2, "name": "{{STEP_2_NAME}}", "text": "{{STEP_2_TEXT}}", "url": "https://sigtake.com/academy/{{SLUG}}/#step-2" }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <a href="#main" class="ac-skip">Skip to content</a>
+
+  <header class="ac-head">
+    <div class="ac-wrap">
+      <a href="/" class="ac-brand">
+        <img src="/public/logo.svg" width="24" height="24" alt="">
+        Sigtake
+      </a>
+      <a href="/academy/" class="ac-head-link">Academy</a>
+      <a href="https://app.sigtake.com/register" class="ac-btn ac-head-cta">Start free</a>
+    </div>
+  </header>
+
+  <main id="main" class="ac-wrap">
+    <article class="ac-article">
+      <header class="ac-article-head">
+      <nav class="ac-crumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><a href="/academy/">Academy</a></li>
+          <li aria-current="page">{{H1_SHORT}}</li>
+        </ol>
+      </nav>
+
+      <h1>{{H1}}</h1>
+      <p class="ac-lede">{{LEDE}}</p>
+
+      <p class="ac-byline">
+        <span>By <a href="https://www.linkedin.com/in/darwing-sanchez/" rel="author">Darwing Sánchez</a></span>
+        <span>Updated <time datetime="{{DATE_MODIFIED}}">{{DATE_MODIFIED_HUMAN, e.g. Oct 2, 2026}}</time> · {{N}} min read</span>
+      </p>
+      </header>
+
+      <nav class="ac-toc" aria-labelledby="toc-title">
+        <p class="ac-toc-title" id="toc-title">On this page</p>
+        <ol>
+          <li><a href="#{{SECTION_ID}}">{{SECTION}}</a></li>
+          <li><a href="#steps">{{STEPS_HEADING}}</a></li>
+        </ol>
+      </nav>
+
+      <div class="ac-article-body">
+      <div class="ac-prose">
+        <p>{{INTRO}}</p>
+
+        <h2 id="{{SECTION_ID}}">{{SECTION}}</h2>
+        <p>Paragraph with <code>inline_code</code> and a <a href="https://docs.sigtake.com">docs link</a>.</p>
+
+        <figure class="ac-figure">
+          <svg class="ac-fig-wide" viewBox="0 0 640 200" role="img" aria-labelledby="fig-title">
+            <title id="fig-title">{{FIGURE_ALT}}</title>
+            <rect x="0.5" y="0.5" width="639" height="199" rx="8" fill="none" stroke="rgba(255,255,255,.12)" stroke-dasharray="4 4" />
+            <text x="320" y="104" text-anchor="middle" fill="#7A8899" font-family="ui-monospace, Menlo, monospace" font-size="12">{{INLINE SVG DIAGRAM}}</text>
+          </svg>
+          <figcaption>{{FIGURE_CAPTION}}</figcaption>
+        </figure>
+
+        <div class="ac-callout">
+          <strong class="ac-callout-title">Note</strong>
+          <p>Use <code>ac-callout--warn</code> for a pitfall.</p>
+        </div>
+
+        <h2 id="steps">{{STEPS_HEADING — HowTo only}}</h2>
+        <ol class="ac-steps">
+          <li id="step-1">
+            <h3>{{STEP_1_NAME}}</h3>
+            <p>{{STEP_1_TEXT}}</p>
+            <pre data-lang="js"><code>import { Sigtake } from '@sigtake/sdk';</code></pre>
+          </li>
+          <li id="step-2">
+            <h3>{{STEP_2_NAME}}</h3>
+            <p>{{STEP_2_TEXT}}</p>
+          </li>
+        </ol>
+
+        <div class="ac-table">
+          <table>
+            <thead>
+              <tr><th>Column</th><th>Column</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Cell</td><td>Cell</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <section class="ac-cta" aria-labelledby="cta">
+        <h2 id="cta">{{CTA_HEADLINE}}</h2>
+        <p>Free during early access. Unlimited users, teams, alerts and monitors — no credit card.</p>
+        <div class="ac-cta-actions">
+          <a href="https://app.sigtake.com/register" class="ac-btn">Start free</a>
+          <a href="https://docs.sigtake.com">Read the docs</a>
+        </div>
+      </section>
+      </div>
+    </article>
+  </main>
+
+  <footer class="ac-foot">
+    <div class="ac-wrap">
+      <span>© 2026 Sigtake, Inc.</span>
+      <nav aria-label="Footer">
+        <a href="/academy/">Academy</a>
+        <a href="https://docs.sigtake.com">Docs</a>
+        <a href="/help/">Help</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const links = [...document.querySelectorAll('.ac-toc a')];
+      const heads = links.map((a) => document.getElementById(a.hash.slice(1)));
+      if (!links.length || heads.includes(null)) return;
+      let queued = false;
+      const update = () => {
+        queued = false;
+        let i = 0;
+        heads.forEach((h, j) => { if (h.getBoundingClientRect().top < 120) i = j; });
+        if (innerHeight + scrollY >= document.documentElement.scrollHeight - 2) i = heads.length - 1;
+        links.forEach((a, j) => j === i ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current'));
+      };
+      addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(update); } }, { passive: true });
+      update();
+    })();
+  </script>
+</body>
+
+</html>

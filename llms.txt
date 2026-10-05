@@ -50,6 +50,8 @@ Practical guides for small ops teams: https://sigtake.com/academy/
 - [Set Up Alert Notifications](https://sigtake.com/academy/set-up-alert-notifications/): team, project, channel, test alert
 - [Website Uptime Monitoring](https://sigtake.com/academy/website-uptime-monitoring/): what counts as down, interval x
   failure threshold, auto-resolve on recovery; slow responses and expiring certificates don't alert
+- [Monitor an Authenticated API Health Endpoint](https://sigtake.com/academy/monitor-api-health-endpoint/): encrypted
+  write-only secret headers (Bearer, API key, Basic), JSONPath assertions (equals, contains, exists, not empty)
 
 ## Links
 - [App / Sign up](https://app.sigtake.com/register)

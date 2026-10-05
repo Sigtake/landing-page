@@ -257,7 +257,7 @@
           <li id="step-4">
             <h3>Say what healthy looks like</h3>
             <p>Leave Expected Status at 200 unless the URL answers with something else when it's fine. Keep SSL Check on for any <code>https://</code> URL. Then use Create Monitor.</p>
-            <p>The expected status must match exactly. If your health endpoint answers <code>204 No Content</code>, set 204: a 200 would count as a failure. Leave Response Limit empty for now, since a slow response doesn't take the monitor down. The Advanced settings section, for request methods, headers, tokens and checks on the response body, isn't needed for a public page.</p>
+            <p>The expected status must match exactly. If your health endpoint answers <code>204 No Content</code>, set 204: a 200 would count as a failure. Leave Response Limit empty for now, since a slow response doesn't take the monitor down. The Advanced settings section, for request methods, headers, tokens and checks on the response body, isn't needed for a public page. For an endpoint behind a token, or to check what the response says, see <a href="/academy/monitor-api-health-endpoint/">monitoring an authenticated API health endpoint</a>.</p>
           </li>
           <li id="step-5">
             <h3>Test it with a monitor built to fail</h3>
@@ -284,7 +284,7 @@
               <tr><td>Uptime and response times show <code>—</code></td><td>The monitor hasn't been checked yet. The first check runs within a minute of creating it.</td></tr>
               <tr><td>Saving fails with "This address is private or reserved"</td><td>The URL is <code>localhost</code> or a private IP address. Monitors only reach public addresses.</td></tr>
               <tr><td>Down with "Expected status 200, got 204" while the site works</td><td>The endpoint answers 204 when healthy. Set Expected Status to 204.</td></tr>
-              <tr><td>Down with "Credentials rejected" on a page that works in your browser</td><td>Your browser is logged in and the monitor isn't. Monitor a public URL, or add the token under Advanced settings.</td></tr>
+              <tr><td>Down with "Credentials rejected" on a page that works in your browser</td><td>Your browser is logged in and the monitor isn't. Monitor a public URL, or <a href="/academy/monitor-api-health-endpoint/">send a token with each check</a>.</td></tr>
               <tr><td>Alerts on a brief blip you never noticed</td><td>The threshold is 1. Raise it to 2.</td></tr>
               <tr><td>The alert appears in the app but nowhere else</td><td>The team has no channel attached in this project. See <a href="/academy/set-up-alert-notifications/">setting up alert notifications</a>.</td></tr>
               <tr><td>Saving fails because of the team</td><td>The team isn't added to this project. An admin adds it from the team's page, under Projects.</td></tr>

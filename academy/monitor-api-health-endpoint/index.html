@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How to Monitor an Authenticated API Health Endpoint — Sigtake Academy</title>
+  <meta name="description" content="Send a token with every check, keep it encrypted, and assert on the JSON your health endpoint returns, so a 200 that says &quot;degraded&quot; still pages your team.">
+  <link rel="canonical" href="https://sigtake.com/academy/monitor-api-health-endpoint/">
+  <link rel="preload" href="/public/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/public/fonts/bricolage-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" href="/public/favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="/public/favicon.svg">
+  <link rel="icon" type="image/png" sizes="96x96" href="/public/favicon-96x96.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
+  <link rel="manifest" href="/public/site.webmanifest">
+  <meta name="theme-color" content="#040609">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Sigtake">
+  <meta property="og:url" content="https://sigtake.com/academy/monitor-api-health-endpoint/">
+  <meta property="og:title" content="How to Monitor an Authenticated API Health Endpoint">
+  <meta property="og:description" content="Send a token with every check, keep it encrypted, and assert on the JSON your health endpoint returns, so a 200 that says &quot;degraded&quot; still pages your team.">
+  <meta property="og:image" content="https://sigtake.com/og/academy-monitor-api-health-endpoint.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="How to Monitor an Authenticated API Health Endpoint">
+  <meta property="article:published_time" content="2026-10-04">
+  <meta property="article:modified_time" content="2026-10-04">
+  <meta property="article:author" content="https://www.linkedin.com/in/darwing-sanchez/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Monitor an Authenticated API Health Endpoint">
+  <meta name="twitter:description" content="Send a token with every check, keep it encrypted, and assert on the JSON your health endpoint returns, so a 200 that says &quot;degraded&quot; still pages your team.">
+  <meta name="twitter:image" content="https://sigtake.com/og/academy-monitor-api-health-endpoint.png">
+  <meta name="twitter:image:alt" content="How to Monitor an Authenticated API Health Endpoint">
+  <link rel="stylesheet" href="/academy/academy.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://sigtake.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Academy", "item": "https://sigtake.com/academy/" },
+          { "@type": "ListItem", "position": 3, "name": "How to Monitor an Authenticated API Health Endpoint" }
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://sigtake.com/academy/monitor-api-health-endpoint/#howto",
+        "name": "How to Monitor an Authenticated API Health Endpoint",
+        "description": "Send a token with every check, keep it encrypted, and assert on the JSON your health endpoint returns, so a 200 that says \"degraded\" still pages your team.",
+        "image": "https://sigtake.com/og/academy-monitor-api-health-endpoint.png",
+        "totalTime": "PT15M",
+        "datePublished": "2026-10-04",
+        "dateModified": "2026-10-04",
+        "inLanguage": "en",
+        "mainEntityOfPage": "https://sigtake.com/academy/monitor-api-health-endpoint/",
+        "author": {
+          "@type": "Person",
+          "name": "Darwing Sánchez",
+          "url": "https://www.linkedin.com/in/darwing-sanchez/"
+        },
+        "publisher": { "@id": "https://sigtake.com/#organization" },
+        "isPartOf": { "@id": "https://sigtake.com/#website" },
+        "step": [
+          { "@type": "HowToStep", "position": 1, "name": "Open Advanced settings on the monitor", "text": "Edit an existing monitor, or add a new one pointing at your health endpoint, and expand Advanced settings at the bottom of the form.", "url": "https://sigtake.com/academy/monitor-api-health-endpoint/#step-1" },
+          { "@type": "HowToStep", "position": 2, "name": "Add the token as an encrypted header", "text": "Under Request headers, use the preset that matches how your API authenticates: Bearer token, API key or Basic auth. Each one adds an encrypted header. Paste the value and leave the lock closed.", "url": "https://sigtake.com/academy/monitor-api-health-endpoint/#step-2" },
+          { "@type": "HowToStep", "position": 3, "name": "Paste a healthy response", "text": "Under Response assertions, use Paste a healthy response and paste what the endpoint returns on a good day. Each field becomes an assertion.", "url": "https://sigtake.com/academy/monitor-api-health-endpoint/#step-3" },
+          { "@type": "HowToStep", "position": 4, "name": "Remove the assertions that would break on a normal day", "text": "Delete anything that changes without anything being wrong, such as a version string that moves on every deploy. Keep the fields that say whether each dependency is healthy.", "url": "https://sigtake.com/academy/monitor-api-health-endpoint/#step-4" },
+          { "@type": "HowToStep", "position": 5, "name": "Save, then break an assertion on purpose", "text": "Save the monitor and wait for a passing check. Then change one expected value to something the endpoint never returns, save, and wait for the Down alert. Put the value back and the alert resolves on the next passing check.", "url": "https://sigtake.com/academy/monitor-api-health-endpoint/#step-5" }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <a href="#main" class="ac-skip">Skip to content</a>
+
+  <header class="ac-head">
+    <div class="ac-wrap">
+      <a href="/" class="ac-brand">
+        <img src="/public/logo.svg" width="24" height="24" alt="">
+        Sigtake
+      </a>
+      <a href="/academy/" class="ac-head-link">Academy</a>
+      <a href="https://app.sigtake.com/register" class="ac-btn ac-head-cta">Start free</a>
+    </div>
+  </header>
+
+  <main id="main" class="ac-wrap">
+    <article class="ac-article">
+      <header class="ac-article-head">
+      <nav class="ac-crumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><a href="/academy/">Academy</a></li>
+          <li aria-current="page">API health endpoint</li>
+        </ol>
+      </nav>
+
+      <h1>How to Monitor an Authenticated API Health Endpoint</h1>
+      <p class="ac-lede">A <code>200</code> only proves something answered. This guide sends your token with every check, keeps it encrypted, and checks what the response actually says, so a health endpoint reporting a dead database pages your team even though the status code looks fine.</p>
+
+      <p class="ac-byline">
+        <span>By <a href="https://www.linkedin.com/in/darwing-sanchez/" rel="author">Darwing Sánchez</a></span>
+        <span>Updated <time datetime="2026-10-04">Oct 4, 2026</time> · 7 min read</span>
+      </p>
+      </header>
+
+      <nav class="ac-toc" aria-labelledby="toc-title">
+        <p class="ac-toc-title" id="toc-title">On this page</p>
+        <ol>
+          <li><a href="#why">Why the status code isn't enough</a></li>
+          <li><a href="#steps">Set it up</a></li>
+          <li><a href="#assertions">Writing assertions</a></li>
+          <li><a href="#secrets">How the token is kept</a></li>
+          <li><a href="#troubleshooting">If a check fails unexpectedly</a></li>
+        </ol>
+      </nav>
+
+      <div class="ac-article-body">
+      <div class="ac-prose">
+        <p>This builds on a basic monitor. If you don't have one yet, start with <a href="/academy/website-uptime-monitoring/">setting up website uptime monitoring</a>: everything there, from the failure threshold to automatic recovery, works the same way here.</p>
+
+        <h2 id="why">Why the status code isn't enough</h2>
+        <p>Three things a status-code check misses:</p>
+        <ul>
+          <li><strong>The endpoint needs a token.</strong> Without one, a protected <code>/health</code> answers <code>401</code> and the monitor is down all the time, so it gets switched off and protects nothing.</li>
+          <li><strong>The app is up and its dependencies aren't.</strong> Many health endpoints answer <code>200</code> with <code>{"status": "degraded"}</code> when the database or a queue is unreachable.</li>
+          <li><strong>Something else answered.</strong> A load balancer or CDN serving a maintenance page returns <code>200</code> with HTML instead of your JSON.</li>
+        </ul>
+        <p>Headers fix the first. Response assertions fix the other two: they read the JSON body and fail the check when a field doesn't say what it should. A body that isn't JSON at all fails every assertion, which is how the maintenance page gets caught.</p>
+
+        <figure class="ac-figure">
+          <svg class="ac-fig-wide" viewBox="0 0 600 190" role="img" aria-labelledby="fig-pass">
+            <title id="fig-pass">A check sends the request with an encrypted Authorization header. The response must have the expected status code and every assertion must pass, for example status equals ok and services.db equals ok. Only then does the check pass.</title>
+            <g fill="none" stroke="rgba(255,255,255,.18)" stroke-width="1.5">
+              <path d="M170 95 L 205 95" />
+              <path d="M395 95 L 430 95" />
+            </g>
+            <path d="M199 90 L 207 95 L 199 100" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5" />
+            <path d="M424 90 L 432 95 L 424 100" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5" />
+            <g font-family="ui-monospace, Menlo, monospace" font-size="11" letter-spacing="1" fill="#7A8899" text-anchor="middle">
+              <text x="95" y="30">REQUEST</text>
+              <text x="300" y="30">RESPONSE</text>
+              <text x="510" y="30">RESULT</text>
+            </g>
+            <rect x="20" y="45" width="150" height="100" rx="12" fill="#171a20" stroke="rgba(255,255,255,.12)" />
+            <text x="36" y="76" font-family="ui-monospace, Menlo, monospace" font-size="13" fill="#f1f5f9">GET /health</text>
+            <text x="36" y="104" font-family="ui-monospace, Menlo, monospace" font-size="12" fill="#5eead4">Authorization</text>
+            <text x="36" y="124" font-family="ui-monospace, Menlo, monospace" font-size="12" fill="#7A8899">🔒 encrypted</text>
+            <rect x="205" y="45" width="190" height="100" rx="12" fill="#171a20" stroke="rgba(255,255,255,.12)" />
+            <g font-family="ui-monospace, Menlo, monospace" font-size="12">
+              <text x="221" y="76" fill="#f1f5f9">200</text>
+              <text x="221" y="104" fill="#cbd5e1">status = "ok"</text>
+              <text x="221" y="126" fill="#cbd5e1">services.db = "ok"</text>
+            </g>
+            <rect x="430" y="65" width="150" height="60" rx="12" fill="rgba(45,212,191,.08)" stroke="#2dd4bf" stroke-width="1.5" />
+            <text x="505" y="100" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="15" fill="#f1f5f9">Check passes</text>
+            <text x="300" y="175" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="13" fill="#7A8899">Wrong status or any failed assertion fails the check</text>
+          </svg>
+          <svg class="ac-fig-narrow" viewBox="0 0 320 330" role="img" aria-labelledby="fig-pass-narrow">
+            <title id="fig-pass-narrow">A check sends the request with an encrypted Authorization header. The response must have the expected status code and every assertion must pass, for example status equals ok and services.db equals ok. Only then does the check pass.</title>
+            <g fill="none" stroke="rgba(255,255,255,.18)" stroke-width="1.5">
+              <path d="M160 100 L 160 128" />
+              <path d="M160 222 L 160 250" />
+            </g>
+            <rect x="60" y="10" width="200" height="90" rx="12" fill="#171a20" stroke="rgba(255,255,255,.12)" />
+            <text x="78" y="38" font-family="ui-monospace, Menlo, monospace" font-size="13" fill="#f1f5f9">GET /health</text>
+            <text x="78" y="64" font-family="ui-monospace, Menlo, monospace" font-size="12" fill="#5eead4">Authorization</text>
+            <text x="78" y="84" font-family="ui-monospace, Menlo, monospace" font-size="12" fill="#7A8899">🔒 encrypted</text>
+            <rect x="60" y="128" width="200" height="94" rx="12" fill="#171a20" stroke="rgba(255,255,255,.12)" />
+            <g font-family="ui-monospace, Menlo, monospace" font-size="12">
+              <text x="78" y="154" fill="#f1f5f9">200</text>
+              <text x="78" y="178" fill="#cbd5e1">status = "ok"</text>
+              <text x="78" y="200" fill="#cbd5e1">services.db = "ok"</text>
+            </g>
+            <rect x="85" y="250" width="150" height="48" rx="12" fill="rgba(45,212,191,.08)" stroke="#2dd4bf" stroke-width="1.5" />
+            <text x="160" y="279" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="15" fill="#f1f5f9">Check passes</text>
+            <text x="160" y="320" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#7A8899">Any failed assertion fails the check</text>
+          </svg>
+          <figcaption>Status code first, then every assertion. All of them must pass.</figcaption>
+        </figure>
+
+        <h2 id="steps">Set it up</h2>
+        <p>The examples use a health endpoint that returns this when everything is fine:</p>
+<pre data-lang="json"><code>{
+  "status": "ok",
+  "version": "2.14.0",
+  "checked_at": "2026-10-04T09:12:44Z",
+  "services": { "db": "ok", "redis": "ok" }
+}</code></pre>
+
+        <ol class="ac-steps">
+          <li id="step-1">
+            <h3>Open Advanced settings on the monitor</h3>
+            <p>Edit an existing monitor, or add a new one pointing at your health endpoint, and expand Advanced settings at the bottom of the form.</p>
+            <p>Method stays <code>GET</code> for almost every health endpoint. <code>POST</code>, <code>PUT</code> and <code>PATCH</code> let you send a body, which goes out as JSON unless you set your own <code>Content-Type</code> header. <code>HEAD</code> skips the body entirely, so it can't be combined with assertions.</p>
+          </li>
+          <li id="step-2">
+            <h3>Add the token as an encrypted header</h3>
+            <p>Under Request headers, use the preset that matches how your API authenticates: Bearer token, API key or Basic auth. Each one adds an encrypted header. Paste the value and leave the lock closed.</p>
+            <ul>
+              <li><strong>Bearer token</strong> adds <code>Authorization</code> already starting with <code>Bearer </code>. Paste the token after it; the value is masked, so use the eye icon to check the space is there.</li>
+              <li><strong>API key</strong> adds <code>X-Api-Key</code>. Rename it if your API expects another header name.</li>
+              <li><strong>Basic auth</strong> asks for a username and password and stores the encoded <code>Authorization</code> header for you.</li>
+            </ul>
+            <p>Give the monitor its own token with read-only access to the health endpoint, not a personal or admin key. If it ever needs revoking, nothing else breaks. Credentials written into the URL, like <code>https://user:pass@…</code>, are refused for the same reason: a URL gets shown and logged, a secret header doesn't.</p>
+          </li>
+          <li id="step-3">
+            <h3>Paste a healthy response</h3>
+            <p>Under Response assertions, use Paste a healthy response and paste what the endpoint returns on a good day. Each field becomes an assertion.</p>
+            <p>Fields that change on every call only get checked for presence: numbers, dates, IDs and lists. Everything else must match exactly. The example above becomes:</p>
+            <div class="ac-table">
+              <table>
+                <thead>
+                  <tr><th>Field</th><th>Check</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><code>$.status</code></td><td>equals <code>ok</code></td></tr>
+                  <tr><td><code>$.version</code></td><td>equals <code>2.14.0</code></td></tr>
+                  <tr><td><code>$.checked_at</code></td><td>exists</td></tr>
+                  <tr><td><code>$.services.db</code></td><td>equals <code>ok</code></td></tr>
+                  <tr><td><code>$.services.redis</code></td><td>equals <code>ok</code></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </li>
+          <li id="step-4">
+            <h3>Remove the assertions that would break on a normal day</h3>
+            <p>Delete anything that changes without anything being wrong, such as a version string that moves on every deploy. Keep the fields that say whether each dependency is healthy.</p>
+            <p>Here that means deleting <code>$.version</code>: left in, your next release would page the team. Ask of each row "if this changed, would something be broken?" and keep only the yeses. Fields you don't list are ignored, so the endpoint can grow new ones without breaking the monitor.</p>
+          </li>
+          <li id="step-5">
+            <h3>Save, then break an assertion on purpose</h3>
+            <p>Save the monitor and wait for a passing check. Then change one expected value to something the endpoint never returns, save, and wait for the Down alert. Put the value back and the alert resolves on the next passing check.</p>
+            <p>For example, set <code>$.services.db</code> to equal <code>ok-test</code>. The monitor's recent checks show the reason in the Error column, <code>Assertion failed: path '$.services.db' should equal "ok-test"</code>, and the alert carries the same text. A failed assertion is sent as a <strong>medium</strong> severity alert. A connection failure or wrong status code is <strong>high</strong>, since nothing answered at all. To see the alert sooner, use a 1 minute interval and a failure threshold of 1 while you test, then set them back.</p>
+          </li>
+        </ol>
+
+        <h2 id="assertions">Writing assertions</h2>
+        <p>Each assertion has a path into the JSON, an operator and, for two of the operators, a value.</p>
+        <div class="ac-table">
+          <table>
+            <thead>
+              <tr><th>Operator</th><th>Passes when</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>equals</td><td>The field is exactly the value: same type, same content.</td></tr>
+              <tr><td>contains</td><td>Text includes the value, a list has an item matching it, or an object has at least the fields you give.</td></tr>
+              <tr><td>exists</td><td>The field is present, even if it's <code>null</code>.</td></tr>
+              <tr><td>not empty</td><td>The field is present and isn't <code>null</code>, <code>""</code>, <code>[]</code> or <code>{}</code>. <code>0</code> and <code>false</code> pass.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ul>
+          <li><strong>Paths</strong> start at <code>$</code>, which the form shows for you. Nest with dots and pick list items by position: <code>services.db</code>, <code>checks[0].name</code>. Field names can use letters, digits, <code>_</code> and <code>-</code>.</li>
+          <li><strong>Values are read as JSON.</strong> <code>200</code> is a number, <code>true</code> a boolean, <code>ok</code> plain text. If the endpoint returns the text <code>"200"</code>, type it with quotes, or equals fails on the type.</li>
+          <li><strong>The JSON editor</strong> (the Visual / JSON switch) takes the shape you expect as one object: <code>{ "status": "ok", "services": { "db": "ok" } }</code> passes when the response contains at least those fields with those values. For any other check, give a list of rules such as <code>[{ "path": "$.checked_at", "operator": "exists" }]</code>.</li>
+          <li>Up to 20 assertions per monitor, and the response must be under 1 MB.</li>
+        </ul>
+
+        <h2 id="secrets">How the token is kept</h2>
+        <ul>
+          <li><strong>Encrypted at rest, and write-only.</strong> Once saved, a secret header is never shown again: not in the form, not in the API. You can replace it, not read it back. The form says "Saved encrypted · type to replace".</li>
+          <li><strong>It doesn't follow redirects to other sites.</strong> If the endpoint redirects to a different origin, the check fails with "Redirect to a different origin blocked" instead of handing your token to someone else. Point the monitor at the final URL.</li>
+          <li><strong>Changing the URL to another origin asks for it again.</strong> Move a monitor from <code>api.example.com</code> to <code>api.other.com</code> and saving asks you to re-enter each secret, so a stored token can't be pointed at a new host without someone typing it.</li>
+          <li><strong>Alerts never quote the response.</strong> A failed assertion describes the rule, not the value received, because an endpoint can echo a request header back into its body.</li>
+          <li>Prefer plain-text headers for anything that isn't secret, such as <code>Accept</code>: they stay visible and editable. Click the lock to switch a header between plain and encrypted.</li>
+        </ul>
+
+        <h2 id="troubleshooting">If a check fails unexpectedly</h2>
+        <div class="ac-table">
+          <table>
+            <thead>
+              <tr><th>What you see</th><th>Likely cause</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Credentials rejected by the target</td><td>The token is wrong, expired or sent under the wrong header name. With Bearer, check the value still starts with <code>Bearer </code> followed by a space.</td></tr>
+              <tr><td>response body is not valid JSON</td><td>Something other than your API answered, such as a maintenance page or login screen, or the endpoint returns plain text. Check the URL, and that the token reached it.</td></tr>
+              <tr><td>An equals check fails while the response looks right</td><td>The type differs: <code>200</code> versus <code>"200"</code>, or <code>true</code> versus <code>"true"</code>. Add or remove the quotes.</td></tr>
+              <tr><td>Alerts after every deploy</td><td>An assertion checks something that changes on release, like a version or build number. Remove it, or use exists instead.</td></tr>
+              <tr><td>Redirect to a different origin blocked</td><td>The URL redirects to another domain or subdomain while carrying a secret. Use the final URL directly.</td></tr>
+              <tr><td>Saving asks to re-enter a secret</td><td>You changed the URL to a different origin. Type the value again, or put the old URL back.</td></tr>
+              <tr><td>"HEAD has no body" when saving</td><td>Assertions need a body. Switch the method to <code>GET</code>.</td></tr>
+              <tr><td>Response body exceeds 1024 KB</td><td>The endpoint returns too much. Point the monitor at a smaller health route.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <section class="ac-cta" aria-labelledby="cta">
+        <h2 id="cta">Catch the outage a 200 hides</h2>
+        <p>Free during early access. Unlimited users, teams, alerts and monitors — no credit card.</p>
+        <div class="ac-cta-actions">
+          <a href="https://app.sigtake.com/register" class="ac-btn">Start free</a>
+          <a href="https://docs.sigtake.com">Read the docs</a>
+        </div>
+      </section>
+      </div>
+    </article>
+  </main>
+
+  <footer class="ac-foot">
+    <div class="ac-wrap">
+      <span>© 2026 Sigtake, Inc.</span>
+      <nav aria-label="Footer">
+        <a href="/academy/">Academy</a>
+        <a href="https://docs.sigtake.com">Docs</a>
+        <a href="/help/">Help</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const links = [...document.querySelectorAll('.ac-toc a')];
+      const heads = links.map((a) => document.getElementById(a.hash.slice(1)));
+      if (!links.length || heads.includes(null)) return;
+      let queued = false;
+      const update = () => {
+        queued = false;
+        let i = 0;
+        heads.forEach((h, j) => { if (h.getBoundingClientRect().top < 120) i = j; });
+        if (innerHeight + scrollY >= document.documentElement.scrollHeight - 2) i = heads.length - 1;
+        links.forEach((a, j) => j === i ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current'));
+      };
+      addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(update); } }, { passive: true });
+      update();
+    })();
+  </script>
+</body>
+
+</html>

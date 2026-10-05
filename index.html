@@ -858,6 +858,12 @@
       }
     }
 
+    /* Six links and both CTAs overflow below 960px; "How it works" is an in-page anchor the scroll reaches anyway. */
+    @media (min-width: 768px) and (max-width: 959px) {
+      .st-landing .st-nav-links { gap: 22px !important; }
+      .st-landing .st-nav-links a[href="/#how"] { display: none; }
+    }
+
     @media (max-width: 767px) {
 
       /* The same nav nodes revealed as a panel, never a duplicate menu: the scrollspy indexes
@@ -1093,6 +1099,7 @@
           <a href="/#monitoring" class="st-navlink">Monitoring</a>
           <a href="/#how" class="st-navlink">How it works</a>
           <a href="/pricing/" class="st-navlink">Pricing</a>
+          <a href="/academy/" class="st-navlink">Academy</a>
           <a href="https://docs.sigtake.com" class="st-navlink">Docs</a>
         </div>
         <div class="st-nav-cta" style="display:flex;align-items:center;gap:16px">

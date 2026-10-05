@@ -141,6 +141,12 @@
     .st-landing .st-navtoggle[aria-expanded="true"] .st-ico-menu { display: none; }
     .st-landing .st-navtoggle[aria-expanded="true"] .st-ico-close { display: inline; }
 
+    /* Six links and both CTAs overflow below 960px; "How it works" is an in-page anchor the scroll reaches anyway. */
+    @media (min-width: 768px) and (max-width: 959px) {
+      .st-landing .st-nav-links { gap: 22px !important; }
+      .st-landing .st-nav-links a[href="/#how"] { display: none; }
+    }
+
     @media (max-width: 767px) {
       /* The same nav nodes revealed as a panel, never a duplicate menu. The toggle sits before them
          in the DOM so Tab reaches what it just opened. Without JS nothing collapses. */
@@ -196,6 +202,7 @@
           <a href="/#monitoring" class="st-navlink" style="color:#94A3B8">Monitoring</a>
           <a href="/#how" class="st-navlink" style="color:#94A3B8">How it works</a>
           <a href="/pricing/" class="st-navlink" style="color:#94A3B8">Pricing</a>
+          <a href="/academy/" class="st-navlink" style="color:#94A3B8">Academy</a>
           <a href="https://docs.sigtake.com" class="st-navlink" style="color:#94A3B8">Docs</a>
         </div>
         <div class="st-nav-cta" style="display:flex;align-items:center;gap:16px">

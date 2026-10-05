@@ -48,6 +48,8 @@ Practical guides for small ops teams: https://sigtake.com/academy/
 - [Alert Routing by Team](https://sigtake.com/academy/alert-routing-by-team/): every alert belongs to one team via its
   team_code; teams span projects, channels are per project
 - [Set Up Alert Notifications](https://sigtake.com/academy/set-up-alert-notifications/): team, project, channel, test alert
+- [Website Uptime Monitoring](https://sigtake.com/academy/website-uptime-monitoring/): what counts as down, interval x
+  failure threshold, auto-resolve on recovery; slow responses and expiring certificates don't alert
 
 ## Links
 - [App / Sign up](https://app.sigtake.com/register)

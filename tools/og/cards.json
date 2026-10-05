@@ -72,5 +72,11 @@
     "layout": "plain",
     "titleHtml": "Set up alert notifications<br>for a team",
     "sub": "Team, project, channel, test alert. About fifteen minutes."
+  },
+  "academy-website-uptime-monitoring": {
+    "out": "og/academy-website-uptime-monitoring.png",
+    "layout": "plain",
+    "titleHtml": "Website uptime monitoring,<br>set up right",
+    "sub": "What counts as down, which settings to pick, and a test outage."
   }
 }

@@ -4,6 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Must run before first paint: the mobile nav only starts collapsed once .st-js is set. -->
+  <script>document.documentElement.classList.add('st-js')</script>
   <title>Pricing — Sigtake Alert Management &amp; Monitoring</title>
   <meta name="description"
     content="Sigtake is free during early access: unlimited users, teams, alerts and monitors, every notification channel, no credit card. See what is included and what happens next.">
@@ -906,7 +908,7 @@
         border-top: 1px solid rgba(255, 255, 255, 0.06);
       }
 
-      .st-landing .st-nav-links.st-closed {
+      .st-js .st-landing .st-nav-links.st-closed {
         display: none !important;
       }
 
@@ -1002,7 +1004,7 @@
             <path class="st-ico-menu" d="M4 7h16M4 12h16M4 17h16" />
             <path class="st-ico-close" d="M6 6l12 12M18 6L6 18" />
           </svg></button>
-        <div class="st-nav-links" id="st-nav-links" style="display:flex;align-items:center;gap:28px;font-size:14px;font-weight:500">
+        <div class="st-nav-links st-closed" id="st-nav-links" style="display:flex;align-items:center;gap:28px;font-size:14px;font-weight:500">
           <a href="/#features" class="st-navlink">Features</a>
           <a href="/#monitoring" class="st-navlink">Monitoring</a>
           <a href="/#how" class="st-navlink">How it works</a>

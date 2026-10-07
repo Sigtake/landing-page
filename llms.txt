@@ -7,7 +7,7 @@
 
 ## Product
 - [Features](https://sigtake.com/#features): alert deduplication, routing, multi-tenant workspaces
-- [SDKs](https://sigtake.com/#sdks): official Node and Python clients
+- [SDKs](https://sigtake.com/#how): official Node and Python clients
 - [Monitoring](https://sigtake.com/#monitoring): uptime and signal monitoring built in
 - [How it works](https://sigtake.com/#how): connect, route, then acknowledge and resolve
 - [Pricing](https://sigtake.com/pricing/): free during early access — unlimited users, teams,
@@ -27,7 +27,8 @@
 - In progress: Discord, Google Chat.
 - Slack: one workspace per organization, a separate Slack channel per project.
   Repeat occurrences of an incident reply in the thread of the first card and update it in place.
-- Routing: every API key belongs to a team; a team's channels decide where its alerts land.
+- Routing: the API key decides the project, the alert's team_code decides the team, and that team's
+  channels in the project decide where it lands.
 
 ## Signals & monitoring
 - Push numeric metrics via API (`POST /api/signals/ingest`); rules evaluate every minute.
@@ -49,7 +50,8 @@ Practical guides for small ops teams: https://sigtake.com/academy/
   team_code; teams span projects, channels are per project
 - [Set Up Alert Notifications](https://sigtake.com/academy/set-up-alert-notifications/): team, project, channel, test alert
 - [Website Uptime Monitoring](https://sigtake.com/academy/website-uptime-monitoring/): what counts as down, interval x
-  failure threshold, auto-resolve on recovery; slow responses and expiring certificates don't alert
+  failure threshold, auto-resolve on recovery; slow responses don't alert; expiring certificates get their own
+  alert (14 days ahead by default, reminders at 7, 3 and 1)
 - [Monitor an Authenticated API Health Endpoint](https://sigtake.com/academy/monitor-api-health-endpoint/): encrypted
   write-only secret headers (Bearer, API key, Basic), JSONPath assertions (equals, contains, exists, not empty)
 

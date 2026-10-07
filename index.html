@@ -287,6 +287,96 @@
       mask-image: radial-gradient(ellipse 70% 60% at 50% 32%, #000 30%, transparent 78%);
     }
 
+    .st-landing .st-sec-hero {
+      --hero-gutter: 32px;
+    }
+
+    .st-landing .st-fluid-stage {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      min-height: calc(100svh - 64px);
+      margin: 0 calc(-1 * var(--hero-gutter));
+      padding: 72px var(--hero-gutter) 56px;
+    }
+
+    .st-landing .st-fluid-fallback {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      transition: opacity .8s ease;
+    }
+
+    .st-landing .st-fluid,
+    .st-landing .st-fluid-scrim {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+    }
+
+    .st-landing .st-fluid {
+      display: block;
+      -webkit-mask-image: linear-gradient(#000 72%, transparent);
+      mask-image: linear-gradient(#000 72%, transparent);
+    }
+
+    .st-landing .st-fluid-scrim {
+      background: radial-gradient(115% 95% at 50% 46%,
+          rgba(4, 6, 9, .82) 0%, rgba(4, 6, 9, .82) 30%, rgba(4, 6, 9, .56) 58%, rgba(4, 6, 9, .16) 100%);
+    }
+
+    .st-landing .st-fluid-on .st-fluid,
+    .st-landing .st-fluid-on .st-fluid-scrim {
+      opacity: 1;
+    }
+
+    .st-landing .st-fluid-on .st-fluid-fallback {
+      opacity: 0;
+    }
+
+    .st-landing .st-hero-copy {
+      width: 100%;
+    }
+
+    .st-landing .st-w {
+      display: inline-block;
+    }
+
+    /* The h1 (desktop) and the paragraph (mobile) are LCP candidates: neither may start fully
+       transparent, or the LCP waits for the reveal. */
+    .st-js .st-landing .st-hero-h1 .st-w {
+      transform: translateY(26px);
+      transition: transform .72s cubic-bezier(.33, 1, .68, 1);
+    }
+
+    .st-js .st-landing .st-hero-sub .st-w {
+      opacity: .25;
+      transform: translateY(14px);
+      transition: opacity .6s cubic-bezier(.33, 1, .68, 1), transform .6s cubic-bezier(.33, 1, .68, 1);
+    }
+
+    .st-js .st-landing .st-hero-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .7s cubic-bezier(.2, 0, 0, 1), transform .7s cubic-bezier(.2, 0, 0, 1);
+    }
+
+    .st-js .st-landing .st-hero-badge { transition-delay: .32s; }
+    .st-js .st-landing .st-hero-cta { transition-delay: 1.45s; }
+    .st-js .st-landing .st-hero-early { transition-delay: 1.65s; }
+
+    .st-js .st-landing .st-hero-ready .st-w,
+    .st-js .st-landing .st-hero-ready .st-hero-in {
+      opacity: 1;
+      transform: none;
+    }
+
     .st-landing .st-close {
       position: relative;
       overflow: hidden;
@@ -295,14 +385,36 @@
       text-align: center;
     }
 
-    .st-landing .st-radar-close {
-      -webkit-mask-image: radial-gradient(ellipse 65% 75% at 50% 100%, #000 20%, transparent 75%);
-      mask-image: radial-gradient(ellipse 65% 75% at 50% 100%, #000 20%, transparent 75%);
+
+    .st-landing .st-close {
+      display: grid;
+      place-items: center;
+      min-height: 72svh;
+    }
+
+    .st-landing .st-close-halo {
+      background: radial-gradient(60% 70% at 50% 100%, rgba(52, 211, 153, .12), rgba(45, 212, 191, .05) 45%, transparent 75%);
+    }
+
+    .st-landing .st-close-fluid {
+      -webkit-mask-image: linear-gradient(transparent, #000 22%, #000 82%, transparent);
+      mask-image: linear-gradient(transparent, #000 22%, #000 82%, transparent);
+    }
+
+    .st-landing .st-close-scrim {
+      background: radial-gradient(90% 80% at 50% 50%,
+          rgba(4, 6, 9, .84) 0%, rgba(4, 6, 9, .84) 30%, rgba(4, 6, 9, .55) 60%, rgba(4, 6, 9, .2) 100%);
+    }
+
+    .st-landing .st-close-h {
+      font-size: clamp(34px, 5.6vw, 64px) !important;
+      line-height: 1.04;
+      letter-spacing: -0.035em;
     }
 
     .st-landing .st-close-inner {
       position: relative;
-      max-width: 640px;
+      max-width: 880px;
       margin: 0 auto;
     }
 
@@ -411,8 +523,9 @@
       tab-size: 2;
     }
 
+    /* Neutral + teal only: violet and amber mean status and severity everywhere else on the page. */
     .st-landing .c-k {
-      color: var(--ack);
+      color: var(--ink-3);
     }
 
     .st-landing .c-s {
@@ -420,7 +533,7 @@
     }
 
     .st-landing .c-f {
-      color: var(--sev-medium);
+      color: var(--ink-1);
     }
 
     .st-landing .st-sdk-foot {
@@ -533,6 +646,1423 @@
     .st-landing .st-dupe span {
       color: var(--ink-4);
       flex: none;
+    }
+
+    .st-landing .st-problem-h {
+      font-size: clamp(30px, 4.4vw, 48px);
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+      text-wrap: balance;
+    }
+
+    .st-landing .st-pin {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .st-landing .st-problem-copy {
+      max-width: 620px;
+      margin-bottom: 56px;
+    }
+
+    .st-landing .st-phases,
+    .st-landing .st-stage {
+      display: none;
+    }
+
+    /* Scroll-driven scene: only with JS and without reduced motion; otherwise the static .st-vs pair stays. */
+    .st-landing .st-collapse-on .st-pin-track {
+      height: 240vh;
+    }
+
+    .st-landing .st-collapse-on .st-pin {
+      position: sticky;
+      top: 64px;
+      height: calc(100svh - 64px);
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+      gap: var(--s8);
+      align-items: center;
+    }
+
+    .st-landing .st-collapse-on .st-problem-copy {
+      margin: 0;
+    }
+
+    .st-landing .st-collapse-on .st-vs {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    .st-landing .st-collapse-on .st-phases {
+      --p: 0;
+      position: relative;
+      display: block;
+      list-style: none;
+      margin: var(--s7) 0 0;
+      padding: 0 0 0 var(--s5);
+    }
+
+    .st-landing .st-phases::before,
+    .st-landing .st-phases::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 1px;
+      height: calc(100% - 12px);
+      background: var(--line-strong);
+    }
+
+    .st-landing .st-phases::after {
+      background: var(--teal-400);
+      transform-origin: top;
+      transform: scaleY(var(--p));
+    }
+
+    .st-landing .st-phases li {
+      padding: var(--s2) 0 var(--s4);
+      font-size: var(--t5);
+      line-height: 1.5;
+      color: var(--ink-4);
+      transition: color .35s ease;
+    }
+
+    .st-landing .st-phases li.st-on {
+      color: var(--ink-1);
+    }
+
+    .st-landing .st-phase-t {
+      display: block;
+      margin-bottom: 2px;
+      font-family: var(--mono);
+      font-size: var(--t2);
+      font-variant-numeric: tabular-nums;
+      color: var(--ink-4);
+      transition: color .35s ease;
+    }
+
+    .st-landing .st-phases li.st-on .st-phase-t {
+      color: var(--teal-300);
+    }
+
+    .st-landing .st-collapse-on .st-stage {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: var(--s3);
+      height: min(460px, calc(100svh - 160px));
+      padding: var(--s5);
+      background: var(--surface-1);
+      border-radius: var(--r-card);
+      box-shadow: 0 24px 64px rgba(0, 0, 0, .5);
+    }
+
+    .st-landing .st-stage-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      border: 1px solid rgba(248, 113, 113, .3);
+      pointer-events: none;
+    }
+
+    .st-landing .st-stage-ring.st-teal {
+      border-color: rgba(45, 212, 191, .34);
+      box-shadow: 0 0 0 1px rgba(45, 212, 191, .06), 0 18px 48px rgba(45, 212, 191, .08);
+      opacity: 0;
+    }
+
+    .st-landing .st-stage-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .st-landing .st-x {
+      display: grid;
+    }
+
+    .st-landing .st-x>* {
+      grid-area: 1 / 1;
+    }
+
+    .st-landing .st-stage-chan {
+      font-family: var(--mono);
+      font-size: var(--t2);
+      color: var(--ink-3);
+    }
+
+    .st-landing .st-stage-tag {
+      justify-self: end;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .05em;
+      border-radius: var(--r-chip);
+      padding: 2px 8px;
+      color: #F87171;
+      background: rgba(248, 113, 113, .12);
+    }
+
+    .st-landing .st-stage-tag.st-teal {
+      color: var(--teal-300);
+      background: rgba(45, 212, 191, .12);
+    }
+
+    .st-landing .st-stage-body {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(transparent, #000 34%);
+      mask-image: linear-gradient(transparent, #000 34%);
+    }
+
+    .st-landing .st-stage-body.st-unmasked {
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+
+    .st-landing .st-stage-row {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 28px;
+      box-sizing: border-box;
+      align-items: center;
+      white-space: nowrap;
+      overflow: hidden;
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+
+    .st-landing .st-stage-result {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      display: flex;
+      flex-direction: column;
+      gap: var(--s3);
+      opacity: 0;
+      transform: translateY(-50%) scale(.94);
+    }
+
+    .st-landing .st-stage-row span {
+      color: var(--ink-3);
+    }
+
+    .st-landing .st-stage-hit {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--s3);
+      padding: 14px 16px;
+      background: var(--surface-2);
+      border: 1px solid rgba(45, 212, 191, .25);
+      border-radius: var(--r-ctrl);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, .4);
+    }
+
+    .st-landing .st-hit-main {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .st-landing .st-hit-line {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .st-landing .st-hit-sev {
+      flex: none;
+      padding: 2px 8px;
+      border-radius: var(--r-chip);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .05em;
+      background: rgba(239, 68, 68, .12);
+      color: #F87171;
+    }
+
+    .st-landing .st-hit-title {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--ink-1);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .st-landing .st-hit-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--s2);
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: var(--ink-4);
+    }
+
+    .st-landing .st-hit-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: "Inter", system-ui, sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .st-landing .st-hit-status i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .st-landing .st-hit-count {
+      flex: none;
+      min-width: 3.4ch;
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 17px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      color: var(--teal-300);
+      background: rgba(45, 212, 191, .12);
+      border: 1px solid rgba(45, 212, 191, .3);
+      border-radius: 8px;
+      padding: 5px 10px;
+    }
+
+    .st-landing .st-stage-foot {
+      border-top: 1px solid var(--line-soft);
+      padding-top: var(--s3);
+      font-family: var(--mono);
+      font-size: 11.5px;
+      font-variant-numeric: tabular-nums;
+      color: var(--ink-4);
+    }
+
+    .st-landing .st-stage-owner {
+      display: flex;
+      align-items: center;
+      gap: var(--s2);
+      padding: 0 var(--s4);
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: var(--ink-3);
+      opacity: 0;
+    }
+
+    .st-landing .st-stage-folded {
+      color: var(--teal-300);
+      opacity: 0;
+    }
+
+    .st-landing .st-stage-owner b {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: rgba(45, 212, 191, .15);
+      color: var(--teal-300);
+      font-size: 9px;
+    }
+
+    .st-landing .st-sr {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    .st-landing .st-mono {
+      font-family: var(--mono);
+    }
+
+    .st-landing .st-flist {
+      display: grid;
+      gap: var(--s4);
+      margin: var(--s5) 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .st-landing .st-flist li {
+      display: grid;
+      grid-template-columns: 18px minmax(0, 1fr);
+      gap: var(--s3);
+      font-size: var(--t4);
+      line-height: 1.55;
+      color: var(--ink-3);
+    }
+
+    .st-landing .st-flist strong {
+      display: block;
+      margin-bottom: 2px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink-1);
+    }
+
+    .st-landing .st-fl-ic {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      color: var(--teal-400);
+    }
+
+    .st-landing .st-reach {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 330px) 390px minmax(0, 1fr);
+      gap: var(--s7);
+      align-items: center;
+      min-height: 600px;
+      padding: var(--s8) var(--s7);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: #050709;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .st-landing .st-reach-media {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+    }
+
+    .st-landing .st-reach-media img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 72% 50%;
+    }
+
+    .st-landing .st-reach-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(4, 6, 9, .97) 0%, rgba(4, 6, 9, .9) 32%, rgba(4, 6, 9, .5) 58%, rgba(4, 6, 9, .1) 100%),
+        linear-gradient(0deg, rgba(4, 6, 9, .7) 0%, transparent 35%);
+    }
+
+    .st-landing .st-reach-copy .st-h3 {
+      font-size: clamp(24px, 2.6vw, 30px);
+      letter-spacing: -0.02em;
+    }
+
+    .st-landing .st-reach-soon {
+      margin: var(--s5) 0 0;
+      font-size: var(--t3);
+      color: var(--ink-4);
+    }
+
+    .st-landing .st-reach-stack {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-left: 28px;
+    }
+
+    .st-landing .st-rail {
+      position: absolute;
+      left: 8px;
+      top: 18px;
+      bottom: 46px;
+      width: 1px;
+      background: var(--line-strong);
+    }
+
+    .st-landing .st-rail-fill {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(var(--teal-400), rgba(45, 212, 191, .35));
+      transform-origin: top;
+    }
+
+    .st-landing .st-route,
+    .st-landing .st-dest {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(15, 17, 21, .9);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 14px 36px rgba(0, 0, 0, .5);
+    }
+
+    .st-landing .st-route::before,
+    .st-landing .st-dest::before {
+      content: "";
+      position: absolute;
+      left: -24px;
+      top: 15px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #050709;
+      box-shadow: 0 0 0 1px rgba(45, 212, 191, .7);
+    }
+
+    .st-landing .st-route {
+      display: flex;
+      align-items: center;
+      gap: var(--s2);
+      padding: 9px 12px;
+    }
+
+    .st-landing .st-route-sev {
+      flex: none;
+      padding: 2px 7px;
+      border-radius: var(--r-chip);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .05em;
+      background: rgba(239, 68, 68, .12);
+      color: #F87171;
+    }
+
+    .st-landing .st-route-title {
+      min-width: 0;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--ink-1);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .st-landing .st-route-team {
+      justify-content: space-between;
+      margin-bottom: 6px;
+      border-color: rgba(45, 212, 191, .3);
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--teal-300);
+    }
+
+    .st-landing .st-route-team .st-mono {
+      font-size: 10.5px;
+      font-weight: 400;
+      color: var(--ink-4);
+    }
+
+    .st-landing .st-dest {
+      padding: 11px 14px 12px;
+    }
+
+    .st-landing .st-dest-head {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--s3);
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--ink-2);
+    }
+
+    .st-landing .st-dest-head .st-mono {
+      font-size: 10.5px;
+      font-weight: 400;
+      color: var(--ink-4);
+      white-space: nowrap;
+    }
+
+    .st-landing .st-dest p {
+      margin: 0;
+    }
+
+    .st-landing .st-dest-title {
+      margin-top: 6px !important;
+      font-size: 12.5px;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--ink-1);
+    }
+
+    .st-landing .st-dest-from {
+      margin-top: 6px !important;
+      font-size: 12px;
+      color: var(--ink-3);
+    }
+
+    .st-landing .st-dest-from+.st-dest-title {
+      margin-top: 1px !important;
+    }
+
+    .st-landing .st-dest-meta {
+      margin-top: 3px !important;
+      font-size: 11.5px;
+      color: var(--ink-4);
+    }
+
+    .st-landing .st-dest-meta b {
+      font-weight: 600;
+      color: var(--ink-2);
+    }
+
+    .st-landing .st-slack {
+      display: flex;
+      gap: 10px;
+    }
+
+    /* Slack's own attachment colour bar: amber is how an acknowledged alert renders there (spec 80). */
+    .st-landing .st-slack-bar {
+      flex: none;
+      width: 4px;
+      margin-top: 8px;
+      border-radius: 2px;
+      background: #d97706;
+    }
+
+    .st-landing .st-dest-ctx {
+      margin-top: 5px !important;
+      font-size: 11px;
+      color: var(--ink-4);
+    }
+
+    .st-landing .st-slack-btn {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 3px 9px;
+      border: 1px solid var(--line-strong);
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--ink-1);
+    }
+
+    .st-landing .st-dest-inapp {
+      display: flex;
+      align-items: center;
+      gap: var(--s3);
+    }
+
+    .st-landing .st-dest-inapp .st-dest-title {
+      margin-top: 0 !important;
+    }
+
+    .st-landing .st-bell {
+      position: relative;
+      display: grid;
+      place-items: center;
+      flex: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(45, 212, 191, .12);
+      color: var(--teal-300);
+    }
+
+    .st-landing .st-bell svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    .st-landing .st-bell i {
+      position: absolute;
+      top: 6px;
+      right: 7px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--teal-400);
+      box-shadow: 0 0 0 2px #0f1115;
+    }
+
+    .st-landing .st-reach-note {
+      margin: 6px 0 0;
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: var(--teal-300);
+    }
+
+    /* The stack stays put; its pieces arrive in route order. Hidden only with JS, before .st-in. */
+    .st-js .st-landing .st-reach .st-reach-stack.st-reveal {
+      opacity: 1;
+      transform: none;
+    }
+
+    .st-js .st-landing .st-reach-stack .st-rail-fill {
+      transform: scaleY(0);
+      transition: transform 1.5s cubic-bezier(.2, 0, 0, 1) .1s;
+    }
+
+    .st-js .st-landing .st-reach-stack>.st-route,
+    .st-js .st-landing .st-reach-stack>.st-dest,
+    .st-js .st-landing .st-reach-stack>.st-reach-note {
+      opacity: 0;
+      transform: translateY(10px);
+      filter: blur(4px);
+      transition: opacity .6s cubic-bezier(.2, 0, 0, 1), transform .6s cubic-bezier(.2, 0, 0, 1), filter .6s cubic-bezier(.2, 0, 0, 1);
+    }
+
+    .st-js .st-landing .st-reach-stack>:nth-child(2) { transition-delay: .05s; }
+    .st-js .st-landing .st-reach-stack>:nth-child(3) { transition-delay: .3s; }
+    .st-js .st-landing .st-reach-stack>:nth-child(4) { transition-delay: .6s; }
+    .st-js .st-landing .st-reach-stack>:nth-child(5) { transition-delay: .78s; }
+    .st-js .st-landing .st-reach-stack>:nth-child(6) { transition-delay: .96s; }
+    .st-js .st-landing .st-reach-stack>:nth-child(7) { transition-delay: 1.14s; }
+    .st-js .st-landing .st-reach-stack>:nth-child(8) { transition-delay: 1.45s; }
+
+    .st-js .st-landing .st-reach-stack.st-in .st-rail-fill {
+      transform: none;
+    }
+
+    .st-js .st-landing .st-reach-stack.st-in>* {
+      opacity: 1;
+      transform: none;
+      filter: none;
+    }
+
+    .st-landing .st-org {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s6);
+    }
+
+    .st-landing .st-roles-wrap {
+      border: 1px solid var(--line);
+      border-radius: var(--r-card);
+      background: var(--surface-1);
+      overflow: hidden;
+    }
+
+    .st-landing .st-roles {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: var(--t4);
+    }
+
+    .st-landing .st-roles th,
+    .st-landing .st-roles td {
+      padding: 15px 20px;
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .st-landing .st-roles thead th {
+      border-top: 0;
+      background: var(--well);
+      font-size: var(--t3);
+      font-weight: 600;
+      color: var(--ink-3);
+      text-align: center;
+    }
+
+    .st-landing .st-roles thead th:first-child,
+    .st-landing .st-roles tbody th {
+      width: 55%;
+      text-align: left;
+    }
+
+    .st-landing .st-roles tbody th {
+      font-weight: 500;
+      color: var(--ink-2);
+    }
+
+    .st-landing .st-roles td {
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .st-landing .st-rm-yes {
+      width: 18px;
+      height: 18px;
+      vertical-align: middle;
+      color: var(--teal-400);
+    }
+
+    .st-landing .st-rm-no {
+      display: inline-block;
+      width: 12px;
+      height: 1.5px;
+      vertical-align: middle;
+      background: var(--ink-4);
+    }
+
+    .st-landing .st-facts {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--s6);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .st-landing .st-facts li {
+      padding-top: var(--s4);
+      border-top: 1px solid var(--line);
+      font-size: var(--t4);
+      line-height: 1.6;
+      color: var(--ink-3);
+    }
+
+    .st-landing .st-facts strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink-1);
+    }
+
+    .st-landing .st-mon {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 72px minmax(0, 400px);
+      grid-template-rows: auto auto;
+      row-gap: var(--s5);
+      align-items: center;
+    }
+
+    .st-js .st-landing .st-mon.st-reveal[role="img"] {
+      opacity: 1;
+      transform: none;
+    }
+
+    .st-landing .st-mon-a { grid-column: 1; grid-row: 1; }
+    .st-landing .st-conn-a { grid-column: 2; grid-row: 1; }
+    .st-landing .st-row-a { grid-column: 3; grid-row: 1; }
+    .st-landing .st-mon-b { grid-column: 1; grid-row: 2; }
+    .st-landing .st-conn-b { grid-column: 2; grid-row: 2; }
+    .st-landing .st-row-b { grid-column: 3; grid-row: 2; }
+
+    .st-landing .st-mon-inbox {
+      grid-column: 3;
+      grid-row: 1 / 3;
+      align-self: stretch;
+      display: flex;
+      justify-content: space-between;
+      gap: var(--s3);
+      margin: calc(-1 * var(--s3)) 0;
+      padding: 14px 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--r-card);
+      background: var(--well);
+      font-size: var(--t2);
+      font-weight: 600;
+      color: var(--ink-2);
+    }
+
+    .st-landing .st-mon-inbox .st-mono {
+      font-size: 10.5px;
+      font-weight: 400;
+      color: var(--ink-4);
+    }
+
+    .st-landing .st-mon-src {
+      display: grid;
+      gap: 14px;
+      padding: 18px 20px;
+      border: 1px solid var(--line);
+      border-radius: var(--r-card);
+      background: var(--surface-1);
+    }
+
+    .st-landing .st-mon-head,
+    .st-landing .st-mon-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--s3);
+    }
+
+    .st-landing .st-mon-name {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-1);
+    }
+
+    .st-landing .st-mon-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #F87171;
+      transition: background .3s ease;
+    }
+
+    .st-landing .st-mon-head .st-mono {
+      font-size: 11px;
+      color: var(--ink-4);
+      white-space: nowrap;
+    }
+
+    .st-landing .st-mon-foot {
+      font-size: var(--t2);
+      color: var(--ink-3);
+    }
+
+    .st-landing .st-mon-foot .st-mono {
+      font-size: 11px;
+      color: var(--ink-4);
+      white-space: nowrap;
+    }
+
+    .st-landing .st-sev-txt-high {
+      font-weight: 600;
+      color: #FB923C;
+    }
+
+    .st-landing .st-cells {
+      display: flex;
+      gap: 3px;
+    }
+
+    .st-landing .st-cells i {
+      flex: 1;
+      height: 30px;
+      border-radius: 3px;
+      background: rgba(16, 185, 129, .85);
+      transition: background .25s ease calc(.2s + var(--i) * 35ms);
+    }
+
+    .st-landing .st-cells i.st-cell-fail {
+      background: rgba(239, 68, 68, .85);
+      transition-delay: calc(.35s + var(--i) * 35ms);
+    }
+
+    .st-landing .st-sigband {
+      position: relative;
+      height: 96px;
+    }
+
+    .st-landing .st-sigband svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    .st-landing .st-band-area {
+      fill: rgba(45, 212, 191, .09);
+      stroke: rgba(45, 212, 191, .28);
+      stroke-width: 1;
+      stroke-dasharray: 3 3;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .st-landing .st-band-ok,
+    .st-landing .st-band-out {
+      fill: none;
+      stroke-width: 2;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+      stroke-dasharray: 1;
+      stroke-dashoffset: 0;
+    }
+
+    .st-landing .st-band-ok {
+      stroke: var(--teal-400);
+      transition: stroke-dashoffset .9s cubic-bezier(.4, 0, .2, 1) 2.1s;
+    }
+
+    .st-landing .st-band-out {
+      stroke: #F87171;
+      transition: stroke-dashoffset .4s cubic-bezier(.2, 0, 0, 1) 3s;
+    }
+
+    .st-landing .st-band-pt {
+      position: absolute;
+      left: calc(298 / 300 * 100%);
+      top: calc(10 / 96 * 100%);
+      width: 8px;
+      height: 8px;
+      margin: -4px 0 0 -4px;
+      border-radius: 50%;
+      background: #F87171;
+      box-shadow: 0 0 0 4px rgba(248, 113, 113, .18);
+    }
+
+    .st-landing .st-band-normal,
+    .st-landing .st-band-sigma {
+      position: absolute;
+      font-family: var(--mono);
+      font-size: 10.5px;
+      white-space: nowrap;
+    }
+
+    .st-landing .st-band-normal {
+      left: 6px;
+      top: calc(72 / 96 * 100%);
+      color: rgba(94, 234, 212, .75);
+    }
+
+    .st-landing .st-band-sigma {
+      right: 20px;
+      top: 0;
+      color: #F87171;
+    }
+
+    .st-landing .st-band-pt,
+    .st-landing .st-band-sigma {
+      transition: opacity .4s ease 3.3s;
+    }
+
+    .st-landing .st-mon-conn {
+      position: relative;
+      height: 1px;
+      background: linear-gradient(90deg, var(--line-strong), rgba(45, 212, 191, .45));
+    }
+
+    .st-landing .st-mon-conn i {
+      position: absolute;
+      top: -3px;
+      left: 0;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--teal-300);
+      box-shadow: 0 0 10px rgba(45, 212, 191, .7);
+      opacity: 0;
+    }
+
+    .st-landing .st-mon.st-in .st-conn-a i {
+      animation: st-conn-x .5s cubic-bezier(.4, 0, .2, 1) 1.55s both;
+    }
+
+    .st-landing .st-mon.st-in .st-conn-b i {
+      animation: st-conn-x .5s cubic-bezier(.4, 0, .2, 1) 3.35s both;
+    }
+
+    @keyframes st-conn-x {
+      0% { opacity: 0; transform: translateX(0); }
+      20% { opacity: 1; }
+      85% { opacity: 1; }
+      100% { opacity: 0; transform: translateX(65px); }
+    }
+
+    @keyframes st-conn-y {
+      0% { opacity: 0; transform: translateY(0); }
+      20% { opacity: 1; }
+      85% { opacity: 1; }
+      100% { opacity: 0; transform: translateY(26px); }
+    }
+
+    .st-landing .st-mon-row {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      gap: var(--s3);
+      align-items: center;
+      margin: 0 14px;
+      padding: 12px 14px;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--r-ctrl);
+      background: var(--surface-2);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, .4);
+      transition: opacity .55s cubic-bezier(.2, 0, 0, 1), transform .55s cubic-bezier(.2, 0, 0, 1), filter .55s cubic-bezier(.2, 0, 0, 1);
+    }
+
+    .st-landing .st-row-a { transition-delay: 2s; }
+    .st-landing .st-row-b { transition-delay: 3.8s; }
+
+    .st-landing .st-mon-sev {
+      padding: 2px 7px;
+      border-radius: var(--r-chip);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .05em;
+    }
+
+    .st-landing .st-sev-high {
+      background: rgba(249, 115, 22, .12);
+      color: #FB923C;
+    }
+
+    .st-landing .st-sev-crit {
+      background: rgba(239, 68, 68, .12);
+      color: #F87171;
+    }
+
+    .st-landing .st-mon-txt {
+      display: grid;
+      min-width: 0;
+    }
+
+    .st-landing .st-mon-txt b {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-1);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .st-landing .st-mon-txt .st-mono {
+      font-size: 11px;
+      color: var(--ink-4);
+    }
+
+    .st-landing .st-mon-firing {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #F87171;
+    }
+
+    .st-landing .st-mon-firing i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #EF4444;
+    }
+
+    /* Pre-arrival state: only with JS and before the reveal observer adds .st-in. */
+    .st-js .st-landing .st-mon:not(.st-in) .st-cells i {
+      background: var(--fill);
+    }
+
+    .st-js .st-landing .st-mon:not(.st-in) .st-mon-dot {
+      background: #34D399;
+    }
+
+    .st-landing .st-mon-a .st-mon-dot { transition-delay: 1.4s; }
+    .st-landing .st-mon-b .st-mon-dot { transition-delay: 3.3s; }
+
+    .st-js .st-landing .st-mon:not(.st-in) .st-band-ok,
+    .st-js .st-landing .st-mon:not(.st-in) .st-band-out {
+      stroke-dashoffset: 1;
+    }
+
+    .st-js .st-landing .st-mon:not(.st-in) .st-band-pt,
+    .st-js .st-landing .st-mon:not(.st-in) .st-band-sigma {
+      opacity: 0;
+    }
+
+    .st-js .st-landing .st-mon:not(.st-in) .st-mon-row {
+      opacity: 0;
+      transform: translateX(-14px);
+      filter: blur(4px);
+    }
+
+    .st-landing .st-mon-list {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--s6) var(--s7);
+      margin-top: var(--s8);
+    }
+
+    .st-landing .st-code-inline {
+      font-family: var(--mono);
+      font-size: .9em;
+      color: var(--teal-200);
+      background: rgba(255, 255, 255, .05);
+      border-radius: 5px;
+      padding: 1px 5px;
+    }
+
+    .st-landing .st-how {
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+      gap: var(--s8);
+      align-items: start;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .st-landing .st-steps {
+      display: grid;
+      gap: var(--s6);
+      margin: var(--s7) 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .st-landing .st-steps li {
+      position: relative;
+      display: grid;
+      grid-template-columns: 32px minmax(0, 1fr);
+      column-gap: var(--s4);
+    }
+
+    .st-landing .st-steps li:not(:last-child)::before {
+      content: "";
+      position: absolute;
+      left: 15.5px;
+      top: 40px;
+      bottom: calc(-1 * var(--s6) + 8px);
+      width: 1px;
+      background: var(--line-strong);
+    }
+
+    .st-landing .st-step-n {
+      grid-row: span 2;
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      border: 1px solid rgba(45, 212, 191, .35);
+      border-radius: 50%;
+      font-size: var(--t3);
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      color: var(--teal-300);
+    }
+
+    .st-landing .st-steps h3 {
+      margin: 5px 0 4px;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--ink-1);
+    }
+
+    .st-landing .st-steps p {
+      margin: 0;
+      font-size: var(--t4);
+      line-height: 1.6;
+      color: var(--ink-3);
+    }
+
+    .st-landing .st-how-cta {
+      display: flex;
+      align-items: center;
+      gap: var(--s4);
+      margin-top: var(--s7);
+      font-size: var(--t4);
+      color: var(--ink-4);
+    }
+
+    .st-landing .st-console {
+      display: grid;
+      gap: var(--s3);
+      padding: var(--s5);
+      border: 1px solid var(--line);
+      border-radius: var(--r-card);
+      background: var(--surface-1);
+    }
+
+    .st-landing .st-art {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border: 1px solid var(--line-soft);
+      border-radius: 12px;
+      background: var(--well);
+    }
+
+    .st-landing .st-art-n {
+      display: grid;
+      place-items: center;
+      flex: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(45, 212, 191, .1);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--teal-300);
+    }
+
+    .st-landing .st-art-key {
+      font-size: 13px;
+      color: var(--ink-1);
+    }
+
+    .st-landing .st-art-pill,
+    .st-landing .st-art-ch {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 2px 9px;
+      border: 1px solid var(--line);
+      border-radius: var(--r-pill);
+      font-size: 11.5px;
+      color: var(--ink-2);
+    }
+
+    .st-landing .st-art-pill,
+    .st-landing .st-art-team+.st-art-ch {
+      margin-left: auto;
+    }
+
+    .st-landing .st-art-ch i {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--teal-400);
+    }
+
+    .st-landing .st-art-team {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-1);
+    }
+
+    .st-landing .st-art-team .st-mono {
+      margin-left: 6px;
+      font-size: 11.5px;
+      font-weight: 400;
+      color: var(--teal-300);
+    }
+
+    .st-landing .st-art-code {
+      display: grid;
+      grid-template-columns: 20px minmax(0, 1fr);
+      align-items: start;
+    }
+
+    .st-landing .st-console .st-sdk {
+      min-width: 0;
+      padding: 0;
+      border: 0;
+      background: none;
+    }
+
+    .st-landing .st-console .st-sdk-tabs {
+      margin-bottom: var(--s3);
+    }
+
+    .st-landing .st-console .st-sdk-tab {
+      padding: 4px 12px;
+      font-size: var(--t3);
+    }
+
+    .st-landing .st-console .st-code {
+      font-size: 12.5px;
+    }
+
+    .st-landing .st-resp {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 4px 10px;
+      margin: var(--s3) 0 0;
+      font-size: 12.5px;
+      color: var(--ink-3);
+    }
+
+    .st-landing .st-resp-code {
+      font-family: var(--mono);
+      font-size: var(--t2);
+      font-weight: 600;
+      color: var(--ok);
+    }
+
+    .st-landing .st-console .st-sdk-foot {
+      margin: var(--s1) 4px 0;
+      line-height: 1.6;
+    }
+
+    .st-landing .st-offer {
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+      gap: var(--s8);
+      align-items: center;
+      padding: var(--s7);
+      border: 1px solid rgba(45, 212, 191, .22);
+      border-radius: 20px;
+      background:
+        radial-gradient(120% 140% at 0% 0%, rgba(45, 212, 191, .07), transparent 55%),
+        var(--surface-1);
+    }
+
+    .st-landing .st-offer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 12px;
+      border: 1px solid rgba(45, 212, 191, .3);
+      border-radius: var(--r-pill);
+      font-size: var(--t3);
+      font-weight: 600;
+      color: var(--teal-300);
+    }
+
+    .st-landing .st-offer-badge i {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--teal-400);
+    }
+
+    .st-landing .st-offer-price {
+      display: flex;
+      align-items: baseline;
+      gap: var(--s3);
+      margin: var(--s5) 0 var(--s2);
+    }
+
+    .st-landing .st-offer-price b {
+      font-family: "Bricolage Grotesque", "Inter", sans-serif;
+      font-size: clamp(64px, 8vw, 96px);
+      font-weight: 800;
+      line-height: .9;
+      letter-spacing: -0.04em;
+      color: var(--ink-1);
+    }
+
+    .st-landing .st-offer-price span {
+      font-size: var(--t4);
+      color: var(--ink-3);
+    }
+
+    .st-landing .st-offer-line {
+      margin: 0;
+      font-size: var(--t5);
+      line-height: 1.6;
+      color: var(--ink-2);
+    }
+
+    .st-landing .st-offer-cta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--s5);
+      margin-top: var(--s6);
+    }
+
+    .st-landing .st-offer-link {
+      font-size: var(--t4);
+      font-weight: 600;
+      color: var(--teal-300);
+      text-decoration: none;
+      text-underline-offset: 4px;
+    }
+
+    .st-landing .st-offer-link:hover {
+      text-decoration: underline;
+    }
+
+    .st-landing .st-offer-list {
+      margin: 0;
+    }
+
+    .st-landing .st-promises {
+      margin-top: var(--s7);
+    }
+
+    .st-landing .st-faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--s6) var(--s8);
+    }
+
+    .st-landing .st-faq-grid dt {
+      margin-top: 0;
     }
 
     .st-landing .st-feat-rev>:first-child {
@@ -719,13 +2249,11 @@
       transition: stroke-dashoffset 1.1s cubic-bezier(.22, 1, .36, 1);
     }
 
-    .st-js .st-landing .st-reveal[role="img"],
-    .st-js .st-landing .st-sdk {
+    .st-js .st-landing .st-reveal[role="img"] {
       transform: translateY(18px) scale(.985);
     }
 
-    .st-js .st-landing .st-reveal[role="img"].st-in,
-    .st-js .st-landing .st-sdk.st-in {
+    .st-js .st-landing .st-reveal[role="img"].st-in {
       transform: none;
     }
 
@@ -819,13 +2347,37 @@
         transition: none !important;
       }
 
-      .st-js .st-landing .st-reveal {
+      .st-js .st-landing .st-reveal,
+      .st-js .st-landing .st-hero-in,
+      .st-js .st-landing .st-w {
         opacity: 1 !important;
         transform: none !important;
       }
     }
 
     @media (max-width: 1080px) {
+
+      .st-landing .st-mon {
+        grid-template-columns: minmax(0, 1fr) 40px minmax(0, 320px);
+      }
+
+      .st-landing .st-mon-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .st-landing .st-mon-txt b {
+        white-space: normal;
+      }
+
+      .st-landing .st-reach {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 360px);
+        gap: var(--s6);
+        padding: var(--s7) var(--s6);
+      }
+
+      .st-landing .st-reach-media img {
+        object-position: 88% 50%;
+      }
 
       /* minmax(0,1fr): a plain 1fr is minmax(auto,1fr), and the nowrap card text inflates the track past the viewport */
       .st-landing .st-feat {
@@ -964,8 +2516,196 @@
         padding: 64px 20px !important;
       }
 
+      .st-landing .st-offer {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--s6);
+        padding: var(--s5);
+      }
+
+      .st-landing .st-faq-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--s5);
+      }
+
+      .st-landing .st-how {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--s7);
+      }
+
+      .st-landing .st-console {
+        padding: var(--s4);
+      }
+
+      .st-landing .st-art-code {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 12px;
+      }
+
+      .st-landing .st-console .st-code {
+        padding: var(--s3);
+        font-size: 11.5px;
+      }
+
+      .st-landing .st-how-cta {
+        flex-wrap: wrap;
+      }
+
+      .st-landing .st-mon {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+      }
+
+      .st-landing .st-mon-inbox {
+        display: none;
+      }
+
+      .st-landing .st-mon-row {
+        margin: 0;
+      }
+
+      .st-landing .st-mon-b {
+        margin-top: var(--s6);
+      }
+
+      .st-landing .st-mon-conn {
+        width: 1px;
+        height: 28px;
+        margin-left: 28px;
+        background: linear-gradient(var(--line-strong), rgba(45, 212, 191, .45));
+      }
+
+      .st-landing .st-mon-conn i {
+        top: 0;
+        left: -3px;
+      }
+
+      .st-landing .st-mon.st-in .st-conn-a i,
+      .st-landing .st-mon.st-in .st-conn-b i {
+        animation-name: st-conn-y;
+      }
+
+      .st-landing .st-mon-head .st-mono,
+      .st-landing .st-mon-foot .st-mono {
+        display: none;
+      }
+
+      .st-landing .st-mon-list {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--s4);
+        margin-top: var(--s7);
+      }
+
+      .st-landing .st-reach {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0;
+        min-height: 0;
+        padding: var(--s6) var(--s4) var(--s5);
+      }
+
+      .st-landing .st-reach-media {
+        position: relative;
+        order: 2;
+        height: 260px;
+        margin: var(--s6) calc(-1 * var(--s4)) 0;
+      }
+
+      .st-landing .st-reach-media img {
+        object-position: 80% 40%;
+      }
+
+      .st-landing .st-reach-media::after {
+        background:
+          linear-gradient(180deg, #050709 0%, rgba(5, 7, 9, .2) 30%, rgba(5, 7, 9, .55) 70%, #050709 100%);
+      }
+
+      .st-landing .st-reach-copy {
+        order: 1;
+      }
+
+      .st-landing .st-reach-stack {
+        order: 3;
+        margin-top: -120px;
+      }
+
+      .st-landing .st-roles {
+        font-size: var(--t3);
+      }
+
+      .st-landing .st-roles th,
+      .st-landing .st-roles td {
+        padding: 12px 10px;
+      }
+
+      .st-landing .st-roles thead th:first-child,
+      .st-landing .st-roles tbody th {
+        width: auto;
+        padding-left: 14px;
+      }
+
+      .st-landing .st-facts {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--s5);
+      }
+
+      .st-landing .st-collapse-on .st-pin-track {
+        height: 200vh;
+      }
+
+      .st-landing .st-collapse-on .st-pin {
+        grid-template-columns: minmax(0, 1fr);
+        align-content: center;
+        gap: var(--s5);
+      }
+
+      .st-landing .st-collapse-on .st-phases {
+        margin-top: var(--s4);
+        padding: 0;
+        min-height: 4.6em;
+      }
+
+      .st-landing .st-collapse-on .st-phases::before,
+      .st-landing .st-collapse-on .st-phases::after {
+        display: none;
+      }
+
+      .st-landing .st-collapse-on .st-phases li {
+        display: none;
+        padding: 0;
+      }
+
+      .st-landing .st-collapse-on .st-phases li.st-on {
+        display: block;
+      }
+
+      .st-landing .st-collapse-on .st-stage {
+        height: min(380px, calc(100svh - 360px));
+        padding: var(--s4);
+      }
+
+      .st-landing .st-hit-title {
+        white-space: normal;
+      }
+
+      .st-landing .st-stage-owner {
+        align-items: flex-start;
+        padding: 0 var(--s2);
+      }
+
       .st-landing .st-sec-hero {
-        padding: 72px 16px 56px !important;
+        --hero-gutter: 16px;
+        padding: 0 16px 56px !important;
+      }
+
+      .st-landing .st-fluid-scrim {
+        background: radial-gradient(150% 80% at 50% 48%,
+            rgba(4, 6, 9, .88) 0%, rgba(4, 6, 9, .88) 42%, rgba(4, 6, 9, .62) 72%, rgba(4, 6, 9, .2) 100%);
+      }
+
+      .st-landing .st-fluid-stage {
+        padding-top: 48px;
+        padding-bottom: 40px;
       }
 
       .st-landing .st-sec-cta {
@@ -1113,7 +2853,9 @@
 
     <main id="main" style="scroll-margin-top:64px">
       <!-- HERO -->
-      <section class="st-sec-hero" style="position:relative;overflow:hidden;padding:104px 32px 88px">
+      <section class="st-sec-hero" style="position:relative;overflow:hidden;padding:0 32px 88px">
+        <div class="st-fluid-stage" data-fluid="hero">
+        <div class="st-fluid-fallback" aria-hidden="true">
         <div
           style="position:absolute;top:-220px;left:50%;transform:translateX(-50%);width:900px;height:520px;background:radial-gradient(ellipse at center,rgba(45,212,191,0.14),transparent 65%);pointer-events:none">
         </div>
@@ -1142,22 +2884,25 @@
             <circle cx="150" cy="330" r="3" fill="#2DD4BF" opacity="0.35" />
           </g>
         </svg>
-        <div
+        </div>
+        <canvas class="st-fluid" aria-hidden="true"></canvas>
+        <div class="st-fluid-scrim" aria-hidden="true"></div>
+        <div class="st-hero-copy"
           style="position:relative;max-width:1180px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center;gap:24px">
-          <div
-            style="display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:999px;border:1px solid rgba(45,212,191,0.25);background:rgba(45,212,191,0.07);font-size:13px;font-weight:500;color:#5EEAD4">
+          <div class="st-hero-in st-hero-badge"
+            style="display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:999px;border:1px solid rgba(255,255,255,0.14);background:rgba(255,255,255,0.06);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);font-size:13px;font-weight:500;color:#5EEAD4">
             <span
               style="width:6px;height:6px;border-radius:50%;background:#2DD4BF;animation:st-pulse 1.8s infinite"></span>Real-time
             alert management &amp; monitoring
           </div>
-          <h1
+          <h1 class="st-hero-h1"
             style="margin:0;max-width:860px;font-size:clamp(36px,7.5vw,60px);line-height:1.08;font-weight:800;letter-spacing:-0.02em;color:#F8FAFC">
             Own every alert,<br>from <span style="color:#F87171">firing</span> to <span
               style="color:#34D399">fixed</span>.</h1>
-          <p style="margin:0;max-width:640px;font-size:18px;line-height:1.6;color:#94A3B8;text-wrap:pretty">Sigtake
+          <p class="st-hero-sub" style="margin:0;max-width:640px;font-size:18px;line-height:1.6;color:#CBD5E1;text-wrap:pretty">Sigtake
             ingests alerts from all your systems, collapses duplicates into one row, and routes what matters to the
             right team — by email, Slack, Microsoft Teams or in-app. Uptime and signal monitoring included.</p>
-          <div style="display:flex;align-items:center;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:8px">
+          <div class="st-hero-in st-hero-cta" style="display:flex;align-items:center;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:8px">
             <a href="https://app.sigtake.com/register" class="st-btn-primary"
               style="display:inline-flex;align-items:center;gap:8px;font-size:16px;font-weight:600;padding:13px 28px;border-radius:10px;box-shadow:0 0 32px rgba(45,212,191,0.38)">Start
               free</a>
@@ -1165,9 +2910,12 @@
               style="display:inline-flex;align-items:center;gap:8px;font-size:16px;font-weight:600;padding:13px 28px;border-radius:10px">Book
               a demo</a>
           </div>
-          <p style="margin:0;font-size:13px;color:#94A3B8">Free during early access · No credit card · Set up in under 5
+          <p class="st-hero-in st-hero-early" style="margin:0;font-size:13px;color:#CBD5E1">Free during early access · No credit card · Set up in under 5
             minutes</p>
+        </div>
+        </div>
 
+        <div style="position:relative;max-width:1180px;margin:0 auto;display:flex;justify-content:center">
           <div role="img"
             aria-label="Screenshot of the Sigtake alert center: a list of five alerts with severity, team, occurrence count and status, and a toast announcing a new critical alert."
             style="position:relative;width:100%;max-width:1080px;margin-top:40px">
@@ -1335,63 +3083,72 @@
       </section>
 
       <!-- PROBLEM -->
-      <section class="st-sec" id="problem"
+      <section class="st-sec st-problem" id="problem"
         style="padding:88px 32px;border-top:1px solid rgba(255,255,255,0.05);scroll-margin-top:64px">
-        <div style="max-width:1080px;margin:0 auto">
-          <div class="st-reveal" style="max-width:620px;margin-bottom:56px">
-            <p class="st-eyebrow-sec">The problem</p>
-            <h2 class="st-h2">Nobody reads the alert channel anymore</h2>
-            <p class="st-lede-sec">One incident arrives four hundred times, nothing says who is on it, and the
-              alert that mattered scrolled past at 3am.</p>
-          </div>
-
-          <div class="st-vs">
-            <!-- Today -->
-            <div class="st-reveal" role="img"
-              aria-label="A chat channel repeating the same CPU alert for prod-web-03 at 02:58, 03:01, 03:04 and 03:07, plus 394 more copies, with no owner and nobody acknowledging."
-              style="background:#0F1115;border:1px solid rgba(248,113,113,0.22);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:12px">
-              <div style="display:flex;align-items:center;justify-content:space-between">
-                <span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#94A3B8">#alerts-prod</span>
-                <span
-                  style="font-size:10px;font-weight:700;letter-spacing:0.05em;color:#F87171;background:rgba(248,113,113,0.12);border-radius:6px;padding:2px 8px">TODAY</span>
-              </div>
-              <div style="display:flex;flex-direction:column;gap:6px">
-                <div class="st-dupe"><span>02:58</span>CPU above 92% on prod-web-03</div>
-                <div class="st-dupe"><span>03:01</span>CPU above 92% on prod-web-03</div>
-                <div class="st-dupe"><span>03:04</span>CPU above 92% on prod-web-03</div>
-                <div class="st-dupe" style="opacity:.55"><span>03:07</span>CPU above 92% on prod-web-03</div>
-                <div class="st-dupe" style="opacity:.3"><span>03:10</span>CPU above 92% on prod-web-03</div>
-              </div>
-              <div
-                style="font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#7A8899;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px">
-                + 394 more · no owner · nobody acknowledged</div>
+        <div class="st-pin-track">
+          <div class="st-pin">
+            <div class="st-problem-copy st-reveal">
+              <h2 class="st-h2 st-problem-h">Nobody reads the alert channel anymore</h2>
+              <p class="st-lede-sec">One incident arrives forty-seven times, nothing says who is on it, and the
+                alert that mattered scrolled past at 3am.</p>
+              <ol class="st-phases" aria-hidden="true">
+                <li><span class="st-phase-t">02:58</span>CPU spikes on prod-web-03. The channel starts repeating it.</li>
+                <li><span class="st-phase-t">05:16</span>Forty-seven messages later: no owner, nobody acknowledged.</li>
+                <li><span class="st-phase-t">Sigtake</span>One row that counts. One owner who has it.</li>
+              </ol>
             </div>
+            <div class="st-problem-visual">
+              <div class="st-vs">
+                <!-- Today -->
+                <div class="st-reveal" role="img"
+                  aria-label="A chat channel repeating the same CPU alert for prod-web-03 at 02:58, 03:01, 03:04, 03:07 and 03:10, plus 42 more copies, with no owner and nobody acknowledging."
+                  style="background:#0F1115;border:1px solid rgba(248,113,113,0.22);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:12px">
+                  <div style="display:flex;align-items:center;justify-content:space-between">
+                    <span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#94A3B8">#alerts-prod</span>
+                    <span
+                      style="font-size:10px;font-weight:700;letter-spacing:0.05em;color:#F87171;background:rgba(248,113,113,0.12);border-radius:6px;padding:2px 8px">TODAY</span>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:6px">
+                    <div class="st-dupe"><span>02:58</span>CPU above 92% on prod-web-03</div>
+                    <div class="st-dupe"><span>03:01</span>CPU above 92% on prod-web-03</div>
+                    <div class="st-dupe"><span>03:04</span>CPU above 92% on prod-web-03</div>
+                    <div class="st-dupe" style="opacity:.55"><span>03:07</span>CPU above 92% on prod-web-03</div>
+                    <div class="st-dupe" style="opacity:.3"><span>03:10</span>CPU above 92% on prod-web-03</div>
+                  </div>
+                  <div
+                    style="font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#7A8899;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px">
+                    + 42 more · no owner · nobody acknowledged</div>
+                </div>
 
-            <!-- With Sigtake -->
-            <div class="st-reveal st-d1" role="img"
-              aria-label="The same incident as a single row with a ×47 occurrence counter, acknowledged by Marta Ruiz two minutes ago and routed to the Infrastructure team."
-              style="background:#0F1115;border:1px solid rgba(45,212,191,0.28);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:12px;box-shadow:0 0 32px rgba(45,212,191,0.07)">
-              <div style="display:flex;align-items:center;justify-content:space-between">
-                <span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#94A3B8">Alert center</span>
-                <span
-                  style="font-size:10px;font-weight:700;letter-spacing:0.05em;color:#5EEAD4;background:rgba(45,212,191,0.12);border-radius:6px;padding:2px 8px">WITH
-                  SIGTAKE</span>
+                <!-- With Sigtake -->
+                <div class="st-reveal st-d1" role="img"
+                  aria-label="The same incident as a single row with a ×47 occurrence counter, acknowledged by Marta Ruiz two minutes ago and routed to the Infrastructure team."
+                  style="background:#0F1115;border:1px solid rgba(45,212,191,0.28);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:12px;box-shadow:0 0 32px rgba(45,212,191,0.07)">
+                  <div style="display:flex;align-items:center;justify-content:space-between">
+                    <span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#94A3B8">Alert center</span>
+                    <span
+                      style="font-size:10px;font-weight:700;letter-spacing:0.05em;color:#5EEAD4;background:rgba(45,212,191,0.12);border-radius:6px;padding:2px 8px">WITH
+                      SIGTAKE</span>
+                  </div>
+                  <div
+                    style="display:flex;align-items:center;justify-content:space-between;gap:10px;background:#171A20;border:1px solid rgba(45,212,191,0.25);border-radius:10px;padding:14px 16px">
+                    <span style="display:flex;align-items:center;gap:10px;min-width:0"><span
+                        style="display:inline-flex;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.05em;background:rgba(239,68,68,0.12);color:#F87171">CRITICAL</span><span
+                        style="font-size:13.5px;font-weight:600;color:#F1F5F9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">CPU
+                        above 92% on prod-web-03</span></span>
+                    <span class="st-count" data-to="47"
+                      style="font-size:15px;font-weight:700;font-family:ui-monospace,Menlo,monospace;color:#5EEAD4;background:rgba(45,212,191,0.12);border:1px solid rgba(45,212,191,0.3);border-radius:8px;padding:4px 10px;flex:none">×47</span>
+                  </div>
+                  <div
+                    style="display:flex;align-items:center;gap:8px;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#7A8899;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px">
+                    <span
+                      style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:rgba(45,212,191,0.15);color:#5EEAD4;font-size:9px;font-weight:700;flex:none">MR</span>
+                    acked by Marta Ruiz · 2m · team Infrastructure
+                  </div>
+                </div>
               </div>
-              <div
-                style="display:flex;align-items:center;justify-content:space-between;gap:10px;background:#171A20;border:1px solid rgba(45,212,191,0.25);border-radius:10px;padding:14px 16px">
-                <span style="display:flex;align-items:center;gap:10px;min-width:0"><span
-                    style="display:inline-flex;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.05em;background:rgba(239,68,68,0.12);color:#F87171">CRITICAL</span><span
-                    style="font-size:13.5px;font-weight:600;color:#F1F5F9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">CPU
-                    above 92% on prod-web-03</span></span>
-                <span class="st-count" data-to="47"
-                  style="font-size:15px;font-weight:700;font-family:ui-monospace,Menlo,monospace;color:#5EEAD4;background:rgba(45,212,191,0.12);border:1px solid rgba(45,212,191,0.3);border-radius:8px;padding:4px 10px;flex:none">×47</span>
-              </div>
-              <div
-                style="display:flex;align-items:center;gap:8px;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#7A8899;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px">
-                <span
-                  style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:rgba(45,212,191,0.15);color:#5EEAD4;font-size:9px;font-weight:700;flex:none">MR</span>
-                acked by Marta Ruiz · 2m · team Infrastructure
-              </div>
+
+              <div class="st-stage" aria-hidden="true"></div>
             </div>
           </div>
         </div>
@@ -1401,8 +3158,6 @@
       <section class="st-sec" id="features" style="padding:88px 32px;border-top:1px solid rgba(255,255,255,0.05)">
         <div style="max-width:1080px;margin:0 auto">
           <div class="st-reveal" style="max-width:620px;margin-bottom:72px">
-            <p class="st-eyebrow-sec">
-              Product</p>
             <h2 class="st-h2">
               Everything between <span style="color:#F87171">“it fired”</span> and <span style="color:#34D399">“it's
                 fixed”</span></h2>
@@ -1410,19 +3165,17 @@
               acknowledgement.</p>
           </div>
 
-          <div style="display:flex;flex-direction:column;gap:88px">
-            <!-- PILLAR 1 — capture & dedupe -->
+          <div style="display:flex;flex-direction:column;gap:96px">
+            <!-- Work the incident -->
             <div class="st-pillar-lg">
               <div class="st-reveal">
-                <p class="st-eyebrow">Capture &amp; dedupe</p>
-                <h3 class="st-h3">One alert — not four hundred</h3>
-                <p class="st-lede">Repeated alerts collapse into a single row with an occurrence counter, while
-                  everything streams in live — acknowledge and resolve without leaving the incident.</p>
-                <ul class="st-checks">
-                  <li><span class="st-ck">✓</span>Fingerprint on source + title + severity</li>
-                  <li><span class="st-ck">✓</span>Live updates over server-sent events, scoped to your
-                    organization</li>
-                  <li><span class="st-ck">✓</span>Threaded comments with @mentions</li>
+                <h3 class="st-h3">Acknowledge, discuss and resolve — in the incident</h3>
+                <p class="st-lede">Everything streams in live, so the people on it see the same thing at the same
+                  moment.</p>
+                <ul class="st-flist">
+                  <li><svg class="st-fl-ic" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>Live, without refreshing</strong>Updates stream over server-sent events, scoped to your organization.</span></li>
+                  <li><svg class="st-fl-ic" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>Comments with @mentions</strong>Mention a teammate and they’re notified in the app and by email.</span></li>
+                  <li><svg class="st-fl-ic" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>One fingerprint per incident</strong>Source, title and severity decide what counts as a repeat.</span></li>
                 </ul>
               </div>
               <div class="st-pillar-mocks">
@@ -1465,130 +3218,99 @@
                   <!-- Reserves room for the mention dropdown, which is absolutely positioned and would otherwise overlap the card below -->
                   <div style="height:26px"></div>
                 </div>
-                <div class="st-reveal st-d2" role="img"
-                  aria-label="Repeated copies of one alert collapsing into a single row with a ×47 occurrence counter, first seen 2 days ago, last seen 12 seconds ago, notified at occurrences 1, 10 and 25."
-                  style="background:#0F1115;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:24px;display:flex;flex-direction:column;align-items:center;gap:0">
-                  <div
-                    style="width:82%;height:12px;background:#14171C;border:1px solid rgba(255,255,255,0.05);border-bottom:none;border-radius:10px 10px 0 0;opacity:.35">
-                  </div>
-                  <div
-                    style="width:90%;height:12px;background:#14171C;border:1px solid rgba(255,255,255,0.05);border-bottom:none;border-radius:10px 10px 0 0;opacity:.6">
-                  </div>
-                  <div
-                    style="width:100%;display:flex;align-items:center;justify-content:space-between;background:#171A20;border:1px solid rgba(45,212,191,0.25);border-radius:10px;padding:14px 16px;box-shadow:0 0 24px rgba(45,212,191,0.12)">
-                    <span style="display:flex;align-items:center;gap:10px;min-width:0"><span
-                        style="display:inline-flex;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.05em;background:rgba(239,68,68,0.12);color:#F87171">CRITICAL</span><span
-                        style="font-size:13.5px;font-weight:600;color:#F1F5F9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">CPU
-                        above 92% on prod-web-03</span></span>
-                    <span class="st-count" data-to="47"
-                      style="font-size:15px;font-weight:700;font-family:ui-monospace,Menlo,monospace;color:#5EEAD4;background:rgba(45,212,191,0.12);border:1px solid rgba(45,212,191,0.3);border-radius:8px;padding:4px 10px;flex:none">×47</span>
-                  </div>
-                  <div
-                    style="width:100%;display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 12px;margin-top:14px;font-size:11.5px;color:#7A8899;font-family:ui-monospace,Menlo,monospace">
-                    <span>first seen 2d ago</span><span>notified at 1 · 10 · 25</span><span>last seen 12s ago</span>
-                  </div>
-                </div>
               </div>
             </div>
 
-            <!-- PILLAR 2 — route & notify -->
-            <div class="st-feat st-feat-rev">
-              <div class="st-reveal">
-                <p class="st-eyebrow">
-                  Teams &amp; notification channels</p>
-                <h3 class="st-h3">
-                  Route the right alert to the right people</h3>
-                <p class="st-lede">Every API
-                  key belongs to a team; every team has its channels. Configure a channel once — email, Slack, Microsoft
-                  Teams or in-app — and reuse it across teams with per-team toggles.</p>
-                <ul class="st-checks">
-                  <li><span class="st-ck">✓</span>Email, Slack, Microsoft Teams and in-app delivery
-                  </li>
-                  <li><span class="st-ck">✓</span>One Slack workspace, a different channel per project
-                  </li>
-                  <li><span style="color:#94A3B8;font-weight:700">◦</span><span style="color:#94A3B8">Discord and Google
-                      Chat
-                      are in progress</span></li>
+            <!-- The alert finds you -->
+            <div class="st-reach">
+              <div class="st-reach-media" aria-hidden="true">
+                <img src="/public/img/features-oncall-1408.webp"
+                  srcset="/public/img/features-oncall-960.webp 960w, /public/img/features-oncall-1408.webp 1408w"
+                  sizes="(max-width: 767px) 100vw, 1080px" width="1408" height="768" alt="" loading="lazy"
+                  decoding="async">
+              </div>
+              <div class="st-reach-copy st-reveal">
+                <h3 class="st-h3">Route the right alert to the right people</h3>
+                <p class="st-lede">An API key picks the project; the <code class="st-code-inline">team_code</code> on each alert picks the
+                  team, and that team’s channels in the project deliver it. Configure a channel once and reuse it across
+                  teams with per-team toggles.</p>
+                <ul class="st-flist">
+                  <li><svg class="st-fl-ic" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>Email, Slack, Microsoft Teams and in-app</strong>In-app is always on; the rest you switch per team.</span></li>
+                  <li><svg class="st-fl-ic" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>One Slack workspace, a channel per project</strong>Production goes to one channel, staging to another, from the same install.</span></li>
+                  <li><svg class="st-fl-ic" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>Updated in place</strong>Slack cards change colour as the alert is acknowledged and resolved.</span></li>
                 </ul>
+                <p class="st-reach-soon">Discord and Google Chat are in progress.</p>
               </div>
-              <div class="st-reveal st-d1" role="img"
-                aria-label="A critical alert routing to the Payments team of 6 members, which fans out to its enabled channels: email, Slack and Microsoft Teams, plus in-app push which is always on. Discord and Google Chat are shown as coming soon."
-                style="background:#0F1115;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:0;align-items:center">
-                <div
-                  style="display:inline-flex;align-items:center;gap:10px;background:#171A20;border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:9px 14px">
-                  <span
-                    style="display:inline-flex;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.05em;background:rgba(239,68,68,0.12);color:#F87171">CRITICAL</span><span
-                    style="font-size:12.5px;font-weight:600;color:#F1F5F9">Payment gateway timeout</span>
+              <div class="st-reach-stack st-reveal" role="img"
+                aria-label="A critical CPU alert routed to the Infrastructure team reaches four places: a Slack card updated to acknowledged by Marta Ruiz, an email whose subject carries the occurrence count, a Microsoft Teams card, and an in-app notification. It was notified at occurrences 1, 10 and 25, not 47 times.">
+                <span class="st-rail" aria-hidden="true"><span class="st-rail-fill"></span></span>
+                <div class="st-route">
+                  <span class="st-route-sev">CRITICAL</span><span class="st-route-title">CPU above 92% on prod-web-03</span>
                 </div>
-                <div style="width:1px;height:20px;background:rgba(45,212,191,0.4)"></div>
-                <div
-                  style="display:inline-flex;align-items:center;gap:8px;background:rgba(45,212,191,0.08);border:1px solid rgba(45,212,191,0.3);border-radius:10px;padding:8px 16px">
-                  <span style="font-size:12.5px;font-weight:700;color:#5EEAD4">Payments team</span><span
-                    style="font-size:10.5px;color:#7A8899;font-family:ui-monospace,Menlo,monospace">PAY · 6
-                    members</span>
-                </div>
-                <div style="width:1px;height:20px;background:rgba(45,212,191,0.4)"></div>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%">
-                  <div
-                    style="display:flex;align-items:center;justify-content:space-between;background:#171A20;border:1px solid rgba(255,255,255,0.06);border-radius:9px;padding:9px 12px">
-                    <span style="font-size:12px;font-weight:600;color:#E2E8F0">Email</span><span
-                      style="width:26px;height:15px;border-radius:99px;background:#0D9488;position:relative"><span
-                        style="position:absolute;top:2px;right:2px;width:11px;height:11px;border-radius:50%;background:#F0FDFA"></span></span>
-                  </div>
-                  <div
-                    style="display:flex;align-items:center;justify-content:space-between;background:#171A20;border:1px solid rgba(255,255,255,0.06);border-radius:9px;padding:9px 12px">
-                    <span style="font-size:12px;font-weight:600;color:#E2E8F0">Slack</span><span
-                      style="width:26px;height:15px;border-radius:99px;background:#0D9488;position:relative"><span
-                        style="position:absolute;top:2px;right:2px;width:11px;height:11px;border-radius:50%;background:#F0FDFA"></span></span>
-                  </div>
-                  <div
-                    style="display:flex;align-items:center;justify-content:space-between;background:#171A20;border:1px solid rgba(255,255,255,0.06);border-radius:9px;padding:9px 12px">
-                    <span style="font-size:12px;font-weight:600;color:#E2E8F0">Microsoft Teams</span><span
-                      style="width:26px;height:15px;border-radius:99px;background:#0D9488;position:relative"><span
-                        style="position:absolute;top:2px;right:2px;width:11px;height:11px;border-radius:50%;background:#F0FDFA"></span></span>
-                  </div>
-                  <div
-                    style="display:flex;align-items:center;justify-content:space-between;background:#171A20;border:1px solid rgba(255,255,255,0.06);border-radius:9px;padding:9px 12px">
-                    <span style="font-size:12px;font-weight:600;color:#E2E8F0">In-app</span><span
-                      style="font-size:10px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:#5EEAD4">Always
-                      on</span>
+                <div class="st-route st-route-team"><span>Infrastructure team</span><span class="st-mono">6 members</span></div>
+
+                <div class="st-dest">
+                  <div class="st-dest-head"><span>Slack</span><span class="st-mono">#alerts-prod · 02:58 (edited)</span></div>
+                  <div class="st-slack">
+                    <span class="st-slack-bar"></span>
+                    <div>
+                      <p class="st-dest-title">[CRITICAL] CPU above 92% on prod-web-03</p>
+                      <p class="st-dest-meta">Status <b>Acknowledged</b> · Occurrences <b>47</b></p>
+                      <p class="st-dest-ctx">Acknowledged by Marta Ruiz</p>
+                      <span class="st-slack-btn">View in Sigtake</span>
+                    </div>
                   </div>
                 </div>
-                <div
-                  style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;width:100%;margin-top:10px;padding-top:10px;border-top:1px dashed rgba(255,255,255,0.08)">
-                  <span
-                    style="font-size:10px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#94A3B8">Soon</span>
-                  <span
-                    style="font-size:11.5px;color:#94A3B8;border:1px dashed rgba(255,255,255,0.12);border-radius:7px;padding:3px 9px">Discord</span>
-                  <span
-                    style="font-size:11.5px;color:#94A3B8;border:1px dashed rgba(255,255,255,0.12);border-radius:7px;padding:3px 9px">Google
-                    Chat</span>
+
+                <div class="st-dest">
+                  <div class="st-dest-head"><span>Email</span><span class="st-mono">04:10</span></div>
+                  <p class="st-dest-from">Sigtake</p>
+                  <p class="st-dest-title">[CRITICAL] CPU above 92% on prod-web-03 (×25)</p>
                 </div>
+
+                <div class="st-dest">
+                  <div class="st-dest-head"><span>Microsoft Teams</span><span class="st-mono">Alerts · 03:25</span></div>
+                  <p class="st-dest-title">[CRITICAL] CPU above 92% on prod-web-03</p>
+                  <p class="st-dest-meta">Source <b>prometheus</b> · Occurrences <b>10</b></p>
+                </div>
+
+                <div class="st-dest st-dest-inapp">
+                  <span class="st-bell"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14.86 17.08a23.85 23.85 0 005.45-1.31A8.97 8.97 0 0118 9.75V9A6 6 0 006 9v.75a8.97 8.97 0 01-2.31 6.02 23.85 23.85 0 005.45 1.31m5.72 0a24.26 24.26 0 01-5.72 0m5.72 0a3 3 0 11-5.72 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><i></i></span>
+                  <div>
+                    <p class="st-dest-title">CPU above 92% on prod-web-03</p>
+                    <p class="st-dest-meta">In-app · Infrastructure · 02:58</p>
+                  </div>
+                </div>
+
+                <p class="st-reach-note">Notified at occurrences 1 · 10 · 25 — not 47 times.</p>
               </div>
             </div>
 
-            <!-- PILLAR 4 — organizations -->
-            <div style="display:flex;flex-direction:column;gap:32px">
+            <!-- Organizations -->
+            <div class="st-org">
               <div class="st-reveal" style="max-width:620px">
-                <p class="st-eyebrow">Built for organizations</p>
                 <h3 class="st-h3">Multi-tenant from the first line of code</h3>
-                <p class="st-lede" style="margin-bottom:0">Hard isolation per organization, hierarchical roles, a
-                  full audit trail and rate-limited API keys.</p>
+                <p class="st-lede" style="margin-bottom:0">Hard isolation per organization, hierarchical roles and
+                  rate-limited API keys.</p>
               </div>
-              <div class="st-strip">
-                <div class="st-reveal">
-                  <p class="st-card-h">Roles</p>
-                  <p class="st-card-p">super_admin → admin → operator → viewer, enforced on every route.</p>
-                </div>
-                <div class="st-reveal st-d1">
-                  <p class="st-card-h">Audit log</p>
-                  <p class="st-card-p">Every sensitive action recorded, with actor and timestamp.</p>
-                </div>
-                <div class="st-reveal st-d2">
-                  <p class="st-card-h">2FA</p>
-                  <p class="st-card-p">Authenticator apps or email codes, enforceable org-wide.</p>
-                </div>
+              <div class="st-reveal st-d1 st-roles-wrap">
+                <table class="st-roles">
+                  <caption class="st-sr">What each role can do inside its projects</caption>
+                  <thead>
+                    <tr><th scope="col">Inside a project</th><th scope="col">Admin</th><th scope="col">Operator</th><th scope="col">Viewer</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">See alerts, monitors and signals</th><td><svg class="st-rm-yes" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="st-sr">Yes</span></td><td><svg class="st-rm-yes" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="st-sr">Yes</span></td><td><svg class="st-rm-yes" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="st-sr">Yes</span></td></tr>
+                    <tr><th scope="row">Create manual alerts, monitors, channels and teams</th><td><svg class="st-rm-yes" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="st-sr">Yes</span></td><td><svg class="st-rm-yes" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="st-sr">Yes</span></td><td><span class="st-rm-no" aria-hidden="true"></span><span class="st-sr">No</span></td></tr>
+                    <tr><th scope="row">Manage API keys, users and projects; connect Slack</th><td><svg class="st-rm-yes" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="st-sr">Yes</span></td><td><span class="st-rm-no" aria-hidden="true"></span><span class="st-sr">No</span></td><td><span class="st-rm-no" aria-hidden="true"></span><span class="st-sr">No</span></td></tr>
+                  </tbody>
+                </table>
               </div>
+              <ul class="st-facts st-reveal st-d2">
+                <li><strong>Isolated per organization</strong>Every query filters by organization and project.</li>
+                <li><strong>Two-factor sign-in</strong>Authenticator app or email codes, with a recovery code.</li>
+                <li><strong>Rate-limited API keys</strong>A per-key limit on every ingest endpoint.</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -1598,264 +3320,166 @@
       <section class="st-sec" id="monitoring"
         style="padding:88px 32px;border-top:1px solid rgba(255,255,255,0.05);scroll-margin-top:64px">
         <div style="max-width:1080px;margin:0 auto">
-          <div class="st-reveal" style="max-width:620px;margin-bottom:72px">
-            <p class="st-eyebrow-sec">Monitoring</p>
+          <div class="st-reveal" style="max-width:620px;margin-bottom:64px">
             <h2 class="st-h2">Monitoring that files its own alerts</h2>
             <p class="st-lede-sec">Watch your endpoints and your numbers from the same place you work the
               incidents. A failed check or a broken threshold becomes a real alert — deduplicated and routed
               like every other.</p>
           </div>
 
-          <div class="st-twin">
-            <!-- Twin 1 — website -->
-            <div>
-              <div class="st-reveal">
-                <p class="st-eyebrow">
-                  Website monitoring</p>
-                <h3 class="st-h3">
-                  Know you're down before your users do</h3>
-                <p class="st-lede">Scheduled
-                  checks against your endpoints, with uptime percentage, latency trends and a plain up/down
-                  semaphore.</p>
-                <ul class="st-checks">
-                  <li><span class="st-ck">✓</span>Checks down to every 60 seconds</li>
-                  <li><span class="st-ck">✓</span>Uptime % over 24h / 7d / 30d windows</li>
-                  <li><span class="st-ck">✓</span>Latency history per monitor</li>
-                </ul>
-              </div>
-              <div class="st-reveal st-d1" role="img"
-                aria-label="Uptime panel for acme.com: status UP, 99.98% uptime over 30 days with one failed day, and a latency chart averaging 184 milliseconds, checked every 60 seconds."
-                style="background:#0F1115;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px">
-                <div style="display:flex;align-items:center;justify-content:space-between">
-                  <span style="display:flex;align-items:center;gap:10px"><span
-                      style="position:relative;width:9px;height:9px;flex:none"><span
-                        style="position:absolute;inset:0;border-radius:50%;background:#10B981"></span><span
-                        style="position:absolute;inset:0;border-radius:50%;border:1.5px solid #10B981;animation:st-ping 1.8s cubic-bezier(0,0,.2,1) infinite"></span></span><span
-                      style="font-size:14px;font-weight:600;color:#F1F5F9;font-family:ui-monospace,Menlo,monospace">acme.com</span></span>
-                  <span
-                    style="font-size:11px;font-weight:600;color:#34D399;background:rgba(16,185,129,0.12);border-radius:6px;padding:3px 9px">UP</span>
-                </div>
-                <div>
-                  <div
-                    style="display:flex;justify-content:space-between;font-size:12px;color:#94A3B8;margin-bottom:6px">
-                    <span>Uptime · 30d</span><span style="color:#34D399;font-weight:700">99.98%</span>
-                  </div>
-                  <div style="display:flex;gap:2px">
-                    <span class="st-bar"></span><span class="st-bar"></span><span class="st-bar"></span><span
-                      class="st-bar"></span><span
-                      style="flex:1;height:22px;border-radius:3px;background:#EF4444"></span><span
-                      class="st-bar"></span><span class="st-bar"></span><span class="st-bar"></span><span
-                      class="st-bar"></span><span class="st-bar"></span><span class="st-bar"></span><span
-                      class="st-bar"></span><span class="st-bar"></span><span class="st-bar"></span>
-                  </div>
-                </div>
-                <div>
-                  <div
-                    style="display:flex;justify-content:space-between;font-size:12px;color:#94A3B8;margin-bottom:4px">
-                    <span>Latency</span><span style="font-family:ui-monospace,Menlo,monospace;color:#5EEAD4">avg 184
-                      ms</span>
-                  </div>
-                  <svg viewBox="0 0 300 64" style="display:block;width:100%;height:64px" aria-hidden="true">
-                    <polyline
-                      points="0,40 25,36 50,42 75,30 100,34 125,22 150,30 175,18 200,26 225,20 250,30 275,24 300,28"
-                      fill="none" stroke="#2DD4BF" stroke-width="2" stroke-linejoin="round" class="st-draw"></polyline>
-                    <line x1="0" y1="56" x2="300" y2="56" stroke="rgba(255,255,255,0.08)" stroke-width="1"></line>
-                  </svg>
-                  <div
-                    style="display:flex;justify-content:space-between;font-size:10.5px;color:#7A8899;font-family:ui-monospace,Menlo,monospace">
-                    <span>-24h</span><span>checked every 60s</span><span>now</span>
-                  </div>
-                </div>
-              </div>
+          <div class="st-mon st-reveal" role="img"
+            aria-label="Two sources feeding one alert center. A website monitor on api.acme.com checks GET /health every 60 seconds; after 28 good checks the last two time out, which opens a high-severity alert, Down: api.acme.com. A signal monitor on queue_depth for payments compares the 5-minute average with the normal band for the same hour on previous Tuesdays; it climbs 3.4 standard deviations above normal and opens a critical alert, Payments queue above normal.">
+            <div class="st-mon-src st-mon-a">
+              <div class="st-mon-head"><span class="st-mon-name"><span class="st-mon-dot"></span>api.acme.com</span><span class="st-mono">GET /health · every 60s</span></div>
+              <div class="st-cells"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i><i style="--i:7"></i><i style="--i:8"></i><i style="--i:9"></i><i style="--i:10"></i><i style="--i:11"></i><i style="--i:12"></i><i style="--i:13"></i><i style="--i:14"></i><i style="--i:15"></i><i style="--i:16"></i><i style="--i:17"></i><i style="--i:18"></i><i style="--i:19"></i><i style="--i:20"></i><i style="--i:21"></i><i style="--i:22"></i><i style="--i:23"></i><i style="--i:24"></i><i style="--i:25"></i><i style="--i:26"></i><i style="--i:27"></i><i class="st-cell-fail" style="--i:28"></i><i class="st-cell-fail" style="--i:29"></i></div>
+              <div class="st-mon-foot"><span>Last 2 checks: <b class="st-sev-txt-high">timeout</b></span><span class="st-mono">2 in a row → Down</span></div>
+            </div>
+            <span class="st-mon-conn st-conn-a" aria-hidden="true"><i></i></span>
+            <div class="st-mon-row st-row-a">
+              <span class="st-mon-sev st-sev-high">HIGH</span>
+              <span class="st-mon-txt"><b>Down: api.acme.com</b><span class="st-mono">website-monitor</span></span>
+              <span class="st-mon-firing"><i></i>Firing</span>
             </div>
 
-            <!-- Twin 2 — signals -->
-            <div>
-              <div class="st-reveal">
-                <p class="st-eyebrow">
-                  Signal monitoring</p>
-                <h3 class="st-h3">
-                  Watch the numbers that matter</h3>
-                <p class="st-lede">Push any
-                  numeric metric through the API — queue depth, error rate, temperature. Rules evaluate every
-                  minute.</p>
-                <ul class="st-checks">
-                  <li><span class="st-ck">✓</span>Thresholds over avg / min / max / last, in any time
-                    window</li>
-                  <li><span class="st-ck">✓</span><span><strong style="color:#F1F5F9;font-weight:600">Anomaly
-                        detection</strong> — learns each metric's normal
-                      by
-                      hour &amp; weekday, no threshold to set</span></li>
-                  <li><span class="st-ck">✓</span><strong style="color:#F1F5F9;font-weight:600">Heartbeat
-                      alerts</strong>&nbsp;when a metric goes silent
-                  </li>
-                </ul>
+            <div class="st-mon-src st-mon-b">
+              <div class="st-mon-head"><span class="st-mon-name"><span class="st-mon-dot"></span>queue_depth · payments</span><span class="st-mono">avg over 5 min</span></div>
+              <div class="st-sigband">
+                <svg viewBox="0 0 300 96" preserveAspectRatio="none" aria-hidden="true">
+                  <polygon class="st-band-area" points="0,36 50,31 100,37 150,29 200,35 250,31 300,35 300,67 250,63 200,69 150,61 100,69 50,63 0,67"></polygon>
+                  <polyline class="st-band-ok" pathLength="1" points="0,53 25,49 50,51 75,45 100,51 125,47 150,43 175,49 200,47 225,41 248,37"></polyline>
+                  <polyline class="st-band-out" pathLength="1" points="248,37 262,25 280,17 298,10"></polyline>
+                </svg>
+                <span class="st-band-pt"></span>
+                <span class="st-band-normal">normal for Tue 14:00</span>
+                <span class="st-band-sigma">3.4σ above normal</span>
               </div>
-              <div class="st-reveal st-d1" role="img"
-                aria-label="Signal monitor queue_depth for payments, currently at 86.2 and climbing toward a threshold of 90; the rule reads: value above 90 for 5 minutes raises a critical alert."
-                style="background:#0F1115;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px">
-                <div style="display:flex;align-items:center;justify-content:space-between">
-                  <span style="display:flex;align-items:center;gap:10px"><span
-                      style="position:relative;width:9px;height:9px;flex:none"><span
-                        style="position:absolute;inset:0;border-radius:50%;background:#10B981"></span><span
-                        style="position:absolute;inset:0;border-radius:50%;border:1.5px solid #10B981;animation:st-ping 1.8s cubic-bezier(0,0,.2,1) infinite"></span></span><span
-                      style="font-size:14px;font-weight:600;color:#F1F5F9;font-family:ui-monospace,Menlo,monospace">queue_depth
-                      · payments</span></span>
-                  <span
-                    style="font-size:13px;font-weight:700;font-family:ui-monospace,Menlo,monospace;color:#FBBF24">86.2</span>
-                </div>
-                <div style="position:relative">
-                  <svg viewBox="0 0 300 80" style="display:block;width:100%;height:80px" aria-hidden="true">
-                    <line x1="0" y1="18" x2="300" y2="18" stroke="#EF4444" stroke-width="1" stroke-dasharray="5 4"
-                      opacity="0.7"></line>
-                    <polyline
-                      points="0,62 25,58 50,60 75,50 100,54 125,44 150,48 175,36 200,40 225,30 250,26 275,24 300,21"
-                      fill="none" stroke="#2DD4BF" stroke-width="2" stroke-linejoin="round" class="st-draw"></polyline>
-                    <circle cx="300" cy="21" r="3.5" fill="#FBBF24"></circle>
-                  </svg>
-                  <span
-                    style="position:absolute;top:6px;right:0;font-size:10px;font-weight:700;font-family:ui-monospace,Menlo,monospace;color:#F87171">threshold
-                    90</span>
-                </div>
-                <div
-                  style="display:flex;align-items:center;gap:10px;background:#0A0C10;border:1px solid rgba(255,255,255,0.07);border-radius:9px;padding:10px 12px;font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#CBD5E1;flex-wrap:wrap">
-                  <span style="color:#5EEAD4">value &gt; 90</span><span style="color:#7A8899">for</span><span
-                    style="color:#5EEAD4">5 min</span><span style="color:#7A8899">→</span><span
-                    style="display:inline-flex;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.05em;background:rgba(239,68,68,0.12);color:#F87171;font-family:'Inter',system-ui,sans-serif">CRITICAL</span><span
-                    style="color:#7A8899">alert</span>
-                </div>
-              </div>
+              <div class="st-mon-foot"><span>Compared with the same hour on the last 4 Tuesdays</span><span class="st-mono">anomaly</span></div>
             </div>
+            <span class="st-mon-conn st-conn-b" aria-hidden="true"><i></i></span>
+            <div class="st-mon-row st-row-b">
+              <span class="st-mon-sev st-sev-crit">CRITICAL</span>
+              <span class="st-mon-txt"><b>Payments queue above normal</b><span class="st-mono">signals</span></span>
+              <span class="st-mon-firing"><i></i>Firing</span>
+            </div>
+
+            <div class="st-mon-inbox" aria-hidden="true"><span>Alert center</span><span class="st-mono">routed like every other alert</span></div>
           </div>
+
+          <ul class="st-flist st-mon-list st-reveal st-d1">
+              <li><svg class="st-fl-ic" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>Checks every 60 seconds</strong>Status code, latency and response body, with secret headers for authenticated endpoints.</span></li>
+              <li><svg class="st-fl-ic" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>Assertions on the response</strong>Fail a check when a JSONPath value isn’t what you expect.</span></li>
+              <li><svg class="st-fl-ic" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>SSL expiry alerts</strong>Its own alert before a certificate expires — 14 days ahead by default, with reminders at 7, 3 and 1.</span></li>
+              <li><svg class="st-fl-ic" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>Thresholds over any window</strong>avg, sum, count, min, max or last of the readings.</span></li>
+              <li><svg class="st-fl-ic" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>Anomaly detection</strong>Learns each metric’s normal for the hour and weekday — no threshold to set.</span></li>
+              <li><svg class="st-fl-ic" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>Heartbeat</strong>Alert when a metric stops reporting.</span></li>
+          </ul>
         </div>
       </section>
 
       <!-- HOW IT WORKS -->
       <section class="st-sec" id="how"
         style="padding:88px 32px;border-top:1px solid rgba(255,255,255,0.05);scroll-margin-top:64px">
-        <div style="max-width:1080px;margin:0 auto">
-          <div class="st-reveal" style="text-align:center;max-width:560px;margin:0 auto 56px">
-            <p class="st-eyebrow-sec">
-              How it works</p>
-            <h2 class="st-h2" style="margin-bottom:0">
-              Live in three steps</h2>
-          </div>
-          <div class="st-cols3" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;align-items:stretch">
-            <div class="st-reveal"
-              style="background:#0F1115;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:26px;display:flex;flex-direction:column;gap:12px">
-              <span
-                style="font-size:13px;font-weight:800;font-family:ui-monospace,Menlo,monospace;color:#2DD4BF">01</span>
-              <h3 style="margin:0;font-size:18px;font-weight:700;color:#F1F5F9">Connect your systems</h3>
-              <p style="margin:0;font-size:14px;line-height:1.6;color:#94A3B8">Create an API key and push your first
-                alert with a single request.</p>
-              <div
-                style="background:#0A0C10;border:1px solid rgba(255,255,255,0.07);border-radius:9px;padding:12px 14px;font-family:ui-monospace,Menlo,monospace;font-size:11px;line-height:1.75;color:#94A3B8;overflow:hidden">
-                <span style="color:#5EEAD4">curl</span> -X POST api.sigtake.com/api/ingest \<br>&nbsp;&nbsp;-H <span
-                  style="color:#99F6E4">"X-Api-Key: sk_9f3a1c04e2"</span> \<br>&nbsp;&nbsp;-d <span
-                  style="color:#99F6E4">'{"title":"High CPU on
-                  web-01",</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
-                  style="color:#99F6E4">"severity":"critical",</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
-                  style="color:#99F6E4">"source":"datadog-agent"}'</span>
-              </div>
+        <div class="st-how">
+          <div class="st-how-copy st-reveal">
+            <h2 class="st-h2">Live in under five minutes</h2>
+            <p class="st-lede-sec">Three steps from sign-up to the first alert reaching your team.</p>
+            <ol class="st-steps">
+              <li>
+                <span class="st-step-n" aria-hidden="true">1</span>
+                <h3>Create an API key</h3>
+                <p>In your project, under API Keys. The key decides which project an alert lands in.</p>
+              </li>
+              <li>
+                <span class="st-step-n" aria-hidden="true">2</span>
+                <h3>Create a team and attach a channel</h3>
+                <p>The team gets a code like <code class="st-code-inline">K7Q2XD</code>. Attach email, Slack or
+                  Microsoft Teams; in-app is always on.</p>
+              </li>
+              <li>
+                <span class="st-step-n" aria-hidden="true">3</span>
+                <h3>Send your first alert</h3>
+                <p>One request with the team’s code. It shows up live and reaches the team’s channels.</p>
+              </li>
+            </ol>
+            <div class="st-how-cta">
+              <a href="https://app.sigtake.com/register" class="st-btn-primary"
+                style="display:inline-flex;align-items:center;font-size:15px;font-weight:600;padding:11px 22px;border-radius:10px">Get
+                your API key</a>
+              <span>No credit card</span>
             </div>
-            <div class="st-reveal st-d1"
-              style="background:#0F1115;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:26px;display:flex;flex-direction:column;gap:12px">
-              <span
-                style="font-size:13px;font-weight:800;font-family:ui-monospace,Menlo,monospace;color:#2DD4BF">02</span>
-              <h3 style="margin:0;font-size:18px;font-weight:700;color:#F1F5F9">Route to teams &amp; channels</h3>
-              <p style="margin:0;font-size:14px;line-height:1.6;color:#94A3B8">Each key belongs to a team. Assign
-                channels once and every alert finds its way to email, Slack, Teams or in-app.</p>
-              <div style="margin-top:auto;display:flex;flex-direction:column;gap:8px">
-                <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#CBD5E1"><span
-                    style="width:7px;height:7px;border-radius:50%;background:#2DD4BF"></span>Infrastructure → Email +
-                  Teams</div>
-                <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#CBD5E1"><span
-                    style="width:7px;height:7px;border-radius:50%;background:#2DD4BF"></span>Payments → Email + Slack
+          </div>
+
+          <div class="st-console st-reveal st-d1">
+            <div class="st-art" aria-label="Step 1 result: an API key for the Production project">
+              <span class="st-art-n" aria-hidden="true">1</span>
+              <span class="st-mono st-art-key">sk_9f3a1c04••••••••</span>
+              <span class="st-art-pill">Production</span>
+            </div>
+            <div class="st-art" aria-label="Step 2 result: the Infrastructure team, code K7Q2XD, with email and Slack attached">
+              <span class="st-art-n" aria-hidden="true">2</span>
+              <span class="st-art-team">Infrastructure <span class="st-mono">K7Q2XD</span></span>
+              <span class="st-art-ch"><i></i>Email</span><span class="st-art-ch"><i></i>Slack</span>
+            </div>
+            <div class="st-art st-art-code">
+              <span class="st-art-n" aria-hidden="true">3</span>
+              <div class="st-sdk">
+                <div class="st-sdk-tabs" role="tablist" aria-label="Send the first alert with">
+                  <button type="button" role="tab" id="tab-curl" aria-controls="panel-curl" aria-selected="true"
+                    class="st-sdk-tab">curl</button>
+                  <button type="button" role="tab" id="tab-node" aria-controls="panel-node" aria-selected="false"
+                    tabindex="-1" class="st-sdk-tab">Node</button>
+                  <button type="button" role="tab" id="tab-python" aria-controls="panel-python" aria-selected="false"
+                    tabindex="-1" class="st-sdk-tab">Python</button>
                 </div>
-                <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#CBD5E1"><span
-                    style="width:7px;height:7px;border-radius:50%;background:#2DD4BF"></span>Platform → In-app</div>
-              </div>
-            </div>
-            <div class="st-reveal st-d2"
-              style="background:#0F1115;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:26px;display:flex;flex-direction:column;gap:12px">
-              <span
-                style="font-size:13px;font-weight:800;font-family:ui-monospace,Menlo,monospace;color:#2DD4BF">03</span>
-              <h3 style="margin:0;font-size:18px;font-weight:700;color:#F1F5F9">Acknowledge, resolve, improve</h3>
-              <p style="margin:0;font-size:14px;line-height:1.6;color:#94A3B8">Work alerts as a team and watch your
-                mean time to resolve trend down, week over week.</p>
-              <div style="margin-top:auto">
-                <div style="display:flex;justify-content:space-between;font-size:12px;color:#94A3B8;margin-bottom:4px">
-                  <span>MTTR · 8 weeks</span><span style="color:#34D399;font-weight:700">▾ 38%</span>
+
+                <div role="tabpanel" id="panel-curl" aria-labelledby="tab-curl" tabindex="0">
+                  <pre class="st-code"><span class="c-f">curl</span> -X POST https://api.sigtake.com/api/ingest \
+  -H <span class="c-s">"X-Api-Key: $SIGTAKE_API_KEY"</span> \
+  -H <span class="c-s">"Content-Type: application/json"</span> \
+  -d <span class="c-s">'{
+    "title": "CPU above 92% on prod-web-03",
+    "severity": "critical",
+    "source": "prometheus",
+    "team_code": "K7Q2XD"
+  }'</span></pre>
                 </div>
-                <svg viewBox="0 0 260 56" style="display:block;width:100%;height:56px" aria-hidden="true">
-                  <polyline points="0,14 37,20 74,16 111,26 148,30 185,36 222,40 260,44" fill="none" stroke="#2DD4BF"
-                    stroke-width="2" stroke-linejoin="round" class="st-draw"></polyline>
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <!-- SDKs -->
-      <section class="st-sec" id="sdks"
-        style="padding:88px 32px;border-top:1px solid rgba(255,255,255,0.05);scroll-margin-top:64px">
-        <div style="max-width:1080px;margin:0 auto">
-          <div class="st-reveal" style="max-width:620px;margin-bottom:40px">
-            <p class="st-eyebrow-sec">SDKs</p>
-            <h2 class="st-h2">Your first alert, in eight lines</h2>
-            <p class="st-lede-sec">Official SDKs for Node and Python. Same surface, same fields.</p>
-          </div>
-
-          <div class="st-reveal st-d1 st-sdk">
-            <div class="st-sdk-tabs" role="tablist" aria-label="Choose an SDK">
-              <button type="button" role="tab" id="tab-node" aria-controls="panel-node" aria-selected="true"
-                class="st-sdk-tab">Node</button>
-              <button type="button" role="tab" id="tab-python" aria-controls="panel-python" aria-selected="false"
-                tabindex="-1" class="st-sdk-tab">Python</button>
-            </div>
-
-            <div role="tabpanel" id="panel-node" aria-labelledby="tab-node" tabindex="0">
-              <p class="st-sdk-install">npm install @sigtake/sdk</p>
-              <pre class="st-code"><span class="c-k">import</span> { Sigtake } <span class="c-k">from</span> <span class="c-s">'@sigtake/sdk'</span>;
+                <div role="tabpanel" id="panel-node" aria-labelledby="tab-node" tabindex="0">
+                  <p class="st-sdk-install">npm install @sigtake/sdk</p>
+                  <pre class="st-code"><span class="c-k">import</span> { Sigtake } <span class="c-k">from</span> <span class="c-s">'@sigtake/sdk'</span>;
 
 <span class="c-k">const</span> sigtake = <span class="c-k">new</span> <span class="c-f">Sigtake</span>({ apiKey: process.env.SIGTAKE_API_KEY });
 
 <span class="c-k">await</span> sigtake.alerts.<span class="c-f">ingest</span>({
-  title: <span class="c-s">'Checkout latency above threshold'</span>,
-  severity: <span class="c-s">'high'</span>,
-  source: <span class="c-s">'checkout-api'</span>,
-  team_code: <span class="c-s">'OPS'</span>,
+  title: <span class="c-s">'CPU above 92% on prod-web-03'</span>,
+  severity: <span class="c-s">'critical'</span>,
+  source: <span class="c-s">'prometheus'</span>,
+  team_code: <span class="c-s">'K7Q2XD'</span>,
 });</pre>
-            </div>
+                </div>
 
-            <div role="tabpanel" id="panel-python" aria-labelledby="tab-python" tabindex="0">
-              <p class="st-sdk-install">pip install sigtake</p>
-              <pre class="st-code"><span class="c-k">from</span> sigtake <span class="c-k">import</span> Sigtake
+                <div role="tabpanel" id="panel-python" aria-labelledby="tab-python" tabindex="0">
+                  <p class="st-sdk-install">pip install sigtake</p>
+                  <pre class="st-code"><span class="c-k">import</span> os
+<span class="c-k">from</span> sigtake <span class="c-k">import</span> Sigtake
 
 <span class="c-k">with</span> <span class="c-f">Sigtake</span>(api_key=os.environ[<span class="c-s">"SIGTAKE_API_KEY"</span>]) <span class="c-k">as</span> sigtake:
     sigtake.alerts.<span class="c-f">ingest</span>(
-        title=<span class="c-s">"Checkout latency above threshold"</span>,
-        severity=<span class="c-s">"high"</span>,
-        source=<span class="c-s">"checkout-api"</span>,
-        team_code=<span class="c-s">"OPS"</span>,
+        title=<span class="c-s">"CPU above 92% on prod-web-03"</span>,
+        severity=<span class="c-s">"critical"</span>,
+        source=<span class="c-s">"prometheus"</span>,
+        team_code=<span class="c-s">"K7Q2XD"</span>,
     )</pre>
-            </div>
+                </div>
 
-            <p class="st-sdk-foot">Zero dependencies, typed, ESM + CJS · sync and async ·
+                <p class="st-resp"><span class="st-resp-code">201 Created</span><span>The alert is open in Sigtake and on its way to the Infrastructure team.</span></p>
+              </div>
+            </div>
+            <p class="st-sdk-foot">Official SDKs for Node and Python: zero dependencies, typed, ESM + CJS, sync and async ·
               <a href="https://www.npmjs.com/package/@sigtake/sdk">npm</a> ·
               <a href="https://pypi.org/project/sigtake/">PyPI</a> ·
               <a href="https://github.com/Sigtake">GitHub</a>
             </p>
-          </div>
-
-          <!-- Mid-page CTA -->
-          <div class="st-reveal st-d2"
-            style="margin-top:48px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:16px">
-            <a href="https://app.sigtake.com/register" class="st-btn-primary"
-              style="display:inline-flex;align-items:center;font-size:16px;font-weight:600;padding:13px 28px;border-radius:10px;box-shadow:0 0 32px rgba(45,212,191,0.32)">Get
-              your API key</a>
-            <span style="font-size:14px;color:#7A8899">No credit card</span>
           </div>
         </div>
       </section>
@@ -1864,60 +3488,79 @@
       <section class="st-sec" id="pricing"
         style="padding:88px 32px;border-top:1px solid rgba(255,255,255,0.05);scroll-margin-top:64px">
         <div style="max-width:1080px;margin:0 auto">
-          <div class="st-reveal" style="text-align:center;max-width:560px;margin:0 auto 40px">
-            <p class="st-eyebrow-sec">
-              Pricing</p>
-            <h2 class="st-h2">
-              Start free, scale when you're paged</h2>
+          <div class="st-reveal" style="max-width:620px;margin-bottom:48px">
+            <h2 class="st-h2">Start free, scale when you're paged</h2>
             <p class="st-lede-sec">Everything's free while we're in early access — unlimited users, teams,
               alerts and monitors, no credit card. Paid plans will come as we grow.</p>
           </div>
-          <div class="st-reveal st-d1"
-            style="display:flex;justify-content:center;flex-wrap:wrap;gap:12px">
-            <a href="https://app.sigtake.com/register" class="st-btn-primary"
-              style="display:inline-flex;align-items:center;font-size:15px;font-weight:600;padding:12px 26px;border-radius:10px;box-shadow:0 0 28px rgba(45,212,191,0.3)">Start
-              free</a>
-            <a href="/pricing/" class="st-btn-ghost st-btn-ghost-teal"
-              style="display:inline-flex;align-items:center;font-size:15px;font-weight:600;padding:12px 26px;border-radius:10px">See
-              what's included</a>
+
+          <div class="st-offer st-reveal st-d1">
+            <div class="st-offer-main">
+              <span class="st-offer-badge"><i></i>Early access</span>
+              <p class="st-offer-price"><b>$0</b><span>/ month, per organization</span></p>
+              <p class="st-offer-line">The whole product, for as long as early access lasts.</p>
+              <div class="st-offer-cta">
+                <a href="https://app.sigtake.com/register" class="st-btn-primary"
+                  style="display:inline-flex;align-items:center;font-size:15px;font-weight:600;padding:11px 24px;border-radius:10px">Start
+                  free</a>
+                <a href="/pricing/" class="st-offer-link">See what's included <span aria-hidden="true">→</span></a>
+              </div>
+            </div>
+            <ul class="st-flist st-offer-list">
+                <li><svg class="st-fl-ic" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>Unlimited users, teams and projects</strong>With as many API keys as your systems need.</span></li>
+                <li><svg class="st-fl-ic" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>Unlimited alert ingestion</strong>Deduplicated into incidents, with occurrence counts.</span></li>
+                <li><svg class="st-fl-ic" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>Email, Slack, Microsoft Teams and in-app</strong>Every channel we ship, on every team.</span></li>
+                <li><svg class="st-fl-ic" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>Website and signal monitoring</strong>Thresholds, anomaly detection and heartbeats.</span></li>
+                <li><svg class="st-fl-ic" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>Node and Python SDKs</strong>Typed, zero dependencies, sync and async.</span></li>
+            </ul>
           </div>
+
+          <ul class="st-facts st-promises st-reveal st-d2">
+            <li><strong>You hear it by email first</strong>Pricing changes are announced to every organization
+              owner before they take effect, never discovered inside the product.</li>
+            <li><strong>Nothing you configured is deleted</strong>Projects, teams, channels, API keys and alert
+              history stay exactly where they are while you decide.</li>
+            <li><strong>Nothing can be charged silently</strong>There's no card on file to charge. A paid plan
+              starts when you choose one, not when a trial expires.</li>
+          </ul>
 
           <!-- FAQ. No FAQPage markup on purpose: that schema lives on /pricing, and two FAQPage blocks
                on one site compete with each other. -->
-          <div class="st-reveal st-d2" style="max-width:760px;margin:56px auto 0">
-            <h3 class="st-h3" style="font-size:21px;margin-bottom:20px">Before you ask</h3>
-            <dl class="st-faq">
-              <dt>Do I have to replace my current monitoring?</dt>
-              <dd>No. Sigtake sits downstream of whatever you already run — point an Alertmanager webhook or a
-                cron job at the API and you are ingesting.</dd>
-              <dt>How does it decide two alerts are the same incident?</dt>
-              <dd>A fingerprint over source, title and severity, scoped to one project. The same failure in
-                staging and production stays two separate incidents.</dd>
-              <dt>Who gets notified?</dt>
-              <dd>The team the API key belongs to, through that team's channels in that project. In-app push
-                always lands, so nothing is lost while a channel is misconfigured.</dd>
-              <dt>What happens if a channel is down?</dt>
-              <dd>The dispatch retries with exponential backoff, and the failure is recorded rather
-                than swallowed.</dd>
+          <div class="st-reveal" style="margin-top:88px">
+            <h3 class="st-h3" style="margin-bottom:28px">Before you ask</h3>
+            <dl class="st-faq st-faq-grid">
+              <div>
+                <dt>Do I have to replace my current monitoring?</dt>
+                <dd>No. Sigtake sits downstream of what you already run. Anything that can send an HTTP request
+                  with its own JSON body can post an alert: a cron job, a CI step, the SDKs. Tools with a fixed
+                  webhook format, like Alertmanager, need a small relay in between.</dd>
+              </div>
+              <div>
+                <dt>How does it decide two alerts are the same incident?</dt>
+                <dd>A fingerprint over source, title and severity, scoped to one project. The same failure in
+                  staging and production stays two separate incidents.</dd>
+              </div>
+              <div>
+                <dt>Who gets notified?</dt>
+                <dd>The team named by the alert's team code, through that team's channels in the alert's
+                  project. In-app always lands, so nothing is lost while a channel is misconfigured.</dd>
+              </div>
+              <div>
+                <dt>What happens if a channel is down?</dt>
+                <dd>Email retries up to three times with exponential backoff, and a delivery that still fails is
+                  marked as failed. A broken Slack or Microsoft Teams channel never blocks the email, and in-app
+                  always lands.</dd>
+              </div>
             </dl>
           </div>
         </div>
       </section>
 
       <!-- CLOSING -->
-      <section class="st-sec-cta st-close">
-        <svg class="st-radar st-radar-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520"
-          aria-hidden="true" preserveAspectRatio="xMidYMid slice">
-          <g fill="none" stroke="#FFFFFF">
-            <circle cx="600" cy="470" r="120" stroke-width="1" opacity="0.05" />
-            <circle cx="600" cy="470" r="240" stroke-width="1" opacity="0.04" />
-            <circle cx="600" cy="470" r="380" stroke-width="1" opacity="0.03" />
-            <circle cx="600" cy="470" r="540" stroke-width="1" opacity="0.022" />
-          </g>
-          <g stroke="#FFFFFF" opacity="0.028">
-            <line x1="600" y1="0" x2="600" y2="520" stroke-width="1" />
-          </g>
-        </svg>
+      <section class="st-sec-cta st-close" data-fluid="calm">
+        <div class="st-fluid-fallback st-close-halo" aria-hidden="true"></div>
+        <canvas class="st-fluid st-close-fluid" aria-hidden="true"></canvas>
+        <div class="st-fluid-scrim st-close-scrim" aria-hidden="true"></div>
 
         <div class="st-close-inner st-reveal">
           <p class="st-arc" aria-label="An incident going from firing to resolved">
@@ -2001,6 +3644,38 @@
   <script>
     (function () {
       document.documentElement.classList.add('st-js');
+
+      var heroCopy = document.querySelector('.st-hero-copy');
+      if (heroCopy) {
+        var splitWords = function (el, base, stagger) {
+          var n = 0;
+          var walk = function (node) {
+            [].slice.call(node.childNodes).forEach(function (child) {
+              if (child.nodeType === 1) { walk(child); return; }
+              if (child.nodeType !== 3) return;
+              var frag = document.createDocumentFragment();
+              child.textContent.split(/(\s+)/).forEach(function (part) {
+                if (!part) return;
+                if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
+                var w = document.createElement('span');
+                w.className = 'st-w';
+                w.textContent = part;
+                w.style.transitionDelay = (base + n++ * stagger) + 'ms';
+                frag.appendChild(w);
+              });
+              node.replaceChild(frag, child);
+            });
+          };
+          walk(el);
+        };
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          splitWords(heroCopy.querySelector('.st-hero-h1'), 0, 85);
+          splitWords(heroCopy.querySelector('.st-hero-sub'), 1150, 22);
+        }
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () { heroCopy.classList.add('st-hero-ready'); });
+        });
+      }
 
       var motionOk = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
         && 'IntersectionObserver' in window;
@@ -2091,6 +3766,130 @@
         });
       }
 
+      var problem = document.querySelector('.st-problem');
+      if (problem && motionOk) {
+        problem.classList.add('st-collapse-on');
+        var track = problem.querySelector('.st-pin-track');
+        var pin = problem.querySelector('.st-pin');
+        var phases = problem.querySelector('.st-phases');
+        var phaseItems = [].slice.call(phases.children);
+        var stage = problem.querySelector('.st-stage');
+        stage.innerHTML =
+          '<span class="st-stage-ring"></span><span class="st-stage-ring st-teal"></span>' +
+          '<div class="st-stage-head"><span class="st-x"><span class="st-stage-chan">#alerts-prod</span>' +
+          '<span class="st-stage-chan" style="color:var(--ink-2)">Alert center</span></span>' +
+          '<span class="st-x"><span class="st-stage-tag">TODAY</span><span class="st-stage-tag st-teal">WITH SIGTAKE</span></span></div>' +
+          '<div class="st-stage-body"><div class="st-stage-result"><div class="st-stage-hit"><span class="st-hit-main">' +
+          '<span class="st-hit-line"><span class="st-hit-sev">CRITICAL</span><span class="st-hit-title">CPU above 92% on prod-web-03</span></span>' +
+          '<span class="st-hit-meta"><span class="st-x"><span class="st-hit-status" style="color:#F87171"><i></i>Firing</span>' +
+          '<span class="st-hit-status" style="color:var(--ack)"><i></i>Acked</span></span>· 02:58 → 05:16</span></span>' +
+          '<span class="st-hit-count">×1</span></div>' +
+          '<span class="st-stage-owner"><b>MR</b><span>acked by Marta Ruiz · 2m · team Infrastructure</span></span></div></div>' +
+          '<div class="st-stage-foot st-x"><span class="st-stage-flood"></span>' +
+          '<span class="st-stage-folded">47 messages folded into 1 row</span></div>';
+
+        var q = function (sel) { return stage.querySelector(sel); };
+        var body = q('.st-stage-body');
+        var ringRed = stage.querySelectorAll('.st-stage-ring')[0];
+        var ringTeal = stage.querySelectorAll('.st-stage-ring')[1];
+        var chans = stage.querySelectorAll('.st-stage-chan');
+        var tags = stage.querySelectorAll('.st-stage-tag');
+        var hit = q('.st-stage-result');
+        var folded = q('.st-stage-folded');
+        var hitCount = q('.st-hit-count');
+        var statuses = stage.querySelectorAll('.st-hit-status');
+        var flood = q('.st-stage-flood');
+        var owner = q('.st-stage-owner');
+
+        var ROW = 34, POOL = 12, TOTAL = 47;
+        var rows = [];
+        for (var r = 0; r < POOL; r++) {
+          var row = document.createElement('div');
+          row.className = 'st-dupe st-stage-row';
+          row.innerHTML = '<span></span>CPU above 92% on prod-web-03';
+          row._m = -1;
+          body.insertBefore(row, body.firstChild);
+          rows.push(row);
+        }
+        var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+        var clock = function (m) { var t = 178 + 3 * m; return pad(Math.floor(t / 60)) + ':' + pad(t % 60); };
+        var clamp = function (v) { return v < 0 ? 0 : v > 1 ? 1 : v; };
+        var out = function (t) { return 1 - Math.pow(1 - t, 3); };
+        var inOut = function (t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; };
+
+        var bodyH = 0, travel = 1, pinTop = 64, lastFlood = -1, lastCount = -1, lastPhase = -1, pending = false;
+        var measure = function () {
+          bodyH = body.clientHeight;
+          travel = Math.max(1, track.offsetHeight - pin.offsetHeight);
+          pinTop = parseFloat(getComputedStyle(pin).top) || 0;
+        };
+
+        var render = function () {
+          pending = false;
+          var p = clamp((pinTop - track.getBoundingClientRect().top) / travel);
+          var f = clamp(p / .55), g = clamp((p - .55) / .25), h = clamp((p - .8) / .14);
+          var c = 3 + f * (TOTAL - 4), k = Math.floor(c);
+          var target = bodyH / 2 - 30;
+
+          for (var j = 0; j < POOL; j++) {
+            var el = rows[j], m = k - j;
+            if (m < 0) { el.style.opacity = 0; continue; }
+            if (el._m !== m) { el._m = m; el.firstChild.textContent = clock(m); }
+            var age = c - m;
+            var e = inOut(clamp(g * 1.5 - j * .045));
+            var y = age * ROW + (target - age * ROW) * e;
+            var op = Math.min(1, age * 2.5) * clamp(1.15 - age / (POOL - 1)) * (1 - e);
+            el.style.opacity = op.toFixed(3);
+            el.style.transform = 'translate3d(0,' + (-y).toFixed(1) + 'px,0) scale(' + (1 - .12 * e).toFixed(3) + ')';
+          }
+          body.classList.toggle('st-unmasked', g > .5);
+
+          if (k !== lastFlood) {
+            lastFlood = k;
+            flood.textContent = (k + 1) + (k ? ' messages' : ' message') + ' · no owner · nobody acknowledged';
+          }
+          flood.style.opacity = (1 - clamp(g / .5)).toFixed(3);
+          folded.style.opacity = clamp((g - .6) / .4).toFixed(3);
+
+          var hv = clamp((g - .3) / .45);
+          hit.style.opacity = hv.toFixed(3);
+          hit.style.transform = 'translateY(-50%) scale(' + (.94 + .06 * out(hv)).toFixed(3) + ')';
+          var n = Math.max(1, Math.round(TOTAL * out(g)));
+          if (n !== lastCount) { lastCount = n; hitCount.textContent = '×' + n; }
+
+          ringRed.style.opacity = (1 - g).toFixed(3);
+          ringTeal.style.opacity = g.toFixed(3);
+          var x = clamp((g - .3) / .4);
+          chans[0].style.opacity = tags[0].style.opacity = (1 - x).toFixed(3);
+          chans[1].style.opacity = tags[1].style.opacity = x.toFixed(3);
+
+          statuses[0].style.opacity = (1 - h).toFixed(3);
+          statuses[1].style.opacity = h.toFixed(3);
+          owner.style.opacity = h.toFixed(3);
+          owner.style.transform = 'translateY(' + ((1 - out(h)) * 8).toFixed(1) + 'px)';
+
+          phases.style.setProperty('--p', p.toFixed(3));
+          var ph = p < .3 ? 0 : p < .6 ? 1 : 2;
+          if (ph !== lastPhase) {
+            lastPhase = ph;
+            phaseItems.forEach(function (li, i) { li.classList.toggle('st-on', i === ph); });
+          }
+        };
+        var schedule = function () {
+          if (!pending) { pending = true; requestAnimationFrame(render); }
+        };
+
+        var near = false;
+        new IntersectionObserver(function (entries) {
+          near = entries[0].isIntersecting;
+          if (near) { measure(); schedule(); }
+        }, { rootMargin: '25% 0px' }).observe(track);
+        window.addEventListener('scroll', function () { if (near) schedule(); }, { passive: true });
+        window.addEventListener('resize', function () { measure(); schedule(); });
+        measure();
+        render();
+      }
+
       var revealTargets = document.querySelectorAll('.st-reveal');
       var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (reduceMotion || !('IntersectionObserver' in window)) {
@@ -2151,6 +3950,7 @@
       }
     })();
   </script>
+  <script src="/public/js/hero-fluid.js" defer></script>
 </body>
 
 </html>

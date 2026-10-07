@@ -54,7 +54,7 @@
         "image": "https://sigtake.com/og/academy-website-uptime-monitoring.png",
         "totalTime": "PT10M",
         "datePublished": "2026-10-03",
-        "dateModified": "2026-10-03",
+        "dateModified": "2026-10-06",
         "inLanguage": "en",
         "mainEntityOfPage": "https://sigtake.com/academy/website-uptime-monitoring/",
         "author": {
@@ -68,7 +68,7 @@
           { "@type": "HowToStep", "position": 1, "name": "Check the team can receive alerts", "text": "A monitor sends its alerts to one team. Make sure that team is added to the project you're working in and has at least one channel attached there, or the alert will only show up in the app.", "url": "https://sigtake.com/academy/website-uptime-monitoring/#step-1" },
           { "@type": "HowToStep", "position": 2, "name": "Add the monitor", "text": "Open Monitors in the sidebar and use Add Monitor. Give it a name your team will recognize in an alert, paste the full URL including https://, and pick the team.", "url": "https://sigtake.com/academy/website-uptime-monitoring/#step-2" },
           { "@type": "HowToStep", "position": 3, "name": "Choose how often to check and how sure to be", "text": "Set Check Interval and Failure Threshold together. For a production site, 1 minute and 2 consecutive failures catches an outage in about two minutes while ignoring a single dropped request.", "url": "https://sigtake.com/academy/website-uptime-monitoring/#step-3" },
-          { "@type": "HowToStep", "position": 4, "name": "Say what healthy looks like", "text": "Leave Expected Status at 200 unless the URL answers with something else when it's fine. Keep SSL Check on for any https:// URL. Then use Create Monitor.", "url": "https://sigtake.com/academy/website-uptime-monitoring/#step-4" },
+          { "@type": "HowToStep", "position": 4, "name": "Say what healthy looks like", "text": "Leave Expected Status at 200 unless the URL answers with something else when it's fine. Keep SSL Check on for any https:// URL and leave Alert me at 14 days before expiry. Then use Create Monitor.", "url": "https://sigtake.com/academy/website-uptime-monitoring/#step-4" },
           { "@type": "HowToStep", "position": 5, "name": "Test it with a monitor built to fail", "text": "Create a second monitor against a page that doesn't exist on your site, with a 1 minute interval and 1 failure as the threshold. Within about two minutes a Down alert should reach your team's channels. Then change the test monitor's URL to your real page: the next check passes and the alert resolves on its own. Delete the test monitor afterwards.", "url": "https://sigtake.com/academy/website-uptime-monitoring/#step-5" }
         ]
       }
@@ -122,7 +122,7 @@
 
       <p class="ac-byline">
         <span>By <a href="https://www.linkedin.com/in/darwing-sanchez/" rel="author">Darwing Sánchez</a></span>
-        <span>Updated <time datetime="2026-10-03">Oct 3, 2026</time> · 6 min read</span>
+        <span>Updated <time datetime="2026-10-06">Oct 6, 2026</time> · 6 min read</span>
       </p>
       </header>
 
@@ -271,8 +271,8 @@
           </li>
           <li id="step-4">
             <h3>Say what healthy looks like</h3>
-            <p>Leave Expected Status at 200 unless the URL answers with something else when it's fine. Keep SSL Check on for any <code>https://</code> URL. Then use Create Monitor.</p>
-            <p>The expected status must match exactly. If your health endpoint answers <code>204 No Content</code>, set 204: a 200 would count as a failure. Leave Response Limit empty for now, since a slow response doesn't take the monitor down. The Advanced settings section, for request methods, headers, tokens and checks on the response body, isn't needed for a public page. For an endpoint behind a token, or to check what the response says, see <a href="/academy/monitor-api-health-endpoint/">monitoring an authenticated API health endpoint</a>.</p>
+            <p>Leave Expected Status at 200 unless the URL answers with something else when it's fine. Keep SSL Check on for any <code>https://</code> URL and leave Alert me at 14 days before expiry. Then use Create Monitor.</p>
+            <p>The expected status must match exactly. If your health endpoint answers <code>204 No Content</code>, set 204: a 200 would count as a failure. Leave Response Limit empty for now, since a slow response doesn't take the monitor down. Avoid 30 days in Alert me if you use Let's Encrypt: it renews about 30 days before expiry, so every certificate would alert. The Advanced settings section, for request methods, headers, tokens and checks on the response body, isn't needed for a public page. For an endpoint behind a token, or to check what the response says, see <a href="/academy/monitor-api-health-endpoint/">monitoring an authenticated API health endpoint</a>.</p>
           </li>
           <li id="step-5">
             <h3>Test it with a monitor built to fail</h3>
@@ -285,7 +285,7 @@
         <ul>
           <li><strong>Recovery is automatic.</strong> When a check passes again, the incident closes, the alert resolves, the team is told it recovered, and a Slack card turns green. Nobody has to resolve it by hand.</li>
           <li><strong>The monitor's page is your status history:</strong> uptime for the last 24 hours, 7 days and 30 days, a 90-day uptime bar, response times, past incidents and every recent check with its status code.</li>
-          <li><strong>The certificate's days left</strong> are shown there too, turning amber under 30 days and red under 7. An expiring certificate doesn't alert until it actually expires; then the check fails as invalid. Renew before the colour changes.</li>
+          <li><strong>An expiring certificate gets its own alert.</strong> When its days left reach the number in Alert me, Sigtake opens <code>SSL expiring: &lt;monitor name&gt;</code> at medium severity and reminds the team at 7, 3 and 1 days. The site still answers, so the monitor stays Up. Renewing closes the alert once three checks in a row see the new certificate; if it expires instead, the check fails as invalid and a Down alert takes its place. The days left are also shown on the monitor's page.</li>
           <li><strong>Pause during planned maintenance.</strong> A paused monitor isn't checked, so a deploy window doesn't page anyone. Resume it when you're done.</li>
         </ul>
 

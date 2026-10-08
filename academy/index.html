@@ -4,17 +4,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>document.documentElement.classList.add('st-js')</script>
   <title>Sigtake Academy — Alerting &amp; Monitoring Guides</title>
   <meta name="description" content="Practical guides on alerting and monitoring for small ops teams: deduplication, heartbeats, routing alerts to Slack, and moving off Opsgenie.">
   <link rel="canonical" href="https://sigtake.com/academy/">
   <link rel="preload" href="/public/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/public/fonts/bricolage-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/public/fonts/figtree-var-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="/public/favicon.ico" sizes="32x32">
   <link rel="icon" type="image/svg+xml" href="/public/favicon.svg">
   <link rel="icon" type="image/png" sizes="96x96" href="/public/favicon-96x96.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
   <link rel="manifest" href="/public/site.webmanifest">
-  <meta name="theme-color" content="#040609">
+  <meta name="theme-color" content="#ffffff">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="en_US">
   <meta property="og:site_name" content="Sigtake">
@@ -30,6 +31,7 @@
   <meta name="twitter:description" content="Practical guides on alerting and monitoring for small ops teams: deduplication, heartbeats, routing alerts to Slack, and moving off Opsgenie.">
   <meta name="twitter:image" content="https://sigtake.com/og/academy.png">
   <meta name="twitter:image:alt" content="Sigtake Academy">
+  <link rel="stylesheet" href="/public/css/site.css">
   <link rel="stylesheet" href="/academy/academy.css">
   <script type="application/ld+json">
   {
@@ -120,16 +122,29 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N5834SWZ" title="Google Tag Manager" height="0"
       width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
-  <a href="#main" class="ac-skip">Skip to content</a>
+  <a class="st-skip" href="#main">Skip to content</a>
 
-  <header class="ac-head">
-    <div class="ac-wrap">
-      <a href="/" class="ac-brand">
-        <img src="/public/logo.svg" width="24" height="24" alt="">
-        Sigtake
+  <header class="st-nav" id="top">
+    <div class="st-nav-inner">
+      <a class="st-logo" href="/" aria-label="Sigtake home">
+        <img src="/assets/plates/logo.png" width="142" height="45" alt="Sigtake">
       </a>
-      <a href="/academy/" class="ac-head-link" aria-current="page">Academy</a>
-      <a href="https://app.sigtake.com/register" class="ac-btn ac-head-cta">Start free</a>
+      <nav class="st-nav-links" id="st-nav-links" aria-label="Primary">
+        <a href="/#features">Features</a>
+        <a href="/#monitoring">Monitoring</a>
+        <a href="/#how">How it works</a>
+        <a href="/pricing/">Pricing</a>
+        <a href="/academy/" aria-current="page">Academy</a>
+        <a href="https://docs.sigtake.com">Docs</a>
+        <a class="st-menu-only" href="https://app.sigtake.com/login">Log in</a>
+      </nav>
+      <div class="st-nav-cta">
+        <a class="st-login" href="https://app.sigtake.com/login">Log in</a>
+        <a class="st-pill" href="https://app.sigtake.com/register">Start free</a>
+        <button type="button" class="st-navtoggle" aria-expanded="false" aria-controls="st-nav-links" aria-label="Menu">
+          <svg class="st-icon" viewBox="0 0 24 24"><path class="st-ico-menu" d="M4 7h16M4 12h16M4 17h16" /><path class="st-ico-close" d="M6 6l12 12M18 6L6 18" /></svg>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -206,18 +221,49 @@
     </div>
   </main>
 
-  <footer class="ac-foot">
-    <div class="ac-wrap">
-      <span>© 2026 Sigtake, Inc.</span>
-      <nav aria-label="Footer">
-        <a href="/academy/">Academy</a>
-        <a href="https://docs.sigtake.com">Docs</a>
-        <a href="/help/">Help</a>
-        <a href="/privacy/">Privacy</a>
-        <a href="/terms/">Terms</a>
+  <footer class="st-foot">
+    <div class="st-foot-grid">
+      <div class="st-foot-brand">
+        <img src="/assets/plates/logo.png" width="114" height="36" alt="Sigtake">
+        <p>Real-time alert management and monitoring for ops teams. Deduplicated, routed to the right team.</p>
+      </div>
+      <nav aria-label="Product">
+        <p>Product</p>
+        <ul>
+          <li><a href="/#features">Features</a></li>
+          <li><a href="/#monitoring">Monitoring</a></li>
+          <li><a href="/pricing/">Pricing</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Resources">
+        <p>Resources</p>
+        <ul>
+          <li><a href="https://docs.sigtake.com">Documentation</a></li>
+          <li><a href="https://docs.sigtake.com">API reference</a></li>
+          <li><a href="/academy/">Academy</a></li>
+          <li><a href="/help/">Help &amp; support</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Legal">
+        <p>Legal</p>
+        <ul>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+        </ul>
       </nav>
     </div>
+    <div class="st-foot-base">
+      <span>© 2026 Sigtake, Inc.</span>
+      <span class="st-foot-social">
+        <a href="https://github.com/Sigtake">GitHub</a>
+        <a href="https://www.linkedin.com/company/sigtake">LinkedIn</a>
+        <a href="https://www.youtube.com/@Sigtake">YouTube</a>
+        <a href="https://www.instagram.com/sig_take/">Instagram</a>
+        <a href="https://www.facebook.com/sigtake/">Facebook</a>
+      </span>
+    </div>
   </footer>
+  <script src="/public/js/site.js" defer></script>
 </body>
 
 </html>

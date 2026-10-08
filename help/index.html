@@ -11,13 +11,13 @@
     content="Get help with Sigtake: alert ingestion, notification channels, monitors and account questions. We reply within 2 business days.">
   <link rel="canonical" href="https://sigtake.com/help/">
   <link rel="preload" href="/public/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/public/fonts/bricolage-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/public/fonts/figtree-var-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="/public/favicon.ico" sizes="32x32">
   <link rel="icon" type="image/svg+xml" href="/public/favicon.svg">
   <link rel="icon" type="image/png" sizes="96x96" href="/public/favicon-96x96.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
   <link rel="manifest" href="/public/site.webmanifest">
-  <meta name="theme-color" content="#040609">
+  <meta name="theme-color" content="#ffffff">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="en_US">
   <meta property="og:site_name" content="Sigtake">
@@ -35,150 +35,56 @@
   <meta name="twitter:image" content="https://sigtake.com/og/help.png">
   <meta name="twitter:image:alt" content="Help &amp; Support — Sigtake">
   <style>
-    @font-face {
-      font-family: "Inter";
-      src: url("/public/fonts/inter-var-latin.woff2") format("woff2");
-      font-weight: 400 800;
-      font-style: normal;
-      font-display: swap;
+    .st-help { padding-bottom: 96px; }
+    .st-sla {
+      display: inline-flex; align-items: center; gap: 8px; margin-top: 22px;
+      padding: 7px 14px; border-radius: 999px; background: var(--stage);
+      font-size: 14px; font-weight: 600; color: var(--teal-ink);
     }
-
-    @font-face {
-      font-family: "Bricolage Grotesque";
-      src: url("/public/fonts/bricolage-var-latin.woff2") format("woff2");
-      font-weight: 600 800;
-      font-style: normal;
-      font-display: swap;
+    .st-first {
+      max-width: 860px; margin: 40px auto 0; padding: 20px 24px; border-radius: 18px;
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
+      background: #fff; box-shadow: inset 0 0 0 1px var(--line);
+      font-size: 15.5px; line-height: 1.55; color: var(--muted);
     }
-
-    html, body { margin: 0; background: #040609; }
-
-    /* ── Palette shared with index.html: the nav and footer markup is copied from there, so these
-         selectors have to match. ── */
-    .st-landing { background: #040609; color: #e2e8f0; font-family: "Inter", system-ui, sans-serif;
-                  -webkit-font-smoothing: antialiased; min-height: 100vh; }
-    .st-landing h1, .st-landing h2, .st-landing h3, .st-landing .st-wordmark {
-      font-family: "Bricolage Grotesque", "Inter", system-ui, sans-serif; }
-    .st-landing a { color: #5eead4; text-decoration: none; }
-    .st-landing a:hover { color: #99f6e4; }
-    .st-landing ::selection { background: rgba(45, 212, 191, 0.3); }
-    .st-landing :focus-visible { outline: 2px solid #2dd4bf; outline-offset: 2px; border-radius: 4px; }
-
-    /* Two classes required: `.st-landing a` outranks a bare `.st-skip` and repaints it teal */
-    .st-landing .st-skip { position: absolute; left: 16px; top: -60px; z-index: 100; background: #2dd4bf;
-                           color: #0c1220; font-size: 14px; font-weight: 600; padding: 10px 18px;
-                           border-radius: 8px; transition: top .15s ease; }
-    .st-landing .st-skip:focus, .st-landing .st-skip:hover { top: 12px; color: #0c1220; }
-
-    .st-landing .st-navlink:hover { color: #e2e8f0 !important; }
-    .st-landing .st-loglink:hover { color: #99f6e4 !important; }
-    .st-landing .st-btn-primary:hover { background: #5eead4 !important; color: #0c1220 !important; }
-    .st-landing .st-flink:hover { color: #5eead4 !important; }
-
-    /* ── Page ── */
-    .st-landing .st-wrap { max-width: 1080px; margin: 0 auto; padding: 64px 24px 88px; }
-    .st-landing .st-head { text-align: center; }
-    .st-landing h1 { margin: 0 0 14px; font-size: clamp(30px, 6vw, 42px); font-weight: 800;
-                     letter-spacing: -0.02em; color: #F8FAFC; line-height: 1.12; }
-    .st-landing .st-lede { margin: 0 auto 28px; max-width: 560px; font-size: 16.5px; line-height: 1.65;
-                           color: #94A3B8; text-wrap: pretty; }
-
-    .st-landing .st-sla { display: inline-flex; align-items: center; gap: 9px; padding: 7px 16px;
-                          border-radius: 999px; border: 1px solid rgba(45,212,191,0.28);
-                          background: rgba(45,212,191,0.07); font-size: 13.5px; font-weight: 600; color: #5EEAD4; }
-    .st-landing .st-dot { width: 7px; height: 7px; border-radius: 50%; background: #2DD4BF; flex: none;
-                          animation: st-pulse 1.8s infinite; }
-    @keyframes st-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-
-    .st-landing .st-first { margin: 44px 0 40px; background: #0F1115; border: 1px solid rgba(255,255,255,0.07);
-                            border-radius: 14px; padding: 22px 24px; display: flex; align-items: center;
-                            justify-content: space-between; flex-wrap: wrap; gap: 12px 24px; }
-    .st-landing .st-first p { margin: 0; font-size: 14.5px; line-height: 1.6; color: #94A3B8; max-width: 620px; }
-    .st-landing .st-first strong { color: #F1F5F9; font-weight: 600; }
-    .st-landing .st-docs { flex: none; display: inline-flex; align-items: center; background: rgba(255,255,255,0.06);
-                           border: 1px solid rgba(255,255,255,0.09); color: #E2E8F0; font-size: 14px;
-                           font-weight: 600; padding: 10px 20px; border-radius: 9px; transition: background .15s ease; }
-    .st-landing .st-docs:hover { background: rgba(255,255,255,0.1); color: #E2E8F0; }
-
-    .st-landing h2 { margin: 0 0 6px; font-size: 22px; font-weight: 700; letter-spacing: -0.015em; color: #F1F5F9; }
-    .st-landing .st-sub { margin: 0 0 24px; font-size: 14.5px; color: #94A3B8; }
-
-    /* min(310px,100%): a bare minmax(310px,…) never shrinks below 310px, so on a 320px viewport the
-       280px container overflows and drags in horizontal scroll. */
-    .st-landing .st-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(310px, 100%), 1fr));
-                           gap: 16px; }
-    .st-landing .st-card { display: flex; flex-direction: column; gap: 9px; background: #0F1115;
-                           border: 1px solid rgba(255,255,255,0.07); border-radius: 14px; padding: 22px;
-                           color: #E2E8F0; transition: border-color .15s ease, background .15s ease, transform .15s ease; }
-    .st-landing .st-card:hover { border-color: rgba(45,212,191,0.35); background: #13161B;
-                                 transform: translateY(-2px); color: #E2E8F0; }
-    .st-landing .st-card-icon { width: 34px; height: 34px; border-radius: 9px; display: inline-flex;
-                                align-items: center; justify-content: center; background: rgba(45,212,191,0.1);
-                                color: #5EEAD4; margin-bottom: 3px; }
-    .st-landing .st-card-icon svg { width: 19px; height: 19px; }
-    .st-landing .st-card h3 { margin: 0; font-size: 16px; font-weight: 700; color: #F1F5F9; letter-spacing: -0.01em; }
-    .st-landing .st-card p { margin: 0; font-size: 13.5px; line-height: 1.6; color: #94A3B8; flex: 1; }
-    .st-landing .st-card-cta { font-size: 13px; font-weight: 600; color: #5EEAD4; margin-top: 4px; }
-
-    .st-landing .st-direct { margin-top: 40px; background: #0F1115; border: 1px solid rgba(255,255,255,0.07);
-                             border-radius: 14px; padding: 24px; text-align: center; }
-    .st-landing .st-direct p { margin: 0 0 8px; font-size: 14.5px; line-height: 1.6; color: #94A3B8; }
-    .st-landing .st-addr { font-family: ui-monospace, Menlo, monospace; font-size: 16px; font-weight: 600;
-                           color: #5EEAD4; }
-
-    @media (prefers-reduced-motion: reduce) {
-      .st-landing *, .st-landing *::before, .st-landing *::after {
-        animation: none !important; transition: none !important; }
+    .st-first strong { color: var(--ink); }
+    .st-first .st-link-arrow { flex: none; font-size: 15.5px; }
+    .st-help-panel {
+      margin: 48px 14px 0; padding: 56px var(--gutter) 64px; border-radius: 24px; background: var(--panel);
+      text-align: center;
     }
-
-    @media (max-width: 1080px) {
-      .st-landing .st-foot { grid-template-columns: 1fr 1fr !important; }
+    .st-sub { margin-top: 12px; font-size: 16.5px; color: var(--muted); }
+    .st-grid {
+      max-width: 1080px; margin: 36px auto 0; text-align: left;
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px;
     }
-
-    /* Toggle base: hidden until a viewport asks for it. */
-    .st-landing .st-navtoggle { display: none; align-items: center; justify-content: center;
-                                width: 44px; height: 44px; margin: 0 -10px 0 0; padding: 0; border: 0;
-                                border-radius: 8px; background: none; color: #E2E8F0; cursor: pointer; }
-    .st-landing .st-navtoggle .st-ico-close,
-    .st-landing .st-navtoggle[aria-expanded="true"] .st-ico-menu { display: none; }
-    .st-landing .st-navtoggle[aria-expanded="true"] .st-ico-close { display: inline; }
-
-    /* Six links and both CTAs overflow below 960px; "How it works" is an in-page anchor the scroll reaches anyway. */
-    @media (min-width: 768px) and (max-width: 959px) {
-      .st-landing .st-nav-links { gap: 22px !important; }
-      .st-landing .st-nav-links a[href="/#how"] { display: none; }
+    .st-card {
+      display: flex; flex-direction: column; gap: 10px; padding: 24px; border-radius: 18px;
+      background: #fff; box-shadow: inset 0 0 0 1px var(--line);
+      transition: box-shadow .18s ease, transform .18s var(--ease-out);
     }
-
-    @media (max-width: 767px) {
-      /* The same nav nodes revealed as a panel, never a duplicate menu. The toggle sits before them
-         in the DOM so Tab reaches what it just opened. Without JS nothing collapses. */
-      .st-landing .st-nav-inner { height: auto !important; flex-wrap: wrap; row-gap: 6px;
-                                  padding: 10px 16px 8px !important; justify-content: flex-start;
-                                  column-gap: 12px; }
-      .st-landing .st-nav-inner>a:first-of-type { order: 1; margin-right: auto; min-height: 44px; }
-      .st-landing .st-nav-cta { order: 2; gap: 12px !important; }
-      .st-js .st-landing .st-navtoggle { display: inline-flex; order: 3; }
-      .st-landing .st-nav-links { order: 4; flex: 0 0 100%; flex-direction: column;
-                                  align-items: stretch !important; gap: 0 !important; margin-top: 4px;
-                                  border-top: 1px solid rgba(255,255,255,0.06); }
-      .st-js .st-landing .st-nav-links.st-closed { display: none !important; }
-      .st-landing .st-navlink { display: block; text-align: left; padding: 13px 2px;
-                                border-bottom: 1px solid rgba(255,255,255,0.05); }
-      .st-landing .st-nav-links .st-navlink:last-child { border-bottom: 0; padding-bottom: 14px; }
-      /* 44px minimum touch target: nav row, footer columns and the social row all sat at 15-17px. */
-      .st-landing .st-loglink { display: inline-flex; align-items: center; min-height: 44px; padding: 0 4px; }
-      .st-landing .st-nav-cta .st-btn-primary { padding: 14px 16px !important; }
-      .st-landing .st-flink { display: inline-block; box-sizing: border-box; min-height: 44px; padding: 14px 0; }
-      .st-landing .st-sec-foot ul { gap: 0 !important; }
-      .st-landing .st-wrap { padding: 48px 20px 64px; }
-      .st-landing .st-first { padding: 20px; }
-      .st-landing .st-docs { width: 100%; box-sizing: border-box; justify-content: center;
-                             min-height: 44px; }
-      .st-landing .st-addr { display: inline-flex; align-items: center; min-height: 44px; }
-      .st-landing .st-sec-foot { padding: 48px 20px 32px !important; }
-      .st-landing .st-foot { grid-template-columns: 1fr !important; gap: 28px !important; }
+    .st-card:hover { box-shadow: inset 0 0 0 1px #b6e4de, 0 18px 36px -24px rgba(15, 50, 60, .35); transform: translateY(-2px); }
+    .st-card-icon {
+      width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center;
+      background: rgba(45, 212, 191, .16); color: var(--teal-deep);
     }
+    .st-card-icon svg { width: 22px; height: 22px; }
+    .st-card h3 { font: 700 19px/1.3 var(--display); letter-spacing: -.01em; color: var(--ink); }
+    .st-card p { font-size: 15px; line-height: 1.55; color: var(--muted); }
+    .st-card-cta { margin-top: auto; padding-top: 6px; display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; color: var(--teal-deep); }
+    .st-card-cta .st-icon { transition: transform .18s var(--ease-out); }
+    .st-card:hover .st-card-cta .st-icon { transform: translateX(3px); }
+    .st-direct { margin-top: 56px; text-align: center; font-size: 15.5px; line-height: 1.7; color: var(--muted); padding: 0 var(--gutter); }
+    .st-direct a { color: var(--teal-deep); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(11, 125, 112, .35); }
+    .st-direct .st-addr { font: 700 22px/1.4 var(--display); color: var(--ink); text-decoration: none; }
+    @media (max-width: 760px) {
+      .st-first { flex-direction: column; align-items: flex-start; margin-left: var(--gutter); margin-right: var(--gutter); }
+      .st-help-panel { margin-left: 8px; margin-right: 8px; padding-top: 44px; }
+      .st-grid { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) { .st-card, .st-card:hover { transition: none; transform: none; } }
   </style>
+  <link rel="stylesheet" href="/public/css/site.css">
   <!-- Google Tag Manager -->
   <script>(function (w, d, s, l, i) {
       w[l] = w[l] || []; w[l].push({
@@ -197,43 +103,34 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N5834SWZ" title="Google Tag Manager" height="0"
       width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
-  <div class="st-landing">
-    <a href="#main" class="st-skip">Skip to content</a>
-<nav aria-label="Primary"
-      style="position:sticky;top:0;z-index:50;background:rgba(4,6,9,0.95);border-bottom:1px solid rgba(255,255,255,0.06)">
-      <div class="st-nav-inner"
-        style="max-width:1180px;margin:0 auto;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between">
-        <a href="/" style="display:flex;align-items:center;gap:10px;color:#F1F5F9">
-          <img src="/public/logo.svg" width="24" height="24" alt=""
-            style="flex:none;filter:drop-shadow(0 0 16px rgba(45,212,191,0.4))">
-          <span class="st-wordmark" style="font-size:16px;font-weight:700;letter-spacing:-0.01em">Sigtake</span>
-        </a>
-        <button type="button" class="st-navtoggle" aria-expanded="false" aria-controls="st-nav-links"
-          aria-label="Menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="2" stroke-linecap="round" aria-hidden="true">
-            <path class="st-ico-menu" d="M4 7h16M4 12h16M4 17h16" />
-            <path class="st-ico-close" d="M6 6l12 12M18 6L6 18" />
-          </svg></button>
-        <div class="st-nav-links st-closed" id="st-nav-links" style="display:flex;align-items:center;gap:28px;font-size:14px;font-weight:500">
-          <a href="/#features" class="st-navlink" style="color:#94A3B8">Features</a>
-          <a href="/#monitoring" class="st-navlink" style="color:#94A3B8">Monitoring</a>
-          <a href="/#how" class="st-navlink" style="color:#94A3B8">How it works</a>
-          <a href="/pricing/" class="st-navlink" style="color:#94A3B8">Pricing</a>
-          <a href="/academy/" class="st-navlink" style="color:#94A3B8">Academy</a>
-          <a href="https://docs.sigtake.com" class="st-navlink" style="color:#94A3B8">Docs</a>
-        </div>
-        <div class="st-nav-cta" style="display:flex;align-items:center;gap:16px">
-          <a href="https://app.sigtake.com/login" class="st-loglink"
-            style="font-size:14px;font-weight:500;color:#E2E8F0">Log in</a>
-          <a href="https://app.sigtake.com/register" class="st-btn-primary"
-            style="display:inline-flex;align-items:center;background:#2DD4BF;color:#0C1220;font-size:14px;font-weight:600;padding:8px 16px;border-radius:8px;box-shadow:0 0 20px rgba(45,212,191,0.3)">Start
-            free</a>
-        </div>
-      </div>
-    </nav>
+  <a class="st-skip" href="#main">Skip to content</a>
 
-    <main id="main" class="st-wrap" style="scroll-margin-top:64px">
-      <div class="st-head">
+  <header class="st-nav" id="top">
+    <div class="st-nav-inner">
+      <a class="st-logo" href="/" aria-label="Sigtake home">
+        <img src="/assets/plates/logo.png" width="142" height="45" alt="Sigtake">
+      </a>
+      <nav class="st-nav-links" id="st-nav-links" aria-label="Primary">
+        <a href="/#features">Features</a>
+        <a href="/#monitoring">Monitoring</a>
+        <a href="/#how">How it works</a>
+        <a href="/pricing/">Pricing</a>
+        <a href="/academy/">Academy</a>
+        <a href="https://docs.sigtake.com">Docs</a>
+        <a class="st-menu-only" href="https://app.sigtake.com/login">Log in</a>
+      </nav>
+      <div class="st-nav-cta">
+        <a class="st-login" href="https://app.sigtake.com/login">Log in</a>
+        <a class="st-pill" href="https://app.sigtake.com/register">Start free</a>
+        <button type="button" class="st-navtoggle" aria-expanded="false" aria-controls="st-nav-links" aria-label="Menu">
+          <svg class="st-icon" viewBox="0 0 24 24"><path class="st-ico-menu" d="M4 7h16M4 12h16M4 17h16" /><path class="st-ico-close" d="M6 6l12 12M18 6L6 18" /></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+    <main id="main" class="st-help">
+      <div class="st-page-head is-center">
         <h1>How can we help?</h1>
         <p class="st-lede">Pick the topic that fits and your email opens with the details we need to
           answer on the first reply — no back and forth.</p>
@@ -243,10 +140,11 @@
       <div class="st-first">
         <p><strong>Before you write:</strong> setup guides, the ingest API reference and the channel
           configuration walkthroughs live in the documentation. Most answers are already there.</p>
-        <a class="st-docs" href="https://docs.sigtake.com">Read the docs</a>
+        <a class="st-link-arrow" href="https://docs.sigtake.com">Read the docs <svg class="st-icon" aria-hidden="true"><use href="/public/img/icons.svg#i-arrow" /></svg></a>
       </div>
 
-      <h2>Email our team</h2>
+      <div class="st-help-panel">
+      <h2 class="st-h2">Email our team</h2>
       <p class="st-sub">Every link below opens your mail client with a template already filled in.</p>
       <div class="st-grid">
         <a class="st-card" href="mailto:help@sigtake.com?subject=Ingest%3A%20alerts%20not%20arriving&amp;body=Organization%3A%0AProject%3A%0ASource%20used%20in%20the%20payload%3A%0AHTTP%20status%20you%20got%20back%3A%0A%0AExample%20payload%20you%20sent%3A%0A%0A%0AWhat%20you%20expected%20to%20happen%3A%0A">
@@ -256,7 +154,7 @@
           </span>
           <h3>Alerts not arriving</h3>
           <p>You are pushing to the ingest API but nothing shows up in the Alert Center.</p>
-          <span class="st-card-cta">Write to us <span aria-hidden="true">&rarr;</span></span>
+          <span class="st-card-cta">Write to us <svg class="st-icon" aria-hidden="true"><use href="/public/img/icons.svg#i-arrow" /></svg></span>
         </a>
         <a class="st-card" href="mailto:help@sigtake.com?subject=Channels%3A%20notification%20not%20delivered&amp;body=Organization%3A%0AProject%3A%0AChannel%20type%20%28Email%20/%20Slack%20/%20Microsoft%20Teams%20/%20Discord%20/%20Google%20Chat%20/%20in-app%29%3A%0ATeam%20assigned%20to%20the%20alert%3A%0ADid%20the%20alert%20appear%20in%20the%20Alert%20Center%3F%20%28yes%20/%20no%29%3A%0A%0AIf%20Slack%20or%20Discord%3A%20is%20the%20bot%20invited%20to%20the%20channel%3F%20%28yes%20/%20no%20/%20it%20is%20a%20public%20channel%29%0AIf%20Microsoft%20Teams%3A%20does%20the%20webhook%20URL%20still%20work%3F%0A%0AWhat%20you%20expected%20to%20happen%3A%0A">
           <span class="st-card-icon" aria-hidden="true">
@@ -265,7 +163,7 @@
           </span>
           <h3>Notifications &amp; channels</h3>
           <p>The alert is in Sigtake but the notification never reached your team.</p>
-          <span class="st-card-cta">Write to us <span aria-hidden="true">&rarr;</span></span>
+          <span class="st-card-cta">Write to us <svg class="st-icon" aria-hidden="true"><use href="/public/img/icons.svg#i-arrow" /></svg></span>
         </a>
         <a class="st-card" href="mailto:help@sigtake.com?subject=Monitors%3A%20rule%20not%20behaving%20as%20configured&amp;body=Organization%3A%0AProject%3A%0AMonitor%20type%20%28website%20/%20signal%29%3A%0AMonitor%20name%3A%0ARule%20configured%20%28threshold%20/%20anomaly%20/%20heartbeat%2C%20and%20its%20values%29%3A%0A%0AWhat%20you%20expected%20to%20happen%3A%0A">
           <span class="st-card-icon" aria-hidden="true">
@@ -274,7 +172,7 @@
           </span>
           <h3>Monitors &amp; signals</h3>
           <p>A website check or a signal rule is not firing the way you configured it.</p>
-          <span class="st-card-cta">Write to us <span aria-hidden="true">&rarr;</span></span>
+          <span class="st-card-cta">Write to us <svg class="st-icon" aria-hidden="true"><use href="/public/img/icons.svg#i-arrow" /></svg></span>
         </a>
         <a class="st-card" href="mailto:help@sigtake.com?subject=Account%3A%20question&amp;body=Organization%3A%0AYour%20role%20%28admin%20/%20operator%20/%20viewer%29%3A%0A%0AHow%20can%20we%20help%3F%0A">
           <span class="st-card-icon" aria-hidden="true">
@@ -283,7 +181,7 @@
           </span>
           <h3>Account, users &amp; billing</h3>
           <p>Access, roles, organizations, or anything about plans and early access.</p>
-          <span class="st-card-cta">Write to us <span aria-hidden="true">&rarr;</span></span>
+          <span class="st-card-cta">Write to us <svg class="st-icon" aria-hidden="true"><use href="/public/img/icons.svg#i-arrow" /></svg></span>
         </a>
         <a class="st-card" href="mailto:help@sigtake.com?subject=Security%3A%20report&amp;body=Please%20do%20NOT%20include%20credentials%2C%20API%20keys%20or%20personal%20data%20in%20this%20email.%0A%0AOrganization%3A%0AWhat%20you%20found%3A%0ASteps%20to%20reproduce%3A%0AImpact%20as%20you%20understand%20it%3A%0A">
           <span class="st-card-icon" aria-hidden="true">
@@ -292,102 +190,62 @@
           </span>
           <h3>Security</h3>
           <p>Report a vulnerability or ask about how we handle your data.</p>
-          <span class="st-card-cta">Write to us <span aria-hidden="true">&rarr;</span></span>
+          <span class="st-card-cta">Write to us <svg class="st-icon" aria-hidden="true"><use href="/public/img/icons.svg#i-arrow" /></svg></span>
         </a>
       </div>
 
+      </div>
       <div class="st-direct">
         <p>Prefer to write from scratch, or your mail client did not open?</p>
         <p><a class="st-addr" href="mailto:help@sigtake.com">help@sigtake.com</a></p>
-        <p style="margin-top:14px;font-size:13px;color:#7A8899">See also our
+        <p>See also our
           <a href="/privacy/">Privacy Policy</a> and <a href="/terms/">Terms of Service</a>.</p>
       </div>
     </main>
 
-<footer class="st-sec-foot"
-      style="border-top:1px solid rgba(255,255,255,0.06);padding:64px 32px 40px;background:#060709">
-      <div style="max-width:1080px;margin:0 auto">
-        <div class="st-foot" style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px">
-          <div>
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><img src="/public/favicon.svg"
-                width="22" height="22" alt="" style="flex:none"><span class="st-wordmark"
-                style="font-size:15px;font-weight:700;color:#F1F5F9">Sigtake</span></div>
-            <p style="margin:0;max-width:280px;font-size:13.5px;line-height:1.6;color:#94A3B8">Real-time alert
-              management and monitoring for ops teams. Multi-tenant, deduplicated, routed to the people on call.</p>
-          </div>
-          <nav aria-label="Product">
-            <p
-              style="margin:0 0 14px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#94A3B8">
-              Product</p>
-            <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:13.5px">
-              <li><a href="/#features" class="st-flink" style="color:#CBD5E1">Features</a></li>
-              <li><a href="/#monitoring" class="st-flink" style="color:#CBD5E1">Monitoring</a></li>
-              <li><a href="/pricing/" class="st-flink" style="color:#CBD5E1">Pricing</a></li>
-              <!-- TODO: re-enable when a changelog exists: <li><a href="#" class="st-flink" style="color:#CBD5E1">Changelog</a></li> -->
-            </ul>
-          </nav>
-          <nav aria-label="Resources">
-            <p
-              style="margin:0 0 14px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#94A3B8">
-              Resources</p>
-            <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:13.5px">
-              <li><a href="https://docs.sigtake.com" class="st-flink" style="color:#CBD5E1">Documentation</a></li>
-              <li><a href="https://docs.sigtake.com" class="st-flink" style="color:#CBD5E1">API reference</a></li>
-              <li><a href="/academy/" class="st-flink" style="color:#CBD5E1">Academy</a></li>
-              <!-- TODO: re-enable when a status page exists: <li><a href="#" class="st-flink" style="color:#CBD5E1">Status</a></li> -->
-              <li><a href="/help/" class="st-flink" style="color:#CBD5E1">Help &amp; support</a></li>
-            </ul>
-          </nav>
-          <nav aria-label="Legal">
-            <p
-              style="margin:0 0 14px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#94A3B8">
-              Legal</p>
-            <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:13.5px">
-              <li><a href="/privacy/" class="st-flink" style="color:#CBD5E1">Privacy</a></li>
-              <li><a href="/terms/" class="st-flink" style="color:#CBD5E1">Terms</a></li>
-              <!-- TODO: re-enable when a security page exists: <li><a href="#" class="st-flink" style="color:#CBD5E1">Security</a></li> -->
-            </ul>
-          </nav>
-        </div>
-        <div
-          style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;border-top:1px solid rgba(255,255,255,0.05);padding-top:24px;font-size:12.5px;color:#94A3B8">
-          <span>© 2026 Sigtake, Inc.</span>
-          <div style="display:flex;flex-wrap:wrap;gap:20px">
-            <a href="https://github.com/Sigtake" class="st-flink" style="color:#CBD5E1">GitHub</a>
-            <a href="https://www.linkedin.com/company/sigtake" class="st-flink" style="color:#CBD5E1">LinkedIn</a>
-            <a href="https://www.youtube.com/@Sigtake" class="st-flink" style="color:#CBD5E1">YouTube</a>
-            <a href="https://www.instagram.com/sig_take/" class="st-flink" style="color:#CBD5E1">Instagram</a>
-            <a href="https://www.facebook.com/sigtake/" class="st-flink" style="color:#CBD5E1">Facebook</a>
-          </div>
-        </div>
+  <footer class="st-foot">
+    <div class="st-foot-grid">
+      <div class="st-foot-brand">
+        <img src="/assets/plates/logo.png" width="114" height="36" alt="Sigtake">
+        <p>Real-time alert management and monitoring for ops teams. Deduplicated, routed to the right team.</p>
       </div>
-    </footer>
-  </div>
-  <script>
-    (function () {
-      document.documentElement.classList.add('st-js');
-      var navToggle = document.querySelector('.st-navtoggle');
-      var navLinks = document.querySelector('.st-nav-links');
-      if (!navToggle || !navLinks) return;
-      var setNav = function (open) {
-        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-        navLinks.classList.toggle('st-closed', !open);
-      };
-      setNav(false);
-      navToggle.addEventListener('click', function () {
-        setNav(navToggle.getAttribute('aria-expanded') !== 'true');
-      });
-      navLinks.addEventListener('click', function (e) {
-        if (e.target.closest('a')) setNav(false);
-      });
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && navToggle.getAttribute('aria-expanded') === 'true') {
-          setNav(false);
-          navToggle.focus();
-        }
-      });
-    })();
-  </script>
+      <nav aria-label="Product">
+        <p>Product</p>
+        <ul>
+          <li><a href="/#features">Features</a></li>
+          <li><a href="/#monitoring">Monitoring</a></li>
+          <li><a href="/pricing/">Pricing</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Resources">
+        <p>Resources</p>
+        <ul>
+          <li><a href="https://docs.sigtake.com">Documentation</a></li>
+          <li><a href="https://docs.sigtake.com">API reference</a></li>
+          <li><a href="/academy/">Academy</a></li>
+          <li><a href="/help/">Help &amp; support</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Legal">
+        <p>Legal</p>
+        <ul>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="st-foot-base">
+      <span>© 2026 Sigtake, Inc.</span>
+      <span class="st-foot-social">
+        <a href="https://github.com/Sigtake">GitHub</a>
+        <a href="https://www.linkedin.com/company/sigtake">LinkedIn</a>
+        <a href="https://www.youtube.com/@Sigtake">YouTube</a>
+        <a href="https://www.instagram.com/sig_take/">Instagram</a>
+        <a href="https://www.facebook.com/sigtake/">Facebook</a>
+      </span>
+    </div>
+  </footer>
+  <script src="/public/js/site.js" defer></script>
 </body>
 
 </html>

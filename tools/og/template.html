@@ -2,119 +2,61 @@
 <meta charset="utf-8">
 <title>OG card</title>
 <style>
-  /* Same faces the site serves, so the cards and the pages cannot drift apart. */
-  @font-face { font-family:"Inter"; src:url("/public/fonts/inter-var-latin.woff2") format("woff2"); font-weight:400 800; font-display:block; }
-  @font-face { font-family:"Bricolage Grotesque"; src:url("/public/fonts/bricolage-var-latin.woff2") format("woff2"); font-weight:600 800; font-display:block; }
+  /* Same faces and tokens the site serves (public/css/site.css), so cards and pages cannot drift apart. */
+  @font-face { font-family:"Inter"; src:url("/public/fonts/inter-var-latin.woff2") format("woff2"); font-weight:100 900; font-display:block; }
+  @font-face { font-family:"Figtree"; src:url("/public/fonts/figtree-var-latin.woff2") format("woff2"); font-weight:300 900; font-display:block; }
+  @font-face { font-family:"JetBrains Mono"; src:url("/public/fonts/jetbrains-mono-var-latin.woff2") format("woff2"); font-weight:100 800; font-display:block; }
 
   :root {
-    --bg:#040609; --surface:#0F1115; --line:rgba(255,255,255,0.075);
-    --ink-1:#F8FAFC; --ink-2:#F1F5F9; --ink-3:#94A3B8; --ink-4:#7A8899;
-    --teal:#2DD4BF; --teal-300:#5EEAD4;
-    --critical:#F87171; --medium:#FBBF24; --low:#60A5FA; --acked:#A78BFA; --resolved:#34D399;
+    --page:#ffffff; --panel:#f5f7f9; --line:#e3e8ed; --ink:#0a0d12; --muted:#56677d;
+    --teal:#2dd4bf; --stage:#e2f6f4;
+    --app:#0f1115; --app-2:#151a22; --app-row:#10141b; --app-line:rgba(255,255,255,.07); --app-text:#b9c4d0;
+    --critical:#f67171; --warning:#fbbf24; --routed:#44d4bf;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { width:1200px; height:630px; overflow:hidden; background:var(--bg);
-         font-family:"Inter",system-ui,sans-serif; }
-  .card { position:relative; width:1200px; height:630px; overflow:hidden; }
-
-  .radar { position:absolute; inset:0; width:100%; height:100%;
-           -webkit-mask-image:radial-gradient(ellipse 60% 85% at 76% 50%, #000 20%, transparent 72%);
-           mask-image:radial-gradient(ellipse 60% 85% at 76% 50%, #000 20%, transparent 72%); }
-  .glow { position:absolute; inset:0;
-          background:radial-gradient(ellipse 52% 66% at 74% 44%, rgba(45,212,191,0.11), transparent 60%); }
-  .card.plain .radar { -webkit-mask-image:radial-gradient(ellipse 58% 80% at 80% 52%, #000 16%, transparent 68%);
-                       mask-image:radial-gradient(ellipse 58% 80% at 80% 52%, #000 16%, transparent 68%); opacity:.8; }
-
-  .inner { position:relative; height:100%; padding:56px 0 56px 64px; display:grid;
-           grid-template-columns:1fr 540px; column-gap:36px; align-items:center; }
-  .card.plain .inner { grid-template-columns:1fr 300px; }
+  body { width:1200px; height:630px; overflow:hidden; background:var(--page); font-family:"Inter",system-ui,sans-serif; -webkit-font-smoothing:antialiased; }
+  .card { position:relative; width:1200px; height:630px; overflow:hidden; display:grid; grid-template-columns:1fr 560px; column-gap:44px; padding:52px 40px 52px 64px; }
+  .card.plain { grid-template-columns:1fr 440px; }
+  .card.route { grid-template-columns:1fr 520px; }
+  .card.plain .row { font-size:12.5px; gap:10px; }
   .left { display:flex; flex-direction:column; height:100%; }
-  .brand { display:flex; align-items:center; gap:11px; }
-  .brand span { font-family:"Bricolage Grotesque"; font-size:24px; font-weight:700;
-                letter-spacing:-0.015em; color:var(--ink-2); }
+  .brand img { width:152px; height:auto; display:block; }
   .block { margin:auto 0; }
-  h1 { font-family:"Bricolage Grotesque"; font-weight:800; font-size:54px; line-height:1.07;
-       letter-spacing:-0.028em; color:var(--ink-1); }
-  .card.plain h1 { font-size:62px; }
+  h1 { font-family:"Figtree"; font-weight:800; font-size:62px; line-height:.98; letter-spacing:-.045em; color:var(--ink); }
+  .card.plain h1 { font-size:66px; }
   h1 em { font-style:normal; }
-  h1 .fire { color:var(--critical); }
-  h1 .fixed { color:var(--resolved); }
-  p { margin-top:18px; font-size:19px; line-height:1.5; color:var(--ink-3); max-width:470px;
-      text-wrap:balance; }
-  .card.plain p { max-width:520px; }
+  p { margin-top:20px; font-size:21px; line-height:1.45; color:var(--muted); max-width:500px; text-wrap:balance; }
 
-  .panel { position:relative; margin-right:-44px; border-radius:14px; overflow:hidden;
-           background:rgba(15,17,21,0.78); border:1px solid var(--line);
-           box-shadow:0 24px 70px rgba(0,0,0,0.55); }
-  .phead { display:flex; align-items:center; gap:8px; padding:0 16px; height:38px;
-           background:rgba(10,12,16,0.9); border-bottom:1px solid rgba(255,255,255,0.06); }
-  .tl { width:9px; height:9px; border-radius:50%; background:#1E2229; }
-  .ptitle { margin-left:6px; font-size:12.5px; font-weight:600; color:var(--ink-4);
-            font-family:ui-monospace,Menlo,monospace; }
-
-  .row { display:grid; grid-template-columns:auto 1fr auto; gap:6px 12px; align-items:center;
-         padding:15px 18px; border-bottom:1px solid rgba(255,255,255,0.055); }
-  .row:last-child { border-bottom:0; }
-  .sev { grid-row:1; padding:3px 9px; border-radius:6px; font-size:10.5px; font-weight:700; letter-spacing:0.05em; }
-  .cnt { grid-row:1; justify-self:start; font-size:11.5px; font-weight:600; padding:3px 7px; border-radius:6px;
-         font-family:ui-monospace,Menlo,monospace; color:var(--teal-300); background:rgba(45,212,191,0.13); }
-  .ttl { grid-column:1 / -1; grid-row:2; font-size:15px; font-weight:600; color:var(--ink-2); }
-  .meta { grid-column:1 / -1; grid-row:3; display:flex; align-items:center; gap:14px;
-          font-size:12.5px; color:var(--ink-4); }
-  .src { font-family:ui-monospace,Menlo,monospace; }
-  .st { display:inline-flex; align-items:center; gap:6px; font-weight:600; }
-  .d { width:7px; height:7px; border-radius:50%; }
-
-  .price { padding:30px 32px 32px; }
-  .amount { font-family:"Bricolage Grotesque"; font-size:76px; font-weight:800; letter-spacing:-0.03em;
-            color:var(--teal); line-height:1; }
-  .amount small { font-family:"Inter"; font-size:15px; font-weight:500; color:var(--ink-4);
-                  letter-spacing:0; margin-left:10px; }
-  .checks { margin-top:24px; display:flex; flex-direction:column; gap:13px; }
-  .check { display:flex; align-items:center; gap:11px; font-size:15px; color:var(--ink-2); }
-  .check svg { flex:none; }
+  .stage { border-radius:24px; background:var(--stage); padding:28px; display:flex; flex-direction:column; justify-content:center; gap:14px; }
+  .win { border-radius:14px; background:var(--app); border:1px solid rgba(255,255,255,.06); box-shadow:0 24px 50px -28px rgba(9,40,44,.55); padding:20px 20px 22px; color:#f4f6f8; }
+  .wtitle { font:700 20px/1.2 "Inter"; margin-bottom:14px; }
+  .wtitle span { font-weight:400; color:#c9d1da; font-size:17px; margin-left:6px; }
+  .ghead { display:flex; align-items:center; height:32px; padding:0 12px; border-radius:6px; background:var(--app-2); box-shadow:inset 0 0 0 1px var(--app-line); font:600 13px/1 "Inter"; letter-spacing:.04em; margin:12px 0 6px; }
+  .rows { display:grid; gap:6px; }
+  .row { position:relative; height:34px; display:flex; align-items:center; gap:12px; padding:0 14px 0 22px; border-radius:4px; background:var(--app-row); box-shadow:inset 0 0 0 1px var(--app-line); font:400 13px/1 "JetBrains Mono"; color:var(--app-text); white-space:nowrap; }
+  .row::before { content:""; position:absolute; left:0; top:0; bottom:0; width:6px; border-radius:4px 0 0 4px; background:var(--tab, var(--routed)); }
+  .row.crit { --tab:var(--critical); }
+  .row.ack { --tab:var(--warning); }
+  .row .sep { color:#4f5b69; }
+  .row .end { margin-left:auto; color:#fff; }
+  .row .cnt { margin-left:auto; color:var(--critical); font-weight:700; }
+  .row.dim { opacity:.55; }
+  .total { display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:16px; border-top:1px solid rgba(255,255,255,.14); }
+  .total span { font:700 19px/1 "Inter"; }
+  .total b { font:800 46px/1 "Figtree"; letter-spacing:-.03em; }
+  .chips { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  .chip { height:42px; border-radius:10px; background:#fff; display:flex; align-items:center; justify-content:center; font:500 14px/1 "Inter"; color:#2a3646; }
 </style>
 
 <div class="card" id="card">
-  <svg class="radar" viewBox="0 0 1200 630" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <g fill="none" stroke="#FFFFFF">
-      <circle cx="880" cy="315" r="120" stroke-width="1" opacity="0.07"/>
-      <circle cx="880" cy="315" r="230" stroke-width="1" opacity="0.055"/>
-      <circle cx="880" cy="315" r="350" stroke-width="1" opacity="0.04"/>
-      <circle cx="880" cy="315" r="480" stroke-width="1" opacity="0.03"/>
-    </g>
-    <g stroke="#FFFFFF" opacity="0.03">
-      <line x1="880" y1="-120" x2="880" y2="750" stroke-width="1"/>
-      <line x1="240" y1="315" x2="1440" y2="315" stroke-width="1"/>
-    </g>
-    <g>
-      <circle cx="700" cy="120" r="12" fill="#F87171" opacity="0.15"/>
-      <circle cx="700" cy="120" r="4" fill="#F87171" opacity="0.6"/>
-      <circle cx="1120" cy="540" r="11" fill="#FBBF24" opacity="0.13"/>
-      <circle cx="1120" cy="540" r="4" fill="#FBBF24" opacity="0.48"/>
-      <circle cx="660" cy="560" r="3.5" fill="#2DD4BF" opacity="0.45"/>
-      <circle cx="1150" cy="120" r="3" fill="#34D399" opacity="0.4"/>
-    </g>
-  </svg>
-  <div class="glow"></div>
-  <div class="inner">
-    <div class="left">
-      <div class="brand">
-        <svg width="29" height="29" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-          <rect width="32" height="32" rx="7" fill="#0F1623"/>
-          <path d="M22 10.5C20.5 8 18 7 15.5 7.5C13 8 11 9.5 11 11.5C11 13.5 12.5 14.5 16 15.5C19.5 16.5 21 17.5 21 19.5C21 21.5 19 23.5 15.5 24C13 24.3 10.5 23 9.5 21.5"
-                stroke="#2DD4BF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="25" cy="7" r="2.5" fill="#2DD4BF"/>
-        </svg>
-        <span>sigtake</span>
-      </div>
-      <div class="block">
-        <h1 id="title"></h1>
-        <p id="sub"></p>
-      </div>
+  <div class="left">
+    <div class="brand"><img src="/assets/plates/logo.png" alt=""></div>
+    <div class="block">
+      <h1 id="title"></h1>
+      <p id="sub"></p>
     </div>
-    <div id="visual"></div>
   </div>
+  <div class="stage" id="visual"></div>
 </div>
 
 <script type="module">
@@ -126,33 +68,51 @@
   document.getElementById('title').innerHTML = card.titleHtml;
   document.getElementById('sub').textContent = card.sub;
 
-  const tick = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2DD4BF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
-
+  const row = (cls, a, b, end) => `<div class="row ${cls}"><span>${a}</span><span class="sep">|</span><span>${b}</span>${end || ''}</div>`;
   const visuals = {
     rows: () => `
-      <div class="panel">
-        <div class="phead"><i class="tl"></i><i class="tl"></i><i class="tl"></i><span class="ptitle">Alert center</span></div>
-        ${[
-          ['CRITICAL', 'rgba(239,68,68,0.13)', 'var(--critical)', '&times;47', 'CPU above 92% on prod-web-03', 'prometheus', 'Infrastructure', 'Firing', 'var(--critical)', '#EF4444'],
-          ['MEDIUM', 'rgba(245,158,11,0.13)', 'var(--medium)', '&times;12', 'Payments queue backlog: 1,240 messages', 'payments-service', 'Payments', 'Acked', 'var(--acked)', '#8B5CF6'],
-          ['LOW', 'rgba(59,130,246,0.13)', 'var(--low)', '', 'Nightly backup completed with warnings', 'datadog-agent', 'Infrastructure', 'Resolved', 'var(--resolved)', '#10B981'],
-        ].map(([sev, sevBg, sevFg, cnt, ttl, src, team, st, stFg, dot]) => `
-          <div class="row">
-            <span class="sev" style="background:${sevBg};color:${sevFg}">${sev}</span>
-            <span class="cnt" ${cnt ? '' : 'style="visibility:hidden"'}>${cnt || '&times;0'}</span>
-            <span class="ttl">${ttl}</span>
-            <span class="meta"><span class="src">${src}</span><span>${team}</span>
-              <span class="st" style="color:${stFg}"><i class="d" style="background:${dot}"></i>${st}</span></span>
-          </div>`).join('')}
-      </div>`,
+      <div class="win">
+        <div class="wtitle">Alerts</div>
+        <div class="ghead">PAYMENTS</div>
+        <div class="rows">
+          ${row('crit dim', 'API', 'Payment webhook timeout')}
+          ${row('crit dim', 'API', 'Payment webhook timeout')}
+          ${row('crit', 'API', 'Payment webhook timeout', '<span class="cnt">×25</span>')}
+        </div>
+        <div class="ghead">PLATFORM</div>
+        <div class="rows">
+          ${row('', 'UPTIME', 'Database latency')}
+          ${row('ack', 'SSL', 'Certificate expiring')}
+        </div>
+      </div>
+      <div class="chips"><div class="chip">Slack</div><div class="chip">Email</div><div class="chip">Teams</div></div>`,
     stat: () => `
-      <div class="panel"><div class="price">
-        <div class="amount">${card.stat}<small>${card.statNote}</small></div>
-        <div class="checks">${card.checks.map(c => `<div class="check">${tick}<span>${c}</span></div>`).join('')}</div>
-      </div></div>`,
-    plain: () => '',
+      <div class="win">
+        <div class="wtitle">Your bill <span>· Early access</span></div>
+        <div class="rows">${card.checks.map(c => `<div class="row"><span>${c}</span><span class="end">$0.00</span></div>`).join('')}</div>
+        <div class="total"><span>Total per month</span><b>${card.stat}</b></div>
+      </div>`,
+    route: () => `
+      <div class="win">
+        <div class="wtitle">Routing</div>
+        <div class="rows">
+          <div class="row crit"><span>team_code</span><span class="sep">|</span><span>PAYMENTS</span><span class="end">→ Slack #alerts-prod</span></div>
+          <div class="row"><span>team_code</span><span class="sep">|</span><span>PLATFORM</span><span class="end">→ Microsoft Teams</span></div>
+          <div class="row ack"><span>team_code</span><span class="sep">|</span><span>WEB</span><span class="end">→ Email</span></div>
+        </div>
+      </div>`,
+    plain: () => `
+      <div class="win">
+        <div class="rows">
+          ${row('crit dim', 'API', 'Payment webhook timeout')}
+          ${row('crit', 'API', 'Payment webhook timeout', '<span class="cnt">×25</span>')}
+          ${row('', 'UPTIME', 'checkout down')}
+          ${row('ack', 'SSL', 'Expires in 7 days')}
+        </div>
+      </div>`,
   };
   document.getElementById('visual').innerHTML = visuals[card.layout]();
   await document.fonts.ready;
+  await Promise.all([...document.images].map(i => i.decode().catch(() => {})));
   document.documentElement.dataset.ready = '1';
 </script>

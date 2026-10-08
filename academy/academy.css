@@ -32,14 +32,6 @@
   --measure: 68ch;
 }
 
-/* Dark product surfaces keep the app's own tokens: figures were drawn for them. */
-.ac-figure,
-.ac-prose pre {
-  --ink-1: #f4f6f8;
-  --ink-3: #9aa6b4;
-  --ink-4: #7d8a99;
-}
-
 .ac-wrap {
   max-width: 1180px;
   margin: 0 auto;
@@ -311,6 +303,7 @@ main.ac-wrap { width: 100%; }
   border: 1px solid rgba(255, 255, 255, .06);
   border-radius: var(--r-card);
   background: var(--app);
+  color: var(--app-text);
   box-shadow: 0 2px 6px rgba(9, 30, 36, .08), 0 24px 48px -30px rgba(9, 40, 44, .45);
 }
 

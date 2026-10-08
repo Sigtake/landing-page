@@ -8,15 +8,15 @@
   "pricing": {
     "out": "og/pricing.png",
     "layout": "stat",
-    "titleHtml": "Free while we're<br>in early access",
+    "titleHtml": "Free while we’re<br>in early access",
     "sub": "Unlimited users, teams, alerts and monitors. Every notification channel.",
     "stat": "$0",
-    "statNote": "/ month, per organization",
+    "statNote": "per month, per organization",
     "checks": [
-      "Unlimited users and teams",
-      "Unlimited alerts and monitors",
+      "Users, teams and projects",
+      "Alert ingestion",
       "Every notification channel",
-      "No credit card"
+      "Website and signal monitoring"
     ]
   },
   "help": {
@@ -63,7 +63,7 @@
   },
   "academy-alert-routing-by-team": {
     "out": "og/academy-alert-routing-by-team.png",
-    "layout": "plain",
+    "layout": "route",
     "titleHtml": "Route every alert<br>to the team that owns it",
     "sub": "How teams, projects and channels decide who hears about what."
   },

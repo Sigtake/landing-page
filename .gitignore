@@ -14,3 +14,9 @@
 
 # Design-lint config (local tooling, not part of the site)
 .impeccable/
+
+# Local AI tooling installs (Claude Code and GitHub Copilot copies of the design skill, local settings, agent memory)
+.claude/
+.github/agents/
+.github/hooks/
+.github/skills/

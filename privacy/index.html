@@ -33,6 +33,21 @@
   <link rel="preload" href="/public/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/public/fonts/figtree-var-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/public/css/site.css">
+  <!-- Consent default -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500 });
+    try {
+      var sgConsent = document.cookie.match(/(?:^|; )sg_consent=([^;]*)/);
+      if (sgConsent && JSON.parse(decodeURIComponent(sgConsent[1])).a === 1) {
+        gtag('consent', 'update', { analytics_storage: 'granted', ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
+      }
+    } catch (e) {}
+  </script>
+  <script src="/assets/consent.js" defer></script>
+  <script src="/assets/attribution.js" defer></script>
+  <!-- End Consent default -->
   <!-- Google Tag Manager -->
   <script>(function (w, d, s, l, i) {
       w[l] = w[l] || []; w[l].push({
@@ -65,11 +80,11 @@
         <a href="/pricing/">Pricing</a>
         <a href="/academy/">Academy</a>
         <a href="https://docs.sigtake.com">Docs</a>
-        <a class="st-menu-only" href="https://app.sigtake.com/login">Log in</a>
+        <a data-sg-cta="menu-login" class="st-menu-only" href="https://app.sigtake.com/login">Log in</a>
       </nav>
       <div class="st-nav-cta">
-        <a class="st-login" href="https://app.sigtake.com/login">Log in</a>
-        <a class="st-pill" href="https://app.sigtake.com/register">Start free</a>
+        <a data-sg-cta="nav-login" class="st-login" href="https://app.sigtake.com/login">Log in</a>
+        <a data-sg-cta="nav-start" class="st-pill" href="https://app.sigtake.com/register">Start free</a>
         <button type="button" class="st-navtoggle" aria-expanded="false" aria-controls="st-nav-links" aria-label="Menu">
           <svg class="st-icon" viewBox="0 0 24 24"><path class="st-ico-menu" d="M4 7h16M4 12h16M4 17h16" /><path class="st-ico-close" d="M6 6l12 12M18 6L6 18" /></svg>
         </button>
@@ -80,12 +95,12 @@
   <!-- Draft — pending legal review before removing noindex -->
   <main id="main" class="st-legal">
     <h1>Privacy Policy</h1>
-    <p class="st-meta">Effective date: July 18, 2026</p>
+    <p class="st-meta">Effective date: October 16, 2026</p>
 
     <h2>1. Introduction</h2>
     <p>This Privacy Policy explains how Sigtake, Inc. ("Sigtake", "we", "us") collects, uses and protects personal data
-      when you use the Sigtake platform, website and APIs (the "Service"). It applies to account holders, members of
-      customer organizations, and recipients of notifications configured by our customers.</p>
+      when you use the Sigtake platform, website and APIs (the "Service"). It applies to visitors of sigtake.com, account
+      holders, members of customer organizations, and recipients of notifications configured by our customers.</p>
 
     <h2>2. Information we collect</h2>
     <ul>
@@ -95,9 +110,17 @@
         recipients (which may include contact details of people outside your organization, entered by your
         organization).</li>
       <li><strong>Alert and monitoring data</strong> — alerts, signal readings, monitor configurations and results,
-        comments, and acknowledgement/resolution activity submitted to the Service by your systems or teammates.</li>
+        heartbeat pings, comments, and acknowledgement/resolution activity submitted to the Service by your systems or
+        teammates.</li>
       <li><strong>Usage and log data</strong> — IP address, browser/device information, timestamps of requests, and an
         audit trail of sensitive actions within your organization.</li>
+      <li><strong>Marketing attribution</strong> — how you found Sigtake: the campaign parameters in the link you
+        followed (for example <code>utm_source</code>), the first page you visited on sigtake.com and the button you
+        clicked to sign up. If you accept analytics cookies we also record the referring website (domain only),
+        advertising click identifiers (such as Google's <code>gclid</code>) and an analytics identifier. Campaign
+        parameters and the landing page are recorded even without consent, because they describe our own links, not
+        you. We store this once, when your organization is created, and never use it to make decisions about your
+        account.</li>
     </ul>
 
     <h2>3. How we use information</h2>
@@ -107,31 +130,62 @@
       <li>To secure the Service: authentication, two-factor verification, rate limiting, audit logging and abuse
         prevention.</li>
       <li>To operate and improve the Service: diagnostics, troubleshooting and aggregate usage analysis.</li>
+      <li>To understand our marketing: measure which content, campaigns and channels bring organizations that sign up
+        and start using the Service. We report this in aggregate.</li>
+      <li>To measure our advertising (only with your consent): tell Google Ads that a visit from one of our ads led to a
+        sign-up, so we can measure and improve our ads.</li>
       <li>To communicate with you about the Service, including security or service notices.</li>
     </ul>
-    <p>We do <strong>not</strong> sell personal data, and we do not use Customer Data for advertising.</p>
+    <p>We do <strong>not</strong> sell personal data, and we do not use Customer Data (your alerts, monitors, readings or
+      notification content) for advertising or analytics. Events we send to analytics carry random identifiers only —
+      never your name, email address, organization name or the content of your alerts.</p>
 
-    <h2>4. Notification delivery and service providers</h2>
-    <p>To deliver notifications and operate the Service we share the minimum necessary data with service providers
-      acting on our behalf, such as:</p>
+    <h2>4. Service providers and international transfers</h2>
+    <p>To operate the Service we share the minimum necessary data with service providers acting on our behalf, in
+      these categories:</p>
     <ul>
-      <li><strong>Amazon Web Services (SES)</strong> — email delivery and cloud infrastructure;</li>
-      <li><strong>Twilio</strong> — SMS delivery (recipient phone numbers and message content);</li>
-      <li><strong>Microsoft</strong> — delivery of notifications to Microsoft Teams via webhooks configured by your
-        organization.</li>
+      <li><strong>Hosting and infrastructure</strong> — servers, databases, networking and website hosting;</li>
+      <li><strong>Email delivery</strong> — transactional email and alert notifications (recipient addresses and message
+        content);</li>
+      <li><strong>SMS delivery</strong> — text notifications (recipient phone numbers and message content);</li>
+      <li><strong>Analytics and advertising</strong> — only with your consent, see section 5.</li>
     </ul>
-    <p>These providers process data under their own security and privacy commitments. We may also disclose information
-      if required by law or to protect the rights, safety or security of Sigtake, our users or the public.</p>
+    <p>When your organization connects a chat tool or webhook to the Service, we send the notifications it configures
+      to that destination; how that service handles the data is governed by your organization's agreement with it.</p>
+    <p>These providers may only use the data to provide their service to us. We may also disclose information if
+      required by law or to protect the rights, safety or security of Sigtake, our users or the public.</p>
+    <p>Sigtake and its service providers store and process data in the United States. If you access the Service from
+      outside the United States, your data is transferred there; where the law requires it, we rely on appropriate
+      safeguards for that transfer.</p>
 
     <h2>5. Cookies and sessions</h2>
-    <p>We use strictly necessary cookies and similar storage to keep you signed in and to secure your session. We do not
-      use third-party advertising or tracking cookies on the Service.</p>
+    <p>We use two kinds of cookies on sigtake.com and app.sigtake.com:</p>
+    <ul>
+      <li><strong>Strictly necessary</strong> — always on. They keep you signed in and secure your session (an
+        HttpOnly refresh-token cookie, 7 days), and remember your cookie choice (<code>sg_consent</code>, 1 year).</li>
+      <li><strong>Analytics and advertising</strong> — off unless you accept them. Google Analytics and Google Ads,
+        loaded through Google Tag Manager, set <code>_ga</code>, <code>_ga_*</code>, <code>_gid</code> and
+        <code>_gcl_*</code> to measure how people find Sigtake and how our ads perform. Our own <code>sg_ft</code> and
+        <code>sg_lt</code> (90 days) record the first and latest campaign link that brought you, and
+        <code>sg_cid</code> (400 days) is a random identifier that ties those visits together. These are set on
+        <code>.sigtake.com</code>.</li>
+    </ul>
+    <p>Until you accept, Google tags run in consent mode without setting cookies, and we keep only the link of your
+      current visit in session storage, which is cleared when you close the tab. If you sign up, that link is attached to
+      your registration for aggregate statistics. Analytics and advertising cookies are never used on Customer Data.</p>
+    <p>You can change your choice at any time with <strong>Cookie settings</strong>: in the footer of every page on
+      sigtake.com, at the bottom of the sign-in and sign-up pages, or in your user menu once signed in. Rejecting deletes the analytics and advertising cookies already
+      set.</p>
 
     <h2>6. Data retention</h2>
-    <p>Alert history is retained according to your plan's retention window. Account and organization data is retained
-      while your account is active. When an account or organization is deleted, associated personal data is deleted or
-      anonymized within a reasonable period, except where retention is required by law (for example, security audit
-      records).</p>
+    <ul>
+      <li>Alert history is retained according to your plan's retention window.</li>
+      <li>Account and organization data, including marketing attribution, is retained while your account is active.</li>
+      <li>Google Analytics data is retained for 14 months.</li>
+      <li>Cookies expire as listed in section 5.</li>
+      <li>When an account or organization is deleted, associated personal data is deleted or anonymized within a
+        reasonable period, except where retention is required by law (for example, security audit records).</li>
+    </ul>
 
     <h2>7. Security</h2>
     <p>We apply technical and organizational measures appropriate to the risk: encrypted transport (HTTPS), hashed
@@ -140,10 +194,13 @@
         href="mailto:help@sigtake.com">help@sigtake.com</a>.</p>
 
     <h2>8. Your rights</h2>
-    <p>Depending on your jurisdiction, you may have rights to access, correct, export, restrict or delete your personal
-      data. You can exercise most of these directly in the dashboard (profile and organization settings) or by
-      contacting us at <a href="mailto:help@sigtake.com">help@sigtake.com</a>. If you receive notifications configured
-      by a Sigtake customer, that organization controls the recipient list — contact them, or us, to be removed.</p>
+    <p>Depending on where you live (for example under the GDPR or US state privacy laws), you may have rights to access,
+      correct, export, restrict or delete your personal data, to withdraw consent, and to object to its use for
+      marketing. You can exercise most of these directly in the dashboard (profile and organization settings), withdraw
+      cookie consent from <strong>Cookie settings</strong>, or contact us at
+      <a href="mailto:privacy@sigtake.com">privacy@sigtake.com</a>. If you receive notifications configured by a Sigtake
+      customer, that organization controls the recipient list — contact them, or us, to be removed.</p>
+    <p>You also have the right to complain to the data protection authority where you live.</p>
 
     <h2>9. Children</h2>
     <p>The Service is intended for business use and is not directed to children under 16. We do not knowingly collect
@@ -154,7 +211,7 @@
       email or an in-app notice) before it takes effect. The effective date above indicates the latest revision.</p>
 
     <h2>11. Contact</h2>
-    <p>Privacy questions or requests: <a href="mailto:help@sigtake.com">help@sigtake.com</a>.</p>
+    <p>Privacy questions or requests: <a href="mailto:privacy@sigtake.com">privacy@sigtake.com</a>.</p>
   </main>
   <footer class="st-foot">
     <div class="st-foot-grid">
@@ -184,6 +241,7 @@
         <ul>
           <li><a href="/privacy/">Privacy</a></li>
           <li><a href="/terms/">Terms</a></li>
+          <li><a href="#cookie-settings" data-sg-consent-open>Cookie settings</a></li>
         </ul>
       </nav>
     </div>

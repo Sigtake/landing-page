@@ -77,6 +77,21 @@
     ]
   }
   </script>
+  <!-- Consent default -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500 });
+    try {
+      var sgConsent = document.cookie.match(/(?:^|; )sg_consent=([^;]*)/);
+      if (sgConsent && JSON.parse(decodeURIComponent(sgConsent[1])).a === 1) {
+        gtag('consent', 'update', { analytics_storage: 'granted', ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
+      }
+    } catch (e) {}
+  </script>
+  <script src="/assets/consent.js" defer></script>
+  <script src="/assets/attribution.js" defer></script>
+  <!-- End Consent default -->
   <!-- Google Tag Manager -->
   <script>(function (w, d, s, l, i) {
       w[l] = w[l] || []; w[l].push({
@@ -109,11 +124,11 @@
         <a href="/pricing/">Pricing</a>
         <a href="/academy/" aria-current="page">Academy</a>
         <a href="https://docs.sigtake.com">Docs</a>
-        <a class="st-menu-only" href="https://app.sigtake.com/login">Log in</a>
+        <a data-sg-cta="menu-login" class="st-menu-only" href="https://app.sigtake.com/login">Log in</a>
       </nav>
       <div class="st-nav-cta">
-        <a class="st-login" href="https://app.sigtake.com/login">Log in</a>
-        <a class="st-pill" href="https://app.sigtake.com/register">Start free</a>
+        <a data-sg-cta="nav-login" class="st-login" href="https://app.sigtake.com/login">Log in</a>
+        <a data-sg-cta="nav-start" class="st-pill" href="https://app.sigtake.com/register">Start free</a>
         <button type="button" class="st-navtoggle" aria-expanded="false" aria-controls="st-nav-links" aria-label="Menu">
           <svg class="st-icon" viewBox="0 0 24 24"><path class="st-ico-menu" d="M4 7h16M4 12h16M4 17h16" /><path class="st-ico-close" d="M6 6l12 12M18 6L6 18" /></svg>
         </button>
@@ -327,7 +342,7 @@
         <h2 id="cta">Catch the outage a 200 hides</h2>
         <p>Free during early access. Unlimited users, teams, alerts and monitors — no credit card.</p>
         <div class="ac-cta-actions">
-          <a href="https://app.sigtake.com/register" class="ac-btn">Start free</a>
+          <a data-sg-cta="footer" href="https://app.sigtake.com/register" class="ac-btn">Start free</a>
           <a href="https://docs.sigtake.com">Read the docs</a>
         </div>
       </section>
@@ -363,6 +378,7 @@
         <ul>
           <li><a href="/privacy/">Privacy</a></li>
           <li><a href="/terms/">Terms</a></li>
+          <li><a href="#cookie-settings" data-sg-consent-open>Cookie settings</a></li>
         </ul>
       </nav>
     </div>

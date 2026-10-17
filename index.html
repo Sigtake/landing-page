@@ -866,6 +866,21 @@
       .st-flow-in, .st-flow-out { grid-template-columns: 1fr; }
     }
   </style>
+  <!-- Consent default -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500 });
+    try {
+      var sgConsent = document.cookie.match(/(?:^|; )sg_consent=([^;]*)/);
+      if (sgConsent && JSON.parse(decodeURIComponent(sgConsent[1])).a === 1) {
+        gtag('consent', 'update', { analytics_storage: 'granted', ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
+      }
+    } catch (e) {}
+  </script>
+  <script src="/assets/consent.js" defer></script>
+  <script src="/assets/attribution.js" defer></script>
+  <!-- End Consent default -->
   <!-- Google Tag Manager -->
   <script>(function (w, d, s, l, i) {
       w[l] = w[l] || []; w[l].push({
@@ -899,11 +914,11 @@
         <a href="/pricing/">Pricing</a>
         <a href="/academy/">Academy</a>
         <a href="https://docs.sigtake.com">Docs</a>
-        <a class="st-menu-only" href="https://app.sigtake.com/login">Log in</a>
+        <a data-sg-cta="menu-login" class="st-menu-only" href="https://app.sigtake.com/login">Log in</a>
       </nav>
       <div class="st-nav-cta">
-        <a class="st-login" href="https://app.sigtake.com/login">Log in</a>
-        <a class="st-pill" href="https://app.sigtake.com/register">Start free</a>
+        <a data-sg-cta="nav-login" class="st-login" href="https://app.sigtake.com/login">Log in</a>
+        <a data-sg-cta="nav-start" class="st-pill" href="https://app.sigtake.com/register">Start free</a>
         <button type="button" class="st-navtoggle" aria-expanded="false" aria-controls="st-nav-links" aria-label="Menu">
           <svg class="st-icon" viewBox="0 0 24 24"><path class="st-ico-menu" d="M4 7h16M4 12h16M4 17h16" /><path class="st-ico-close" d="M6 6l12 12M18 6L6 18" /></svg>
         </button>
@@ -917,7 +932,7 @@
         <h1 id="hero-title">Own every alert, from firing to fixed.</h1>
         <p class="st-hero-sub">Sigtake ingests alerts from all your systems, collapses duplicates into one row, and routes what matters to the right team — by email, Slack, Microsoft Teams or <span class="st-nowrap">in-app</span>.</p>
         <div class="st-hero-actions">
-          <a class="st-pill" href="https://app.sigtake.com/register">Start free</a>
+          <a data-sg-cta="hero" class="st-pill" href="https://app.sigtake.com/register">Start free</a>
           <a class="st-link-arrow" href="https://docs.sigtake.com">Read the docs <svg class="st-icon"><use href="/public/img/icons.svg#i-arrow" /></svg></a>
         </div>
         <p class="st-hero-note">Free during early access<span aria-hidden="true">·</span>No credit card</p>
@@ -1133,7 +1148,7 @@
           <li><strong>Send your first alert</strong>One request with the team’s code. It shows up live and reaches the team’s channels.</li>
         </ol>
         <div class="st-band-actions">
-          <a class="st-pill st-pill-dark" href="https://app.sigtake.com/register">Get your API key</a>
+          <a data-sg-cta="how" class="st-pill st-pill-dark" href="https://app.sigtake.com/register">Get your API key</a>
           <span>No credit card</span>
         </div>
       </div>
@@ -1210,7 +1225,7 @@
           <p class="st-price"><b>$0</b><span>per month, per organization</span></p>
           <p class="st-price-sub">The whole product, for as long as early access lasts.</p>
           <div class="st-price-actions">
-            <a class="st-pill" href="https://app.sigtake.com/register">Start free</a>
+            <a data-sg-cta="pricing-card" class="st-pill" href="https://app.sigtake.com/register">Start free</a>
             <a class="st-link-arrow" href="/pricing/">See what’s included <svg class="st-icon"><use href="/public/img/icons.svg#i-arrow" /></svg></a>
           </div>
         </div>
@@ -1258,7 +1273,7 @@
         <h2 class="st-h2 st-close-h" id="close-title">Make the alert channel worth reading again</h2>
         <p class="st-lede">One API key, one POST.</p>
         <div class="st-hero-actions st-close-actions">
-          <a class="st-pill" href="https://app.sigtake.com/register">Start free</a>
+          <a data-sg-cta="close" class="st-pill" href="https://app.sigtake.com/register">Start free</a>
           <a class="st-link-arrow" href="https://docs.sigtake.com">Read the docs <svg class="st-icon"><use href="/public/img/icons.svg#i-arrow" /></svg></a>
         </div>
       </div>
@@ -1293,6 +1308,7 @@
         <ul>
           <li><a href="/privacy/">Privacy</a></li>
           <li><a href="/terms/">Terms</a></li>
+          <li><a href="#cookie-settings" data-sg-consent-open>Cookie settings</a></li>
         </ul>
       </nav>
     </div>

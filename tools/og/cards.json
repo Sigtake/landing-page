@@ -9,7 +9,7 @@
     "out": "og/pricing.png",
     "layout": "stat",
     "titleHtml": "Free while we’re<br>in early access",
-    "sub": "Unlimited users, teams, alerts and monitors. Every notification channel.",
+    "sub": "Unlimited users, teams and alerts. Every notification channel.",
     "stat": "$0",
     "statNote": "per month, per organization",
     "checks": [
@@ -84,5 +84,11 @@
     "layout": "plain",
     "titleHtml": "Monitor an API health<br>endpoint, not just a 200",
     "sub": "Encrypted tokens on every check, and assertions on the JSON."
+  },
+  "academy-cron-job-monitoring-silent-failures": {
+    "out": "og/academy-cron-job-monitoring-silent-failures.png",
+    "layout": "plain",
+    "titleHtml": "Cron jobs that<br>fail silently",
+    "sub": "Why a job that never runs leaves no trace, and how to catch it."
   }
 }

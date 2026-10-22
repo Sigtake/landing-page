@@ -16,13 +16,14 @@ Sigtake ingests alerts from every system, collapses duplicates into one row, and
 
 ## Positioning
 
-Alerts and monitoring in one pipeline. Ingested alerts, website/uptime and SSL-expiry checks, and signal rules (threshold, anomaly detection that learns normal by hour and weekday, heartbeat) all feed the same deduplication, routing and notification path. A team does not stitch an uptime tool onto an alert router.
+Alerts and monitoring in one pipeline. Ingested alerts, website/uptime and SSL-expiry checks, signal rules (threshold, anomaly detection that learns normal by hour and weekday, missing signal) and Heartbeats (cron jobs, workers and on-demand jobs that ping a private URL) all feed the same deduplication, routing and notification path. A team does not stitch an uptime tool onto an alert router.
 
 ## Operating Context
 
 - Integration: official Node (`@sigtake/sdk`) and Python (`sigtake`) SDKs exposing `alerts.ingest({title, severity, source, team_code, payload})` and `signals.send(source, {metric: value})`; the API key resolves tenant and project.
 - Routing: the API key decides the project, `team_code` decides the team, that team's channels in the project decide where it lands.
 - Deduplication: fingerprint `source|title|severity` per project; notifications at occurrences 1, 10, 25, 50, 100, then every 100.
+- Heartbeats: `https://api.sigtake.com/ping/<token>` with `/start`, `/fail` and `/<exit code>`; schedule by interval, cron expression + timezone, or on demand (`?rid=` per run); alert `Heartbeat down: <name>`, high severity. "Heartbeat" names only this product; the signal rule is "missing signal".
 - Slack: one workspace per organization, one channel per project; repeats reply in the first card's thread and update it in place.
 - App at `app.sigtake.com`, docs at `docs.sigtake.com`, Academy guides on this site.
 
@@ -30,7 +31,8 @@ Alerts and monitoring in one pipeline. Ingested alerts, website/uptime and SSL-e
 
 - Live channels: email, Slack, Microsoft Teams, in-app (always on). Discord and Google Chat are in progress, not live.
 - No on-call schedules, escalations, or phone/SMS paging. Pages must not imply them.
-- Pricing: free during early access — unlimited users, teams, alerts and monitors, no credit card; paid plans later, not yet defined.
+- Pricing: free during early access — unlimited users, teams and alerts, plus website, signal and heartbeat monitoring, no credit card; paid plans later, not yet defined. Heartbeats are capped at 100 per organization by default (configurable): never write "unlimited monitors" or "unlimited heartbeats".
+- Heartbeats do not capture job output and are not an on-call system.
 - Site is plain HTML on GitHub Pages: no build step, no shared layout, every page owns its `<head>`, and every page carries Google Tag Manager `GTM-N5834SWZ` (see CLAUDE.md).
 - Self-hosted fonts in `public/fonts/`; OG cards rendered by `tools/og/`.
 

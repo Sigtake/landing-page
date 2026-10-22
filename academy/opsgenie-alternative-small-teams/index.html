@@ -27,7 +27,7 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Replacing Opsgenie on a Small Team (Without an On-Call Rotation)">
   <meta property="article:published_time" content="2026-10-02">
-  <meta property="article:modified_time" content="2026-10-02">
+  <meta property="article:modified_time" content="2026-10-22">
   <meta property="article:author" content="https://www.linkedin.com/in/darwing-sanchez/">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Replacing Opsgenie on a Small Team (Without an On-Call Rotation)">
@@ -55,7 +55,7 @@
         "description": "Opsgenie shuts down on April 5, 2027. If your small team used it to route alerts to Slack or email without rotations, here's how to migrate, and when not to.",
         "image": "https://sigtake.com/og/academy-opsgenie-alternative-small-teams.png",
         "datePublished": "2026-10-02",
-        "dateModified": "2026-10-02",
+        "dateModified": "2026-10-22",
         "inLanguage": "en",
         "mainEntityOfPage": "https://sigtake.com/academy/opsgenie-alternative-small-teams/",
         "about": { "@type": "SoftwareApplication", "name": "Opsgenie" },
@@ -113,6 +113,7 @@
       <nav class="st-nav-links" id="st-nav-links" aria-label="Primary">
         <a href="/#features">Features</a>
         <a href="/#monitoring">Monitoring</a>
+        <a href="/#heartbeats">Heartbeats</a>
         <a href="/#how">How it works</a>
         <a href="/pricing/">Pricing</a>
         <a href="/academy/" aria-current="page">Academy</a>
@@ -145,7 +146,7 @@
 
       <p class="ac-byline">
         <span>By <a href="https://www.linkedin.com/in/darwing-sanchez/" rel="author">Darwing Sánchez</a></span>
-        <span>Updated <time datetime="2026-10-02">Oct 2, 2026</time> · 8 min read</span>
+        <span>Updated <time datetime="2026-10-22">Oct 22, 2026</time> · 8 min read</span>
       </p>
       </header>
 
@@ -216,7 +217,7 @@
         <p>If you're in the first list, most of what Opsgenie did for you is ingestion, deduplication and routing. Those are much easier to replace than the second list.</p>
 
         <h2 id="fit">Where Sigtake fits, and where it doesn't</h2>
-        <p>Sigtake takes alerts from your code and tools, collapses repeats into one incident, and routes each one to the team that owns it, by email, Slack, Microsoft Teams and in-app notifications. It also has uptime checks and signal monitors, including heartbeats.</p>
+        <p>Sigtake takes alerts from your code and tools, collapses repeats into one incident, and routes each one to the team that owns it, by email, Slack, Microsoft Teams and in-app notifications. It also has uptime checks, signal monitors and heartbeats for scheduled jobs.</p>
 
         <div class="ac-callout ac-callout--warn">
           <strong class="ac-callout-title">When Sigtake isn't the right replacement</strong>
@@ -245,7 +246,7 @@
               <tr><td><code>description</code>, <code>details</code>, <code>tags</code></td><td><code>payload</code></td><td>Free-form JSON, 8 KB max.</td></tr>
               <tr><td><code>responders</code> (team)</td><td><code>team_code</code></td><td>The team must be assigned to the key's project.</td></tr>
               <tr><td><code>alias</code></td><td>No equivalent</td><td>Repeats are matched on <code>source + title + severity</code>. See below.</td></tr>
-              <tr><td>Heartbeats</td><td>Signal monitor + "Missing signal" rule</td><td>Alerts when readings stop arriving.</td></tr>
+              <tr><td>Heartbeats</td><td>Heartbeats</td><td>Same idea: a ping URL per job, a schedule and a grace window. A missed ping is an alert.</td></tr>
               <tr><td>Teams, routing, notification rules</td><td>Teams + channels</td><td>A team's channels decide where its alerts land.</td></tr>
               <tr><td>Schedules, escalations, phone/SMS</td><td>No equivalent</td><td>See the warning above.</td></tr>
             </tbody>
@@ -322,10 +323,10 @@ sigtake.alerts
           </li>
           <li id="step-6">
             <h3>Move your heartbeats</h3>
-            <p>An Opsgenie heartbeat becomes a signal monitor with a <strong>Missing signal</strong> rule ("alert if no readings arrive in X minutes"). Create the monitor under <strong>Signals</strong>, have your job send a reading when it finishes, and add the rule.</p>
+            <p>Each Opsgenie heartbeat becomes a Sigtake heartbeat. Open <strong>Heartbeats</strong>, use <strong>New heartbeat</strong>, set the same interval (or the job's cron expression and timezone), a grace window and the team, then replace the job's Opsgenie ping with the line the panel shows. The panel's recommended line also reports the job's exit code, so a failed run alerts at once instead of at the deadline. <a href="/academy/cron-job-monitoring-silent-failures/">How heartbeats work, and how to pick the grace</a>.</p>
             <div class="ac-callout">
-              <strong class="ac-callout-title">Send a reading before adding the rule</strong>
-              <p>A monitor that has never received a reading counts as missing straight away. Send one first so the rule doesn't fire the moment you save it.</p>
+              <strong class="ac-callout-title">Run the line once before you rely on it</strong>
+              <p>A new heartbeat waits for its first ping, and alerts if that ping never arrives within one schedule plus the grace. Run the job's new line once and check the heartbeat turns Up.</p>
             </div>
           </li>
         </ol>
@@ -352,7 +353,7 @@ sigtake.alerts
 
       <section class="ac-cta" aria-labelledby="cta">
         <h2 id="cta">Move off Opsgenie before the deadline does it for you</h2>
-        <p>Free during early access. Unlimited users, teams, alerts and monitors — no credit card.</p>
+        <p>Free during early access. Unlimited users, teams and alerts, plus website, signal and heartbeat monitoring — no credit card.</p>
         <div class="ac-cta-actions">
           <a data-sg-cta="footer" href="https://app.sigtake.com/register" class="ac-btn">Start free</a>
           <a href="https://docs.sigtake.com">Read the docs</a>
@@ -373,6 +374,7 @@ sigtake.alerts
         <ul>
           <li><a href="/#features">Features</a></li>
           <li><a href="/#monitoring">Monitoring</a></li>
+          <li><a href="/#heartbeats">Heartbeats</a></li>
           <li><a href="/pricing/">Pricing</a></li>
         </ul>
       </nav>

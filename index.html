@@ -76,7 +76,14 @@
         "url": "https://sigtake.com/",
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "Web",
-        "description": "Sigtake ingests alerts from all your systems, deduplicates them, and routes what matters to the right team — email, Slack, Microsoft Teams or in-app. Uptime and signal monitoring included.",
+        "description": "Sigtake ingests alerts from all your systems, deduplicates them, and routes what matters to the right team — email, Slack, Microsoft Teams or in-app. Uptime, signal and heartbeat monitoring included.",
+        "featureList": [
+          "Alert deduplication and routing by team",
+          "Email, Slack, Microsoft Teams and in-app notifications",
+          "Website uptime and SSL expiry monitoring",
+          "Signal monitoring with threshold and anomaly rules",
+          "Heartbeat monitoring for cron jobs, workers and on-demand jobs"
+        ],
         "publisher": { "@id": "https://sigtake.com/#organization" },
         "offers": {
           "@type": "Offer",
@@ -135,6 +142,7 @@
       --warning: #fbbf24;
       --routed: #44d4bf;
       --resolved: #42d399;
+      --high: #f97316;
 
       --display: "Figtree", "Inter", system-ui, sans-serif;
       --ui: "Inter", system-ui, sans-serif;
@@ -594,11 +602,13 @@
     .st-fan i { height: 0; border-top-width: 1.5px; }
     .st-fan::before, .st-fan-l::before, .st-fan-r::before { width: 0; border-left-width: 1.5px; }
     .st-fan::after { height: 0; border-top-width: 1.5px; top: 113px; }
+    .st-fan-in { height: 288px; }
     .st-fan-in i { left: 0; width: 50%; }
     .st-fan-in i:nth-child(1) { top: 23px; } .st-fan-in i:nth-child(2) { top: 83px; }
     .st-fan-in i:nth-child(3) { top: 143px; } .st-fan-in i:nth-child(4) { top: 203px; }
-    .st-fan-in::before { left: 50%; top: 23px; height: 181px; }
-    .st-fan-in::after { left: 50%; right: 0; }
+    .st-fan-in i:nth-child(5) { top: 263px; }
+    .st-fan-in::before { left: 50%; top: 23px; height: 241px; }
+    .st-fan-in::after { left: 50%; right: 0; top: 143px; }
     .st-fan-out3 i { left: 50%; right: 0; }
     .st-fan-out3 i:nth-child(1) { top: 53px; } .st-fan-out3 i:nth-child(2) { top: 113px; } .st-fan-out3 i:nth-child(3) { top: 173px; }
     .st-fan-out3::before { left: 50%; top: 53px; height: 121px; }
@@ -629,6 +639,43 @@
     .st-mon-item figcaption { margin-top: 22px; font-size: 15.5px; line-height: 1.6; color: var(--muted); max-width: 60ch; }
     .st-mon-item figcaption strong { display: block; margin-bottom: 4px; font: 700 20px/1.2 var(--display); letter-spacing: -.01em; color: var(--ink); }
     .st-mon-item code { font-size: .9em; padding: 1px 5px; border-radius: 5px; background: #e6ebf0; color: var(--ink-2); }
+
+    /* Heartbeats */
+    .st-hb { padding-bottom: 72px; }
+    .st-hb .st-feature { align-items: start; }
+    .st-hb .st-feature-copy .st-checks { margin-top: 32px; }
+    .st-hb-more { margin-top: 28px; }
+    .st-hb-more .st-link-arrow { display: inline; }
+    .st-hb-more .st-link-arrow .st-icon { display: inline-block; vertical-align: -0.125em; margin-left: 6px; }
+    .st-hb-code .nw { white-space: nowrap; }
+    .st-hb-stage { align-content: start; }
+    .st-hb-code .st-code-install { color: #8a96a4; font-weight: 400; }
+    .st-hb-code .st-code-install::before { content: "# "; }
+    .st-hb-code .st-code-panel pre { white-space: pre-wrap; overflow-wrap: anywhere; font-variant-ligatures: none; font-feature-settings: "calt" 0, "liga" 0; }
+    #hp-cron pre { padding-left: 2ch; text-indent: -2ch; }
+    .st-hb-code .st-code-panel .st-code-result { margin: 14px 0 20px; }
+    .st-hb-code .st-201 { white-space: nowrap; }
+    .st-hb-wire { position: relative; height: 64px; margin-left: 44px; }
+    .st-hb-wire::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; border-left: 1.5px dashed #8fd3c9; }
+    .st-hb-wire span {
+      position: absolute; left: 18px; top: 50%; transform: translateY(-50%);
+      padding: 6px 12px; border-radius: 999px; background: #fff; box-shadow: 0 1px 2px rgba(15, 50, 60, .06);
+      font: 500 12.5px/1 var(--mono); color: var(--ink-2); white-space: nowrap;
+    }
+    .st-hb-alert { margin: 0; padding: 14px; border-radius: 14px; }
+    .st-hb-row {
+      position: relative; display: flex; align-items: center; gap: 10px;
+      padding: 12px 12px 12px 20px; border-radius: 6px;
+      background: var(--app-row); box-shadow: inset 0 0 0 1px var(--app-line);
+      font: 400 13px/1.35 var(--mono); color: var(--app-text);
+    }
+    .st-hb-row::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; border-radius: 6px 0 0 6px; background: var(--critical); }
+    .st-hb-row .sep { color: #3b4654; }
+    .st-hb-row b { flex: 1; min-width: 0; font-weight: 500; color: var(--app-ink); }
+    .st-sev-high { flex: none; background: rgba(249, 115, 22, .14); color: var(--high); }
+    .st-hb-facts { margin: 14px 0 2px; padding: 0 8px; display: grid; grid-template-columns: auto 1fr; gap: 8px 20px; font: 400 12.5px/1.4 var(--mono); }
+    .st-hb-facts dt { color: #8a96a4; }
+    .st-hb-facts dd { margin: 0; color: var(--app-text); }
 
     /* Live in five minutes */
     .st-band {
@@ -668,6 +715,7 @@
     .st-code .s { color: #8fe3b0; }
     .st-code .f { color: #7cc4ff; }
     .st-code-result { margin: 14px 22px 20px; padding-top: 14px; border-top: 1px solid var(--app-line); display: flex; align-items: center; gap: 12px; font-size: 13.5px; color: var(--app-text); }
+    .st-code-result { flex-wrap: wrap; row-gap: 8px; }
     .st-201 { padding: 4px 8px; border-radius: 6px; background: rgba(66, 211, 153, .14); color: var(--resolved); font: 600 12px/1 var(--mono); }
     .st-sdk-line { grid-column: 1 / -1; font-size: 14px; color: #0b3f39; }
     .st-sdk-line a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(4, 34, 31, .35); }
@@ -847,11 +895,17 @@
       .st-foot-grid { grid-template-columns: 1fr 1fr; }
       .st-foot-brand { grid-column: 1 / -1; }
       .st-code pre { font-size: 12.5px; }
+      .st-hb { padding-bottom: 48px; }
+      .st-hb-wire { margin-left: 28px; height: 56px; }
+      .st-hb-row { font-size: 12px; gap: 8px; }
+      .st-hb-row .st-hb-src, .st-hb-row .sep { display: none; }
+      .st-hb-facts { gap: 6px 14px; font-size: 12px; }
     }
 
     @media (max-width: 960px) {
       .st-feature, .st-band { grid-template-columns: 1fr; }
       .st-feature-visual { min-height: 0; }
+      .st-hb .st-feature-copy { max-width: 640px; }
       .st-flow { grid-template-columns: 1fr; justify-items: center; gap: 0; max-width: 420px; }
       .st-flow-col { width: 100%; }
       .st-flow-in, .st-flow-out { grid-template-columns: 1fr 1fr; gap: 8px; }
@@ -910,6 +964,7 @@
       <nav class="st-nav-links" id="st-nav-links" aria-label="Primary">
         <a href="#features">Features</a>
         <a href="#monitoring">Monitoring</a>
+        <a href="#heartbeats">Heartbeats</a>
         <a href="#how">How it works</a>
         <a href="/pricing/">Pricing</a>
         <a href="/academy/">Academy</a>
@@ -1101,8 +1156,9 @@
           <li><svg class="st-icon"><use href="/public/img/icons.svg#i-pulse" /></svg> Uptime checks</li>
           <li><svg class="st-icon"><use href="/public/img/icons.svg#i-lock" /></svg> SSL expiry</li>
           <li><svg class="st-icon"><use href="/public/img/icons.svg#i-sliders" /></svg> Signal rules</li>
+          <li><svg class="st-icon"><use href="/public/img/icons.svg#i-clock" /></svg> Heartbeats</li>
         </ul>
-        <div class="st-flow-link st-fan st-fan-in" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <div class="st-flow-link st-fan st-fan-in" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
         <div class="st-flow-col st-flow-core"><span>Deduplicate</span><small>source · title · severity</small></div>
         <div class="st-flow-link st-fan st-fan-out3" aria-hidden="true"><i></i><i></i><i></i></div>
         <ul class="st-flow-col st-flow-teams">
@@ -1133,8 +1189,64 @@
         </figure>
         <figure class="st-mon-item">
           <picture><source media="(max-width: 760px)" srcset="/public/img/app/signal-detail-m.webp" width="900" height="639"><img src="/public/img/app/signal-detail-1600.webp" srcset="/public/img/app/signal-detail-800.webp 800w, /public/img/app/signal-detail-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 680px" width="1600" height="1136" alt="Sigtake signal for the orders worker: queue depth readings over 24 hours with anomaly detection active and a spike well above normal." loading="lazy" decoding="async"></picture>
-          <figcaption><strong>Signals</strong>Push any number with <code>signals.send()</code>. Thresholds over a window (avg, sum, count, min, max or last), anomaly detection that learns normal for the hour and weekday, and a heartbeat when a metric stops reporting.</figcaption>
+          <figcaption><strong>Signals</strong>Push any number with <code>signals.send()</code>. Thresholds over a window (avg, sum, count, min, max or last), anomaly detection that learns normal for the hour and weekday, and a missing-signal rule that fires when a metric stops reporting.</figcaption>
         </figure>
+      </div>
+    </section>
+
+    <section class="st-sec st-hb" id="heartbeats" aria-labelledby="heartbeats-title">
+      <div class="st-feature">
+        <div class="st-feature-copy">
+          <h2 class="st-h2" id="heartbeats-title">Know when a scheduled job goes quiet</h2>
+          <p class="st-lede">Cron jobs, backups, queue workers: anything that should run tells Sigtake when it does. If it goes quiet, fails or hangs, the team hears about it.</p>
+          <ul class="st-checks">
+            <li><strong>Its real schedule</strong>An interval or a cron expression in its timezone, plus a grace window before anything fires.</li>
+            <li><strong>Start, finish and exit code</strong>Ping <code>/start</code> before and the exit code after. Every run gets a duration; a failure, an overrun or a run that never finishes alerts.</li>
+            <li><strong>Jobs with no schedule</strong>Workers and functions run on demand: they alert on a reported failure or a run that takes too long, never on silence. Each run is tracked on its own.</li>
+            <li><strong>A missed ping is a normal alert</strong>Deduplicated, routed to the team’s channels, and resolved when the job runs again.</li>
+            <li><strong>A secret URL you can rotate</strong>Rotate it and keep the old one working for an hour, a day or a week. Only operators and admins see it.</li>
+          </ul>
+          <p class="st-hb-more"><a class="st-link-arrow" href="/academy/cron-job-monitoring-silent-failures/">Why cron jobs fail silently, and how to catch it <svg class="st-icon"><use href="/public/img/icons.svg#i-arrow" /></svg></a></p>
+        </div>
+
+        <div class="st-feature-visual st-hb-stage">
+          <div class="st-code st-app-skin st-hb-code">
+            <div class="st-code-tabs" role="tablist" aria-label="Report a job to a heartbeat">
+              <button type="button" role="tab" id="ht-cron" aria-controls="hp-cron" aria-selected="true">crontab</button>
+              <button type="button" role="tab" id="ht-node" aria-controls="hp-node" aria-selected="false" tabindex="-1">Node.js · on demand</button>
+            </div>
+            <div class="st-code-panel" role="tabpanel" id="hp-cron" aria-labelledby="ht-cron" tabindex="0">
+              <p class="st-code-install">nightly-backup · 03:00 UTC · 5 min grace</p>
+<pre><span class="s">0 3 * * *</span> <span class="f">curl</span> <span class="nw">-fsS</span> <span class="nw">-m 10</span> <span class="nw">--retry 3</span> <span class="nw">-o /dev/null</span> https://api.sigtake.com/ping/&lt;token&gt;/start; /usr/local/bin/backup.sh; <span class="f">curl</span> <span class="nw">-fsS</span> <span class="nw">-m 10</span> <span class="nw">--retry 3</span> <span class="nw">-o /dev/null</span> https://api.sigtake.com/ping/&lt;token&gt;/<span class="k">$?</span></pre>
+              <p class="st-code-result"><span class="st-201">204 No Content</span>Every ping answers empty, so cron has nothing to mail.</p>
+            </div>
+            <div class="st-code-panel" role="tabpanel" id="hp-node" aria-labelledby="ht-node" tabindex="0" hidden>
+              <p class="st-code-install">BASE is the heartbeat’s ping URL</p>
+<pre><span class="k">const</span> rid = <span class="f">randomUUID</span>();
+<span class="k">const</span> ping = (path) =&gt; <span class="f">fetch</span>(`${BASE}${path}?rid=${rid}`,
+  { signal: AbortSignal.<span class="f">timeout</span>(<span class="s">5000</span>) }).<span class="f">catch</span>(() =&gt; {});
+
+<span class="k">await</span> <span class="f">ping</span>(<span class="s">'/start'</span>);
+<span class="k">try</span> {
+  <span class="k">await</span> <span class="f">job</span>();
+  <span class="k">await</span> <span class="f">ping</span>(<span class="s">''</span>);
+} <span class="k">catch</span> (err) {
+  <span class="k">await</span> <span class="f">ping</span>(<span class="s">'/fail'</span>);
+  <span class="k">throw</span> err;
+}</pre>
+              <p class="st-code-result"><span class="st-201">204 No Content</span>Every ping answers empty, and a failed ping never fails the job.</p>
+            </div>
+          </div>
+          <div class="st-hb-wire" aria-hidden="true"><span>no ping by 03:05 UTC</span></div>
+          <figure class="st-hb-alert st-app-skin" aria-label="The alert Sigtake opens when the ping doesn't arrive: Heartbeat down: nightly-backup, high severity, cause no ping received in time, routed to the Platform team.">
+            <div class="st-hb-row"><span class="st-hb-src">CRON-CHECK</span><span class="sep">|</span><b>Heartbeat down: nightly-backup</b><span class="st-sev st-sev-high">HIGH</span></div>
+            <dl class="st-hb-facts">
+              <dt>Cause</dt><dd>No ping received in time</dd>
+              <dt>Schedule</dt><dd>0 3 * * * (UTC), 5 min grace</dd>
+              <dt>Team</dt><dd>PLATFORM</dd>
+            </dl>
+          </figure>
+        </div>
       </div>
     </section>
 
@@ -1218,7 +1330,7 @@
     <section class="st-panel st-pricing" id="pricing" aria-labelledby="pricing-title">
       <div class="st-sec-head">
         <h2 class="st-h2" id="pricing-title">Start free, scale when you’re paged</h2>
-        <p class="st-lede">Everything’s free while we’re in early access: unlimited users, teams, alerts and monitors, no credit card. Paid plans will come as we grow.</p>
+        <p class="st-lede">Everything’s free while we’re in early access: unlimited users, teams and alerts, plus website, signal and heartbeat monitoring, no credit card. Paid plans will come as we grow.</p>
       </div>
       <div class="st-price-grid">
         <div class="st-price-card">
@@ -1233,7 +1345,7 @@
           <li><strong>Unlimited users, teams and projects</strong>With as many API keys as your systems need.</li>
           <li><strong>Unlimited alert ingestion</strong>Deduplicated into incidents, with occurrence counts.</li>
           <li><strong>Email, Slack, Microsoft Teams and in-app</strong>Every channel we ship, on every team.</li>
-          <li><strong>Website and signal monitoring</strong>Thresholds, anomaly detection and heartbeats.</li>
+          <li><strong>Website, signal and heartbeat monitoring</strong>Uptime and SSL checks, thresholds and anomaly detection on signals, and Heartbeats for cron jobs and workers.</li>
           <li><strong>Node and Python SDKs</strong>Typed, zero dependencies, sync and async.</li>
         </ul>
       </div>
@@ -1255,6 +1367,10 @@
         <details>
           <summary>Who gets notified?</summary>
           <p>The team named by the alert’s team code, through that team’s channels in the alert’s project. In-app always lands, so nothing is lost while a channel is misconfigured.</p>
+        </details>
+        <details>
+          <summary>Can it tell me when a cron job stops running?</summary>
+          <p>Yes. Give the job a Heartbeat: one line in the crontab pings a private URL when the job starts and when it ends. If a ping doesn’t arrive within the schedule plus your grace window, the job fails, or a run hangs, the team gets a normal alert. Jobs with no schedule, like queue workers, use an on-demand Heartbeat instead.</p>
         </details>
         <details>
           <summary>What happens if a channel is down?</summary>
@@ -1291,6 +1407,7 @@
         <ul>
           <li><a href="#features">Features</a></li>
           <li><a href="#monitoring">Monitoring</a></li>
+          <li><a href="#heartbeats">Heartbeats</a></li>
           <li><a href="/pricing/">Pricing</a></li>
         </ul>
       </nav>

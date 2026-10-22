@@ -64,8 +64,7 @@
       });
     });
   }
-  var codeTabs = document.querySelector('.st-code-tabs');
-  if (codeTabs) initTabs(codeTabs);
+  [].slice.call(document.querySelectorAll('.st-code-tabs')).forEach(function (list) { initTabs(list); });
 
   /* ---------- Count-ups ---------- */
   function countTo(el, to, ms) {

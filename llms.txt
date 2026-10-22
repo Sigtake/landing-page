@@ -2,16 +2,19 @@
 
 > Real-time alert management & monitoring for ops teams. Sigtake ingests alerts
 > from all your systems, collapses duplicates into one row, and routes what
-> matters to the right team — by email, Slack, Microsoft Teams or in-app. Uptime
-> and signal monitoring included.
+> matters to the right team — by email, Slack, Microsoft Teams or in-app. Uptime,
+> signal and heartbeat monitoring included.
 
 ## Product
 - [Features](https://sigtake.com/#features): alert deduplication, routing, multi-tenant workspaces
 - [SDKs](https://sigtake.com/#how): official Node and Python clients
 - [Monitoring](https://sigtake.com/#monitoring): uptime and signal monitoring built in
+- [Heartbeats](https://sigtake.com/#heartbeats): cron jobs, backups, workers and on-demand jobs that ping Sigtake;
+  a missed ping, a failure or a hung run is an alert
 - [How it works](https://sigtake.com/#how): connect, route, then acknowledge and resolve
-- [Pricing](https://sigtake.com/pricing/): free during early access — unlimited users, teams,
-  alerts and monitors, no credit card; paid plans as we grow
+- [Pricing](https://sigtake.com/pricing/): free during early access — unlimited users, teams and
+  alerts, plus website, signal and heartbeat monitoring (up to 100 heartbeats per organization), no credit
+  card; paid plans as we grow
 
 ## SDKs
 - Node.js: `npm install @sigtake/sdk` (Node 18+, zero dependencies, ESM + CJS, typed).
@@ -33,9 +36,25 @@
 ## Signals & monitoring
 - Push numeric metrics via API (`POST /api/signals/ingest`); rules evaluate every minute.
 - Rule types: threshold (avg/min/max/last over a window), anomaly detection
-  (learns normal by hour & weekday, no threshold), and heartbeat (alerts when a metric stops).
+  (learns normal by hour & weekday, no threshold), and missing signal (alerts when a metric stops reporting).
 - Signal alerts flow into the same dedup, routing and notification pipeline.
 - Website/uptime monitoring: periodic checks with uptime % and latency trends.
+
+## Heartbeats
+- A job reports to a private URL: `https://api.sigtake.com/ping/<token>` (GET, POST or HEAD; the body is
+  never read; success answers 204 with no body). `/start` opens a run, `/fail` reports a failure, `/<exit code>`
+  reports 0 as success and 1-255 as failure.
+- Schedule: an interval (1 minute to 31 days), a cron expression with an IANA timezone, or on demand. A grace
+  window (1 minute to 7 days) applies to scheduled heartbeats. With `/start`, an optional maximum run duration
+  alerts on a run that takes too long, and a run still open at the next deadline alerts as started and never finished.
+- On demand: no schedule, never alerts on silence; alerts only on a reported failure or a run past its
+  maximum duration (required). `?rid=<id>` tracks concurrent runs one by one.
+- A missed deadline opens `Heartbeat down: <name>` (high severity), routed to the heartbeat's team through the
+  project's channels, deduplicated, and resolved automatically by the next successful run. A heartbeat whose
+  first ping never arrives also alerts.
+- Tokens can be rotated, optionally keeping the old URL valid for 1 hour, 1 day or 7 days. History keeps 14
+  days of pings. Up to 100 heartbeats per organization.
+- Not an on-call system and no job output capture.
 
 ## Academy
 Practical guides for small ops teams: https://sigtake.com/academy/
@@ -54,6 +73,9 @@ Practical guides for small ops teams: https://sigtake.com/academy/
   alert (14 days ahead by default, reminders at 7, 3 and 1)
 - [Monitor an Authenticated API Health Endpoint](https://sigtake.com/academy/monitor-api-health-endpoint/): encrypted
   write-only secret headers (Bearer, API key, Basic), JSONPath assertions (equals, contains, exists, not empty)
+- [Cron Job Monitoring](https://sigtake.com/academy/cron-job-monitoring-silent-failures/): why a job that never
+  runs leaves no trace; heartbeats with /start and exit codes, on-demand jobs with run ids, choosing the grace
+  window, and what a heartbeat can't catch
 
 ## Links
 - [App / Sign up](https://app.sigtake.com/register)

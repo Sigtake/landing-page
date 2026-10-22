@@ -28,6 +28,7 @@ colors:
   app-muted: "#6b7280"
   routed: "#44d4bf"
   critical: "#f67171"
+  high: "#f97316"
   warning: "#fbbf24"
   resolved: "#42d399"
   resolved-tab: "#4b5563"
@@ -343,6 +344,7 @@ A white, cool-grey page with one brand teal used in parts, and a separate dark p
 - **App Ink / App Text / App Muted** (app-ink, app-text, app-muted): window title, strip text, secondary text. Code blocks run slightly brighter (#d6dde5) for long reading.
 - **Routed Teal** (routed): the app's teal: routed strip tabs, both end tabs of a bill row, the language label on code blocks, the active code tab underline on dark.
 - **Critical Red** (critical): firing/critical only: the strip tab, the ×N count on a critical strip, the CRITICAL chip.
+- **High Orange** (high): the HIGH severity chip only (Heartbeats alerts open at high); never a strip tab, which stays keyed to status.
 - **Acknowledged Amber** (warning): acknowledged strip tab; also the Slack message rule in the notification card.
 - **Resolved Green** (resolved): RESOLVED chip, 201 response chip, the close-section strip tab.
 - **Resolved Grey** (resolved-tab): the end tab of a resolved strip and of the 404 GET strip (nothing is firing; the link is simply gone).
@@ -488,6 +490,9 @@ On a centred Soft Teal stage (max 640px), one dark 52px strip in App Night with 
 
 ### OG Cards
 1200 by 630, white. The real logo top left, a Figtree 800 headline (62–66px, -0.045em, max two or three lines) with a 21px Muted Slate sub, and a soft-teal stage holding one App Night window. Four layouts drawn with the same strip rows (6px end tab, mono, pipes): **rows** (alert board with team headers, a ×25 merged strip and channel chips), **stat** (the bill with $0.00 rows and a total), **route** (team_code to channel), **plain** (four strips, the default for Academy and legal cards).
+
+### Heartbeat Scene (home `#heartbeats`)
+A white section in the 5fr/7fr feature split between Monitoring and the teal band. Copy left (headline, lede, five title-plus-description checks, arrow link to the Academy article). On the soft-teal stage: a code window reusing the SDK code card (tabs crontab / Node.js, a `#` comment line instead of `$`, soft-wrapped `pre` so a crontab line copies as one line, ligatures off), a dashed Wire connector carrying a white mono chip with the deadline, then an alert window holding one strip (firing red end tab, mono source | title, HIGH chip) and a mono facts list. Static: no motion. Under 760px the strip drops source and pipe.
 
 ### Teal Band
 A full-teal 24px panel for the setup story: Teal Night heading, numbered steps on Teal Night discs with teal numerals, a dark SDK code card with Routed Teal tab underline and a green 201 result.

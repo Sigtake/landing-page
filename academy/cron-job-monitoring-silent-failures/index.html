@@ -27,7 +27,7 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Cron Job Monitoring: Catch Jobs That Fail Silently">
   <meta property="article:published_time" content="2026-10-22">
-  <meta property="article:modified_time" content="2026-10-22">
+  <meta property="article:modified_time" content="2026-10-23">
   <meta property="article:author" content="https://www.linkedin.com/in/darwing-sanchez/">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Cron Job Monitoring: Catch Jobs That Fail Silently">
@@ -55,7 +55,7 @@
         "description": "A cron job that never runs leaves no error, no log and no alert. How heartbeat monitoring catches silent failures, and how to set it up with Sigtake Heartbeats.",
         "image": "https://sigtake.com/og/academy-cron-job-monitoring-silent-failures.png",
         "datePublished": "2026-10-22",
-        "dateModified": "2026-10-22",
+        "dateModified": "2026-10-23",
         "inLanguage": "en",
         "mainEntityOfPage": "https://sigtake.com/academy/cron-job-monitoring-silent-failures/",
         "author": {
@@ -150,7 +150,7 @@
 
       <p class="ac-byline">
         <span>By <a href="https://www.linkedin.com/in/darwing-sanchez/" rel="author">Darwing Sánchez</a></span>
-        <span>Updated <time datetime="2026-10-22">Oct 22, 2026</time> · 10 min read</span>
+        <span>Updated <time datetime="2026-10-23">Oct 23, 2026</time> · 10 min read</span>
       </p>
       </header>
 
@@ -166,7 +166,7 @@
           <li><a href="#on-demand">Jobs with no schedule</a></li>
           <li><a href="#grace">Choosing the grace window</a></li>
           <li><a href="#heartbeats-vs-others">Dedicated tools vs. Heartbeats</a></li>
-          <li><a href="#limits">What it does not do</a></li>
+          <li><a href="#limits">Getting the most out of it</a></li>
         </ol>
       </nav>
 
@@ -351,30 +351,18 @@
         <h2 id="on-demand">Jobs that have no schedule</h2>
         <p>Not every job runs on a clock. A queue consumer, a webhook handler or a serverless function runs when something triggers it, maybe twice a minute, maybe once a week. There's no "next ping due", so waiting for one would either never alert or alert all the time.</p>
         <p>For these, a heartbeat's schedule is <strong>On demand</strong>. It never alerts on silence. It alerts when a run reports a failure, or when a run passes its maximum duration. That maximum is required here, because it's the only thing that can see a run that died without reporting: a process killed by a timeout or an out-of-memory error never reaches its <code>catch</code> block.</p>
-        <p>On-demand jobs often overlap, so each run sends its own id with <code>?rid=</code>, and Sigtake tracks every run separately: its start, its duration, its deadline. One hung run alerts even while others finish fine. The panel shows the wrapper in Shell, curl, Node.js and Python; this is the Node.js one:</p>
-        <pre data-lang="js"><code>// Node 18+. Set SIGTAKE_PING_URL=https://api.sigtake.com/ping/&lt;token&gt;
-// One run id per run; never put a secret in it.
-import { randomUUID } from 'node:crypto';
+        <p>On-demand jobs often overlap, so each run sends its own id with <code>?rid=</code>, and Sigtake tracks every run separately: its start, its duration, its deadline. One hung run alerts even while others finish fine. In Node.js the <a href="https://www.npmjs.com/package/@sigtake/sdk">SDK</a> does it in one call; the panel shows the same wrapper for Shell, curl and Python:</p>
+        <pre data-lang="js"><code>// npm install @sigtake/sdk
+// Set SIGTAKE_PING_URL=https://api.sigtake.com/ping/&lt;token&gt;
+import { heartbeat } from '@sigtake/sdk';
 
-const BASE = process.env.SIGTAKE_PING_URL;
-const ping = (path, rid) =&gt;
-  fetch(`${BASE}${path}?rid=${encodeURIComponent(rid)}`, { signal: AbortSignal.timeout(5000) }).catch(() =&gt; {});
+const hb = heartbeat(process.env.SIGTAKE_PING_URL);
 
-export async function monitored(job) {
-  const rid = randomUUID();
-  await ping('/start', rid);
-  try {
-    const result = await job();
-    await ping('', rid);
-    return result;
-  } catch (err) {
-    await ping('/fail', rid);
-    throw err;
-  }
-}
+await hb.wrap(() =&gt; yourJob());   // a random run id per run
 
-// await monitored(() =&gt; yourJob());</code></pre>
-        <p>The pings are awaited before the run ends, because a runtime that freezes or exits after your handler returns may never send a request still in flight. A failed ping is swallowed: monitoring must never break the job it watches. The run id isn't a secret and can show up in logs.</p>
+// Or name the run after what it processes:
+// await hb.wrap(() =&gt; processLead(lead), { rid: `lead-${lead.id}` });</code></pre>
+        <p><code>wrap</code> sends the start, runs the job, then reports success, or a failure with the job's error rethrown as is. It waits for every ping before returning, because a runtime that freezes or exits after your handler returns may never send a request still in flight. A failed ping never breaks the job: it's reported with <code>console.warn</code> and the job carries on. The run id isn't a secret and can show up in logs, so use an id, not an email.</p>
         <p>One rule keeps a failure from being hidden by a neighbour. After a failure, the incident closes with the first run that <em>started after</em> the failure and finished well. A run that was already in flight when the failure happened proves nothing about the job now, so its success is recorded but doesn't resolve anything.</p>
         <p>If you also need to know when an on-demand job stops being triggered at all, add a second heartbeat with a long interval and ping it from the same code, say once a day.</p>
 
@@ -389,17 +377,17 @@ export async function monitored(job) {
         <h2 id="heartbeats-vs-others">Dedicated tools vs. Heartbeats inside your alerting</h2>
         <p>Heartbeat monitoring isn't new, and the model is the same everywhere: a URL per job, a deadline, an alert on absence. <a href="https://healthchecks.io">Healthchecks.io</a>, <a href="https://cronitor.io">Cronitor</a> and <a href="https://deadmanssnitch.com">Dead Man's Snitch</a> are mature tools built only for this, and they do it well.</p>
         <p>Where Sigtake Heartbeats differs is where the alert goes. It enters the same pipeline as the rest of your alerts: the team that owns the job, that team's Slack, Teams or email channels in the project, the in-app bell, deduplication and automatic resolution. There's no second tool with its own user list and its own notification wiring to keep in sync.</p>
-        <p>Where it doesn't: Healthchecks.io can attach the job's output to a ping, and Sigtake doesn't read the ping body at all. Cronitor has status pages and on-call features that Sigtake doesn't. If you only need to watch jobs and you already use one of these happily, there's no reason to switch.</p>
+        <p>Each tool draws its line in a different place. Heartbeats is built as one more signal in your alerting, not a separate product: it records the outcome of every run (start, duration, exit code) and leaves logs in the tool that already holds them. The alert goes to the team and channels you already run, with no second place to look. If a dedicated tool already serves you well for jobs alone, keep it; if you want job failures next to every other alert, that's what Heartbeats is for.</p>
 
-        <h2 id="limits">What Heartbeats does not do</h2>
+        <h2 id="limits">Getting the most out of Heartbeats</h2>
         <ul>
-          <li><strong>It proves the job finished, not that it was right.</strong> Ping after you've checked the result.</li>
-          <li><strong>No job output.</strong> The body of a ping is never read, so there are no logs in Heartbeats; keep them where they are.</li>
-          <li><strong>It isn't an on-call system.</strong> There are no rotations, escalations, phone calls or SMS. A heartbeat alerts a team.</li>
-          <li><strong>A heartbeat without a team reaches nobody.</strong> It still goes Down, but nobody is notified.</li>
-          <li><strong>Minutes, not seconds.</strong> Schedules, grace and maximum durations start at one minute.</li>
-          <li><strong>On demand never alerts on silence</strong>, by design. Pair it with an interval heartbeat if that matters.</li>
-          <li><strong>History is two weeks.</strong> Each heartbeat keeps its last 14 days of pings.</li>
+          <li><strong>Ping after you've checked the result.</strong> A heartbeat proves the job finished; send it once you've confirmed the work.</li>
+          <li><strong>Logs stay where they are.</strong> Heartbeats records the outcome and never reads the ping body, so nothing from your job's output travels with it.</li>
+          <li><strong>Alerts go to a team.</strong> For paging, point the team's email channel at your on-call tool's inbound address.</li>
+          <li><strong>Give every heartbeat a team.</strong> The team is who gets told; without one, a Down reaches nobody.</li>
+          <li><strong>Checked every minute.</strong> Alerts land within about a minute of the deadline.</li>
+          <li><strong>On demand watches runs, not silence.</strong> Pair it with an interval heartbeat to know when a job stops being triggered.</li>
+          <li><strong>Two weeks of history.</strong> Each heartbeat keeps its last 14 days of pings.</li>
           <li><strong>The token lives in the URL</strong>, so it can end up in shell history or a repository. Rotate it from the heartbeat's page; you can keep the old URL working for an hour, a day or a week while you update your jobs.</li>
         </ul>
 
